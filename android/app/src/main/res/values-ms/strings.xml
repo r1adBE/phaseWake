@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">Belum ada data tidur daripada Health Connect. Samsung Health perlu berkongsinya: Samsung Health → Tetapan → Health Connect.</string>
     <string name="history_health_live">Daripada %1$s. Phase Wake mengikut perubahan dan pemadaman di sana secara automatik.</string>
     <string name="history_health_live_unknown">Daripada data kesihatan awak. Phase Wake mengikut perubahan dan pemadaman di sana secara automatik.</string>
+    <string name="history_older_title">Benarkan data lebih lama daripada %1$s</string>
+    <string name="history_older_title_unknown">Benarkan data kesihatan lebih lama</string>
+    <string name="history_older_allow">Benarkan</string>
+    <string name="history_older_later">Bukan sekarang</string>
     <string name="history_average">Purata %1$d min lebih awal</string>
     <string name="history_light_share">%1$d %% dibangunkan lebih awal bila gelisah</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">Tidur nyenyak %1$s daripada tidur anda</string>
     <string name="settings_clear_old">Padam yang lebih lama daripada 90 hari</string>
     <string name="settings_clear_old_text">Memadam malam yang direkodkan lebih lama daripada 90 hari pada telefonmu, bersama nota, perasaan, tanda rutin malam dan rakaman malamnya. Malam yang lebih baharu dan penggeramu kekal. Malam daripada apl lain hanya disembunyikan di sini dan kekal dalam apl tersebut.</string>
+    <string name="settings_clear_old_learn">Rakaman malam daripada fasa pembelajaran yang belum selesai kekal.</string>
 </resources>

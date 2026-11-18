@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">아직 Health Connect의 수면 데이터가 없어요. Samsung Health에서 데이터를 공유해야 해요: Samsung Health → 설정 → Health Connect.</string>
     <string name="history_health_live">출처: %1$s. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
     <string name="history_health_live_unknown">출처: 내 건강 데이터. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
+    <string name="history_older_title">%1$s의 이전 데이터 허용</string>
+    <string name="history_older_title_unknown">이전 건강 데이터 허용</string>
+    <string name="history_older_allow">허용</string>
+    <string name="history_older_later">나중에</string>
     <string name="history_average">평균 %1$d분 일찍</string>
     <string name="history_light_share">뒤척여서 일찍 깬 비율 %1$d %%</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">깊은 수면: 수면의 %1$s</string>
     <string name="settings_clear_old">90일보다 오래된 기록 삭제</string>
     <string name="settings_clear_old_text">휴대폰에서 90일보다 오래된 밤 기록을 메모, 기분, 저녁 루틴 체크, 밤 녹화와 함께 삭제해요. 더 최근의 밤과 알람은 그대로 유지돼요. 다른 앱의 밤은 여기서 숨겨지기만 하고 그 앱에는 그대로 남아 있어요.</string>
+    <string name="settings_clear_old_learn">아직 끝나지 않은 학습 단계의 밤 녹화는 유지돼요.</string>
 </resources>

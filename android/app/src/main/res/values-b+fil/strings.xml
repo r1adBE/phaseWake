@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Wala pang sleep data mula sa Health Connect. Kailangang i-share ito ng Samsung Health: Samsung Health → Settings → Health Connect.</string>
     <string name="history_health_live">Mula sa %1$s. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
     <string name="history_health_live_unknown">Mula sa health data mo. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
+    <string name="history_older_title">Payagan ang mas lumang data mula sa %1$s</string>
+    <string name="history_older_title_unknown">Payagan ang mas lumang health data</string>
+    <string name="history_older_allow">Payagan</string>
+    <string name="history_older_later">Hindi muna</string>
     <string name="history_average">Ø %1$d min nang maaga</string>
     <string name="history_light_share">%1$d %% ginising nang mas maaga kapag di mapakali</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Malalim na tulog %1$s ng iyong tulog</string>
     <string name="settings_clear_old">I-delete ang lampas 90 araw</string>
     <string name="settings_clear_old_text">Dine-delete ang mga naitalang gabi na lampas 90 araw sa telepono mo, kasama ang mga tala, pakiramdam, tsek sa routine sa gabi at mga recording ng gabi nila. Mananatili ang mas bagong gabi at ang mga alarm mo. Itinatago lang dito ang mga gabi mula sa ibang app at nananatili sila sa mga app na iyon.</string>
+    <string name="settings_clear_old_learn">Mananatili ang mga recording ng gabi ng hindi pa tapos mong yugto ng pagkatuto.</string>
 </resources>

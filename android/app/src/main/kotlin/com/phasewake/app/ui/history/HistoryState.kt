@@ -50,6 +50,7 @@ import java.time.temporal.WeekFields
  *   setzen es fest).
  * @property openGroups Beim Öffnen aufgeklappte Wochen und Jahre ([groupKey]); nur für Bildschirmfotos, in der App
  *   ist alles zugeklappt.
+ * @property olderHint Einmaliger Hinweis «Ältere Daten aus … freigeben» unter den Diagrammen; `null`: keiner.
  */
 data class HistoryState(
     val nights: List<NightRecord>,
@@ -75,6 +76,7 @@ data class HistoryState(
     val asleep: Map<LocalDate, Long> = emptyMap(),
     val today: LocalDate? = null,
     val openGroups: Set<String> = emptySet(),
+    val olderHint: OlderDataHint? = null,
 )
 
 /**

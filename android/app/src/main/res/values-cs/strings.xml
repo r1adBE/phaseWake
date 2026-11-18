@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Zatím žádná data o spánku z Health Connect. Samsung Health je musí sdílet: Samsung Health → Nastavení → Health Connect.</string>
     <string name="history_health_live">Z aplikace %1$s. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
     <string name="history_health_live_unknown">Z tvých zdravotních dat. Změny a smazání provedená tam Phase Wake převezme automaticky.</string>
+    <string name="history_older_title">Povolit starší data z aplikace %1$s</string>
+    <string name="history_older_title_unknown">Povolit starší zdravotní data</string>
+    <string name="history_older_allow">Povolit</string>
+    <string name="history_older_later">Teď ne</string>
     <string name="history_average">Ø %1$d min dřív</string>
     <string name="history_light_share">%1$d %% probuzeno dřív kvůli neklidu</string>
     <plurals name="history_group_nights">
@@ -697,4 +701,5 @@
     <string name="weekly_deep">Hluboký spánek %1$s tvého spánku</string>
     <string name="settings_clear_old">Smazat starší než 90 dní</string>
     <string name="settings_clear_old_text">Smaže z telefonu zaznamenané noci starší než 90 dní spolu s jejich poznámkami, pocitem, zaškrtnutím večerní rutiny a nočními záznamy. Novější noci a tvoje budíky zůstanou. Noci z jiných aplikací se tu jen skryjí a zůstanou v těchto aplikacích.</string>
+    <string name="settings_clear_old_learn">Noční záznamy z nedokončené fáze učení zůstanou.</string>
 </resources>

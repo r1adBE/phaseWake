@@ -152,6 +152,8 @@ fun HistoryScreen(
                 HistoryChartsSection(it, state.customNotes, opener = opener, nights = periodNights(unit))
             }
         }
+        // Einmaliger Hinweis unter den Diagrammen, vor der Liste (auch im leeren Verlauf).
+        state.olderHint?.let { item(key = "older-data") { OlderDataCard(it, Modifier.animateItem()) } }
         if (history.isEmpty() && state.recordings.isEmpty()) {
             emptyItems(state, actions, model)
             return@LazyColumn

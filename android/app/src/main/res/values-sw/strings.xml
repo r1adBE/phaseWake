@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">Bado hakuna data ya usingizi kutoka Health Connect. Samsung Health lazima iishiriki: Samsung Health → Mipangilio → Health Connect.</string>
     <string name="history_health_live">Kutoka %1$s. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
     <string name="history_health_live_unknown">Kutoka data yako ya afya. Phase Wake hufuata mabadiliko na ufutaji uliofanywa huko kiotomatiki.</string>
+    <string name="history_older_title">Ruhusu data ya zamani kutoka %1$s</string>
+    <string name="history_older_title_unknown">Ruhusu data ya zamani ya afya</string>
+    <string name="history_older_allow">Ruhusu</string>
+    <string name="history_older_later">Si sasa</string>
     <string name="history_average">Wastani dak %1$d mapema</string>
     <string name="history_light_share">%1$d %% waliamshwa mapema wakikosa utulivu</string>
     <plurals name="history_group_nights">
@@ -667,4 +671,5 @@
     <string name="weekly_deep">Usingizi mzito %1$s ya usingizi wako</string>
     <string name="settings_clear_old">Futa vya zaidi ya siku 90</string>
     <string name="settings_clear_old_text">Inafuta usiku uliorekodiwa wa zaidi ya siku 90 kwenye simu yako, pamoja na madokezo, hali, alama za ratiba ya jioni na rekodi za usiku zake. Usiku mpya zaidi na kengele zako zinabaki. Usiku kutoka programu nyingine unafichwa hapa tu na unabaki kwenye programu hizo.</string>
+    <string name="settings_clear_old_learn">Rekodi za usiku za hatua ya kujifunza ambayo haijakamilika zinabaki.</string>
 </resources>

@@ -175,6 +175,7 @@ private fun PhaseWakeNav(themeMode: ThemeMode, openHistory: Boolean = false) {
             }
         },
         connectHealth = { healthPermission.launch(app.health.requestPermissions) },
+        connectHealthHistory = { healthPermission.launch(app.health.historyRequest) },
         onFix = { item ->
             when {
                 item == Check.COMPANION -> connectCompanion()

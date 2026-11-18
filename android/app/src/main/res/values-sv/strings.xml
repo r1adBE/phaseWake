@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Inga sömndata från Health Connect ännu. Samsung Health måste dela dem: Samsung Health → Inställningar → Health Connect.</string>
     <string name="history_health_live">Från %1$s. Phase Wake tar automatiskt över ändringar och raderingar där.</string>
     <string name="history_health_live_unknown">Från dina hälsodata. Phase Wake tar automatiskt över ändringar och raderingar där.</string>
+    <string name="history_older_title">Tillåt äldre data från %1$s</string>
+    <string name="history_older_title_unknown">Tillåt äldre hälsodata</string>
+    <string name="history_older_allow">Tillåt</string>
+    <string name="history_older_later">Inte nu</string>
     <string name="history_average">Ø %1$d min tidigare</string>
     <string name="history_light_share">%1$d %% väckta tidigare vid oro</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Djupsömn %1$s av din sömn</string>
     <string name="settings_clear_old">Rensa äldre än 90 dagar</string>
     <string name="settings_clear_old_text">Raderar registrerade nätter äldre än 90 dagar på telefonen, tillsammans med deras anteckningar, känsla, bockar i kvällsrutinen och nattinspelningar. Nyare nätter och dina alarm finns kvar. Nätter från andra appar döljs bara här och ligger kvar i de apparna.</string>
+    <string name="settings_clear_old_learn">Nattinspelningar från din oavslutade inlärningsfas finns kvar.</string>
 </resources>

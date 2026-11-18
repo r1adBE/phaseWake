@@ -73,6 +73,8 @@ internal class NavActions(
     /** Fragt nach dem Mitteilungsrecht, falls es fehlt (ab Android 13); sonst nichts. */
     val askNotificationsIfMissing: () -> Unit,
     val connectHealth: () -> Unit,
+    /** Nur «Verlauf lesen» anfragen (Hinweis im Verlauf); danach liest der Verlauf neu. */
+    val connectHealthHistory: () -> Unit,
     val onFix: (Check) -> Unit,
     /** «In 2 Minuten testen»; ersetzt er einen wartenden Powernap, fragt er zuerst. */
     val onTest: () -> Unit,
@@ -211,9 +213,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
                     it.end.isAfter(night.windowStart.minus(STAGES_BEFORE)) &&
                         it.start.isBefore(night.wokeAt.plus(STAGES_AFTER))
                 } }
-            } else {
-                null
-            },
+            } else null,
             trends = insights.trends,
             healthConnected = insights.health == HealthState.CONNECTED,
             goalWeek = insights.goalWeek,
@@ -229,9 +229,9 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
             charts = insights.charts,
             items = insights.history,
             canConnectHealth = insights.health == HealthState.AVAILABLE,
-            healthFeelings = data.healthFeelings,
-            recordings = recordings.orEmpty(),
+            healthFeelings = data.healthFeelings, recordings = recordings.orEmpty(),
             goalMinutes = data.sleepGoal, asleep = insights.asleep,
+            olderHint = rememberOlderDataHint(app, insights, actions.connectHealthHistory),
         ),
         contentPadding = content,
         actions = HistoryActions(

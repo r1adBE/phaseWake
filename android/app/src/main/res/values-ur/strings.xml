@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">ابھی Health Connect سے نیند کا ڈیٹا نہیں ہے۔ Samsung Health کو اسے شیئر کرنا ہوگا: ‏Samsung Health ← سیٹنگز ← Health Connect۔</string>
     <string name="history_health_live">%1$s سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
     <string name="history_health_live_unknown">تمہارے صحت کے ڈیٹا سے۔ وہاں کی گئی تبدیلیاں اور حذف Phase Wake خود بخود اپنا لیتا ہے۔</string>
+    <string name="history_older_title">%1$s سے پرانے ڈیٹا کی اجازت دو</string>
+    <string name="history_older_title_unknown">صحت کے پرانے ڈیٹا کی اجازت دو</string>
+    <string name="history_older_allow">اجازت دو</string>
+    <string name="history_older_later">ابھی نہیں</string>
     <string name="history_average">اوسطاً %1$d منٹ پہلے</string>
     <string name="history_light_share">%1$d %% بے چینی پر پہلے جگایا گیا</string>
     <plurals name="history_group_nights">
@@ -667,4 +671,5 @@
     <string name="weekly_deep">گہری نیند آپ کی نیند کا %1$s</string>
     <string name="settings_clear_old">90 دن سے پرانا حذف کرو</string>
     <string name="settings_clear_old_text">فون پر 90 دن سے پرانی ریکارڈ کی گئی راتیں ان کے نوٹس، کیفیت، شام کے معمول کے نشان اور رات کی ریکارڈنگز سمیت حذف ہو جائیں گی۔ نئی راتیں اور تمہارے الارم باقی رہیں گے۔ دوسری ایپس کی راتیں یہاں صرف چھپائی جاتی ہیں اور انہی ایپس میں رہتی ہیں۔</string>
+    <string name="settings_clear_old_learn">نامکمل سیکھنے کے مرحلے کی رات کی ریکارڈنگز باقی رہیں گی۔</string>
 </resources>

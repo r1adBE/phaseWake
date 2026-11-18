@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">Chưa có dữ liệu giấc ngủ từ Health Connect. Samsung Health cần chia sẻ dữ liệu: Samsung Health → Cài đặt → Health Connect.</string>
     <string name="history_health_live">Từ %1$s. Phase Wake tự động cập nhật theo các thay đổi và xóa ở đó.</string>
     <string name="history_health_live_unknown">Từ dữ liệu sức khỏe của bạn. Phase Wake tự động cập nhật theo các thay đổi và xóa ở đó.</string>
+    <string name="history_older_title">Cho phép dữ liệu cũ hơn từ %1$s</string>
+    <string name="history_older_title_unknown">Cho phép dữ liệu sức khỏe cũ hơn</string>
+    <string name="history_older_allow">Cho phép</string>
+    <string name="history_older_later">Để sau</string>
     <string name="history_average">TB sớm %1$d phút</string>
     <string name="history_light_share">%1$d %% được đánh thức sớm khi trằn trọc</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">Ngủ sâu %1$s giấc ngủ của bạn</string>
     <string name="settings_clear_old">Xóa dữ liệu cũ hơn 90 ngày</string>
     <string name="settings_clear_old_text">Xóa các đêm đã ghi cũ hơn 90 ngày trên điện thoại của bạn, cùng ghi chú, cảm giác, dấu tích thói quen buổi tối và bản ghi ban đêm của chúng. Các đêm mới hơn và báo thức của bạn vẫn được giữ. Các đêm từ ứng dụng khác chỉ bị ẩn ở đây và vẫn nằm trong các ứng dụng đó.</string>
+    <string name="settings_clear_old_learn">Các bản ghi ban đêm của giai đoạn học chưa hoàn tất vẫn được giữ.</string>
 </resources>

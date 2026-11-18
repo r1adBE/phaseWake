@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">هنوز داده‌ی خوابی از Health Connect نیست. Samsung Health باید آن‌ها را به اشتراک بگذارد: ‏Samsung Health ← تنظیمات ← Health Connect.</string>
     <string name="history_health_live">از %1$s. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
     <string name="history_health_live_unknown">از داده‌های سلامت تو. Phase Wake تغییرات و حذف‌های آنجا را خودکار اعمال می‌کند.</string>
+    <string name="history_older_title">اجازه به داده‌های قدیمی‌تر از %1$s</string>
+    <string name="history_older_title_unknown">اجازه به داده‌های سلامت قدیمی‌تر</string>
+    <string name="history_older_allow">مجاز کن</string>
+    <string name="history_older_later">الان نه</string>
     <string name="history_average">میانگین: %1$d دق زودتر</string>
     <string name="history_light_share">%1$d %% با بی‌قراری زودتر بیدار شده</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">خواب عمیق %1$s از خوابت</string>
     <string name="settings_clear_old">پاک کردن قدیمی‌تر از ۹۰ روز</string>
     <string name="settings_clear_old_text">شب‌های ثبت‌شدهٔ قدیمی‌تر از ۹۰ روز در گوشی‌ات، همراه با یادداشت‌ها، حس، تیک‌های روال شب و ضبط‌های شبانه‌شان پاک می‌شوند. شب‌های جدیدتر و زنگ‌های هشدارت می‌مانند. شب‌های برنامه‌های دیگر اینجا فقط پنهان می‌شوند و در همان برنامه‌ها می‌مانند.</string>
+    <string name="settings_clear_old_learn">ضبط‌های شبانهٔ مرحلهٔ یادگیریِ تمام‌نشده می‌مانند.</string>
 </resources>

@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">Încă nu există date de somn din Health Connect. Samsung Health trebuie să le partajeze: Samsung Health → Setări → Health Connect.</string>
     <string name="history_health_live">Din %1$s. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_health_live_unknown">Din datele tale de sănătate. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
+    <string name="history_older_title">Permite date mai vechi din %1$s</string>
+    <string name="history_older_title_unknown">Permite date de sănătate mai vechi</string>
+    <string name="history_older_allow">Permite</string>
+    <string name="history_older_later">Nu acum</string>
     <string name="history_average">Ø %1$d min mai devreme</string>
     <string name="history_light_share">%1$d %% treziți mai devreme la agitație</string>
     <plurals name="history_group_nights">
@@ -681,4 +685,5 @@
     <string name="weekly_deep">Somn profund %1$s din somnul tău</string>
     <string name="settings_clear_old">Șterge ce e mai vechi de 90 de zile</string>
     <string name="settings_clear_old_text">Șterge de pe telefon nopțile înregistrate mai vechi de 90 de zile, împreună cu notițele, starea, bifele rutinei de seară și înregistrările de noapte ale lor. Nopțile mai noi și alarmele tale rămân. Nopțile din alte aplicații sunt doar ascunse aici și rămân în acele aplicații.</string>
+    <string name="settings_clear_old_learn">Înregistrările de noapte din faza de învățare neîncheiată rămân.</string>
 </resources>

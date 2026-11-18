@@ -199,6 +199,8 @@ class EditsElsewhereTest {
         val text = DialogNodes.texts().joinToString(" ")
         assertTrue(text.contains(context.getString(R.string.settings_clear_old_text)), text)
         assertFalse(text.contains(context.getString(R.string.settings_clear_history_learn)), text)
+        // Ohne offene Lernphase kein Zusatz zu ihren Aufzeichnungen.
+        assertFalse(text.contains(context.getString(R.string.settings_clear_old_learn)), text)
         DialogNodes.click(context.getString(R.string.action_cancel))
     }
 }

@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">Health Connect ನಿಂದ ಇನ್ನೂ ನಿದ್ರೆಯ ಡೇಟಾ ಇಲ್ಲ. Samsung Health ಅದನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಕು: Samsung Health → ಸೆಟ್ಟಿಂಗ್‌ಗಳು → Health Connect.</string>
     <string name="history_health_live">%1$s ನಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
     <string name="history_health_live_unknown">ನಿಮ್ಮ ಆರೋಗ್ಯ ಡೇಟಾದಿಂದ. ಅಲ್ಲಿ ಮಾಡಿದ ಬದಲಾವಣೆ ಮತ್ತು ಅಳಿಸುವಿಕೆಗಳನ್ನು Phase Wake ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅನ್ವಯಿಸುತ್ತದೆ.</string>
+    <string name="history_older_title">%1$s ನಿಂದ ಹಳೆಯ ಡೇಟಾಗೆ ಅನುಮತಿಸಿ</string>
+    <string name="history_older_title_unknown">ಹಳೆಯ ಆರೋಗ್ಯ ಡೇಟಾಗೆ ಅನುಮತಿಸಿ</string>
+    <string name="history_older_allow">ಅನುಮತಿಸಿ</string>
+    <string name="history_older_later">ಈಗ ಬೇಡ</string>
     <string name="history_average">Ø %1$d ನಿಮಿ. ಮುಂಚೆ</string>
     <string name="history_light_share">%1$d %% ಚಡಪಡಿಸಿದಾಗ ಬೇಗ ಎಬ್ಬಿಸಲಾಗಿದೆ</string>
     <plurals name="history_group_nights">
@@ -667,4 +671,5 @@
     <string name="weekly_deep">ಗಾಢ ನಿದ್ರೆ ನಿನ್ನ ನಿದ್ರೆಯ %1$s</string>
     <string name="settings_clear_old">90 ದಿನಗಳಿಗಿಂತ ಹಳೆಯದನ್ನು ಅಳಿಸಿ</string>
     <string name="settings_clear_old_text">ಫೋನ್‌ನಲ್ಲಿ 90 ದಿನಗಳಿಗಿಂತ ಹಳೆಯ ದಾಖಲಾದ ರಾತ್ರಿಗಳನ್ನು ಅವುಗಳ ಟಿಪ್ಪಣಿಗಳು, ಅನಿಸಿಕೆ, ಸಂಜೆಯ ದಿನಚರಿಯ ಟಿಕ್‌ಗಳು ಮತ್ತು ರಾತ್ರಿಯ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳೊಂದಿಗೆ ಅಳಿಸುತ್ತದೆ. ಹೊಸ ರಾತ್ರಿಗಳು ಮತ್ತು ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ. ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು ಇಲ್ಲಿ ಮರೆಮಾಡಲಾಗುತ್ತದೆ ಮಾತ್ರ, ಅವು ಆ ಆ್ಯಪ್‌ಗಳಲ್ಲೇ ಉಳಿಯುತ್ತವೆ.</string>
+    <string name="settings_clear_old_learn">ಪೂರ್ಣಗೊಳ್ಳದ ಕಲಿಕೆಯ ಹಂತದ ರಾತ್ರಿಯ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳು ಉಳಿಯುತ್ತವೆ.</string>
 </resources>

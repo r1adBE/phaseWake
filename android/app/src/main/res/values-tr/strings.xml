@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Health Connect’ten henüz uyku verisi yok. Samsung Health bunları paylaşmalı: Samsung Health → Ayarlar → Health Connect.</string>
     <string name="history_health_live">Kaynak: %1$s. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
     <string name="history_health_live_unknown">Kaynak: sağlık verilerin. Orada yapılan değişiklikleri ve silmeleri Phase Wake otomatik olarak uygular.</string>
+    <string name="history_older_title">Daha eski verilere izin ver: %1$s</string>
+    <string name="history_older_title_unknown">Daha eski sağlık verilerine izin ver</string>
+    <string name="history_older_allow">İzin ver</string>
+    <string name="history_older_later">Şimdi değil</string>
     <string name="history_average">Ø %1$d dk erken</string>
     <string name="history_light_share">%%%1$d huzursuzlanınca erken uyandırıldı</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Derin uyku: uykunun %1$s kadarı</string>
     <string name="settings_clear_old">90 günden eskiyi sil</string>
     <string name="settings_clear_old_text">Telefonundaki 90 günden eski kayıtlı geceleri notları, hissedişi, akşam rutini işaretleri ve gece kayıtlarıyla birlikte siler. Daha yeni geceler ve alarmların kalır. Diğer uygulamalardaki geceler burada yalnızca gizlenir ve o uygulamalarda kalır.</string>
+    <string name="settings_clear_old_learn">Tamamlanmamış öğrenme aşamasının gece kayıtları kalır.</string>
 </resources>

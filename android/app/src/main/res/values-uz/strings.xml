@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Health Connect’dan hali uyqu maʼlumotlari yoʻq. Samsung Health ularni ulashishi kerak: Samsung Health → Sozlamalar → Health Connect.</string>
     <string name="history_health_live">Manba: %1$s. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
     <string name="history_health_live_unknown">Manba: sogʻliq maʼlumotlaring. U yerdagi oʻzgarish va oʻchirishlarni Phase Wake avtomatik qabul qiladi.</string>
+    <string name="history_older_title">Eski maʼlumotlarga ruxsat berish: %1$s</string>
+    <string name="history_older_title_unknown">Eski salomatlik maʼlumotlariga ruxsat berish</string>
+    <string name="history_older_allow">Ruxsat berish</string>
+    <string name="history_older_later">Hozir emas</string>
     <string name="history_average">Ø %1$d daq ertaroq</string>
     <string name="history_light_share">%1$d %% bezovtalanganda ertaroq uygʻotildi</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Chuqur uyqu uyqungning %1$s qismi</string>
     <string name="settings_clear_old">90 kundan eskisini oʻchirish</string>
     <string name="settings_clear_old_text">Telefondagi 90 kundan eski yozilgan tunlarni ularning qaydlari, kayfiyati, kechki odat belgilari va tungi yozuvlari bilan birga oʻchiradi. Yangiroq tunlar va budilniklaring qoladi. Boshqa ilovalardagi tunlar bu yerda faqat yashiriladi va oʻsha ilovalarda qoladi.</string>
+    <string name="settings_clear_old_learn">Tugallanmagan oʻrganish bosqichining tungi yozuvlari qoladi.</string>
 </resources>

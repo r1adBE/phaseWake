@@ -97,6 +97,30 @@ class HealthSleepTest {
     }
 
     /** «Verlauf lesen» nur anfragen, wo Health Connect es kennt; Lesen braucht es nie. */
+    /**
+     * Hinweis «Ältere Daten freigeben»: nur verbunden (Schlaf erteilt), wo Health Connect «Verlauf lesen» kennt und
+     * das Recht noch fehlt; angefragt wird dann nur dieses Recht.
+     */
+    @Test
+    fun historyMissingOnlyWhenConnectedAvailableAndNotGranted() = runBlocking {
+        val sleep = HealthPermission.getReadPermission(SleepSessionRecord::class)
+        val history = HealthPermission.PERMISSION_READ_HEALTH_DATA_HISTORY
+        assertEquals(setOf(history), health.historyRequest)
+        client.granted = setOf(sleep)
+        assertFalse(health.historyMissing(), "Funktion unbekannt")
+        client.history = HealthConnectFeatures.FEATURE_STATUS_AVAILABLE
+        assertTrue(health.historyMissing())
+        client.granted = setOf(sleep, history)
+        assertFalse(health.historyMissing(), "schon erteilt")
+        client.granted = setOf(history)
+        assertFalse(health.historyMissing(), "nicht verbunden")
+        client.granted = emptySet()
+        assertFalse(health.historyMissing(), "nicht verbunden")
+        client.granted = setOf(sleep)
+        status = HealthConnectClient.SDK_UNAVAILABLE
+        assertFalse(health.historyMissing(), "ohne Health Connect")
+    }
+
     @Test
     fun historyIsAskedOnlyWhereAvailableAndStaysOptional() = runBlocking {
         val sleep = HealthPermission.getReadPermission(SleepSessionRecord::class)

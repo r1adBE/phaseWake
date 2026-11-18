@@ -293,6 +293,7 @@ internal fun settingsExtras(app: PhaseWakeApp, data: AppData, actions: NavAction
     }
     return SettingsExtras(
         learning = learning,
+        learningOpen = learningState?.openSince != null,
         onTest = actions.onTest,
         holidays = holidays.takeIf { countries.isNotEmpty() },
         backup = { BackupRows() },

@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">មិនទាន់មានទិន្នន័យដំណេកពី Health Connect នៅឡើយទេ។ Samsung Health ត្រូវតែចែករំលែកវា៖ Samsung Health → ការកំណត់ → Health Connect។</string>
     <string name="history_health_live">ពី %1$s។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
     <string name="history_health_live_unknown">ពីទិន្នន័យសុខភាពរបស់អ្នក។ Phase Wake អនុវត្តការផ្លាស់ប្ដូរ និងការលុបនៅទីនោះដោយស្វ័យប្រវត្តិ។</string>
+    <string name="history_older_title">អនុញ្ញាតទិន្នន័យចាស់ជាងពី %1$s</string>
+    <string name="history_older_title_unknown">អនុញ្ញាតទិន្នន័យសុខភាពចាស់ជាង</string>
+    <string name="history_older_allow">អនុញ្ញាត</string>
+    <string name="history_older_later">មិនមែនឥឡូវនេះ</string>
     <string name="history_average">Ø មុន %1$d នាទី</string>
     <string name="history_light_share">%1$d %% ត្រូវបានដាស់មុនពេលដេកមិនស្ងប់</string>
     <plurals name="history_group_nights">
@@ -651,4 +655,5 @@
     <string name="weekly_deep">ដំណេកជ្រៅ %1$s នៃដំណេករបស់អ្នក</string>
     <string name="settings_clear_old">លុបអ្វីដែលចាស់ជាង 90 ថ្ងៃ</string>
     <string name="settings_clear_old_text">លុបយប់ដែលបានកត់ត្រាចាស់ជាង 90 ថ្ងៃលើទូរសព្ទ រួមទាំងកំណត់ចំណាំ អារម្មណ៍ សញ្ញាធីកនៃទម្លាប់ពេលល្ងាច និងការថតពេលយប់របស់វា។ យប់ថ្មីៗ និងម៉ោងរោទ៍របស់អ្នកនៅដដែល។ យប់ពីកម្មវិធីផ្សេងត្រូវបានលាក់នៅទីនេះប៉ុណ្ណោះ ហើយនៅតែមាននៅក្នុងកម្មវិធីទាំងនោះ។</string>
+    <string name="settings_clear_old_learn">ការថតពេលយប់នៃដំណាក់កាលរៀនដែលមិនទាន់បញ្ចប់ នៅដដែល។</string>
 </resources>

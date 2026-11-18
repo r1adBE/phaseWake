@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">ยังไม่มีข้อมูลการนอนจาก Health Connect โดย Samsung Health ต้องแชร์ข้อมูล: Samsung Health → การตั้งค่า → Health Connect</string>
     <string name="history_health_live">จาก %1$s การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
     <string name="history_health_live_unknown">จากข้อมูลสุขภาพของคุณ การเปลี่ยนแปลงและการลบที่นั่น Phase Wake จะปรับตามให้อัตโนมัติ</string>
+    <string name="history_older_title">อนุญาตข้อมูลเก่าจาก %1$s</string>
+    <string name="history_older_title_unknown">อนุญาตข้อมูลสุขภาพเก่า</string>
+    <string name="history_older_allow">อนุญาต</string>
+    <string name="history_older_later">ไว้ทีหลัง</string>
     <string name="history_average">เฉลี่ยเร็วขึ้น %1$d นาที</string>
     <string name="history_light_share">ปลุกก่อนเพราะนอนกระสับกระส่าย %1$d %%</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">หลับลึก %1$s ของการนอน</string>
     <string name="settings_clear_old">ลบข้อมูลที่เก่ากว่า 90 วัน</string>
     <string name="settings_clear_old_text">ลบคืนที่บันทึกไว้บนโทรศัพท์ซึ่งเก่ากว่า 90 วัน พร้อมบันทึก ความรู้สึก เครื่องหมายกิจวัตรตอนเย็น และการบันทึกตอนกลางคืนของคืนนั้น คืนที่ใหม่กว่าและการปลุกของคุณจะยังอยู่ คืนจากแอปอื่นจะถูกซ่อนไว้ที่นี่เท่านั้น และยังคงอยู่ในแอปเหล่านั้น</string>
+    <string name="settings_clear_old_learn">การบันทึกตอนกลางคืนของช่วงเรียนรู้ที่ยังไม่เสร็จจะยังอยู่</string>
 </resources>

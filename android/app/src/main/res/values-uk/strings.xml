@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Поки немає даних про сон із Health Connect. Samsung Health має ними ділитися: Samsung Health → Налаштування → Health Connect.</string>
     <string name="history_health_live">Із застосунку %1$s. Зміни й видалення, зроблені там, Phase Wake враховує автоматично.</string>
     <string name="history_health_live_unknown">З твоїх даних про здоров\'я. Зміни й видалення, зроблені там, Phase Wake враховує автоматично.</string>
+    <string name="history_older_title">Дозволити старіші дані з %1$s</string>
+    <string name="history_older_title_unknown">Дозволити старіші дані про здоров’я</string>
+    <string name="history_older_allow">Дозволити</string>
+    <string name="history_older_later">Не зараз</string>
     <string name="history_average">Ø на %1$d хв раніше</string>
     <string name="history_light_share">%1$d %% розбуджено раніше при неспокійному сні</string>
     <plurals name="history_group_nights">
@@ -697,4 +701,5 @@
     <string name="weekly_deep">Глибокий сон %1$s твого сну</string>
     <string name="settings_clear_old">Видалити старші за 90 днів</string>
     <string name="settings_clear_old_text">Видаляє на телефоні записані ночі, старші за 90 днів, разом з їхніми нотатками, самопочуттям, позначками вечірнього ритуалу й нічними записами. Новіші ночі та твої будильники залишаться. Ночі з інших застосунків тут лише приховуються й залишаються в тих застосунках.</string>
+    <string name="settings_clear_old_learn">Нічні записи незавершеного етапу навчання залишаться.</string>
 </resources>

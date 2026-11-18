@@ -282,6 +282,16 @@ class SettingsRepository(
     }
 
     /**
+     * Hinweis im Verlauf «Ältere Daten aus … freigeben» beantwortet («Freigeben», egal ob erteilt, oder «Nicht jetzt»):
+     * erscheint nie wieder. Nur auf dem Handy, nicht gesichert.
+     */
+    val olderDataAnswered: Flow<Boolean> = store.data.map { it[OLDER_DATA_ANSWERED] ?: false }
+
+    suspend fun setOlderDataAnswered() {
+        store.edit { it[OLDER_DATA_ANSWERED] = true }
+    }
+
+    /**
      * Alle Einstellungen für die Sicherung. [holiday]: aufgelöste Feiertagswahl (`HolidayRepository.choice`):
      * Nie gewählt heisst «Land des Geräts», nicht «keine Feiertage»; gesichert wird darum das Land, das gilt (wie das
      * iPhone). Ohne: der gespeicherte Wert.
@@ -364,6 +374,7 @@ class SettingsRepository(
         private val SOUND = stringPreferencesKey("sleep_sound")
         private val HISTORY_CLEARED_AT = longPreferencesKey("history_cleared_at")
         private val FINDINGS_HIDDEN = stringPreferencesKey("findings_hidden")
+        private val OLDER_DATA_ANSWERED = booleanPreferencesKey("older_data_answered")
         private const val NO_TIMER = 0
     }
 }

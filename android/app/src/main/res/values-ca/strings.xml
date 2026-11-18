@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Encara no hi ha dades de son de Health Connect. Samsung Health les ha de compartir: Samsung Health → Configuració → Health Connect.</string>
     <string name="history_health_live">De %1$s. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
     <string name="history_health_live_unknown">De les teves dades de salut. Phase Wake aplica automàticament els canvis i les eliminacions que s’hi facin.</string>
+    <string name="history_older_title">Permet dades més antigues de %1$s</string>
+    <string name="history_older_title_unknown">Permet dades de salut més antigues</string>
+    <string name="history_older_allow">Permet</string>
+    <string name="history_older_later">Ara no</string>
     <string name="history_average">Ø %1$d min abans</string>
     <string name="history_light_share">%1$d %% despertat abans per inquietud</string>
     <plurals name="history_group_nights">
@@ -683,4 +687,5 @@
     <string name="weekly_deep">Son profund %1$s del teu son</string>
     <string name="settings_clear_old">Suprimeix el que tingui més de 90 dies</string>
     <string name="settings_clear_old_text">Suprimeix del telèfon les nits registrades de fa més de 90 dies, amb les seves notes, l’estat, les marques de la rutina del vespre i els enregistraments nocturns. Les nits més recents i les alarmes es mantenen. Les nits d’altres apps només s’amaguen aquí i es queden en aquestes apps.</string>
+    <string name="settings_clear_old_learn">Els enregistraments nocturns de la fase d’aprenentatge sense acabar es mantenen.</string>
 </resources>

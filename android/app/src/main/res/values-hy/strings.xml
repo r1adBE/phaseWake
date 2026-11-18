@@ -69,6 +69,10 @@
     <string name="history_empty_no_data">Health Connect-ից դեռ քնի տվյալներ չկան։ Samsung Health-ը պետք է կիսվի դրանցով՝ Samsung Health → Կարգավորումներ → Health Connect։</string>
     <string name="history_health_live">Աղբյուր՝ %1$s։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
     <string name="history_health_live_unknown">Աղբյուր՝ քո առողջության տվյալներ։ Այնտեղ արված փոփոխություններն ու ջնջումները Phase Wake-ը ինքնաշխատ կիրառում է։</string>
+    <string name="history_older_title">Թույլատրել ավելի հին տվյալներ՝ %1$s</string>
+    <string name="history_older_title_unknown">Թույլատրել առողջության ավելի հին տվյալներ</string>
+    <string name="history_older_allow">Թույլատրել</string>
+    <string name="history_older_later">Ոչ հիմա</string>
     <string name="history_average">Ø %1$d ր շուտ</string>
     <string name="history_light_share">%1$d %% ավելի շուտ արթնացված անհանգստանալիս</string>
     <plurals name="history_group_nights">
@@ -653,4 +657,5 @@
     <string name="weekly_deep">Խոր քուն՝ քո քնի %1$s</string>
     <string name="settings_clear_old">Ջնջել 90 օրից հինը</string>
     <string name="settings_clear_old_text">Ջնջում է հեռախոսիդ վրա 90 օրից հին գրանցված գիշերները՝ նրանց նշումների, ինքնազգացման, երեկոյան ծեսի նշիչների և գիշերային ձայնագրությունների հետ։ Ավելի նոր գիշերները և զարթուցիչները մնում են։ Այլ հավելվածների գիշերներն այստեղ միայն թաքցվում են և մնում են այդ հավելվածներում։</string>
+    <string name="settings_clear_old_learn">Չավարտված ուսուցման փուլի գիշերային ձայնագրությունները մնում են։</string>
 </resources>

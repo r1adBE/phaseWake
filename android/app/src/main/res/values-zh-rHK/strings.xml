@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">暫時未有來自 Health Connect 的睡眠數據。Samsung Health 需要分享數據：Samsung Health → 設定 → Health Connect。</string>
     <string name="history_health_live">來自%1$s。你在那裏所作的更改和刪除，Phase Wake 會自動同步。</string>
     <string name="history_health_live_unknown">來自你的健康數據。你在那裏所作的更改和刪除，Phase Wake 會自動同步。</string>
+    <string name="history_older_title">允許讀取 %1$s 入面較早嘅資料</string>
+    <string name="history_older_title_unknown">允許讀取較早嘅健康資料</string>
+    <string name="history_older_allow">允許</string>
+    <string name="history_older_later">暫時唔使</string>
     <string name="history_average">Ø 提早 %1$d 分鐘</string>
     <string name="history_light_share">%1$d %% 因睡得不安穩而提早叫醒</string>
     <plurals name="history_group_nights">
@@ -652,4 +656,5 @@
     <string name="weekly_deep">深層睡眠佔你睡眠的 %1$s</string>
     <string name="settings_clear_old">刪除 90 日前的記錄</string>
     <string name="settings_clear_old_text">刪除手機上超過 90 日的晚上記錄，連同相關的筆記、感覺、晚間習慣的剔選和夜間錄製。較新的晚上和你的鬧鐘會保留。來自其他 App 的晚上只會在這裡隱藏，並會保留在那些 App 中。</string>
+    <string name="settings_clear_old_learn">未完成嘅學習階段嘅夜間錄製會保留。</string>
 </resources>

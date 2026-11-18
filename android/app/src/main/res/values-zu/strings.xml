@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Ayikho idatha yokulala evela ku-Health Connect okwamanje. I-Samsung Health kufanele yabelane ngayo: Samsung Health → Izilungiselelo → Health Connect.</string>
     <string name="history_health_live">Kusuka ku-%1$s. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
     <string name="history_health_live_unknown">Kusuka kudatha yakho yezempilo. I-Phase Wake ilandela izinguquko nokususwa okwenziwe lapho ngokuzenzakalelayo.</string>
+    <string name="history_older_title">Vumela idatha endala evela ku-%1$s</string>
+    <string name="history_older_title_unknown">Vumela idatha yezempilo endala</string>
+    <string name="history_older_allow">Vumela</string>
+    <string name="history_older_later">Hhayi manje</string>
     <string name="history_average">Ø %1$d min ngaphambili</string>
     <string name="history_light_share">%1$d %% bavuswe kusenesikhathi uma bengazinzile</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Ukulala okujulile %1$s wokulala kwakho</string>
     <string name="settings_clear_old">Susa okudala kunezinsuku ezingu-90</string>
     <string name="settings_clear_old_text">Isusa ubusuku obuqoshiwe obudala kunezinsuku ezingu-90 efonini yakho, kanye namanothi, umuzwa, amamaki enqubo yakusihlwa nokuqoshwa kobusuku kwabo. Ubusuku obusha nama-alamu akho kuyasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app.</string>
+    <string name="settings_clear_old_learn">Ukuqoshwa kobusuku besigaba sokufunda esingakapheli kuyasala.</string>
 </resources>

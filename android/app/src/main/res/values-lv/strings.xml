@@ -78,6 +78,10 @@
     <string name="history_empty_no_data">No Health Connect vēl nav miega datu. Samsung Health tie jākopīgo: Samsung Health → Iestatījumi → Health Connect.</string>
     <string name="history_health_live">No lietotnes %1$s. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_health_live_unknown">No taviem veselības datiem. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
+    <string name="history_older_title">Atļaut vecākus datus no %1$s</string>
+    <string name="history_older_title_unknown">Atļaut vecākus veselības datus</string>
+    <string name="history_older_allow">Atļaut</string>
+    <string name="history_older_later">Ne tagad</string>
     <string name="history_average">Ø %1$d min agrāk</string>
     <string name="history_light_share">%1$d %% pamodināti agrāk nemierīgā miegā</string>
     <plurals name="history_group_nights">
@@ -684,4 +688,5 @@
     <string name="weekly_deep">Dziļais miegs: %1$s no tava miega</string>
     <string name="settings_clear_old">Dzēst vecākus par 90 dienām</string>
     <string name="settings_clear_old_text">Dzēš tālrunī ierakstītās naktis, kas vecākas par 90 dienām, kopā ar to piezīmēm, pašsajūtu, vakara rituāla atzīmēm un nakts ierakstiem. Jaunākās naktis un modinātāji paliek. Naktis no citām lietotnēm šeit tiek tikai paslēptas un paliek šajās lietotnēs.</string>
+    <string name="settings_clear_old_learn">Nepabeigtā mācīšanās posma nakts ieraksti paliek.</string>
 </resources>

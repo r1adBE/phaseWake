@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">अजून Health Connect मधून झोपेचा डेटा नाही. Samsung Health ने तो शेअर करायला हवा: Samsung Health → सेटिंग्ज → Health Connect.</string>
     <string name="history_health_live">%1$s मधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
     <string name="history_health_live_unknown">तुमच्या हेल्थ डेटामधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
+    <string name="history_older_title">%1$s मधील जुन्या डेटाला परवानगी द्या</string>
+    <string name="history_older_title_unknown">जुन्या आरोग्य डेटाला परवानगी द्या</string>
+    <string name="history_older_allow">परवानगी द्या</string>
+    <string name="history_older_later">आता नको</string>
     <string name="history_average">Ø %1$d मि. लवकर</string>
     <string name="history_light_share">%1$d %% अस्वस्थ झाल्यावर लवकर उठवले</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">गाढ झोप तुझ्या झोपेच्या %1$s</string>
     <string name="settings_clear_old">90 दिवसांपेक्षा जुने हटवा</string>
     <string name="settings_clear_old_text">फोनवरील 90 दिवसांपेक्षा जुन्या नोंदवलेल्या रात्री त्यांच्या नोंदी, मूड, संध्याकाळच्या दिनक्रमाच्या खुणा आणि रात्रीच्या रेकॉर्डिंगसह हटवते. नवीन रात्री आणि तुमचे अलार्म राहतात. इतर ॲप्समधील रात्री इथे फक्त लपवल्या जातात आणि त्या ॲप्समध्येच राहतात.</string>
+    <string name="settings_clear_old_learn">अपूर्ण शिकण्याच्या टप्प्याची रात्रीची रेकॉर्डिंग राहतात.</string>
 </resources>

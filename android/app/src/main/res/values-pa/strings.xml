@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">ਅਜੇ Health Connect ਤੋਂ ਨੀਂਦ ਦਾ ਡਾਟਾ ਨਹੀਂ ਹੈ। Samsung Health ਨੂੰ ਇਹ ਸਾਂਝਾ ਕਰਨਾ ਪਵੇਗਾ: Samsung Health → ਸੈਟਿੰਗਾਂ → Health Connect।</string>
     <string name="history_health_live">%1$s ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
     <string name="history_health_live_unknown">ਤੁਹਾਡੇ ਸਿਹਤ ਡਾਟੇ ਤੋਂ। ਉੱਥੇ ਕੀਤੀਆਂ ਤਬਦੀਲੀਆਂ ਅਤੇ ਮਿਟਾਉਣ ਨੂੰ Phase Wake ਆਪਣੇ-ਆਪ ਅਪਣਾਉਂਦਾ ਹੈ।</string>
+    <string name="history_older_title">%1$s ਤੋਂ ਪੁਰਾਣੇ ਡਾਟਾ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+    <string name="history_older_title_unknown">ਪੁਰਾਣੇ ਸਿਹਤ ਡਾਟਾ ਦੀ ਇਜਾਜ਼ਤ ਦਿਓ</string>
+    <string name="history_older_allow">ਇਜਾਜ਼ਤ ਦਿਓ</string>
+    <string name="history_older_later">ਹੁਣ ਨਹੀਂ</string>
     <string name="history_average">Ø %1$d ਮਿੰ. ਪਹਿਲਾਂ</string>
     <string name="history_light_share">%1$d %% ਬੇਚੈਨੀ ’ਤੇ ਪਹਿਲਾਂ ਜਗਾਏ ਗਏ</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ %1$s</string>
     <string name="settings_clear_old">90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣਾ ਮਿਟਾਓ</string>
     <string name="settings_clear_old_text">ਫ਼ੋਨ ’ਤੇ 90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣੀਆਂ ਦਰਜ ਰਾਤਾਂ ਨੂੰ ਉਨ੍ਹਾਂ ਦੇ ਨੋਟ, ਮੂਡ, ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਦੇ ਨਿਸ਼ਾਨ ਅਤੇ ਰਾਤ ਦੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਸਮੇਤ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਨਵੀਆਂ ਰਾਤਾਂ ਅਤੇ ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ। ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਇੱਥੇ ਸਿਰਫ਼ ਲੁਕਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਉਨ੍ਹਾਂ ਐਪਾਂ ਵਿੱਚ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ।</string>
+    <string name="settings_clear_old_learn">ਅਧੂਰੇ ਸਿੱਖਣ ਦੇ ਪੜਾਅ ਦੀਆਂ ਰਾਤ ਦੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਰਹਿੰਦੀਆਂ ਹਨ।</string>
 </resources>

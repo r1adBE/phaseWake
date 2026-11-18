@@ -12,6 +12,7 @@ import com.phasewake.app.core.StageSpan
 import com.phasewake.app.health.HealthSource
 import com.phasewake.app.ui.history.HistoryScreen
 import com.phasewake.app.ui.history.HistoryState
+import com.phasewake.app.ui.history.OlderDataHint
 import com.phasewake.app.ui.theme.ThemeMode
 import java.time.Duration
 import java.time.Instant
@@ -62,22 +63,31 @@ private val nap = HealthSession(
 private val mixed = HealthHistory.merge(ownNights, listOf(samsung, unknown, nap), null, zone)
 
 @Composable
-private fun Mixed(mode: ThemeMode) = Themed(mode) {
+private fun Mixed(mode: ThemeMode, olderHint: OlderDataHint? = null) = Themed(mode) {
     // Samsung-Nacht mit Befinden, die unbekannte App noch ohne (Auswahl sichtbar).
     HistoryScreen(
         HistoryState(
             ownNights, loadStages = { emptyList() }, healthConnected = true, items = mixed,
-            healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4),
+            healthFeelings = mapOf(LocalDate.of(2026, 10, 26) to 4), olderHint = olderHint,
         ),
         padding,
     )
 }
+
+/** Einmaliger Hinweis «Ältere Daten aus Samsung Health freigeben» oben im Verlauf. */
+private val olderHint = OlderDataHint("Samsung Health", onAllow = {}, onLater = {})
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf gemischt hell", device = PHONE_TALL) @Composable
 fun HistoryMixedLight() = Mixed(ThemeMode.LIGHT)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf gemischt dunkel", device = PHONE_TALL) @Composable
 fun HistoryMixedDark() = Mixed(ThemeMode.DARK)
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf ältere Daten hell", device = PHONE) @Composable
+fun HistoryOlderDataLight() = Mixed(ThemeMode.LIGHT, olderHint)
+
+@PreviewTest @Preview(locale = "de-rCH", name = "Verlauf ältere Daten dunkel", device = PHONE) @Composable
+fun HistoryOlderDataDark() = Mixed(ThemeMode.DARK, olderHint)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Verlauf leer ohne Freigabe hell", device = PHONE) @Composable
 fun HistoryEmptyConnectLight() = Themed(ThemeMode.LIGHT) {

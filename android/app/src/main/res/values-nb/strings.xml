@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Ingen søvndata fra Health Connect ennå. Samsung Health må dele dem: Samsung Health → Innstillinger → Health Connect.</string>
     <string name="history_health_live">Fra %1$s. Phase Wake tar automatisk med endringer og slettinger der.</string>
     <string name="history_health_live_unknown">Fra helsedataene dine. Phase Wake tar automatisk med endringer og slettinger der.</string>
+    <string name="history_older_title">Tillat eldre data fra %1$s</string>
+    <string name="history_older_title_unknown">Tillat eldre helsedata</string>
+    <string name="history_older_allow">Tillat</string>
+    <string name="history_older_later">Ikke nå</string>
     <string name="history_average">Ø %1$d min tidligere</string>
     <string name="history_light_share">%1$d %% vekket tidligere ved uro</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Dyp søvn %1$s av søvnen din</string>
     <string name="settings_clear_old">Slett eldre enn 90 dager</string>
     <string name="settings_clear_old_text">Sletter registrerte netter eldre enn 90 dager på telefonen, sammen med notater, følelse, haker i kveldsrutinen og nattopptak. Nyere netter og alarmene dine blir værende. Netter fra andre apper skjules bare her og blir værende i de appene.</string>
+    <string name="settings_clear_old_learn">Nattopptak fra den uferdige læringsfasen blir værende.</string>
 </resources>

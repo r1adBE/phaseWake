@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Oraindik ez dago Health Connect-eko lo-daturik. Samsung Health-ek partekatu behar ditu: Samsung Health → Ezarpenak → Health Connect.</string>
     <string name="history_health_live">Iturria: %1$s. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_health_live_unknown">Iturria: zure osasun-datuak. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
+    <string name="history_older_title">Baimendu datu zaharragoak (%1$s)</string>
+    <string name="history_older_title_unknown">Baimendu osasun-datu zaharragoak</string>
+    <string name="history_older_allow">Baimendu</string>
+    <string name="history_older_later">Orain ez</string>
     <string name="history_average">Ø %1$d min lehenago</string>
     <string name="history_light_share">%%%1$d lehenago esnatuta ezinegonagatik</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Lo sakona: zure loaren %1$s</string>
     <string name="settings_clear_old">Ezabatu 90 egun baino zaharragoak</string>
     <string name="settings_clear_old_text">Telefonoan 90 egun baino zaharragoak diren gau erregistratuak ezabatzen ditu, haien oharrekin, sentipenarekin, gaueko errutinaren markekin eta gaueko grabazioekin batera. Gau berriagoak eta alarmak mantendu egiten dira. Beste aplikazio batzuetako gauak hemen ezkutatu baino ez dira egiten, eta aplikazio horietan geratzen dira.</string>
+    <string name="settings_clear_old_learn">Amaitu gabeko ikasketa-fasearen gaueko grabazioak mantendu egiten dira.</string>
 </resources>

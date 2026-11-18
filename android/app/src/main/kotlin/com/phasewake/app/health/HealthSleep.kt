@@ -56,6 +56,9 @@ class HealthSleep internal constructor(
     val requestPermissions: Set<String>
         get() = if (historyAvailable) permissions + HISTORY_PERMISSION else permissions
 
+    /** Nur «Verlauf lesen»: Anfrage aus dem Hinweis im Verlauf für schon Verbundene ([historyMissing]). */
+    val historyRequest: Set<String> = setOf(HISTORY_PERMISSION)
+
     /** Ob Health Connect auf dem Gerät nutzbar ist. */
     val isAvailable: Boolean
         get() = sdkStatus() == HealthConnectClient.SDK_AVAILABLE
@@ -81,6 +84,16 @@ class HealthSleep internal constructor(
     suspend fun isGranted(): Boolean =
         isAvailable && runCatching {
             client.permissionController.getGrantedPermissions().containsAll(permissions)
+        }.getOrDefault(false)
+
+    /**
+     * Ob ältere Daten noch freigegeben werden können: verbunden ([permissions] erteilt), Health Connect kennt «Verlauf
+     * lesen» ([historyAvailable]), das Recht fehlt aber. Ohne Health Connect oder bei einem Fehler: nein.
+     */
+    suspend fun historyMissing(): Boolean =
+        historyAvailable && runCatching {
+            val granted = client.permissionController.getGrantedPermissions()
+            granted.containsAll(permissions) && HISTORY_PERMISSION !in granted
         }.getOrDefault(false)
 
     /**

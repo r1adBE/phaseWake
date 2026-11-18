@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">עדיין אין נתוני שינה מ־Health Connect. ‏Samsung Health צריכה לשתף אותם: Samsung Health ← הגדרות ← Health Connect.</string>
     <string name="history_health_live">מ־%1$s. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
     <string name="history_health_live_unknown">מנתוני הבריאות שלכם. ‏Phase Wake מחילה אוטומטית שינויים ומחיקות שנעשים שם.</string>
+    <string name="history_older_title">אישור לנתונים ישנים יותר מ־%1$s</string>
+    <string name="history_older_title_unknown">אישור לנתוני בריאות ישנים יותר</string>
+    <string name="history_older_allow">אישור</string>
+    <string name="history_older_later">לא עכשיו</string>
     <string name="history_average">ממוצע: %1$d דק׳ מוקדם יותר</string>
     <string name="history_light_share">%1$d %% הוערו מוקדם יותר כשהשינה לא שקטה</string>
     <plurals name="history_group_nights">
@@ -681,4 +685,5 @@
     <string name="weekly_deep">שינה עמוקה %1$s מהשינה שלך</string>
     <string name="settings_clear_old">מחיקת מה שישן מ־90 יום</string>
     <string name="settings_clear_old_text">מחיקת הלילות שהוקלטו בטלפון ושישנים מ־90 יום, יחד עם ההערות, התחושה, הסימונים בשגרת הערב והקלטות הלילה שלהם. לילות חדשים יותר והמעוררים שלך נשארים. לילות מאפליקציות אחרות רק מוסתרים כאן ונשארים באפליקציות האלה.</string>
+    <string name="settings_clear_old_learn">הקלטות הלילה של שלב הלמידה שעוד לא הסתיים נשארות.</string>
 </resources>

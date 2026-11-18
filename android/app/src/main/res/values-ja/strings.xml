@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">Health Connect の睡眠データはまだありません。Samsung Health でデータを共有する必要があります：Samsung Health → 設定 → Health Connect。</string>
     <string name="history_health_live">%1$s から。そちらでの変更や削除は Phase Wake に自動で反映されます。</string>
     <string name="history_health_live_unknown">ヘルスデータから。そちらでの変更や削除は Phase Wake に自動で反映されます。</string>
+    <string name="history_older_title">%1$s の過去のデータを許可</string>
+    <string name="history_older_title_unknown">過去のヘルスデータを許可</string>
+    <string name="history_older_allow">許可</string>
+    <string name="history_older_later">今はしない</string>
     <string name="history_average">平均 %1$d分早く</string>
     <string name="history_light_share">落ち着かない眠りで早めに起床 %1$d %%</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">深い睡眠：睡眠の%1$s</string>
     <string name="settings_clear_old">90日より前を削除</string>
     <string name="settings_clear_old_text">スマホに記録された90日より前の夜のデータを、メモ、気分、夜のルーティンのチェック、夜の記録とともに削除します。それより新しい夜とアラームはそのまま残ります。ほかのアプリの夜はここで非表示になるだけで、元のアプリに残ります。</string>
+    <string name="settings_clear_old_learn">完了していない学習期間の夜の記録は残ります。</string>
 </resources>

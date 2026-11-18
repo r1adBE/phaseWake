@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Noch keine Schlafdaten aus Health Connect. Samsung Health muss sie freigeben: Samsung Health → Einstellungen → Health Connect.</string>
     <string name="history_health_live">Aus %1$s. Änderungen und Löschungen dort übernimmt Phase Wake automatisch.</string>
     <string name="history_health_live_unknown">Aus deinen Gesundheitsdaten. Änderungen und Löschungen dort übernimmt Phase Wake automatisch.</string>
+    <string name="history_older_title">Ältere Daten aus %1$s freigeben</string>
+    <string name="history_older_title_unknown">Ältere Gesundheitsdaten freigeben</string>
+    <string name="history_older_allow">Freigeben</string>
+    <string name="history_older_later">Nicht jetzt</string>
     <string name="history_average">Ø %1$d Min früher</string>
     <string name="history_light_share">%1$d %% bei Unruhe früher geweckt</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Tiefschlaf %1$s deines Schlafs</string>
     <string name="settings_clear_old">Älter als 90 Tage löschen</string>
     <string name="settings_clear_old_text">Löscht aufgezeichnete Nächte, die älter als 90 Tage sind, auf dem Handy, samt ihren Notizen, Befinden, Haken der Abendroutine und Aufzeichnungen. Neuere Nächte und deine Wecker bleiben. Nächte aus anderen Apps werden hier nur ausgeblendet und bleiben in diesen Apps.</string>
+    <string name="settings_clear_old_learn">Aufzeichnungen der noch nicht abgeschlossenen Lernphase bleiben.</string>
 </resources>

@@ -69,6 +69,10 @@
     <string name="history_empty_no_data">Health Connect-იდან ძილის მონაცემები ჯერ არ არის. Samsung Health-მა უნდა გააზიაროს ისინი: Samsung Health → პარამეტრები → Health Connect.</string>
     <string name="history_health_live">წყარო: %1$s. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
     <string name="history_health_live_unknown">წყარო: შენი ჯანმრთელობის მონაცემები. იქ შეტანილ ცვლილებებსა და წაშლას Phase Wake ავტომატურად ითვალისწინებს.</string>
+    <string name="history_older_title">ძველ მონაცემებზე წვდომის დაშვება: %1$s</string>
+    <string name="history_older_title_unknown">ჯანმრთელობის ძველ მონაცემებზე წვდომის დაშვება</string>
+    <string name="history_older_allow">დაშვება</string>
+    <string name="history_older_later">ახლა არა</string>
     <string name="history_average">Ø %1$d წთ-ით ადრე</string>
     <string name="history_light_share">%1$d %% ადრე გაღვიძებული მოუსვენრობისას</string>
     <plurals name="history_group_nights">
@@ -653,4 +657,5 @@
     <string name="weekly_deep">ღრმა ძილი შენი ძილის %1$s</string>
     <string name="settings_clear_old">90 დღეზე ძველის წაშლა</string>
     <string name="settings_clear_old_text">შლის ტელეფონზე 90 დღეზე ძველ ჩაწერილ ღამეებს მათ ჩანაწერებთან, თვითგრძნობასთან, საღამოს რუტინის მონიშვნებთან და ღამის ჩანაწერებთან ერთად. უფრო ახალი ღამეები და მაღვიძარები რჩება. სხვა აპების ღამეები აქ მხოლოდ იმალება და იმ აპებში რჩება.</string>
+    <string name="settings_clear_old_learn">დაუსრულებელი სწავლის ფაზის ღამის ჩანაწერები რჩება.</string>
 </resources>

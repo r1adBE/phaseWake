@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">Health Connect இலிருந்து இன்னும் தூக்கத் தரவு இல்லை. Samsung Health அதைப் பகிர வேண்டும்: Samsung Health → அமைப்புகள் → Health Connect.</string>
     <string name="history_health_live">%1$s இலிருந்து. அங்கே செய்யும் மாற்றங்களையும் நீக்கங்களையும் Phase Wake தானாகவே ஏற்கிறது.</string>
     <string name="history_health_live_unknown">உங்கள் ஆரோக்கியத் தரவிலிருந்து. அங்கே செய்யும் மாற்றங்களையும் நீக்கங்களையும் Phase Wake தானாகவே ஏற்கிறது.</string>
+    <string name="history_older_title">%1$s இலிருந்து பழைய தரவை அனுமதி</string>
+    <string name="history_older_title_unknown">பழைய உடல்நலத் தரவை அனுமதி</string>
+    <string name="history_older_allow">அனுமதி</string>
+    <string name="history_older_later">இப்போது வேண்டாம்</string>
     <string name="history_average">சராசரி %1$d நிமி. முன்னதாக</string>
     <string name="history_light_share">%1$d %% அமைதியின்மையால் முன்பே எழுப்பப்பட்டது</string>
     <plurals name="history_group_nights">
@@ -667,4 +671,5 @@
     <string name="weekly_deep">ஆழ்ந்த தூக்கம் உன் தூக்கத்தில் %1$s</string>
     <string name="settings_clear_old">90 நாட்களுக்கு மேற்பட்டதை நீக்கு</string>
     <string name="settings_clear_old_text">ஃபோனில் 90 நாட்களுக்கு மேற்பட்ட பதிவான இரவுகள், அவற்றின் குறிப்புகள், உணர்வு, மாலை வழக்கத்தின் குறிகள் மற்றும் இரவுப் பதிவுகளுடன் நீக்கப்படும். புதிய இரவுகளும் உங்கள் அலாரங்களும் அப்படியே இருக்கும். பிற ஆப்களின் இரவுகள் இங்கே மறைக்கப்படும் மட்டுமே, அவை அந்த ஆப்களிலேயே இருக்கும்.</string>
+    <string name="settings_clear_old_learn">முடிவடையாத கற்றல் நிலையின் இரவுப் பதிவுகள் அப்படியே இருக்கும்.</string>
 </resources>

@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">ຍັງບໍ່ມີຂໍ້ມູນການນອນຈາກ Health Connect. Samsung Health ຕ້ອງແບ່ງປັນຂໍ້ມູນ: Samsung Health → ການຕັ້ງຄ່າ → Health Connect.</string>
     <string name="history_health_live">ຈາກ %1$s. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_health_live_unknown">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
+    <string name="history_older_title">ອະນຸຍາດຂໍ້ມູນເກົ່າຈາກ %1$s</string>
+    <string name="history_older_title_unknown">ອະນຸຍາດຂໍ້ມູນສຸຂະພາບເກົ່າ</string>
+    <string name="history_older_allow">ອະນຸຍາດ</string>
+    <string name="history_older_later">ບໍ່ແມ່ນຕອນນີ້</string>
     <string name="history_average">Ø ກ່ອນ %1$d ນາທີ</string>
     <string name="history_light_share">%1$d %% ຖືກປຸກກ່ອນເມື່ອນອນບໍ່ສະຫງົບ</string>
     <plurals name="history_group_nights">
@@ -651,4 +655,5 @@
     <string name="weekly_deep">ການນອນຫຼັບເລິກ %1$s ຂອງການນອນ</string>
     <string name="settings_clear_old">ລຶບທີ່ເກົ່າກວ່າ 90 ມື້</string>
     <string name="settings_clear_old_text">ລຶບຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບທີ່ເກົ່າກວ່າ 90 ມື້ ພ້ອມກັບບັນທຶກ, ຄວາມຮູ້ສຶກ, ເຄື່ອງໝາຍກິດຈະວັດຕອນແລງ ແລະ ການບັນທຶກຕອນກາງຄືນຂອງມັນ ຄືນທີ່ໃໝ່ກວ່າ ແລະ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່ ຄືນຈາກແອັບອື່ນຖືກເຊື່ອງໄວ້ຢູ່ນີ້ເທົ່ານັ້ນ ແລະ ຍັງຢູ່ໃນແອັບເຫຼົ່ານັ້ນ</string>
+    <string name="settings_clear_old_learn">ການບັນທຶກຕອນກາງຄືນຂອງໄລຍະຮຽນຮູ້ທີ່ຍັງບໍ່ສຳເລັດຍັງຢູ່</string>
 </resources>

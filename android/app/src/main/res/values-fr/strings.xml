@@ -76,6 +76,10 @@
     <string name="history_empty_no_data">Pas encore de données de sommeil de Health Connect. Samsung Health doit les partager : Samsung Health → Paramètres → Health Connect.</string>
     <string name="history_health_live">Via %1$s. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
     <string name="history_health_live_unknown">Via tes données santé. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
+    <string name="history_older_title">Autoriser les données plus anciennes de %1$s</string>
+    <string name="history_older_title_unknown">Autoriser les données de santé plus anciennes</string>
+    <string name="history_older_allow">Autoriser</string>
+    <string name="history_older_later">Pas maintenant</string>
     <string name="history_average">Ø %1$d min plus tôt</string>
     <string name="history_light_share">%1$d %% réveillés plus tôt en cas d’agitation</string>
     <plurals name="history_group_nights">
@@ -681,4 +685,5 @@
     <string name="weekly_deep">Sommeil profond %1$s de ton sommeil</string>
     <string name="settings_clear_old">Effacer ce qui date de plus de 90 jours</string>
     <string name="settings_clear_old_text">Efface de ton téléphone les nuits enregistrées il y a plus de 90 jours, avec leurs notes, le ressenti, les coches de la routine du soir et les enregistrements de nuit. Les nuits plus récentes et tes alarmes restent. Les nuits d’autres apps sont seulement masquées ici et restent dans ces apps.</string>
+    <string name="settings_clear_old_learn">Les enregistrements de nuit de la phase d’apprentissage non terminée restent.</string>
 </resources>

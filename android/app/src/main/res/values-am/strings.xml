@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">ከHealth Connect እስካሁን የእንቅልፍ ውሂብ የለም። Samsung Health ማጋራት አለበት፦ Samsung Health → ቅንብሮች → Health Connect።</string>
     <string name="history_health_live">ከ%1$s። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_health_live_unknown">ከጤና ውሂብዎ። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
+    <string name="history_older_title">ከ%1$s የቆየ ውሂብ ፍቀድ</string>
+    <string name="history_older_title_unknown">የቆየ የጤና ውሂብ ፍቀድ</string>
+    <string name="history_older_allow">ፍቀድ</string>
+    <string name="history_older_later">አሁን አይሆንም</string>
     <string name="history_average">Ø %1$d ደቂቃ ቀደም ብሎ</string>
     <string name="history_light_share">%1$d %% እረፍት ሲያጡ ቀደም ብለው ተቀስቅሰዋል</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">ጥልቅ እንቅልፍ ከእንቅልፍህ %1$s</string>
     <string name="settings_clear_old">ከ90 ቀናት በላይ የቆዩትን ሰርዝ</string>
     <string name="settings_clear_old_text">በስልክዎ ላይ ከ90 ቀናት በላይ የቆዩ የተመዘገቡ ሌሊቶችን ከማስታወሻዎቻቸው፣ ከስሜታቸው፣ ከምሽት ልማድ ምልክቶቻቸው እና ከሌሊት ቅጂዎቻቸው ጋር ይሰርዛል። አዳዲስ ሌሊቶች እና ማንቂያዎችዎ ይቆያሉ። ከሌሎች መተግበሪያዎች የመጡ ሌሊቶች እዚህ የሚደበቁት ብቻ ነው፣ በእነዚያ መተግበሪያዎች ውስጥም ይቆያሉ።</string>
+    <string name="settings_clear_old_learn">ያልተጠናቀቀው የመማሪያ ጊዜዎ የሌሊት ቅጂዎች ይቆያሉ።</string>
 </resources>

@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Még nincsenek alvásadatok a Health Connect szolgáltatásból. A Samsung Healthnek meg kell osztania őket: Samsung Health → Beállítások → Health Connect.</string>
     <string name="history_health_live">Forrás: %1$s. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_health_live_unknown">Forrás: az egészségügyi adataid. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
+    <string name="history_older_title">Régebbi adatok engedélyezése innen: %1$s</string>
+    <string name="history_older_title_unknown">Régebbi egészségügyi adatok engedélyezése</string>
+    <string name="history_older_allow">Engedélyezés</string>
+    <string name="history_older_later">Most nem</string>
     <string name="history_average">Ø %1$d p korábban</string>
     <string name="history_light_share">%1$d %% korábban ébresztve nyugtalanság miatt</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Mélyalvás: az alvásod %1$s-a</string>
     <string name="settings_clear_old">90 napnál régebbiek törlése</string>
     <string name="settings_clear_old_text">Törli a telefonodról a 90 napnál régebbi rögzített éjszakákat a jegyzeteikkel, az érzéssel, az esti rutin pipáival és az éjszakai felvételekkel együtt. Az újabb éjszakák és az ébresztőid megmaradnak. A más alkalmazásokból származó éjszakák itt csak el lesznek rejtve, és megmaradnak azokban az alkalmazásokban.</string>
+    <string name="settings_clear_old_learn">A befejezetlen tanulási szakasz éjszakai felvételei megmaradnak.</string>
 </resources>

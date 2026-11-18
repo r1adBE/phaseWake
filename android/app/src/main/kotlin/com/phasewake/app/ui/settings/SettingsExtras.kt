@@ -61,6 +61,8 @@ class SettingsExtras(
     val onUnlockDiagnostics: () -> Unit = {},
     /** Lernphase: Stand und «Neu lernen»; `null` = keine Gruppe. */
     val learning: LearningSettings? = null,
+    /** Lernphase offen ([com.phasewake.app.learn.LearningState.openSince]): «Älter als 90 Tage löschen» nennt das. */
+    val learningOpen: Boolean = false,
 )
 
 /**

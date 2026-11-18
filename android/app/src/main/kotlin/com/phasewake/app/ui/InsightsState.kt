@@ -61,6 +61,8 @@ internal class Insights(
     val sessions: List<HealthSession> = emptyList(),
     /** Schlaf je Nachtdatum ([NoteEffect.asleepByNight]) für den Schnitt der Wochen und Jahre im Verlauf. */
     val asleep: Map<LocalDate, Long> = emptyMap(),
+    /** Verbunden, aber «Verlauf lesen» fehlt noch ([com.phasewake.app.health.HealthSleep.historyMissing]). */
+    val historyMissing: Boolean = false,
 )
 
 /**
@@ -85,6 +87,10 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
             app.health.isGranted() -> HealthState.CONNECTED
             else -> HealthState.AVAILABLE
         }
+    }
+    // Hinweis «Ältere Daten freigeben» im Verlauf: bei jeder Prüfung und nach jeder Anfrage neu.
+    val historyMissing by produceState(false, health, healthCheck, healthGrant) {
+        value = health == HealthState.CONNECTED && app.health.historyMissing()
     }
     val clearedAt by app.settings.historyClearedAt.collectAsStateWithLifecycle(initialValue = null)
     // Eine Abfrage für alles (Verlauf, Diagramme, Trends, Wirkung der Notizen, Phasen der eigenen Nächte):
@@ -137,7 +143,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     }
     return Insights(
         health, derived.stages, derived.trends, derived.goalWeek, derived.noteEffects, derived.habits, derived.charts,
-        derived.weekly, derived.history, sessions, derived.asleep,
+        derived.weekly, derived.history, sessions, derived.asleep, historyMissing,
     )
 }
 

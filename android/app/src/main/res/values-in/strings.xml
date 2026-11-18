@@ -74,6 +74,10 @@
     <string name="history_empty_no_data">Belum ada data tidur dari Health Connect. Samsung Health harus membagikannya: Samsung Health → Setelan → Health Connect.</string>
     <string name="history_health_live">Dari %1$s. Phase Wake otomatis mengikuti perubahan dan penghapusan di sana.</string>
     <string name="history_health_live_unknown">Dari data kesehatanmu. Phase Wake otomatis mengikuti perubahan dan penghapusan di sana.</string>
+    <string name="history_older_title">Izinkan data lama dari %1$s</string>
+    <string name="history_older_title_unknown">Izinkan data kesehatan lama</string>
+    <string name="history_older_allow">Izinkan</string>
+    <string name="history_older_later">Lain kali</string>
     <string name="history_average">Rata-rata %1$d mnt lebih awal</string>
     <string name="history_light_share">%1$d %% dibangunkan lebih awal saat gelisah</string>
     <plurals name="history_group_nights">
@@ -649,4 +653,5 @@
     <string name="weekly_deep">Tidur nyenyak %1$s dari tidurmu</string>
     <string name="settings_clear_old">Hapus yang lebih dari 90 hari</string>
     <string name="settings_clear_old_text">Menghapus malam tercatat yang lebih lama dari 90 hari di ponselmu, beserta catatan, perasaan, centang rutinitas malam, dan rekaman malamnya. Malam yang lebih baru dan alarmmu tetap ada. Malam dari aplikasi lain hanya disembunyikan di sini dan tetap ada di aplikasi tersebut.</string>
+    <string name="settings_clear_old_learn">Rekaman malam dari fase belajar yang belum selesai tetap ada.</string>
 </resources>

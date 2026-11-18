@@ -102,11 +102,20 @@ struct SettingsView: View {
                 }
             }
             // «Älter als 90 Tage löschen»: gleiche Rückfrage, der Text nennt, was gelöscht wird.
-            .confirmationDialog(L("settings_clear_old_text"), isPresented: $confirmOlder, titleVisibility: .visible) {
+            .confirmationDialog(Self.clearOldText(learningOpen: PhoneLearning.shared.state.openSince != nil),
+                                isPresented: $confirmOlder, titleVisibility: .visible) {
                 Button(L("settings_clear_history_confirm"), role: .destructive) {
                     Task { if await DeviceAuth.confirm(reason: L("auth_clear_history")) { model.clearOlderHistory() } }
                 }
             }
         }
+    }
+
+    /// Rückfrage «Älter als 90 Tage löschen»: was gelöscht wird, bei offener Lernphase (`learningOpen`,
+    /// ``LearningState/openSince``) dazu, dass ihre Aufzeichnungen bleiben (`HistoryPrune.keepsRecording`).
+    /// Wie Android.
+    static func clearOldText(learningOpen: Bool) -> String {
+        (["settings_clear_old_text"] + (learningOpen ? ["settings_clear_old_learn"] : [])).map { L($0) }
+            .joined(separator: " ")
     }
 }

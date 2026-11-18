@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Health Connect မှ အိပ်စက်မှုဒေတာ မရှိသေးပါ။ Samsung Health က မျှဝေရပါမည်- Samsung Health → ဆက်တင်များ → Health Connect။</string>
     <string name="history_health_live">%1$s မှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_health_live_unknown">သင့်ကျန်းမာရေးဒေတာမှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
+    <string name="history_older_title">%1$s မှ ဒေတာဟောင်းများကို ခွင့်ပြုရန်</string>
+    <string name="history_older_title_unknown">ကျန်းမာရေးဒေတာဟောင်းများကို ခွင့်ပြုရန်</string>
+    <string name="history_older_allow">ခွင့်ပြုရန်</string>
+    <string name="history_older_later">ယခု မဟုတ်ပါ</string>
     <string name="history_average">Ø %1$d မိနစ် စော</string>
     <string name="history_light_share">မငြိမ်မသက်ဖြစ်၍ စောနှိုးခံရမှု %1$d %%</string>
     <plurals name="history_group_nights">
@@ -651,4 +655,5 @@
     <string name="weekly_deep">နက်ရှိုင်းသောအိပ်စက်ခြင်း %1$s</string>
     <string name="settings_clear_old">ရက် 90 ထက်ဟောင်းသည်များကို ဖျက်ရန်</string>
     <string name="settings_clear_old_text">ဖုန်းပေါ်ရှိ ရက် 90 ထက်ဟောင်းသော မှတ်တမ်းတင်ထားသည့် ညများကို ၎င်းတို့၏ မှတ်စုများ၊ ခံစားမှု၊ ညနေ လုပ်ရိုးလုပ်စဉ် အမှတ်အသားများနှင့် ညအသံဖမ်းချက်များနှင့်အတူ ဖျက်သည်။ ပိုသစ်သော ညများနှင့် နှိုးစက်များ ကျန်ရှိမည်။ အခြားအက်ပ်များမှ ညများကို ဤနေရာတွင် ဖျောက်ထားရုံသာဖြစ်ပြီး ထိုအက်ပ်များတွင် ဆက်ရှိနေမည်။</string>
+    <string name="settings_clear_old_learn">မပြီးသေးသော သင်ယူမှုအဆင့်၏ ညအသံဖမ်းချက်များ ကျန်ရှိမည်။</string>
 </resources>

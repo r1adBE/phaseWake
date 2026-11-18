@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">තවම Health Connect වෙතින් නින්දේ දත්ත නැත. Samsung Health ඒවා බෙදාගත යුතුය: Samsung Health → සැකසීම් → Health Connect.</string>
     <string name="history_health_live">%1$s වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
     <string name="history_health_live_unknown">ඔබේ සෞඛ්‍ය දත්ත වෙතින්. එහි කරන වෙනස්කම් සහ මැකීම් Phase Wake ස්වයංක්‍රීයව අනුගමනය කරයි.</string>
+    <string name="history_older_title">%1$s වෙතින් පැරණි දත්තවලට ඉඩ දෙන්න</string>
+    <string name="history_older_title_unknown">පැරණි සෞඛ්‍ය දත්තවලට ඉඩ දෙන්න</string>
+    <string name="history_older_allow">ඉඩ දෙන්න</string>
+    <string name="history_older_later">දැන් නොවේ</string>
     <string name="history_average">Ø මිනි. %1$d කලින්</string>
     <string name="history_light_share">%1$d %% නොසන්සුන් වූ විට කලින් අවදි කළා</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">ගැඹුරු නින්ද ඔබේ නින්දෙන් %1$s</string>
     <string name="settings_clear_old">දින 90කට වඩා පැරණි ඒවා මකන්න</string>
     <string name="settings_clear_old_text">ඔබේ දුරකථනයේ දින 90කට වඩා පැරණි සටහන් වූ රාත්‍රි, ඒවායේ සටහන්, හැඟීම, සවස් චර්යාවේ ලකුණු සහ රාත්‍රී පටිගත කිරීම් සමඟ මකයි. නවතම රාත්‍රි සහ ඔබේ එලාම ඉතිරි වේ. වෙනත් යෙදුම්වල රාත්‍රී මෙහි සඟවනු ලබන්නේ පමණක් වන අතර ඒවා එම යෙදුම්වල පවතී.</string>
+    <string name="settings_clear_old_learn">අවසන් නොවූ ඉගෙනීමේ අදියරේ රාත්‍රී පටිගත කිරීම් ඉතිරි වේ.</string>
 </resources>

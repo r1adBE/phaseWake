@@ -295,7 +295,7 @@ internal fun DataGroup(
                 },
                 // Was alles gelöscht wird, wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die
                 // Lernphase; bei «älter als 90 Tage» nur, was bis dahin endete.
-                text = { Text(if (older) stringResource(R.string.settings_clear_old_text) else clearHistoryText()) },
+                text = { Text(if (older) clearOldText(extras.learningOpen) else clearHistoryText()) },
                 confirmButton = {
                     TextButton(onClick = { confirm = null; onClearHistory(older) }) {
                         Text(
@@ -342,6 +342,17 @@ internal fun AboutGroup(version: String, extras: SettingsExtras) {
         VersionLine(version, extras)
     }
 }
+
+/**
+ * Rückfrage «Älter als 90 Tage löschen»: was gelöscht wird, bei offener Lernphase ([learningOpen]) dazu, dass ihre
+ * Aufzeichnungen bleiben ([com.phasewake.app.core.HistoryPrune.keepsRecording]). Wie iPhone.
+ */
+internal fun clearOldTexts(learningOpen: Boolean): List<Int> =
+    listOfNotNull(R.string.settings_clear_old_text, R.string.settings_clear_old_learn.takeIf { learningOpen })
+
+@Composable
+private fun clearOldText(learningOpen: Boolean): String =
+    clearOldTexts(learningOpen).map { stringResource(it) }.joinToString(" ")
 
 /** Rückfrage «Verlauf löschen»: nennt alles, was gelöscht wird (gleicher Text am iPhone). */
 @Composable

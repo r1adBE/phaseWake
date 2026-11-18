@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Rakendusest Health Connect pole veel uneandmeid. Samsung Health peab neid jagama: Samsung Health → Seaded → Health Connect.</string>
     <string name="history_health_live">Allikas: %1$s. Phase Wake võtab sealsed muudatused ja kustutamised automaatselt üle.</string>
     <string name="history_health_live_unknown">Allikas: sinu terviseandmed. Phase Wake võtab sealsed muudatused ja kustutamised automaatselt üle.</string>
+    <string name="history_older_title">Luba vanemad andmed rakendusest %1$s</string>
+    <string name="history_older_title_unknown">Luba vanemad terviseandmed</string>
+    <string name="history_older_allow">Luba</string>
+    <string name="history_older_later">Mitte praegu</string>
     <string name="history_average">Ø %1$d min varem</string>
     <string name="history_light_share">%1$d %% äratatud rahutuse korral varem</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Sügav uni %1$s sinu unest</string>
     <string name="settings_clear_old">Kustuta vanemad kui 90 päeva</string>
     <string name="settings_clear_old_text">Kustutab telefonist üle 90 päeva vanad salvestatud ööd koos nende märkmete, enesetunde, õhturutiini linnukeste ja öiste salvestustega. Uuemad ööd ja äratused jäävad alles. Teiste rakenduste ööd peidetakse siin ainult ära ja need jäävad neisse rakendustesse.</string>
+    <string name="settings_clear_old_learn">Lõpetamata õppefaasi öised salvestused jäävad alles.</string>
 </resources>

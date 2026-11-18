@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Engin svefngögn frá Health Connect enn. Samsung Health þarf að deila þeim: Samsung Health → Stillingar → Health Connect.</string>
     <string name="history_health_live">Frá %1$s. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
     <string name="history_health_live_unknown">Úr heilsugögnunum þínum. Phase Wake tekur sjálfkrafa upp breytingar og eyðingar sem gerðar eru þar.</string>
+    <string name="history_older_title">Leyfa eldri gögn úr %1$s</string>
+    <string name="history_older_title_unknown">Leyfa eldri heilsugögn</string>
+    <string name="history_older_allow">Leyfa</string>
+    <string name="history_older_later">Ekki núna</string>
     <string name="history_average">Ø %1$d mín fyrr</string>
     <string name="history_light_share">%1$d %% vakin fyrr við óróleika</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Djúpsvefn %1$s af svefninum</string>
     <string name="settings_clear_old">Eyða eldra en 90 daga</string>
     <string name="settings_clear_old_text">Eyðir skráðum nóttum eldri en 90 daga í símanum, ásamt athugasemdum, líðan, hökum í kvöldrútínu og næturupptökum þeirra. Nýrri nætur og vekjararnir haldast. Nætur úr öðrum forritum eru aðeins faldar hér og haldast í þeim forritum.</string>
+    <string name="settings_clear_old_learn">Næturupptökur ólokins námsfasa haldast.</string>
 </resources>

@@ -77,6 +77,10 @@
     <string name="history_empty_no_data">Nog geen slaapdata uit Health Connect nie. Samsung Health moet dit deel: Samsung Health → Instellings → Health Connect.</string>
     <string name="history_health_live">Uit %1$s. Phase Wake neem veranderinge en skrappings daar outomaties oor.</string>
     <string name="history_health_live_unknown">Uit jou gesondheidsdata. Phase Wake neem veranderinge en skrappings daar outomaties oor.</string>
+    <string name="history_older_title">Gee toegang tot ouer data uit %1$s</string>
+    <string name="history_older_title_unknown">Gee toegang tot ouer gesondheidsdata</string>
+    <string name="history_older_allow">Gee toegang</string>
+    <string name="history_older_later">Nie nou nie</string>
     <string name="history_average">Ø %1$d min vroeër</string>
     <string name="history_light_share">%1$d %% vroeër wakker gemaak by onrus</string>
     <plurals name="history_group_nights">
@@ -668,4 +672,5 @@
     <string name="weekly_deep">Diep slaap %1$s van jou slaap</string>
     <string name="settings_clear_old">Vee ouer as 90 dae uit</string>
     <string name="settings_clear_old_text">Vee aangetekende nagte ouer as 90 dae op jou foon uit, saam met hul notas, gevoel, aandroetine-merkies en nagopnames. Nuwer nagte en jou wekkers bly. Nagte uit ander apps word hier net versteek en bly in daardie apps.</string>
+    <string name="settings_clear_old_learn">Nagopnames van jou onvoltooide leerfase bly.</string>
 </resources>

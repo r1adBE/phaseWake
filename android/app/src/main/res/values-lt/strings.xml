@@ -79,6 +79,10 @@
     <string name="history_empty_no_data">Iš Health Connect miego duomenų dar nėra. Samsung Health turi jais dalytis: Samsung Health → Nustatymai → Health Connect.</string>
     <string name="history_health_live">Iš programos %1$s. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
     <string name="history_health_live_unknown">Iš tavo sveikatos duomenų. Ten atliktus pakeitimus ir ištrynimus Phase Wake perima automatiškai.</string>
+    <string name="history_older_title">Leisti senesnius duomenis iš %1$s</string>
+    <string name="history_older_title_unknown">Leisti senesnius sveikatos duomenis</string>
+    <string name="history_older_allow">Leisti</string>
+    <string name="history_older_later">Ne dabar</string>
     <string name="history_average">Ø %1$d min anksčiau</string>
     <string name="history_light_share">%1$d %% pažadinta anksčiau dėl nerimo</string>
     <plurals name="history_group_nights">
@@ -700,4 +704,5 @@
     <string name="weekly_deep">Gilus miegas: %1$s tavo miego</string>
     <string name="settings_clear_old">Ištrinti senesnius nei 90 dienų</string>
     <string name="settings_clear_old_text">Ištrina telefone įrašytas senesnes nei 90 dienų naktis kartu su jų pastabomis, savijauta, vakaro ritualo varnelėmis ir naktiniais įrašais. Naujesnės naktys ir žadintuvai lieka. Naktys iš kitų programų čia tik paslepiamos ir lieka tose programose.</string>
+    <string name="settings_clear_old_learn">Nebaigto mokymosi etapo naktiniai įrašai lieka.</string>
 </resources>

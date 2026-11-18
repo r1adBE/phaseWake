@@ -75,6 +75,10 @@
     <string name="history_empty_no_data">Δεν υπάρχουν ακόμη δεδομένα ύπνου από το Health Connect. Το Samsung Health πρέπει να τα μοιράζεται: Samsung Health → Ρυθμίσεις → Health Connect.</string>
     <string name="history_health_live">Από %1$s. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
     <string name="history_health_live_unknown">Από τα δεδομένα υγείας σου. Το Phase Wake εφαρμόζει αυτόματα τις αλλαγές και τις διαγραφές που γίνονται εκεί.</string>
+    <string name="history_older_title">Να επιτρέπονται παλαιότερα δεδομένα από %1$s</string>
+    <string name="history_older_title_unknown">Να επιτρέπονται παλαιότερα δεδομένα υγείας</string>
+    <string name="history_older_allow">Να επιτρέπεται</string>
+    <string name="history_older_later">Όχι τώρα</string>
     <string name="history_average">Ø %1$d λ. νωρίτερα</string>
     <string name="history_light_share">%1$d %% ξύπνησαν νωρίτερα λόγω ανησυχίας</string>
     <plurals name="history_group_nights">
@@ -665,4 +669,5 @@
     <string name="weekly_deep">Βαθύς ύπνος %1$s του ύπνου σου</string>
     <string name="settings_clear_old">Διαγραφή παλαιότερων των 90 ημερών</string>
     <string name="settings_clear_old_text">Διαγράφει από το κινητό σου τις καταγεγραμμένες νύχτες που είναι παλαιότερες από 90 ημέρες, μαζί με τις σημειώσεις, την αίσθηση, τα σημάδια της βραδινής ρουτίνας και τις νυχτερινές καταγραφές τους. Οι νεότερες νύχτες και τα ξυπνητήρια σου παραμένουν. Οι νύχτες από άλλες εφαρμογές απλώς αποκρύπτονται εδώ και παραμένουν σε εκείνες τις εφαρμογές.</string>
+    <string name="settings_clear_old_learn">Οι νυχτερινές καταγραφές της φάσης εκμάθησης που δεν έχει ολοκληρωθεί παραμένουν.</string>
 </resources>

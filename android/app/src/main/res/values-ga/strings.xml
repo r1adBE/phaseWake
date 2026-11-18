@@ -80,6 +80,10 @@
     <string name="history_empty_no_data">Níl aon sonraí codlata ó Health Connect fós. Caithfidh Samsung Health iad a roinnt: Samsung Health → Socruithe → Health Connect.</string>
     <string name="history_health_live">Ó %1$s. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
     <string name="history_health_live_unknown">Ó do shonraí sláinte. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
+    <string name="history_older_title">Ceadaigh sonraí níos sine ó %1$s</string>
+    <string name="history_older_title_unknown">Ceadaigh sonraí sláinte níos sine</string>
+    <string name="history_older_allow">Ceadaigh</string>
+    <string name="history_older_later">Ní anois</string>
     <string name="history_average">Ø %1$d nóim níos luaithe</string>
     <string name="history_light_share">%1$d %% dúisithe níos luaithe nuair a bhí tú corrthónach</string>
     <plurals name="history_group_nights">
@@ -716,4 +720,5 @@
     <string name="weekly_deep">Codladh domhain %1$s de do chodladh</string>
     <string name="settings_clear_old">Scrios níos sine ná 90 lá</string>
     <string name="settings_clear_old_text">Scriosann sé oícheanta taifeadta níos sine ná 90 lá ar do fhón, mar aon lena nótaí, mothú, ticeanna an ghnáthaimh tráthnóna agus taifeadtaí oíche. Fanann oícheanta níos nuaí agus na haláraim. Ní dhéantar ach oícheanta ó aipeanna eile a cheilt anseo agus fanann siad sna haipeanna sin.</string>
+    <string name="settings_clear_old_learn">Fanann taifeadtaí oíche na céime foghlama nach bhfuil críochnaithe.</string>
 </resources>

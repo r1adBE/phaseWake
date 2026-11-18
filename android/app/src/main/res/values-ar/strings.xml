@@ -79,6 +79,10 @@
     <string name="history_empty_no_data">لا توجد بيانات نوم من Health Connect بعد. يجب أن يشاركها Samsung Health: ‏Samsung Health ← الإعدادات ← Health Connect.</string>
     <string name="history_health_live">من %1$s. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
     <string name="history_health_live_unknown">من بياناتك الصحية. يطبّق Phase Wake التغييرات وعمليات الحذف هناك تلقائيًا.</string>
+    <string name="history_older_title">السماح ببيانات أقدم من %1$s</string>
+    <string name="history_older_title_unknown">السماح ببيانات صحية أقدم</string>
+    <string name="history_older_allow">سماح</string>
+    <string name="history_older_later">ليس الآن</string>
     <string name="history_average">المتوسط: قبل الموعد بـ %1$d د</string>
     <string name="history_light_share">%1$d %% أُوقظوا أبكر عند التململ</string>
     <plurals name="history_group_nights">
@@ -729,4 +733,5 @@
     <string name="weekly_deep">النوم العميق %1$s من نومك</string>
     <string name="settings_clear_old">حذف ما هو أقدم من 90 يومًا</string>
     <string name="settings_clear_old_text">يحذف الليالي المسجّلة الأقدم من 90 يومًا على هاتفك، مع ملاحظاتها والشعور وعلامات روتين المساء وتسجيلات الليل. تبقى الليالي الأحدث ومنبّهاتك. الليالي من التطبيقات الأخرى تُخفى هنا فقط وتبقى في تلك التطبيقات.</string>
+    <string name="settings_clear_old_learn">تبقى تسجيلات الليل الخاصة بمرحلة التعلّم التي لم تكتمل.</string>
 </resources>
