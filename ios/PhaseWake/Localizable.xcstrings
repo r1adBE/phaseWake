@@ -17532,7 +17532,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ud fra din måltid, dit søvnmål og hvor lang tid du er om at falde i søvn."
+            "value": "Ud fra dit ønskede tidspunkt, dit søvnmål og hvor lang tid du er om at falde i søvn."
           }
         },
         "de": {
@@ -17754,7 +17754,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ut fra måltiden, søvnmålet og hvor lang tid du bruker på å sovne."
+            "value": "Ut fra ønsket tid, søvnmålet og hvor lang tid du bruker på å sovne."
           }
         },
         "ne": {
@@ -17838,7 +17838,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utifrån din måltid, ditt sömnmål och hur lång tid du tar på dig att somna."
+            "value": "Utifrån din önskade tid, ditt sömnmål och hur lång tid du tar på dig att somna."
           }
         },
         "sw": {
@@ -18428,7 +18428,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minder dig om det %1$lld min før sengetid: måltid minus søvnmål."
+            "value": "Minder dig om det %1$lld min før sengetid: ønsket tidspunkt minus søvnmål."
           }
         },
         "de": {
@@ -18650,7 +18650,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Minner deg på det %1$lld min før leggetid: måltid minus søvnmål."
+            "value": "Minner deg på det %1$lld min før leggetid: ønsket tid minus søvnmål."
           }
         },
         "ne": {
@@ -18734,7 +18734,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Påminner dig %1$lld min före läggdags: måltid minus sömnmål."
+            "value": "Påminner dig %1$lld min före läggdags: önskad tid minus sömnmål."
           }
         },
         "sw": {
@@ -91430,7 +91430,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter med vinduet og er fuldt lys på måltidspunktet."
+            "value": "Starter med vinduet og er fuldt lys på det ønskede tidspunkt."
           }
         },
         "de": {
@@ -91652,7 +91652,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter med vinduet og er fullt lys på måltidspunktet."
+            "value": "Starter med vinduet og er fullt lys på ønsket tid."
           }
         },
         "ne": {
@@ -103078,7 +103078,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nætter under 6 timer: %1$lld af 7. Tip: regn din sengetid ud fra din måltid, og hold dig til den."
+            "value": "Nætter under 6 timer: %1$lld af 7. Tip: regn din sengetid ud fra dit ønskede tidspunkt, og hold dig til den."
           }
         },
         "de": {
@@ -103300,7 +103300,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Netter under 6 timer: %1$lld av 7. Tips: regn ut leggetiden fra måltiden og hold deg til den."
+            "value": "Netter under 6 timer: %1$lld av 7. Tips: regn ut leggetiden fra ønsket tid og hold deg til den."
           }
         },
         "ne": {
@@ -103384,7 +103384,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nätter under 6 timmar: %1$lld av 7. Tips: räkna ut din läggtid från din måltid och håll dig till den."
+            "value": "Nätter under 6 timmar: %1$lld av 7. Tips: räkna ut din läggtid från din önskade tid och håll dig till den."
           }
         },
         "sw": {
@@ -177850,7 +177850,7 @@
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Måltid %1$@"
+            "value": "Ønsket tidspunkt %1$@"
           }
         },
         "de": {
@@ -178072,7 +178072,7 @@
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Måltid %1$@"
+            "value": "Ønsket tid %1$@"
           }
         },
         "ne": {
@@ -178156,7 +178156,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Måltid %1$@"
+            "value": "Önskad tid %1$@"
           }
         },
         "sw": {
@@ -223546,7 +223546,7 @@
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Måltiden nådd"
+            "value": "Önskad tid nådd"
           }
         },
         "sw": {

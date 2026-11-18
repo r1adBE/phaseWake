@@ -20,6 +20,14 @@ extension Brand {
             ? UIColor(red: CGFloat(0xB9) / 255, green: CGFloat(0xAE) / 255, blue: CGFloat(0xFF) / 255, alpha: 1)
             : UIColor(red: CGFloat(0x44) / 255, green: CGFloat(0x36) / 255, blue: CGFloat(0xA6) / 255, alpha: 1)
     })
+
+    /// Hauptfarbe im Inhalt der Seiten (Zeilen auf Creme und Karten): hell 5546C8 wie Knöpfe und Text sonst, dunkel
+    /// Lavendel. Der Kopf über dem Tageshimmel behält ``accentAdaptive`` (5546C8 hätte dort nur 4.3:1), wie Android.
+    static let accentContentAdaptive = Color(UIColor { traits in
+        traits.userInterfaceStyle == .dark
+            ? UIColor(red: CGFloat(0xB9) / 255, green: CGFloat(0xAE) / 255, blue: CGFloat(0xFF) / 255, alpha: 1)
+            : UIColor(red: CGFloat(0x55) / 255, green: CGFloat(0x46) / 255, blue: CGFloat(0xC8) / 255, alpha: 1)
+    })
 }
 
 /// Ob Karten die Fläche der Seiten (``Brand/panel(_:)``) statt der Startseite (``Brand/card(_:)``) tragen.
@@ -82,6 +90,6 @@ extension View {
     /// Himmel und Kopf wie auf der Startseite (``SkyPageStyle``).
     func skyPage() -> some View { modifier(SkyPageStyle()) }
 
-    /// Zeilen einer Liste oder eines Formulars in der Kartenfläche der Seiten.
-    func skyRows() -> some View { listRowBackground(CardFill()) }
+    /// Zeilen einer Liste oder eines Formulars in der Kartenfläche der Seiten, mit der Hauptfarbe des Inhalts.
+    func skyRows() -> some View { listRowBackground(CardFill()).tint(Brand.accentContentAdaptive) }
 }

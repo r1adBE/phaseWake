@@ -156,7 +156,7 @@
         <item quantity="one">Starter, når du bliver vækket, og er fuldt lys efter %1$d minut.</item>
         <item quantity="other">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på måltidspunktet.</string>
+    <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på det ønskede tidspunkt.</string>
     <string name="sunrise_device_title">Hvor</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Ur</string>
@@ -288,7 +288,7 @@
         <item quantity="other">Søvnmål nået: %1$d af %2$d nætter</item>
     </plurals>
     <string name="bedtime_title">Påmindelse om sengetid</string>
-    <string name="bedtime_text">Minder dig om det %1$d min før sengetid: måltid minus søvnmål.</string>
+    <string name="bedtime_text">Minder dig om det %1$d min før sengetid: ønsket tidspunkt minus søvnmål.</string>
     <string name="bedtime_notification">Sengetid kl. %1$s – så når du %2$s søvn før alarmen kl. %3$s.</string>
     <string name="channel_reminders">Påmindelser</string>
     <string name="sounds_title">Lyde til at falde i søvn</string>
@@ -520,7 +520,7 @@
     <string name="night_in_bed">I seng %1$s – %2$s</string>
     <string name="night_asleep">Søvn</string>
     <string name="night_woke">Vækket kl. %1$s</string>
-    <string name="night_target">Måltid %1$s</string>
+    <string name="night_target">Ønsket tidspunkt %1$s</string>
     <string name="night_no_stages">Dine helbredsdata har ingen søvnfaser for denne nat.</string>
     <string name="night_details">Detaljer</string>
     <string name="night_open">Vis detaljer</string>
@@ -560,7 +560,7 @@
     <string name="learned_latency">Falde i søvn: ca. %1$s</string>
     <string name="learned_latency_none">Falde i søvn: for få målinger</string>
     <string name="bedtime_advice">Gå i seng i aften mellem %1$s og %2$s</string>
-    <string name="bedtime_advice_hint">Ud fra din måltid, dit søvnmål og hvor lang tid du er om at falde i søvn.</string>
+    <string name="bedtime_advice_hint">Ud fra dit ønskede tidspunkt, dit søvnmål og hvor lang tid du er om at falde i søvn.</string>
     <string name="learn_restart">Lær igen</string>
     <string name="learn_restart_text">Phase Wake måler igen %1$d nætter. Indtil da gælder de hidtil tilpassede værdier.</string>
     <string name="record_end_wake">Afsluttet ved vækning</string>
@@ -642,7 +642,7 @@
     <string name="finding_title">Bemærket i dine sidste 7 nætter</string>
     <string name="finding_hide">Skjul</string>
     <string name="finding_latency">I gennemsnit tog det dig %1$s at falde i søvn. Tip: er du stadig vågen efter 20 minutter, så stå op og gå først i seng igen, når du er søvnig. Varer det i uger, så tal med din læge.</string>
-    <string name="finding_short_nights">Nætter under 6 timer: %1$d af 7. Tip: regn din sengetid ud fra din måltid, og hold dig til den.</string>
+    <string name="finding_short_nights">Nætter under 6 timer: %1$d af 7. Tip: regn din sengetid ud fra dit ønskede tidspunkt, og hold dig til den.</string>
     <string name="finding_low_deep">Dyb søvn udgjorde kun omkring %1$d %% af din søvn (normalt %2$d–%3$d %%).</string>
     <string name="finding_deep_short">I nætter under 6 timer var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>
     <string name="finding_deep_late">I nætter, hvor du gik sent i seng, var den tydeligt lavere: %1$d %% i stedet for %2$d %%.</string>
