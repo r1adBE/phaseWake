@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ц %2$d мин</string>
     <string name="health_title">Health Connect-ийн нойрны үе шат</string>
     <string name="health_rationale">Phase Wake нь эрүүл мэндийн апп чинь (жишээ нь Samsung Health) хадгалсан нойрны өгөгдлийг уншиж чадна. Энэ нь түүхэнд чинь харагдах бөгөөд Phase Wake чамайг сэрээсэн шөнүүдтэй харьцуулахад ч ашиглагдана. Phase Wake зөвхөн уншина, юу ч бичихгүй, утаснаас чинь юу ч гарахгүй.</string>
+    <string name="health_rationale_history">Өмнөх өгөгдөлд хандахыг мөн зөвшөөрвөл Phase Wake 30 хоногоос хуучин нойрны өгөгдлийг ч уншиж, түүх чинь хоёр жил хүртэл ухарч болно. Энэ зөвшөөрөлгүйгээр Phase Wake анхны хандалтаас 30 хоногийн өмнөхөөс эхэлсэн өгөгдлийг л уншина.</string>
     <string name="health_connect">Эрүүл мэндийн өгөгдөлтэй харьцуулах</string>
     <string name="health_connect_hint">Сэрсний дараа Health Connect-оос нойрны үе шатыг уншиж, илрүүлэлтийг шалгаж сайжруулна.</string>
     <string name="health_connected">Холбогдсон</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Дэлгэрэнгүйг харуулах</string>
     <string name="night_latency">Унтах хүртэлх хугацаа</string>
     <string name="night_efficiency">Нойрны үр ашиг</string>
-    <string name="night_awakenings">Сэрсэн удаа</string>
+    <string name="night_wake_moments">Сэрсэн мөчүүд</string>
+    <string name="night_wake_brief">Богино сэрэлтүүд</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">үүнээс %1$d нь %2$d минутаас урт</item>
+        <item quantity="other">үүнээс %1$d нь %2$d минутаас урт</item>
+    </plurals>
     <string name="night_longest_deep">Хамгийн урт гүн нойр</string>
     <string name="stages_typical">Ердийн хүрээ</string>
     <string name="stages_typical_range">Ердийн %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Унтах цаг чинь %1$s хүртэл зөрсөн. Зөвлөгөө: өдөр бүр ойролцоогоор нэг цагт унт, амралтын өдрүүдэд ч мөн.</string>
     <string name="finding_jetlag">Амралтын өдрүүдэд нойр чинь ажлын өдрүүдээс %1$s шилжсэн. Зөвлөгөө: амралтын өдрүүдэд ч ижил унтах цагаа баримтал.</string>
     <string name="weekly_deep">Гүн нойр: нойрны %1$s</string>
+    <string name="settings_clear_old">90 хоногоос хуучныг устгах</string>
+    <string name="settings_clear_old_text">Утсан дээрх 90 хоногоос хуучин бүртгэсэн шөнийг тэдгээрийн тэмдэглэл, мэдрэмж, оройн дэглэмийн тэмдэг, шөнийн бичлэгтэй хамт устгана. Шинэ шөнүүд болон сэрүүлгүүд чинь үлдэнэ. Бусад аппын шөнүүд энд зөвхөн нуугдах бөгөөд тэр аппуудад хэвээр үлдэнэ.</string>
 </resources>

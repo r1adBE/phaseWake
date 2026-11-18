@@ -26,6 +26,7 @@ Reihenfolge bis zur Produktion: [Checkliste Store-Start](#checkliste-store-start
 | `BODY_SENSORS` (bis Wear OS 5), `BODY_SENSORS_BACKGROUND` (bis Wear OS 5) | – | ✓ | Puls im Weckfenster |
 | Health Connect `READ_HEART_RATE`, `READ_HEALTH_DATA_IN_BACKGROUND` (ab Wear OS 6) | – | ✓ | Puls im Weckfenster |
 | Health Connect `READ_SLEEP` | ✓ | – | Schlafphasen nachträglich anzeigen (Option) |
+| Health Connect `READ_HEALTH_DATA_HISTORY` | ✓ | – | Schlafdaten älter als 30 Tage im Verlauf (Option, nur wo verfügbar) |
 | `ACTIVITY_RECOGNITION` | – | ✓ | Voraussetzung des Vordergrund-Dienstes `health` |
 | `POST_NOTIFICATIONS` | ✓ | ✓ | Wecker, Nächster Wecker, Erinnerungen |
 | Begleit-App (CompanionDeviceManager), `BLUETOOTH_CONNECT` | ✓ | – | Uhr als Begleitgerät verknüpfen |
@@ -79,6 +80,9 @@ Bewegung.
 - Handy: Schlaf (`READ_SLEEP`) – optional, um die Schlafphasen einer Nacht nachträglich im Verlauf zu zeigen und mit dem
   Weckmoment zu vergleichen, und für Trends (Schlafdauer, Regelmässigkeit). Die Daten bleiben in Health Connect und
   werden nicht kopiert, gesichert oder gesendet.
+- Handy: Verlauf lesen (`READ_HEALTH_DATA_HISTORY`) – optional, zusammen mit `READ_SLEEP` angefragt, nur wo Health
+  Connect es anbietet: auch Schlafdaten älter als 30 Tage vor dem ersten Zugriff lesen, damit Verlauf und Übersicht bis
+  2 Jahre zurückreichen. Ohne dieses Recht bleibt alles gleich, nur mit Daten ab 30 Tagen vor dem ersten Zugriff.
 - Uhr: Herzfrequenz (`READ_HEART_RATE`) und Lesen im Hintergrund (`READ_HEALTH_DATA_IN_BACKGROUND`) – ab Wear OS 6 der
   Ersatz für `BODY_SENSORS`, nur für den Puls im Weckfenster (siehe oben).
 Die Begründungsseite (`ACTION_SHOW_PERMISSIONS_RATIONALE`) und die Datenschutzerklärung (docs/DATENSCHUTZ.md) liegen vor.
@@ -142,6 +146,9 @@ watch measures movement only.
 - Phone: Sleep (`READ_SLEEP`) – optional, to show the sleep stages of a night afterwards in the history, compare them
   with the wake moment, and for trends (sleep duration, regularity). The data stays in Health Connect and is not copied,
   backed up or sent.
+- Phone: Read past data (`READ_HEALTH_DATA_HISTORY`) – optional, requested together with `READ_SLEEP`, only where
+  Health Connect offers it: also read sleep data older than 30 days before the first access, so the history and overview
+  reach back up to 2 years. Without it everything stays the same, only with data from 30 days before the first access.
 - Watch: Heart rate (`READ_HEART_RATE`) and background reads (`READ_HEALTH_DATA_IN_BACKGROUND`) – from Wear OS 6 the
   replacement for `BODY_SENSORS`, only for heart rate during the wake window (see above).
 The rationale screen (`ACTION_SHOW_PERMISSIONS_RATIONALE`) and the privacy policy (docs/DATENSCHUTZ.md) are in place.
@@ -180,8 +187,8 @@ nicht dazu. Vor dem Einreichen gegen die aktuellen Manifeste, DATENSCHUTZ.md und
   Nutzungs- und Leistungskennzahlen an Google (über Google Data Transport). Ohne `INTERNET`-Recht (im Manifest entfernt)
   kann die App nichts senden; die Kennzahlen bleiben höchstens lokal liegen. Vor dem Einreichen von r1AD prüfen.
 - **Verschlüsselung bei der Übertragung:** Frage entfällt, wenn «Nein» bei der Erhebung; sonst: Verbindung des Systems.
-- **Löschen:** Alles liegt auf den Geräten; «Verlauf löschen» in der App bzw. Deinstallieren löscht es. Kein Konto,
-  darum kein Löschantrag nötig.
+- **Löschen:** Alles liegt auf den Geräten; «Verlauf löschen» in der App bzw. Deinstallieren löscht es, «Älter als
+  90 Tage löschen» nur das Ältere. Kein Konto, darum kein Löschantrag nötig.
 
 **English (for the form)**
 
@@ -201,8 +208,8 @@ nicht dazu. Vor dem Einreichen gegen die aktuellen Manifeste, DATENSCHUTZ.md und
   manifest) the app cannot send anything; such metrics at most stay on the device. To be checked by r1AD before
   submitting.
 - **Encrypted in transit:** not asked when collection is “No”; otherwise: system connection.
-- **Deletion:** everything stays on the devices; “Clear history” in the app or uninstalling deletes it. No account, so
-  no deletion request is needed.
+- **Deletion:** everything stays on the devices; “Clear history” in the app or uninstalling deletes it, “Delete older
+  than 90 days” only the older part. No account, so no deletion request is needed.
 
 ## Checkliste Store-Start (Zeitplan)
 
@@ -220,7 +227,7 @@ Stand 16.11.2026. Reihenfolge für ein neues privates Entwicklerkonto; T = Start
      an den Entwickler; Google Data Transport (`com.google.android.datatransport`, im Handy-Bundle mit MediaPipe) kann
      ohne `INTERNET` nichts senden (`release_check.py` prüft, dass kein Netzrecht eingeschleppt wird). Beides vor dem
      Absenden von r1AD bestätigen.
-   - **Gesundheits-Apps** und **Health Connect:** Handy `READ_SLEEP`; Uhr `health.READ_HEART_RATE` und
+   - **Gesundheits-Apps** und **Health Connect:** Handy `READ_SLEEP` und `READ_HEALTH_DATA_HISTORY` (optional); Uhr `health.READ_HEART_RATE` und
      `health.READ_HEALTH_DATA_IN_BACKGROUND` (ab Wear OS 6 Ersatz für `BODY_SENSORS` bzw. `BODY_SENSORS_BACKGROUND`, die
      Plattform nutzt dafür die Rechte von Health Connect). Texte: Abschnitte «Körpersensoren und Puls» und «Health Connect».
    - **Exakte Alarme, Vollbild-Benachrichtigung:** Texte oben.

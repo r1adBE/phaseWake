@@ -161,7 +161,7 @@ struct TrendsCard: View {
         .card()
     }
 
-    private func decimal(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(1))) }
+    private func decimal(_ value: Double) -> String { decimalText(value) }
 }
 
 /// Verlauf als echte .csv-Dateien zum Teilen (nicht als Text), für `ShareLink(items:)`: die Nächte

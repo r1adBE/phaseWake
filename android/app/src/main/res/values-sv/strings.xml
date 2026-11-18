@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Sömnfaser från Health Connect</string>
     <string name="health_rationale">Phase Wake kan läsa de sömndata som din hälsoapp (till exempel Samsung Health) sparar. De visas i din historik, även för jämförelse med nätterna då Phase Wake väckte dig. Phase Wake läser bara, skriver aldrig, och inget lämnar din mobil.</string>
+    <string name="health_rationale_history">Om du även tillåter åtkomst till tidigare data läser Phase Wake också sömndata som är äldre än 30 dagar, så att din historik kan sträcka sig upp till två år bakåt. Utan denna behörighet läser Phase Wake bara data från 30 dagar före första åtkomsten.</string>
     <string name="health_connect">Jämför med hälsodata</string>
     <string name="health_connect_hint">Läser sömnfaser från Health Connect efter uppvaknandet för att kontrollera och förbättra igenkänningen.</string>
     <string name="health_connected">Ansluten</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Visa detaljer</string>
     <string name="night_latency">Insomning</string>
     <string name="night_efficiency">Sömneffektivitet</string>
-    <string name="night_awakenings">Gånger vaken</string>
+    <string name="night_wake_moments">Uppvaknanden</string>
+    <string name="night_wake_brief">Korta uppvaknanden</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">varav %1$d över %2$d min</item>
+        <item quantity="other">varav %1$d över %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Längsta djupsömn</string>
     <string name="stages_typical">Vanligt intervall</string>
     <string name="stages_typical_range">Vanligtvis %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Din läggtid varierade med upp till %1$s. Tips: lägg dig ungefär samma tid varje dag, även på helgen.</string>
     <string name="finding_jetlag">På helgen var din sömn förskjuten %1$s jämfört med vardagar. Tips: behåll samma sovtider även på helgen.</string>
     <string name="weekly_deep">Djupsömn %1$s av din sömn</string>
+    <string name="settings_clear_old">Rensa äldre än 90 dagar</string>
+    <string name="settings_clear_old_text">Raderar registrerade nätter äldre än 90 dagar på telefonen, tillsammans med deras anteckningar, känsla, bockar i kvällsrutinen och nattinspelningar. Nyare nätter och dina alarm finns kvar. Nätter från andra appar döljs bara här och ligger kvar i de apparna.</string>
 </resources>

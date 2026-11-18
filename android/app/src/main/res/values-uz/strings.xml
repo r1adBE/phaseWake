@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d soat %2$d daq</string>
     <string name="health_title">Health Connectʼdagi uyqu bosqichlari</string>
     <string name="health_rationale">Phase Wake sogʻliq ilovang (masalan, Samsung Health) saqlaydigan uyqu maʼlumotlarini oʻqiy oladi. Ular tarixingda koʻrsatiladi, Phase Wake seni uygʻotgan tunlar bilan solishtirish uchun ham. Phase Wake faqat oʻqiydi, hech narsa yozmaydi va hech narsa telefoningdan chiqmaydi.</string>
+    <string name="health_rationale_history">Oldingi maʼlumotlarga kirishga ham ruxsat bersang, Phase Wake 30 kundan eski uyqu maʼlumotlarini ham oʻqiydi, shunda tarixing ikki yilgacha orqaga choʻzilishi mumkin. Bu ruxsatsiz Phase Wake faqat birinchi kirishdan 30 kun oldingi sanadan boshlab maʼlumotlarni oʻqiydi.</string>
     <string name="health_connect">Sogʻliq maʼlumotlari bilan solishtirish</string>
     <string name="health_connect_hint">Uygʻongandan keyin Health Connectʼdan uyqu bosqichlarini oʻqiydi – aniqlashni tekshirish va yaxshilash uchun.</string>
     <string name="health_connected">Ulangan</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Batafsil koʻrsatish</string>
     <string name="night_latency">Uxlab qolish vaqti</string>
     <string name="night_efficiency">Uyqu samaradorligi</string>
-    <string name="night_awakenings">Uygʻongan marta</string>
+    <string name="night_wake_moments">Uygʻonish lahzalari</string>
+    <string name="night_wake_brief">Qisqa uygʻonishlar</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">shundan %1$d tasi %2$d daq dan uzun</item>
+        <item quantity="other">shundan %1$d tasi %2$d daq dan uzun</item>
+    </plurals>
     <string name="night_longest_deep">Eng uzun chuqur uyqu</string>
     <string name="stages_typical">Odatiy oraliq</string>
     <string name="stages_typical_range">Odatda %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Uxlash vaqting %1$s gacha oʻzgardi. Maslahat: har kuni taxminan bir vaqtda uxla, dam olish kunlari ham.</string>
     <string name="finding_jetlag">Dam olish kunlari uyqung ish kunlariga nisbatan %1$s siljidi. Maslahat: dam olish kunlari ham xuddi shu uyqu vaqtlariga amal qil.</string>
     <string name="weekly_deep">Chuqur uyqu uyqungning %1$s qismi</string>
+    <string name="settings_clear_old">90 kundan eskisini oʻchirish</string>
+    <string name="settings_clear_old_text">Telefondagi 90 kundan eski yozilgan tunlarni ularning qaydlari, kayfiyati, kechki odat belgilari va tungi yozuvlari bilan birga oʻchiradi. Yangiroq tunlar va budilniklaring qoladi. Boshqa ilovalardagi tunlar bu yerda faqat yashiriladi va oʻsha ilovalarda qoladi.</string>
 </resources>

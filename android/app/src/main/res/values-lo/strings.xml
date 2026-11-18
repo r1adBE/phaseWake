@@ -112,6 +112,7 @@
     <string name="duration_hours_minutes">%1$d ຊມ %2$d ນາທີ</string>
     <string name="health_title">ໄລຍະການນອນຈາກ Health Connect</string>
     <string name="health_rationale">Phase Wake ສາມາດອ່ານຂໍ້ມູນການນອນທີ່ແອັບສຸຂະພາບຂອງເຈົ້າ (ເຊັ່ນ Samsung Health) ບັນທຶກໄວ້ ຂໍ້ມູນນີ້ສະແດງໃນປະຫວັດຂອງເຈົ້າ ລວມທັງເພື່ອປຽບທຽບກັບຄືນທີ່ Phase Wake ປຸກເຈົ້າ Phase Wake ອ່ານຢ່າງດຽວ ບໍ່ເຄີຍຂຽນ ແລະ ບໍ່ມີຫຍັງອອກຈາກໂທລະສັບຂອງເຈົ້າ</string>
+    <string name="health_rationale_history">ຖ້າເຈົ້າອະນຸຍາດໃຫ້ເຂົ້າເຖິງຂໍ້ມູນທີ່ຜ່ານມານຳ Phase Wake ຈະອ່ານຂໍ້ມູນການນອນທີ່ເກົ່າກວ່າ 30 ມື້ນຳ ເພື່ອໃຫ້ປະຫວັດຂອງເຈົ້າຍ້ອນຫຼັງໄດ້ເຖິງສອງປີ ຖ້າບໍ່ມີການອະນຸຍາດນີ້ Phase Wake ຈະອ່ານສະເພາະຂໍ້ມູນຕັ້ງແຕ່ 30 ມື້ກ່ອນການເຂົ້າເຖິງຄັ້ງທຳອິດເທົ່ານັ້ນ</string>
     <string name="health_connect">ປຽບທຽບກັບຂໍ້ມູນສຸຂະພາບ</string>
     <string name="health_connect_hint">ອ່ານໄລຍະການນອນຈາກ Health Connect ຫຼັງຕື່ນ ເພື່ອກວດ ແລະ ປັບປຸງການກວດຈັບ</string>
     <string name="health_connected">ເຊື່ອມຕໍ່ແລ້ວ</string>
@@ -519,7 +520,11 @@
     <string name="night_open">ສະແດງລາຍລະອຽດ</string>
     <string name="night_latency">ເວລາກວ່າຈະຫຼັບ</string>
     <string name="night_efficiency">ປະສິດທິພາບການນອນ</string>
-    <string name="night_awakenings">ຈຳນວນເທື່ອທີ່ຕື່ນ</string>
+    <string name="night_wake_moments">ການຕື່ນ</string>
+    <string name="night_wake_brief">ການຕື່ນສັ້ນໆ</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">ໃນນັ້ນ %1$d ເທື່ອເກີນ %2$d ນາທີ</item>
+    </plurals>
     <string name="night_longest_deep">ການນອນເລິກທີ່ຍາວທີ່ສຸດ</string>
     <string name="stages_typical">ຊ່ວງປົກກະຕິ</string>
     <string name="stages_typical_range">ປົກກະຕິ %1$d–%2$d %%</string>
@@ -644,4 +649,6 @@
     <string name="finding_bedtime">ເວລາເຂົ້ານອນຂອງເຈົ້າຕ່າງກັນເຖິງ %1$s. ຄຳແນະນຳ: ເຂົ້ານອນເວລາໃກ້ຄຽງກັນທຸກມື້ ລວມທັງທ້າຍອາທິດ.</string>
     <string name="finding_jetlag">ໃນທ້າຍອາທິດ ການນອນຂອງເຈົ້າເລື່ອນໄປ %1$s ເມື່ອທຽບກັບມື້ເຮັດວຽກ. ຄຳແນະນຳ: ຮັກສາເວລານອນເດີມໃນທ້າຍອາທິດນຳ.</string>
     <string name="weekly_deep">ການນອນຫຼັບເລິກ %1$s ຂອງການນອນ</string>
+    <string name="settings_clear_old">ລຶບທີ່ເກົ່າກວ່າ 90 ມື້</string>
+    <string name="settings_clear_old_text">ລຶບຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບທີ່ເກົ່າກວ່າ 90 ມື້ ພ້ອມກັບບັນທຶກ, ຄວາມຮູ້ສຶກ, ເຄື່ອງໝາຍກິດຈະວັດຕອນແລງ ແລະ ການບັນທຶກຕອນກາງຄືນຂອງມັນ ຄືນທີ່ໃໝ່ກວ່າ ແລະ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່ ຄືນຈາກແອັບອື່ນຖືກເຊື່ອງໄວ້ຢູ່ນີ້ເທົ່ານັ້ນ ແລະ ຍັງຢູ່ໃນແອັບເຫຼົ່ານັ້ນ</string>
 </resources>

@@ -111203,6 +111203,454 @@
         }
       }
     },
+    "health_rationale_history": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "As jy ook toegang tot vroeëre data toelaat, lees Phase Wake ook slaapdata ouer as 30 dae, sodat jou geskiedenis tot twee jaar terug kan strek. Daarsonder lees Phase Wake net data vanaf 30 dae voor jou eerste toegang."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ያለፉ ውሂቦችንም መድረስ ከፈቀዱ፣ Phase Wake ከ30 ቀናት በላይ የቆየ የእንቅልፍ ውሂብም ያነባል፤ በዚህም ታሪክዎ እስከ ሁለት ዓመት ወደኋላ ሊደርስ ይችላል። ያለዚህ ፈቃድ Phase Wake የሚያነበው ከመጀመሪያው መዳረሻዎ 30 ቀናት በፊት ጀምሮ ያለውን ውሂብ ብቻ ነው።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إذا سمحت أيضًا بالوصول إلى البيانات السابقة، يقرأ Phase Wake أيضًا بيانات النوم الأقدم من ٣٠ يومًا، فيمتد سجلك حتى عامين إلى الوراء. وبدون هذا الإذن، يقرأ Phase Wake البيانات بدءًا من ٣٠ يومًا قبل أول وصول فقط."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keçmiş məlumatlara girişə də icazə versən, Phase Wake 30 gündən köhnə yuxu məlumatlarını da oxuyur və tarixçən iki ilədək geriyə uzana bilər. Bu icazə olmadan Phase Wake yalnız ilk girişdən 30 gün əvvəldən başlayan məlumatları oxuyur."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако разрешиш и достъп до минали данни, Phase Wake чете и данни за съня, по-стари от 30 дни, така че историята ти може да обхване до две години назад. Без това разрешение Phase Wake чете само данни от 30 дни преди първия достъп нататък."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "তুমি যদি আগের ডেটায় অ্যাক্সেসও দাও, Phase Wake 30 দিনের বেশি পুরোনো ঘুমের ডেটাও পড়ে, ফলে তোমার ইতিহাস দুই বছর পর্যন্ত পিছিয়ে যেতে পারে। এটি ছাড়া Phase Wake শুধু প্রথম অ্যাক্সেসের 30 দিন আগে থেকে ডেটা পড়ে।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ako dozvoliš i pristup ranijim podacima, Phase Wake čita i podatke o snu starije od 30 dana, pa tvoja historija može sezati do dvije godine unazad. Bez te dozvole Phase Wake čita samo podatke od 30 dana prije prvog pristupa."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si també permets l’accés a les dades anteriors, Phase Wake llegeix també les dades de son de fa més de 30 dies, de manera que el teu historial pot arribar fins a dos anys enrere. Sense aquest permís, Phase Wake només llegeix les dades a partir de 30 dies abans del primer accés."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pokud povolíš i přístup ke starším datům, Phase Wake čte i data o spánku starší než 30 dní, takže tvoje historie může sahat až dva roky zpět. Bez tohoto oprávnění čte Phase Wake jen data od 30 dní před prvním přístupem."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvis du også tillader adgang til tidligere data, læser Phase Wake også søvndata, der er ældre end 30 dage, så din historik kan række op til to år tilbage. Uden denne tilladelse læser Phase Wake kun data fra 30 dage før din første adgang."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erlaubst du auch den Zugriff auf frühere Daten, liest Phase Wake auch Schlafdaten, die älter als 30 Tage sind – so reicht dein Verlauf bis zu zwei Jahre zurück. Ohne diese Erlaubnis liest Phase Wake nur Daten ab 30 Tagen vor dem ersten Zugriff."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αν επιτρέψεις και την πρόσβαση σε παλαιότερα δεδομένα, το Phase Wake διαβάζει και δεδομένα ύπνου παλαιότερα από 30 ημέρες, ώστε το ιστορικό σου να φτάνει έως και δύο χρόνια πίσω. Χωρίς αυτή την άδεια, το Phase Wake διαβάζει μόνο δεδομένα από 30 ημέρες πριν από την πρώτη πρόσβαση."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If you also allow access to past data, Phase Wake reads sleep data older than 30 days too, so your history can reach back up to two years. Without it, Phase Wake only reads data from 30 days before your first access onwards."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si también permites el acceso a datos anteriores, Phase Wake lee además los datos de sueño de hace más de 30 días, para que tu historial llegue hasta dos años atrás. Sin este permiso, Phase Wake solo lee los datos desde 30 días antes del primer acceso."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kui lubad ka juurdepääsu varasematele andmetele, loeb Phase Wake ka üle 30 päeva vanuseid uneandmeid, nii et sinu ajalugu võib ulatuda kuni kaks aastat tagasi. Ilma selle loata loeb Phase Wake ainult andmeid alates 30 päevast enne esimest juurdepääsu."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aurreko datuetarako sarbidea ere baimentzen baduzu, Phase Wake-k 30 egun baino zaharragoak diren lo-datuak ere irakurtzen ditu, eta zure historiak bi urte atzera arte irits daiteke. Baimen hori gabe, Phase Wake-k lehen sarbidea baino 30 egun lehenagotik aurrerako datuak soilik irakurtzen ditu."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگر دسترسی به داده‌های گذشته را هم اجازه بدهی، Phase Wake داده‌های خواب قدیمی‌تر از ۳۰ روز را هم می‌خواند تا تاریخچه‌ات تا دو سال به عقب برسد. بدون این اجازه، Phase Wake فقط داده‌ها را از ۳۰ روز پیش از اولین دسترسی به بعد می‌خواند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jos sallit myös pääsyn aiempiin tietoihin, Phase Wake lukee myös yli 30 päivää vanhat unitiedot, joten historiasi voi ulottua jopa kahden vuoden taakse. Ilman tätä lupaa Phase Wake lukee vain tiedot alkaen 30 päivää ennen ensimmäistä käyttöoikeutta."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kung papayagan mo rin ang access sa mga nakaraang data, babasahin din ng Phase Wake ang sleep data na mas luma sa 30 araw, kaya aabot hanggang dalawang taon pabalik ang kasaysayan mo. Kung wala nito, data lang mula 30 araw bago ang unang access ang babasahin ng Phase Wake."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si tu autorises aussi l'accès aux données passées, Phase Wake lit aussi les données de sommeil de plus de 30 jours, pour que ton historique remonte jusqu'à deux ans. Sans cette autorisation, Phase Wake ne lit que les données à partir de 30 jours avant le premier accès."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Má cheadaíonn tú rochtain ar shonraí roimhe seo freisin, léann Phase Wake sonraí codlata atá níos sine ná 30 lá freisin, ionas gur féidir le do stair dul siar suas le dhá bhliain. Gan an cead sin, ní léann Phase Wake ach sonraí ó 30 lá roimh an gcéad rochtain ar aghaidh."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se tamén permites o acceso a datos anteriores, Phase Wake le tamén os datos de sono de hai máis de 30 días, para que o teu historial chegue ata dous anos atrás. Sen este permiso, Phase Wake só le os datos desde 30 días antes do primeiro acceso."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જો તમે અગાઉના ડેટાની ઍક્સેસ પણ આપો, તો Phase Wake 30 દિવસથી જૂનો ઊંઘનો ડેટા પણ વાંચે છે, જેથી તમારો ઇતિહાસ બે વર્ષ સુધી પાછળ જઈ શકે. આ મંજૂરી વિના Phase Wake ફક્ત પહેલી ઍક્સેસના 30 દિવસ પહેલાંથી ડેટા વાંચે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אם תאפשרו גם גישה לנתונים קודמים, Phase Wake יקרא גם נתוני שינה ישנים מ-30 יום, כך שההיסטוריה יכולה להגיע עד שנתיים אחורה. בלי ההרשאה הזו, Phase Wake קורא רק נתונים מ-30 יום לפני הגישה הראשונה ואילך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर तुम पुराने डेटा का ऐक्सेस भी दो, तो Phase Wake 30 दिन से पुराना नींद का डेटा भी पढ़ता है, ताकि तुम्हारा इतिहास दो साल तक पीछे जा सके। इसके बिना Phase Wake सिर्फ़ पहले ऐक्सेस से 30 दिन पहले से डेटा पढ़ता है।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ako dopustiš i pristup ranijim podacima, Phase Wake čita i podatke o snu starije od 30 dana, pa tvoja povijest može sezati do dvije godine unatrag. Bez tog dopuštenja Phase Wake čita samo podatke od 30 dana prije prvog pristupa."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ha a korábbi adatokhoz való hozzáférést is engedélyezed, a Phase Wake a 30 napnál régebbi alvási adatokat is beolvassa, így az előzményeid akár két évre visszamenőleg is elérhetők. Enélkül a Phase Wake csak az első hozzáférés előtti 30. naptól kezdődő adatokat olvassa."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Եթե թույլ տաս նաև անցյալ տվյալների հասանելիությունը, Phase Wake-ը կկարդա նաև 30 օրից ավելի հին քնի տվյալները, և քո պատմությունը կարող է հասնել մինչև երկու տարի հետ։ Առանց այդ թույլտվության Phase Wake-ը կարդում է միայն առաջին հասանելիությունից 30 օր առաջվանից սկսած տվյալները։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika kamu juga mengizinkan akses ke data sebelumnya, Phase Wake juga membaca data tidur yang lebih lama dari 30 hari, sehingga riwayatmu bisa mencapai hingga dua tahun ke belakang. Tanpa izin ini, Phase Wake hanya membaca data sejak 30 hari sebelum akses pertama."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ef þú leyfir líka aðgang að eldri gögnum les Phase Wake einnig svefngögn sem eru eldri en 30 daga, svo ferillinn þinn getur náð allt að tvö ár aftur í tímann. Án þessa leyfis les Phase Wake aðeins gögn frá 30 dögum fyrir fyrsta aðgang."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se consenti anche l’accesso ai dati passati, Phase Wake legge anche i dati sul sonno più vecchi di 30 giorni, così la tua cronologia può risalire fino a due anni fa. Senza questo permesso, Phase Wake legge solo i dati a partire da 30 giorni prima del primo accesso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "過去のデータへのアクセスも許可すると、Phase Wakeは30日より前の睡眠データも読み取り、履歴を最大2年前までさかのぼれます。許可しない場合、Phase Wakeが読み取るのは最初のアクセスの30日前以降のデータのみです。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "თუ წარსულ მონაცემებზე წვდომასაც დაუშვებ, Phase Wake 30 დღეზე ძველ ძილის მონაცემებსაც წაიკითხავს და შენი ისტორია ორ წლამდე უკან შეიძლება გავრცელდეს. ამ ნებართვის გარეშე Phase Wake მხოლოდ პირველ წვდომამდე 30 დღით ადრე დაწყებულ მონაცემებს კითხულობს."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бұрынғы деректерге қол жеткізуге де рұқсат етсең, Phase Wake 30 күннен ескі ұйқы деректерін де оқиды, сонда тарихың екі жылға дейін артқа созылуы мүмкін. Бұл рұқсатсыз Phase Wake тек алғашқы қол жеткізуден 30 күн бұрыннан бастап деректерді оқиды."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ប្រសិនបើអ្នកអនុញ្ញាតឱ្យចូលប្រើទិន្នន័យពីមុនផងដែរ Phase Wake ក៏អានទិន្នន័យដំណេកដែលចាស់ជាង 30 ថ្ងៃដែរ ដូច្នេះប្រវត្តិរបស់អ្នកអាចថយក្រោយបានរហូតដល់ពីរឆ្នាំ។ បើគ្មានការអនុញ្ញាតនេះ Phase Wake អានតែទិន្នន័យចាប់ពី 30 ថ្ងៃមុនការចូលប្រើលើកដំបូងប៉ុណ្ណោះ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಹಿಂದಿನ ಡೇಟಾಗೆ ಪ್ರವೇಶವನ್ನೂ ನೀವು ಅನುಮತಿಸಿದರೆ, Phase Wake 30 ದಿನಗಳಿಗಿಂತ ಹಳೆಯ ನಿದ್ರೆಯ ಡೇಟಾವನ್ನೂ ಓದುತ್ತದೆ, ಇದರಿಂದ ನಿಮ್ಮ ಇತಿಹಾಸ ಎರಡು ವರ್ಷಗಳವರೆಗೆ ಹಿಂದಕ್ಕೆ ಹೋಗಬಹುದು. ಈ ಅನುಮತಿ ಇಲ್ಲದೆ Phase Wake ಮೊದಲ ಪ್ರವೇಶಕ್ಕೆ 30 ದಿನಗಳ ಮೊದಲಿನಿಂದಿರುವ ಡೇಟಾವನ್ನು ಮಾತ್ರ ಓದುತ್ತದೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "과거 데이터 접근도 허용하면 Phase Wake가 30일보다 오래된 수면 데이터도 읽어서, 기록을 최대 2년 전까지 볼 수 있어요. 허용하지 않으면 Phase Wake는 처음 접근하기 30일 전부터의 데이터만 읽어요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ຖ້າເຈົ້າອະນຸຍາດໃຫ້ເຂົ້າເຖິງຂໍ້ມູນທີ່ຜ່ານມານຳ Phase Wake ຈະອ່ານຂໍ້ມູນການນອນທີ່ເກົ່າກວ່າ 30 ມື້ນຳ ເພື່ອໃຫ້ປະຫວັດຂອງເຈົ້າຍ້ອນຫຼັງໄດ້ເຖິງສອງປີ ຖ້າບໍ່ມີການອະນຸຍາດນີ້ Phase Wake ຈະອ່ານສະເພາະຂໍ້ມູນຕັ້ງແຕ່ 30 ມື້ກ່ອນການເຂົ້າເຖິງຄັ້ງທຳອິດເທົ່ານັ້ນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jei leisi ir prieigą prie ankstesnių duomenų, Phase Wake skaitys ir senesnius nei 30 dienų miego duomenis, todėl tavo istorija gali siekti iki dvejų metų atgal. Be šio leidimo Phase Wake skaito tik duomenis nuo 30 dienų prieš pirmąją prieigą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ja atļausi arī piekļuvi iepriekšējiem datiem, Phase Wake nolasīs arī miega datus, kas vecāki par 30 dienām, tāpēc tava vēsture var sniegties līdz pat diviem gadiem atpakaļ. Bez šīs atļaujas Phase Wake nolasa tikai datus, sākot no 30 dienām pirms pirmās piekļuves."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако дозволиш и пристап до претходни податоци, Phase Wake ги чита и податоците за сон постари од 30 дена, па твојата историја може да оди до две години наназад. Без оваа дозвола, Phase Wake чита само податоци од 30 дена пред првиот пристап."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "മുൻകാല ഡാറ്റയിലേക്കുള്ള ആക്‌സസും നിങ്ങൾ അനുവദിച്ചാൽ, 30 ദിവസത്തിലധികം പഴയ ഉറക്ക ഡാറ്റയും Phase Wake വായിക്കും, അങ്ങനെ നിങ്ങളുടെ ചരിത്രം രണ്ട് വർഷം വരെ പിന്നോട്ട് എത്താം. ഈ അനുമതി ഇല്ലെങ്കിൽ, ആദ്യ ആക്‌സസിന് 30 ദിവസം മുമ്പ് മുതലുള്ള ഡാറ്റ മാത്രമേ Phase Wake വായിക്കൂ."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өмнөх өгөгдөлд хандахыг мөн зөвшөөрвөл Phase Wake 30 хоногоос хуучин нойрны өгөгдлийг ч уншиж, түүх чинь хоёр жил хүртэл ухарч болно. Энэ зөвшөөрөлгүйгээр Phase Wake анхны хандалтаас 30 хоногийн өмнөхөөс эхэлсэн өгөгдлийг л уншина."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तुम्ही आधीच्या डेटाचा ॲक्सेसही दिल्यास, Phase Wake 30 दिवसांपेक्षा जुना झोपेचा डेटाही वाचते, त्यामुळे तुमचा इतिहास दोन वर्षांपर्यंत मागे जाऊ शकतो. या परवानगीशिवाय Phase Wake फक्त पहिल्या ॲक्सेसच्या 30 दिवस आधीपासूनचा डेटा वाचते."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jika awak juga membenarkan akses kepada data lampau, Phase Wake turut membaca data tidur yang lebih lama daripada 30 hari, jadi sejarah awak boleh menjangkau sehingga dua tahun ke belakang. Tanpa kebenaran ini, Phase Wake hanya membaca data dari 30 hari sebelum akses pertama."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ယခင်ဒေတာများကို ဝင်ရောက်ခွင့်ပါ ပေးပါက Phase Wake သည် ရက် 30 ထက် ဟောင်းသော အိပ်စက်မှုဒေတာကိုလည်း ဖတ်ပြီး သင့်မှတ်တမ်းကို နှစ်နှစ်အထိ နောက်ပြန်ကြည့်နိုင်သည်။ ဤခွင့်ပြုချက်မပါက Phase Wake သည် ပထမဆုံးဝင်ရောက်ခွင့်မတိုင်မီ ရက် 30 မှစ၍သာ ဒေတာကို ဖတ်သည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hvis du også tillater tilgang til tidligere data, leser Phase Wake også søvndata som er eldre enn 30 dager, slik at historikken din kan nå opptil to år tilbake. Uten denne tillatelsen leser Phase Wake bare data fra 30 dager før første tilgang."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिमीले अघिल्लो डेटाको पहुँच पनि दियौ भने, Phase Wake ले 30 दिनभन्दा पुरानो निद्राको डेटा पनि पढ्छ, जसले गर्दा तिम्रो इतिहास दुई वर्षसम्म पछाडि पुग्न सक्छ। यो अनुमति बिना Phase Wake ले पहिलो पहुँचभन्दा 30 दिन अघिदेखिको डेटा मात्र पढ्छ।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als je ook toegang tot eerdere gegevens toestaat, leest Phase Wake ook slaapgegevens die ouder zijn dan 30 dagen, zodat je geschiedenis tot twee jaar terug kan gaan. Zonder deze toestemming leest Phase Wake alleen gegevens vanaf 30 dagen vóór de eerste toegang."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜੇ ਤੁਸੀਂ ਪਿਛਲੇ ਡਾਟਾ ਤੱਕ ਪਹੁੰਚ ਦੀ ਵੀ ਇਜਾਜ਼ਤ ਦਿੰਦੇ ਹੋ, ਤਾਂ Phase Wake 30 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣਾ ਨੀਂਦ ਦਾ ਡਾਟਾ ਵੀ ਪੜ੍ਹਦਾ ਹੈ, ਤਾਂ ਜੋ ਤੁਹਾਡਾ ਇਤਿਹਾਸ ਦੋ ਸਾਲ ਤੱਕ ਪਿੱਛੇ ਜਾ ਸਕੇ। ਇਸ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ Phase Wake ਸਿਰਫ਼ ਪਹਿਲੀ ਪਹੁੰਚ ਤੋਂ 30 ਦਿਨ ਪਹਿਲਾਂ ਤੋਂ ਡਾਟਾ ਪੜ੍ਹਦਾ ਹੈ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jeśli zezwolisz też na dostęp do wcześniejszych danych, Phase Wake odczyta również dane o śnie starsze niż 30 dni, więc twoja historia może sięgać do dwóch lat wstecz. Bez tego uprawnienia Phase Wake odczytuje tylko dane od 30 dni przed pierwszym dostępem."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se você também permitir o acesso a dados anteriores, o Phase Wake lê também os dados de sono com mais de 30 dias, para que seu histórico volte até dois anos. Sem essa permissão, o Phase Wake só lê os dados a partir de 30 dias antes do primeiro acesso."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se também permitires o acesso a dados anteriores, o Phase Wake lê também os dados de sono com mais de 30 dias, para que o teu histórico recue até dois anos. Sem esta permissão, o Phase Wake só lê os dados a partir de 30 dias antes do primeiro acesso."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dacă permiți și accesul la datele anterioare, Phase Wake citește și datele de somn mai vechi de 30 de zile, astfel încât istoricul tău poate ajunge până la doi ani în urmă. Fără această permisiune, Phase Wake citește doar datele începând cu 30 de zile înainte de primul acces."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если ты также разрешишь доступ к прошлым данным, Phase Wake будет читать и данные о сне старше 30 дней, и твоя история сможет охватывать до двух лет. Без этого разрешения Phase Wake читает только данные начиная с 30 дней до первого доступа."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබ පෙර දත්ත වෙත ප්‍රවේශයටද ඉඩ දුන්නොත්, Phase Wake දින 30කට වඩා පැරණි නින්දේ දත්තද කියවන අතර, ඔබේ ඉතිහාසය වසර දෙකක් දක්වා පසුපසට දිව යා හැක. මෙම අවසරය නොමැතිව Phase Wake කියවන්නේ පළමු ප්‍රවේශයට දින 30කට පෙර සිට ඇති දත්ත පමණි."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ak povolíš aj prístup k starším údajom, Phase Wake číta aj údaje o spánku staršie ako 30 dní, takže tvoja história môže siahať až dva roky dozadu. Bez tohto povolenia číta Phase Wake iba údaje od 30 dní pred prvým prístupom."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Če dovoliš tudi dostop do preteklih podatkov, Phase Wake prebere tudi podatke o spanju, starejše od 30 dni, zato lahko tvoja zgodovina sega do dve leti nazaj. Brez tega dovoljenja Phase Wake prebere le podatke od 30 dni pred prvim dostopom naprej."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nëse lejon edhe qasjen te të dhënat e mëparshme, Phase Wake lexon edhe të dhënat e gjumit më të vjetra se 30 ditë, që historiku yt të shkojë deri në dy vjet pas. Pa këtë leje, Phase Wake lexon vetëm të dhënat nga 30 ditë para qasjes së parë."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ако дозволиш и приступ ранијим подацима, Phase Wake чита и податке о сну старије од 30 дана, па твоја историја може да сеже до две године уназад. Без те дозволе Phase Wake чита само податке од 30 дана пре првог приступа."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Om du även tillåter åtkomst till tidigare data läser Phase Wake också sömndata som är äldre än 30 dagar, så att din historik kan sträcka sig upp till två år bakåt. Utan denna behörighet läser Phase Wake bara data från 30 dagar före första åtkomsten."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukiruhusu pia ufikiaji wa data ya awali, Phase Wake husoma pia data ya usingizi iliyo na zaidi ya siku 30, ili historia yako ifike hadi miaka miwili nyuma. Bila ruhusa hii, Phase Wake husoma tu data kuanzia siku 30 kabla ya ufikiaji wa kwanza."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "முந்தைய தரவுக்கான அணுகலையும் நீங்கள் அனுமதித்தால், 30 நாட்களுக்கு மேல் பழைய தூக்கத் தரவையும் Phase Wake படிக்கும், இதனால் உங்கள் வரலாறு இரண்டு ஆண்டுகள் வரை பின்னோக்கிச் செல்லலாம். இந்த அனுமதி இல்லாமல், முதல் அணுகலுக்கு 30 நாட்களுக்கு முன்பிருந்தான தரவை மட்டுமே Phase Wake படிக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మునుపటి డేటాకు యాక్సెస్‌ను కూడా మీరు అనుమతిస్తే, Phase Wake 30 రోజుల కంటే పాత నిద్ర డేటాను కూడా చదువుతుంది, దీంతో మీ చరిత్ర రెండు సంవత్సరాల వరకు వెనక్కి వెళ్లగలదు. ఈ అనుమతి లేకుండా, మొదటి యాక్సెస్‌కు 30 రోజుల ముందు నుంచి ఉన్న డేటాను మాత్రమే Phase Wake చదువుతుంది."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "หากคุณอนุญาตให้เข้าถึงข้อมูลย้อนหลังด้วย Phase Wake จะอ่านข้อมูลการนอนที่เก่ากว่า 30 วันด้วย ประวัติของคุณจึงย้อนหลังได้สูงสุดสองปี หากไม่อนุญาต Phase Wake จะอ่านเฉพาะข้อมูลตั้งแต่ 30 วันก่อนการเข้าถึงครั้งแรกเท่านั้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geçmiş verilere erişime de izin verirsen Phase Wake 30 günden eski uyku verilerini de okur; böylece geçmişin iki yıla kadar geriye uzanabilir. Bu izin olmadan Phase Wake yalnızca ilk erişimden 30 gün öncesinden itibaren verileri okur."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Якщо ти дозволиш також доступ до минулих даних, Phase Wake читатиме й дані про сон, старші за 30 днів, і твоя історія зможе сягати до двох років назад. Без цього дозволу Phase Wake читає лише дані, починаючи з 30 днів до першого доступу."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اگر تم پچھلے ڈیٹا تک رسائی کی بھی اجازت دو تو Phase Wake 30 دن سے پرانا نیند کا ڈیٹا بھی پڑھتا ہے، تاکہ تمہارا تاریخچہ دو سال تک پیچھے جا سکے۔ اس اجازت کے بغیر Phase Wake صرف پہلی رسائی سے 30 دن پہلے سے ڈیٹا پڑھتا ہے۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oldingi maʼlumotlarga kirishga ham ruxsat bersang, Phase Wake 30 kundan eski uyqu maʼlumotlarini ham oʻqiydi, shunda tarixing ikki yilgacha orqaga choʻzilishi mumkin. Bu ruxsatsiz Phase Wake faqat birinchi kirishdan 30 kun oldingi sanadan boshlab maʼlumotlarni oʻqiydi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nếu bạn cũng cho phép truy cập dữ liệu trước đây, Phase Wake sẽ đọc cả dữ liệu giấc ngủ cũ hơn 30 ngày, nhờ đó lịch sử của bạn có thể kéo dài đến hai năm trước. Nếu không có quyền này, Phase Wake chỉ đọc dữ liệu từ 30 ngày trước lần truy cập đầu tiên."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你同時允許存取過往資料，Phase Wake 亦會讀取 30 日以前的睡眠數據，令你的記錄最多可追溯到兩年前。若不允許，Phase Wake 只會讀取首次授權前 30 日起的數據。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你同时允许访问过往数据，Phase Wake 也会读取 30 天以前的睡眠数据，这样你的记录最多可追溯到两年前。若不允许，Phase Wake 只读取首次授权前 30 天起的数据。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果你同時允許存取過往資料，Phase Wake 也會讀取 30 天以前的睡眠資料，讓你的紀錄最多可追溯到兩年前。若不允許，Phase Wake 只會讀取首次授權前 30 天起的資料。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma uvumela nokufinyelela kudatha edlule, i-Phase Wake ifunda nedatha yokulala endala kunezinsuku ezingu-30, ukuze umlando wakho ubuyele emuva kuze kube iminyaka emibili. Ngaphandle kwale mvume, i-Phase Wake ifunda kuphela idatha kusukela ezinsukwini ezingu-30 ngaphambi kokufinyelela kokuqala."
+          }
+        }
+      }
+    },
     "health_title": {
       "localizations": {
         "af": {
@@ -165837,454 +166285,6 @@
         }
       }
     },
-    "night_awakenings": {
-      "localizations": {
-        "af": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kere wakker"
-          }
-        },
-        "am": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "የነቁባቸው ጊዜያት"
-          }
-        },
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "مرات الاستيقاظ"
-          }
-        },
-        "az": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Oyanma sayı"
-          }
-        },
-        "bg": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пъти буден"
-          }
-        },
-        "bn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "জেগে ওঠার সংখ্যা"
-          }
-        },
-        "bs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Buđenja"
-          }
-        },
-        "ca": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vegades despert"
-          }
-        },
-        "cs": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Probuzení"
-          }
-        },
-        "da": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gange vågen"
-          }
-        },
-        "de": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wachphasen"
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Φορές ξύπνιος"
-          }
-        },
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Times awake"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Veces despierto"
-          }
-        },
-        "et": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ärkamisi"
-          }
-        },
-        "eu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Esnatze kopurua"
-          }
-        },
-        "fa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "دفعات بیداری"
-          }
-        },
-        "fi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Heräämiset"
-          }
-        },
-        "fil": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ilang beses nagising"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Réveils"
-          }
-        },
-        "ga": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uaireanta i do dhúiseacht"
-          }
-        },
-        "gl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Veces esperto"
-          }
-        },
-        "gu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "જાગ્યાની સંખ્યા"
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "פעמים ערים"
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "जागने की बार"
-          }
-        },
-        "hr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Buđenja"
-          }
-        },
-        "hu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ébredések"
-          }
-        },
-        "hy": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Արթնանալու անգամներ"
-          }
-        },
-        "id": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kali terjaga"
-          }
-        },
-        "is": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Skipti vakandi"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Risvegli"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "覚醒回数"
-          }
-        },
-        "ka": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "გაღვიძებები"
-          }
-        },
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Оянған рет"
-          }
-        },
-        "km": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ចំនួនដងភ្ញាក់"
-          }
-        },
-        "kn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ಎಚ್ಚರವಾದ ಬಾರಿ"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "깬 횟수"
-          }
-        },
-        "lo": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ຈຳນວນເທື່ອທີ່ຕື່ນ"
-          }
-        },
-        "lt": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pabudimai"
-          }
-        },
-        "lv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pamošanās reizes"
-          }
-        },
-        "mk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Будења"
-          }
-        },
-        "ml": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ഉണർന്ന തവണകൾ"
-          }
-        },
-        "mn": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сэрсэн удаа"
-          }
-        },
-        "mr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "जाग आल्याच्या वेळा"
-          }
-        },
-        "ms": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Kali berjaga"
-          }
-        },
-        "my": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "နိုးလာသည့် အကြိမ်"
-          }
-        },
-        "nb": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ganger våken"
-          }
-        },
-        "ne": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ब्युँझिएका पटक"
-          }
-        },
-        "nl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Keren wakker"
-          }
-        },
-        "pa": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ਜਾਗਣ ਦੀ ਗਿਣਤੀ"
-          }
-        },
-        "pl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Wybudzenia"
-          }
-        },
-        "pt-BR": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vezes acordado"
-          }
-        },
-        "pt-PT": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Vezes acordado"
-          }
-        },
-        "ro": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Treziri"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пробуждения"
-          }
-        },
-        "si": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "අවදි වූ වාර"
-          }
-        },
-        "sk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prebudenia"
-          }
-        },
-        "sl": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Prebujanja"
-          }
-        },
-        "sq": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Herë zgjuar"
-          }
-        },
-        "sr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Буђења"
-          }
-        },
-        "sv": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Gånger vaken"
-          }
-        },
-        "sw": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Mara ulizoamka"
-          }
-        },
-        "ta": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "விழித்த முறைகள்"
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "మేల్కొన్న సార్లు"
-          }
-        },
-        "th": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "จำนวนครั้งที่ตื่น"
-          }
-        },
-        "tr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uyanma sayısı"
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Пробудження"
-          }
-        },
-        "ur": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "جاگنے کی بار"
-          }
-        },
-        "uz": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Uygʻongan marta"
-          }
-        },
-        "vi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Số lần thức giấc"
-          }
-        },
-        "zh-HK": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "醒來次數"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "醒来次数"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "醒來次數"
-          }
-        },
-        "zu": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Izikhathi uvukile"
-          }
-        }
-      }
-    },
     "night_details": {
       "localizations": {
         "af": {
@@ -171209,6 +171209,1940 @@
           "stringUnit": {
             "state": "translated",
             "value": "Imizuzu engu-%1$lld yokuqala ayilinganiswanga – i-Apple Watch ilinganisa kuphela imizuzu engu-%2$lld yokugcina ngaphambi kwesikhathi esihlosiwe."
+          }
+        }
+      }
+    },
+    "night_wake_brief": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kort wakker oomblikke"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "አጭር የንቃት ጊዜያት"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لحظات استيقاظ قصيرة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qısa oyanma anları"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кратки събуждания"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অল্পক্ষণ জেগে ওঠা"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kratka buđenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertades breus"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krátká probuzení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korte opvågninger"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kurze Wachmomente"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σύντομες αφυπνίσεις"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brief awakenings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares breves"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lühikesed ärkamised"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esnatze laburrak"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بیداری‌های کوتاه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lyhyet heräämiset"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maiikling sandaling gising"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réveils brefs"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dúisithe gearra"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espertares breves"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ટૂંકી જાગૃતિ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התעוררויות קצרות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "थोड़ी देर जागना"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kratka buđenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rövid ébredések"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Կարճ արթնացումներ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terjaga sebentar"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stuttar vaknanir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risvegli brevi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短い目覚め"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მოკლე გაღვიძებები"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қысқа оянулар"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការភ្ញាក់ខ្លីៗ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಸಣ್ಣ ಎಚ್ಚರಗಳು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "잠깐 깬 횟수"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການຕື່ນສັ້ນໆ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trumpi pabudimai"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Īsas pamošanās"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кратки будења"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ചെറിയ ഉണർവുകൾ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Богино сэрэлтүүд"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "थोडा वेळ जाग"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Berjaga sekejap"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ခဏနိုးလာမှုများ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korte oppvåkninger"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "छोटो ब्युँझाइ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korte ontwaakmomenten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਥੋੜ੍ਹੀ ਦੇਰ ਜਾਗਣਾ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krótkie wybudzenia"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares breves"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares breves"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treziri scurte"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Короткие пробуждения"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "කෙටි අවදිවීම්"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Krátke prebudenia"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kratka prebujanja"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zgjime të shkurtra"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кратка буђења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korta uppvaknanden"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kuamka kwa muda mfupi"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "குறுகிய விழிப்புகள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కొద్దిసేపు మేల్కొనడం"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การตื่นสั้นๆ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kısa uyanmalar"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Короткі пробудження"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تھوڑی دیر جاگنا"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qisqa uygʻonishlar"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thức giấc ngắn"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短暫醒來次數"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短暂醒来次数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "短暫醒來次數"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ukuvuka okufushane"
+          }
+        }
+      }
+    },
+    "night_wake_long|few": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld duže od %2$lld min"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld déle než %2$lld min"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld díobh níos faide ná %2$lld nóim"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld dulje od %2$lld min"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iš jų %1$lld ilgesni nei %2$lld min"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "w tym %1$lld dłuższe niż %2$lld min"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dintre care %1$lld mai lungi de %2$lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "из них %1$lld дольше %2$lld мин"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld dlhšie ako %2$lld min"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od tega %1$lld daljša od %2$lld min"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "од тога %1$lld дуже од %2$lld мин"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "з них %1$lld довше %2$lld хв"
+          }
+        }
+      }
+    },
+    "night_wake_long|many": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de més de %2$lld min"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld déle než %2$lld min"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de más de %2$lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dont %1$lld de plus de %2$lld min"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld díobh níos faide ná %2$lld nóim"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "di cui %1$lld oltre %2$lld min"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iš jų %1$lld ilgesni nei %2$lld min"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "w tym %1$lld dłuższych niż %2$lld min"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "из них %1$lld дольше %2$lld мин"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld dlhšie ako %2$lld min"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "з них %1$lld довше %2$lld хв"
+          }
+        }
+      }
+    },
+    "night_wake_long|one": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "waarvan %1$lld langer as %2$lld min"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከነዚህ %1$lld ከ%2$lld ደቂቃ በላይ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "onlardan %1$lld %2$lld dəq-dən uzun"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "от тях %1$lld над %2$lld мин"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এর মধ্যে %1$lldটি %2$lld মি.-এর বেশি"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld duže od %2$lld min"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de més de %2$lld min"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld déle než %2$lld min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "heraf %1$lld over %2$lld min"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "davon %1$lld länger als %2$lld Min"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "εκ των οποίων %1$lld πάνω από %2$lld λεπτά"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of them over %2$lld min"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de más de %2$lld min"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "neist %1$lld üle %2$lld min"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "horietatik %1$lld %2$lld min baino luzeagoa"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از این میان %1$lld بیش از %2$lld دقیقه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "joista %1$lld yli %2$lld min"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld dito ay higit sa %2$lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dont %1$lld de plus de %2$lld min"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld díobh níos faide ná %2$lld nóim"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de máis de %2$lld min"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તેમાંથી %1$lld, %2$lld મિ.થી વધુ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מהן %1$lld ארוכה מ־%2$lld דק׳"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इनमें से %1$lld, %2$lld मिनट से ज़्यादा"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld dulje od %2$lld min"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ebből %1$lld hosszabb %2$lld percnél"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "որից %1$lld-ը՝ %2$lld ր-ից ավելի"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "þar af %1$lld lengri en %2$lld mín"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "di cui %1$lld oltre %2$lld min"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მათგან %1$lld — %2$lld წთ-ზე მეტი"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "оның %1$lld-і %2$lld минуттан ұзақ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅವುಗಳಲ್ಲಿ %1$lld, %2$lld ನಿಮಿ.ಗಿಂತ ಹೆಚ್ಚು"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iš jų %1$lld ilgesnis nei %2$lld min"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no tām %1$lld ilgāka par %2$lld min"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "од нив %1$lld подолго од %2$lld мин"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അതിൽ %1$lld എണ്ണം %2$lld മി.-ൽ കൂടുതൽ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "үүнээс %1$lld нь %2$lld минутаас урт"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "त्यापैकी %1$lld, %2$lld मि.पेक्षा जास्त"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hvorav %1$lld over %2$lld min"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तीमध्ये %1$lld, %2$lld मि.भन्दा लामो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "waarvan %1$lld langer dan %2$lld min"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ %1$lld, %2$lld ਮਿੰ. ਤੋਂ ਵੱਧ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "w tym %1$lld dłuższe niż %2$lld min"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dintre care %1$lld mai lungă de %2$lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "из них %1$lld дольше %2$lld мин"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉන් %1$lld ක් මිනි. %2$lld ට වඩා දිගු"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld dlhšie ako %2$lld min"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od tega %1$lld daljše od %2$lld min"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nga to %1$lld më shumë se %2$lld min"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "од тога %1$lld дуже од %2$lld мин"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "varav %1$lld över %2$lld min"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kati yake %1$lld zaidi ya dak %2$lld"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அவற்றில் %1$lld, %2$lld நிமி.க்கு மேல்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాటిలో %1$lld, %2$lld ని. కంటే ఎక్కువ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld tanesi %2$lld dk’dan uzun"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "з них %1$lld довше %2$lld хв"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ان میں سے %1$lld، %2$lld منٹ سے زیادہ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "shundan %1$lld tasi %2$lld daq dan uzun"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kuzo %1$lld ezingaphezu kuka-%2$lld min"
+          }
+        }
+      }
+    },
+    "night_wake_long|other": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "waarvan %1$lld langer as %2$lld min"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከነዚህ %1$lld ከ%2$lld ደቂቃ በላይ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "onlardan %1$lld %2$lld dəq-dən uzun"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "от тях %1$lld над %2$lld мин"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "এর মধ্যে %1$lldটি %2$lld মি.-এর বেশি"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld duže od %2$lld min"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de més de %2$lld min"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld déle než %2$lld min"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "heraf %1$lld over %2$lld min"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "davon %1$lld länger als %2$lld Min"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "εκ των οποίων %1$lld πάνω από %2$lld λεπτά"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld of them over %2$lld min"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de más de %2$lld min"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "neist %1$lld üle %2$lld min"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "horietatik %1$lld %2$lld min baino luzeagoak"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "از این میان %1$lld بیش از %2$lld دقیقه"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "joista %1$lld yli %2$lld min"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld dito ay higit sa %2$lld min"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dont %1$lld de plus de %2$lld min"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld díobh níos faide ná %2$lld nóim"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld de máis de %2$lld min"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "તેમાંથી %1$lld, %2$lld મિ.થી વધુ"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מהן %1$lld ארוכות מ־%2$lld דק׳"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इनमें से %1$lld, %2$lld मिनट से ज़्यादा"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od toga %1$lld dulje od %2$lld min"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ebből %1$lld hosszabb %2$lld percnél"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "որից %1$lld-ը՝ %2$lld ր-ից ավելի"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld di antaranya lebih dari %2$lld mnt"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "þar af %1$lld lengri en %2$lld mín"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "di cui %1$lld oltre %2$lld min"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "うち %1$lld 回は %2$lld 分超"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მათგან %1$lld — %2$lld წთ-ზე მეტი"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "оның %1$lld-і %2$lld минуттан ұзақ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ក្នុងនោះ %1$lld លើស %2$lld នាទី"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅವುಗಳಲ್ಲಿ %1$lld, %2$lld ನಿಮಿ.ಗಿಂತ ಹೆಚ್ಚು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "그중 %1$lld번은 %2$lld분 넘게"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໃນນັ້ນ %1$lld ເທື່ອເກີນ %2$lld ນາທີ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iš jų %1$lld ilgesni nei %2$lld min"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no tām %1$lld ilgākas par %2$lld min"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "од нив %1$lld подолги од %2$lld мин"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അതിൽ %1$lld എണ്ണം %2$lld മി.-ൽ കൂടുതൽ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "үүнээс %1$lld нь %2$lld минутаас урт"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "त्यापैकी %1$lld, %2$lld मि.पेक्षा जास्त"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld daripadanya lebih %2$lld min"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ယင်းအနက် %1$lld ကြိမ် %2$lld မိနစ်ထက်ကြာ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "hvorav %1$lld over %2$lld min"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तीमध्ये %1$lld, %2$lld मि.भन्दा लामो"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "waarvan %1$lld langer dan %2$lld min"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ %1$lld, %2$lld ਮਿੰ. ਤੋਂ ਵੱਧ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "w tym %1$lld dłuższych niż %2$lld min"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sendo %1$lld com mais de %2$lld min"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dintre care %1$lld mai lungi de %2$lld min"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "из них %1$lld дольше %2$lld мин"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඉන් %1$lld ක් මිනි. %2$lld ට වඩා දිගු"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "z toho %1$lld dlhšie ako %2$lld min"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od tega %1$lld daljših od %2$lld min"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nga to %1$lld më shumë se %2$lld min"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "од тога %1$lld дуже од %2$lld мин"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "varav %1$lld över %2$lld min"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kati yake %1$lld zaidi ya dak %2$lld"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அவற்றில் %1$lld, %2$lld நிமி.க்கு மேல்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వాటిలో %1$lld, %2$lld ని. కంటే ఎక్కువ"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ในนั้น %1$lld ครั้งนานกว่า %2$lld นาที"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld tanesi %2$lld dk’dan uzun"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "з них %1$lld довше %2$lld хв"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ان میں سے %1$lld، %2$lld منٹ سے زیادہ"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "shundan %1$lld tasi %2$lld daq dan uzun"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "trong đó %1$lld lần quá %2$lld phút"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其中 %1$lld 次超過 %2$lld 分鐘"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其中 %1$lld 次超过 %2$lld 分钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其中 %1$lld 次超過 %2$lld 分鐘"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kuzo %1$lld ezingaphezu kuka-%2$lld min"
+          }
+        }
+      }
+    },
+    "night_wake_long|two": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld díobh níos faide ná %2$lld nóim"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מהן %1$lld ארוכות מ־%2$lld דק׳"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "od tega %1$lld daljši od %2$lld min"
+          }
+        }
+      }
+    },
+    "night_wake_long|zero": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منها %1$lld أطول من %2$lld دقيقة"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no tām %1$lld ilgākas par %2$lld min"
+          }
+        }
+      }
+    },
+    "night_wake_moments": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wakker oomblikke"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "የንቃት ጊዜያት"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لحظات الاستيقاظ"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oyanma anları"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Събуждания"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "জেগে ওঠার মুহূর্ত"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buđenja"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertades"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Probuzení"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opvågninger"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wachmomente"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αφυπνίσεις"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Awakenings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ärkamised"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esnatzeak"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لحظه‌های بیداری"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heräämiset"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mga sandaling gising"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réveils"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dúisithe"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Espertares"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "જાગવાની પળો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התעוררויות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जागने के पल"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buđenja"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ébredések"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Արթնացումներ"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat terjaga"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vaknanir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Risvegli"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目覚め"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "გაღვიძებები"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ояну сәттері"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ការភ្ញាក់"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಎಚ್ಚರದ ಕ್ಷಣಗಳು"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "깬 횟수"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ການຕື່ນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pabudimai"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pamošanās"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будења"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഉണർന്ന നിമിഷങ്ങൾ"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэрсэн мөчүүд"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जाग आलेले क्षण"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saat berjaga"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နိုးလာမှုများ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppvåkninger"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्युँझिएका पल"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ontwaakmomenten"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਜਾਗਣ ਦੇ ਪਲ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wybudzenia"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Despertares"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treziri"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пробуждения"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "අවදි වූ මොහොත්"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prebudenia"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prebujanja"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zgjime"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Буђења"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uppvaknanden"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nyakati za kuamka"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "விழித்த தருணங்கள்"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మేల్కొన్న క్షణాలు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การตื่น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyanmalar"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пробудження"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جاگنے کے لمحات"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uygʻonish lahzalari"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lần thức giấc"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "醒來次數"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "醒来次数"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "醒來次數"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izikhathi zokuvuka"
           }
         }
       }
@@ -225253,6 +227187,902 @@
           "stringUnit": {
             "state": "translated",
             "value": "Isusa bonke ubusuku obuqoshiwe efonini nasewashini lakho. Ama-alamu akho ayasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app."
+          }
+        }
+      }
+    },
+    "settings_clear_old": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vee ouer as 90 dae uit"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ከ90 ቀናት በላይ የቆዩትን ሰርዝ"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف ما هو أقدم من 90 يومًا"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 gündən köhnəni sil"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изтрий по-старите от 90 дни"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "৯০ দিনের পুরোনো মুছে ফেলো"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izbriši starije od 90 dana"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suprimeix el que tingui més de 90 dies"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smazat starší než 90 dní"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slet ældre end 90 dage"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Älter als 90 Tage löschen"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διαγραφή παλαιότερων των 90 ημερών"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete older than 90 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar lo anterior a 90 días"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kustuta vanemad kui 90 päeva"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ezabatu 90 egun baino zaharragoak"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "پاک کردن قدیمی‌تر از ۹۰ روز"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poista yli 90 päivää vanhat"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-delete ang lampas 90 araw"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer ce qui date de plus de 90 jours"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scrios níos sine ná 90 lá"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar o anterior a 90 días"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 દિવસથી જૂનું કાઢી નાખો"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחיקת מה שישן מ־90 יום"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 दिन से पुराना हटाएँ"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izbriši starije od 90 dana"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 napnál régebbiek törlése"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ջնջել 90 օրից հինը"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hapus yang lebih dari 90 hari"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eyða eldra en 90 daga"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina più vecchi di 90 giorni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90日より前を削除"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 დღეზე ძველის წაშლა"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 күннен ескісін жою"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "លុបអ្វីដែលចាស់ជាង 90 ថ្ងៃ"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 ದಿನಗಳಿಗಿಂತ ಹಳೆಯದನ್ನು ಅಳಿಸಿ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90일보다 오래된 기록 삭제"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ລຶບທີ່ເກົ່າກວ່າ 90 ມື້"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ištrinti senesnius nei 90 dienų"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzēst vecākus par 90 dienām"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Избриши постари од 90 дена"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 ദിവസത്തിലധികം പഴയത് ഇല്ലാതാക്കുക"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 хоногоос хуучныг устгах"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 दिवसांपेक्षा जुने हटवा"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Padam yang lebih lama daripada 90 hari"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ရက် 90 ထက်ဟောင်းသည်များကို ဖျက်ရန်"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slett eldre enn 90 dager"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "९० दिनभन्दा पुरानो मेटाऊ"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouder dan 90 dagen wissen"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣਾ ਮਿਟਾਓ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń starsze niż 90 dni"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar o que tem mais de 90 dias"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apagar o que tem mais de 90 dias"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Șterge ce e mai vechi de 90 de zile"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить старше 90 дней"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "දින 90කට වඩා පැරණි ඒවා මකන්න"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vymazať staršie ako 90 dní"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izbriši starejše od 90 dni"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fshi më të vjetrat se 90 ditë"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Избриши старије од 90 дана"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rensa äldre än 90 dagar"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Futa vya zaidi ya siku 90"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 நாட்களுக்கு மேற்பட்டதை நீக்கு"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 రోజుల కంటే పాతవి తొలగించండి"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ลบข้อมูลที่เก่ากว่า 90 วัน"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 günden eskiyi sil"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Видалити старші за 90 днів"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 دن سے پرانا حذف کرو"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90 kundan eskisini oʻchirish"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa dữ liệu cũ hơn 90 ngày"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除 90 日前的記錄"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除 90 天前的记录"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除 90 天前的記錄"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Susa okudala kunezinsuku ezingu-90"
+          }
+        }
+      }
+    },
+    "settings_clear_old_text": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vee aangetekende nagte ouer as 90 dae op jou foon uit, saam met hul notas, gevoel, aandroetine-merkies en nagopnames. Nuwer nagte en jou wekkers bly. Nagte uit ander apps word hier net versteek en bly in daardie apps."
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "በስልክዎ ላይ ከ90 ቀናት በላይ የቆዩ የተመዘገቡ ሌሊቶችን ከማስታወሻዎቻቸው፣ ከስሜታቸው፣ ከምሽት ልማድ ምልክቶቻቸው እና ከሌሊት ቅጂዎቻቸው ጋር ይሰርዛል። አዳዲስ ሌሊቶች እና ማንቂያዎችዎ ይቆያሉ። ከሌሎች መተግበሪያዎች የመጡ ሌሊቶች እዚህ የሚደበቁት ብቻ ነው፣ በእነዚያ መተግበሪያዎች ውስጥም ይቆያሉ።"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحذف الليالي المسجّلة الأقدم من 90 يومًا على هاتفك، مع ملاحظاتها والشعور وعلامات روتين المساء وتسجيلات الليل. تبقى الليالي الأحدث ومنبّهاتك. الليالي من التطبيقات الأخرى تُخفى هنا فقط وتبقى في تلك التطبيقات."
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonunda 90 gündən köhnə qeydə alınmış gecələri qeydləri, əhvalı, axşam rutini işarələri və gecə yazıları ilə birlikdə silir. Daha yeni gecələr və siqnalların qalır. Digər tətbiqlərdən gecələr burada yalnız gizlədilir və o tətbiqlərdə qalır."
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изтрива записаните нощи на телефона, по-стари от 90 дни, заедно с бележките, усещането, отметките от вечерната рутина и нощните записи към тях. По-новите нощи и будилниците остават. Нощите от други приложения само се скриват тук и остават в тези приложения."
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ফোনে ৯০ দিনের বেশি পুরোনো রেকর্ড করা রাতগুলো মুছে যাবে, সঙ্গে সেগুলোর নোট, অনুভূতি, সন্ধ্যার রুটিনের টিক আর রাতের রেকর্ডিংও। নতুন রাত আর তোমার অ্যালার্মগুলো থাকবে। অন্য অ্যাপের রাতগুলো এখানে শুধু লুকানো হয় এবং সেই অ্যাপগুলোতেই থেকে যায়।"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Briše zabilježene noći starije od 90 dana na telefonu, zajedno s njihovim bilješkama, osjećajem, kvačicama večernje rutine i noćnim snimcima. Novije noći i tvoji alarmi ostaju. Noći iz drugih aplikacija ovdje se samo sakrivaju i ostaju u tim aplikacijama."
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suprimeix del telèfon les nits registrades de fa més de 90 dies, amb les seves notes, l’estat, les marques de la rutina del vespre i els enregistraments nocturns. Les nits més recents i les alarmes es mantenen. Les nits d’altres apps només s’amaguen aquí i es queden en aquestes apps."
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Smaže z telefonu zaznamenané noci starší než 90 dní spolu s jejich poznámkami, pocitem, zaškrtnutím večerní rutiny a nočními záznamy. Novější noci a tvoje budíky zůstanou. Noci z jiných aplikací se tu jen skryjí a zůstanou v těchto aplikacích."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sletter optagede nætter ældre end 90 dage på din telefon sammen med deres noter, følelse, flueben i aftenrutinen og natoptagelser. Nyere nætter og dine alarmer bliver. Nætter fra andre apps skjules kun her og bliver i de apps."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löscht aufgezeichnete Nächte, die älter als 90 Tage sind, auf dem Handy, samt ihren Notizen, Befinden, Haken der Abendroutine und Aufzeichnungen. Neuere Nächte und deine Wecker bleiben. Nächte aus anderen Apps werden hier nur ausgeblendet und bleiben in diesen Apps."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διαγράφει από το κινητό σου τις καταγεγραμμένες νύχτες που είναι παλαιότερες από 90 ημέρες, μαζί με τις σημειώσεις, την αίσθηση, τα σημάδια της βραδινής ρουτίνας και τις νυχτερινές καταγραφές τους. Οι νεότερες νύχτες και τα ξυπνητήρια σου παραμένουν. Οι νύχτες από άλλες εφαρμογές απλώς αποκρύπτονται εδώ και παραμένουν σε εκείνες τις εφαρμογές."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deletes recorded nights older than 90 days on your phone, along with their notes, how you felt, evening routine ticks and night recordings. Newer nights and your alarms stay. Nights from other apps are only hidden here and stay in those apps."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borra de tu móvil las noches registradas hace más de 90 días, junto con sus notas, la sensación, las marcas de la rutina nocturna y las grabaciones nocturnas. Las noches más recientes y tus alarmas se mantienen. Las noches de otras apps solo se ocultan aquí y se quedan en esas apps."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kustutab telefonist üle 90 päeva vanad salvestatud ööd koos nende märkmete, enesetunde, õhturutiini linnukeste ja öiste salvestustega. Uuemad ööd ja äratused jäävad alles. Teiste rakenduste ööd peidetakse siin ainult ära ja need jäävad neisse rakendustesse."
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonoan 90 egun baino zaharragoak diren gau erregistratuak ezabatzen ditu, haien oharrekin, sentipenarekin, gaueko errutinaren markekin eta gaueko grabazioekin batera. Gau berriagoak eta alarmak mantendu egiten dira. Beste aplikazio batzuetako gauak hemen ezkutatu baino ez dira egiten, eta aplikazio horietan geratzen dira."
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شب‌های ثبت‌شدهٔ قدیمی‌تر از ۹۰ روز در گوشی‌ات، همراه با یادداشت‌ها، حس، تیک‌های روال شب و ضبط‌های شبانه‌شان پاک می‌شوند. شب‌های جدیدتر و زنگ‌های هشدارت می‌مانند. شب‌های برنامه‌های دیگر اینجا فقط پنهان می‌شوند و در همان برنامه‌ها می‌مانند."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Poistaa puhelimesta yli 90 päivää vanhat tallennetut yöt sekä niiden muistiinpanot, olon, iltarutiinin rastit ja yötallenteet. Uudemmat yöt ja herätyksesi säilyvät. Muiden sovellusten yöt vain piilotetaan täällä, ja ne pysyvät niissä sovelluksissa."
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dine-delete ang mga naitalang gabi na lampas 90 araw sa telepono mo, kasama ang mga tala, pakiramdam, tsek sa routine sa gabi at mga recording ng gabi nila. Mananatili ang mas bagong gabi at ang mga alarm mo. Itinatago lang dito ang mga gabi mula sa ibang app at nananatili sila sa mga app na iyon."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Efface de ton téléphone les nuits enregistrées il y a plus de 90 jours, avec leurs notes, le ressenti, les coches de la routine du soir et les enregistrements de nuit. Les nuits plus récentes et tes alarmes restent. Les nuits d’autres apps sont seulement masquées ici et restent dans ces apps."
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scriosann sé oícheanta taifeadta níos sine ná 90 lá ar do fhón, mar aon lena nótaí, mothú, ticeanna an ghnáthaimh tráthnóna agus taifeadtaí oíche. Fanann oícheanta níos nuaí agus na haláraim. Ní dhéantar ach oícheanta ó aipeanna eile a cheilt anseo agus fanann siad sna haipeanna sin."
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina do teléfono as noites rexistradas hai máis de 90 días, coas súas notas, o estado, as marcas da rutina nocturna e as gravacións nocturnas. As noites máis recentes e as alarmas mantéñense. As noites doutras apps só se ocultan aquí e quedan nesas apps."
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ફોન પરની 90 દિવસથી જૂની નોંધાયેલી રાતો, તેમની નોંધો, મૂડ, સાંજની દિનચર્યાના ટિક અને રાતના રેકોર્ડિંગ સાથે કાઢી નાખે છે. નવી રાતો અને તમારા એલાર્મ રહે છે. અન્ય ઍપની રાતો અહીં ફક્ત છુપાવાય છે અને તે ઍપમાં જ રહે છે."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחיקת הלילות שהוקלטו בטלפון ושישנים מ־90 יום, יחד עם ההערות, התחושה, הסימונים בשגרת הערב והקלטות הלילה שלהם. לילות חדשים יותר והמעוררים שלך נשארים. לילות מאפליקציות אחרות רק מוסתרים כאן ונשארים באפליקציות האלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोन पर 90 दिन से पुरानी रिकॉर्ड की गई रातें हट जाएँगी, साथ में उनके नोट्स, एहसास, शाम की दिनचर्या के टिक और रात की रिकॉर्डिंग भी। नई रातें और तुम्हारे अलार्म बने रहेंगे। दूसरे ऐप की रातें यहाँ सिर्फ़ छिपाई जाती हैं और उन्हीं ऐप में रहती हैं।"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Briše zabilježene noći starije od 90 dana na telefonu, zajedno s njihovim bilješkama, osjećajem, kvačicama večernje rutine i noćnim snimkama. Novije noći i tvoji alarmi ostaju. Noći iz drugih aplikacija ovdje se samo skrivaju i ostaju u tim aplikacijama."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Törli a telefonodról a 90 napnál régebbi rögzített éjszakákat a jegyzeteikkel, az érzéssel, az esti rutin pipáival és az éjszakai felvételekkel együtt. Az újabb éjszakák és az ébresztőid megmaradnak. A más alkalmazásokból származó éjszakák itt csak el lesznek rejtve, és megmaradnak azokban az alkalmazásokban."
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ջնջում է հեռախոսիդ վրա 90 օրից հին գրանցված գիշերները՝ նրանց նշումների, ինքնազգացման, երեկոյան ծեսի նշիչների և գիշերային ձայնագրությունների հետ։ Ավելի նոր գիշերները և զարթուցիչները մնում են։ Այլ հավելվածների գիշերներն այստեղ միայն թաքցվում են և մնում են այդ հավելվածներում։"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Menghapus malam tercatat yang lebih lama dari 90 hari di ponselmu, beserta catatan, perasaan, centang rutinitas malam, dan rekaman malamnya. Malam yang lebih baru dan alarmmu tetap ada. Malam dari aplikasi lain hanya disembunyikan di sini dan tetap ada di aplikasi tersebut."
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eyðir skráðum nóttum eldri en 90 daga í símanum, ásamt athugasemdum, líðan, hökum í kvöldrútínu og næturupptökum þeirra. Nýrri nætur og vekjararnir haldast. Nætur úr öðrum forritum eru aðeins faldar hér og haldast í þeim forritum."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina dal telefono le notti registrate più vecchie di 90 giorni, insieme a note, sensazione, spunte della routine serale e registrazioni notturne. Le notti più recenti e le tue sveglie restano. Le notti di altre app vengono solo nascoste qui e restano in quelle app."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "スマホに記録された90日より前の夜のデータを、メモ、気分、夜のルーティンのチェック、夜の記録とともに削除します。それより新しい夜とアラームはそのまま残ります。ほかのアプリの夜はここで非表示になるだけで、元のアプリに残ります。"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "შლის ტელეფონზე 90 დღეზე ძველ ჩაწერილ ღამეებს მათ ჩანაწერებთან, თვითგრძნობასთან, საღამოს რუტინის მონიშვნებთან და ღამის ჩანაწერებთან ერთად. უფრო ახალი ღამეები და მაღვიძარები რჩება. სხვა აპების ღამეები აქ მხოლოდ იმალება და იმ აპებში რჩება."
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Телефондағы 90 күннен ескі жазылған түндерді олардың жазбаларымен, көңіл-күйімен, кешкі рәсім белгілерімен және түнгі жазбаларымен бірге жояды. Жаңарақ түндер мен оятқыштарың сақталады. Басқа қолданбалардың түндері мұнда тек жасырылады және сол қолданбаларда қалады."
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "លុបយប់ដែលបានកត់ត្រាចាស់ជាង 90 ថ្ងៃលើទូរសព្ទ រួមទាំងកំណត់ចំណាំ អារម្មណ៍ សញ្ញាធីកនៃទម្លាប់ពេលល្ងាច និងការថតពេលយប់របស់វា។ យប់ថ្មីៗ និងម៉ោងរោទ៍របស់អ្នកនៅដដែល។ យប់ពីកម្មវិធីផ្សេងត្រូវបានលាក់នៅទីនេះប៉ុណ្ណោះ ហើយនៅតែមាននៅក្នុងកម្មវិធីទាំងនោះ។"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಫೋನ್‌ನಲ್ಲಿ 90 ದಿನಗಳಿಗಿಂತ ಹಳೆಯ ದಾಖಲಾದ ರಾತ್ರಿಗಳನ್ನು ಅವುಗಳ ಟಿಪ್ಪಣಿಗಳು, ಅನಿಸಿಕೆ, ಸಂಜೆಯ ದಿನಚರಿಯ ಟಿಕ್‌ಗಳು ಮತ್ತು ರಾತ್ರಿಯ ರೆಕಾರ್ಡಿಂಗ್‌ಗಳೊಂದಿಗೆ ಅಳಿಸುತ್ತದೆ. ಹೊಸ ರಾತ್ರಿಗಳು ಮತ್ತು ನಿಮ್ಮ ಅಲಾರಾಂಗಳು ಉಳಿಯುತ್ತವೆ. ಇತರ ಆ್ಯಪ್‌ಗಳ ರಾತ್ರಿಗಳನ್ನು ಇಲ್ಲಿ ಮರೆಮಾಡಲಾಗುತ್ತದೆ ಮಾತ್ರ, ಅವು ಆ ಆ್ಯಪ್‌ಗಳಲ್ಲೇ ಉಳಿಯುತ್ತವೆ."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "휴대폰에서 90일보다 오래된 밤 기록을 메모, 기분, 저녁 루틴 체크, 밤 녹화와 함께 삭제해요. 더 최근의 밤과 알람은 그대로 유지돼요. 다른 앱의 밤은 여기서 숨겨지기만 하고 그 앱에는 그대로 남아 있어요."
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ລຶບຄືນທີ່ບັນທຶກໄວ້ໃນໂທລະສັບທີ່ເກົ່າກວ່າ 90 ມື້ ພ້ອມກັບບັນທຶກ, ຄວາມຮູ້ສຶກ, ເຄື່ອງໝາຍກິດຈະວັດຕອນແລງ ແລະ ການບັນທຶກຕອນກາງຄືນຂອງມັນ ຄືນທີ່ໃໝ່ກວ່າ ແລະ ໂມງປຸກຂອງເຈົ້າຍັງຢູ່ ຄືນຈາກແອັບອື່ນຖືກເຊື່ອງໄວ້ຢູ່ນີ້ເທົ່ານັ້ນ ແລະ ຍັງຢູ່ໃນແອັບເຫຼົ່ານັ້ນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ištrina telefone įrašytas senesnes nei 90 dienų naktis kartu su jų pastabomis, savijauta, vakaro ritualo varnelėmis ir naktiniais įrašais. Naujesnės naktys ir žadintuvai lieka. Naktys iš kitų programų čia tik paslepiamos ir lieka tose programose."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzēš tālrunī ierakstītās naktis, kas vecākas par 90 dienām, kopā ar to piezīmēm, pašsajūtu, vakara rituāla atzīmēm un nakts ierakstiem. Jaunākās naktis un modinātāji paliek. Naktis no citām lietotnēm šeit tiek tikai paslēptas un paliek šajās lietotnēs."
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ги брише снимените ноќи на телефонот постари од 90 дена, заедно со нивните белешки, чувството, ознаките од вечерната рутина и ноќните снимки. Поновите ноќи и алармите остануваат. Ноќите од други апликации тука само се скриваат и остануваат во тие апликации."
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ഫോണിൽ 90 ദിവസത്തിലധികം പഴയ രേഖപ്പെടുത്തിയ രാത്രികൾ അവയുടെ കുറിപ്പുകൾ, അനുഭവം, വൈകുന്നേരത്തെ ദിനചര്യയിലെ ടിക്കുകൾ, രാത്രി റെക്കോർഡിംഗുകൾ എന്നിവയോടൊപ്പം ഇല്ലാതാക്കും. പുതിയ രാത്രികളും അലാറങ്ങളും നിലനിൽക്കും. മറ്റ് ആപ്പുകളിലെ രാത്രികൾ ഇവിടെ മറയ്ക്കുക മാത്രമാണ് ചെയ്യുന്നത്, അവ ആ ആപ്പുകളിൽ തന്നെ തുടരും."
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Утсан дээрх 90 хоногоос хуучин бүртгэсэн шөнийг тэдгээрийн тэмдэглэл, мэдрэмж, оройн дэглэмийн тэмдэг, шөнийн бичлэгтэй хамт устгана. Шинэ шөнүүд болон сэрүүлгүүд чинь үлдэнэ. Бусад аппын шөнүүд энд зөвхөн нуугдах бөгөөд тэр аппуудад хэвээр үлдэнэ."
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फोनवरील 90 दिवसांपेक्षा जुन्या नोंदवलेल्या रात्री त्यांच्या नोंदी, मूड, संध्याकाळच्या दिनक्रमाच्या खुणा आणि रात्रीच्या रेकॉर्डिंगसह हटवते. नवीन रात्री आणि तुमचे अलार्म राहतात. इतर ॲप्समधील रात्री इथे फक्त लपवल्या जातात आणि त्या ॲप्समध्येच राहतात."
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memadam malam yang direkodkan lebih lama daripada 90 hari pada telefonmu, bersama nota, perasaan, tanda rutin malam dan rakaman malamnya. Malam yang lebih baharu dan penggeramu kekal. Malam daripada apl lain hanya disembunyikan di sini dan kekal dalam apl tersebut."
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ဖုန်းပေါ်ရှိ ရက် 90 ထက်ဟောင်းသော မှတ်တမ်းတင်ထားသည့် ညများကို ၎င်းတို့၏ မှတ်စုများ၊ ခံစားမှု၊ ညနေ လုပ်ရိုးလုပ်စဉ် အမှတ်အသားများနှင့် ညအသံဖမ်းချက်များနှင့်အတူ ဖျက်သည်။ ပိုသစ်သော ညများနှင့် နှိုးစက်များ ကျန်ရှိမည်။ အခြားအက်ပ်များမှ ညများကို ဤနေရာတွင် ဖျောက်ထားရုံသာဖြစ်ပြီး ထိုအက်ပ်များတွင် ဆက်ရှိနေမည်။"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sletter registrerte netter eldre enn 90 dager på telefonen, sammen med notater, følelse, haker i kveldsrutinen og nattopptak. Nyere netter og alarmene dine blir værende. Netter fra andre apper skjules bare her og blir værende i de appene."
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तिम्रो फोनमा ९० दिनभन्दा पुराना रेकर्ड भएका रातहरू तिनका टिपोट, अनुभूति, साँझको दिनचर्याका चिनो र रातका रेकर्डिङसँगै मेटाउँछ। नयाँ रात र तिम्रा अलार्म रहन्छन्। अन्य एपका रातहरू यहाँ लुकाइन्छन् मात्र र ती एपहरूमै रहन्छन्।"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wist opgenomen nachten ouder dan 90 dagen op je telefoon, samen met hun notities, gevoel, vinkjes van de avondroutine en nachtopnamen. Nieuwere nachten en je wekkers blijven. Nachten uit andere apps worden hier alleen verborgen en blijven in die apps."
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਫ਼ੋਨ ’ਤੇ 90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣੀਆਂ ਦਰਜ ਰਾਤਾਂ ਨੂੰ ਉਨ੍ਹਾਂ ਦੇ ਨੋਟ, ਮੂਡ, ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਦੇ ਨਿਸ਼ਾਨ ਅਤੇ ਰਾਤ ਦੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਸਮੇਤ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਨਵੀਆਂ ਰਾਤਾਂ ਅਤੇ ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ। ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਇੱਥੇ ਸਿਰਫ਼ ਲੁਕਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਉਨ੍ਹਾਂ ਐਪਾਂ ਵਿੱਚ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ।"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuwa z telefonu zapisane noce starsze niż 90 dni razem z ich notatkami, samopoczuciem, odhaczeniami wieczornej rutyny i nagraniami nocy. Nowsze noce i twoje budziki zostają. Noce z innych aplikacji są tu tylko ukrywane i zostają w tych aplikacjach."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apaga do seu celular as noites registradas há mais de 90 dias, com as notas, a sensação, as marcações da rotina da noite e as gravações noturnas delas. Noites mais recentes e seus alarmes continuam. Noites de outros apps são apenas ocultadas aqui e continuam nesses apps."
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apaga do teu telemóvel as noites registadas há mais de 90 dias, com as notas, a sensação, as marcações da rotina da noite e as gravações noturnas delas. As noites mais recentes e os teus alarmes mantêm-se. As noites de outras apps são apenas ocultadas aqui e mantêm-se nessas apps."
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Șterge de pe telefon nopțile înregistrate mai vechi de 90 de zile, împreună cu notițele, starea, bifele rutinei de seară și înregistrările de noapte ale lor. Nopțile mai noi și alarmele tale rămân. Nopțile din alte aplicații sunt doar ascunse aici și rămân în acele aplicații."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удаляет на телефоне записанные ночи старше 90 дней вместе с их заметками, самочувствием, отметками вечернего ритуала и ночными записями. Более новые ночи и твои будильники останутся. Ночи из других приложений здесь только скрываются и остаются в этих приложениях."
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ඔබේ දුරකථනයේ දින 90කට වඩා පැරණි සටහන් වූ රාත්‍රි, ඒවායේ සටහන්, හැඟීම, සවස් චර්යාවේ ලකුණු සහ රාත්‍රී පටිගත කිරීම් සමඟ මකයි. නවතම රාත්‍රි සහ ඔබේ එලාම ඉතිරි වේ. වෙනත් යෙදුම්වල රාත්‍රී මෙහි සඟවනු ලබන්නේ පමණක් වන අතර ඒවා එම යෙදුම්වල පවතී."
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vymaže z telefónu zaznamenané noci staršie ako 90 dní spolu s ich poznámkami, pocitom, zaškrtnutiami večernej rutiny a nočnými záznamami. Novšie noci a budíky zostanú. Noci z iných aplikácií sa tu iba skryjú a zostanú v týchto aplikáciách."
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Izbriše zabeležene noči na telefonu, starejše od 90 dni, skupaj z njihovimi zapiski, počutjem, kljukicami večerne rutine in nočnimi posnetki. Novejše noči in budilke ostanejo. Noči iz drugih aplikacij se tukaj samo skrijejo in ostanejo v teh aplikacijah."
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fshin netët e regjistruara në telefon që janë më të vjetra se 90 ditë, bashkë me shënimet, gjendjen, shenjat e rutinës së mbrëmjes dhe regjistrimet e natës. Netët më të reja dhe alarmet e tua mbeten. Netët nga aplikacione të tjera këtu vetëm fshihen nga pamja dhe mbeten në ato aplikacione."
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Брише забележене ноћи на телефону старије од 90 дана, заједно са њиховим белешкама, осећајем, ознакама вечерње рутине и ноћним снимцима. Новије ноћи и твоји аларми остају. Ноћи из других апликација овде се само скривају и остају у тим апликацијама."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raderar registrerade nätter äldre än 90 dagar på telefonen, tillsammans med deras anteckningar, känsla, bockar i kvällsrutinen och nattinspelningar. Nyare nätter och dina alarm finns kvar. Nätter från andra appar döljs bara här och ligger kvar i de apparna."
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inafuta usiku uliorekodiwa wa zaidi ya siku 90 kwenye simu yako, pamoja na madokezo, hali, alama za ratiba ya jioni na rekodi za usiku zake. Usiku mpya zaidi na kengele zako zinabaki. Usiku kutoka programu nyingine unafichwa hapa tu na unabaki kwenye programu hizo."
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ஃபோனில் 90 நாட்களுக்கு மேற்பட்ட பதிவான இரவுகள், அவற்றின் குறிப்புகள், உணர்வு, மாலை வழக்கத்தின் குறிகள் மற்றும் இரவுப் பதிவுகளுடன் நீக்கப்படும். புதிய இரவுகளும் உங்கள் அலாரங்களும் அப்படியே இருக்கும். பிற ஆப்களின் இரவுகள் இங்கே மறைக்கப்படும் மட்டுமே, அவை அந்த ஆப்களிலேயே இருக்கும்."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫోన్‌లో 90 రోజుల కంటే పాత నమోదైన రాత్రులను వాటి గమనికలు, మూడ్, సాయంత్రపు దినచర్య టిక్‌లు, రాత్రి రికార్డింగ్‌లతో సహా తొలగిస్తుంది. కొత్త రాత్రులు, మీ అలారాలు అలాగే ఉంటాయి. ఇతర యాప్‌ల రాత్రులు ఇక్కడ దాచబడతాయి మాత్రమే, అవి ఆ యాప్‌లలోనే ఉంటాయి."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ลบคืนที่บันทึกไว้บนโทรศัพท์ซึ่งเก่ากว่า 90 วัน พร้อมบันทึก ความรู้สึก เครื่องหมายกิจวัตรตอนเย็น และการบันทึกตอนกลางคืนของคืนนั้น คืนที่ใหม่กว่าและการปลุกของคุณจะยังอยู่ คืนจากแอปอื่นจะถูกซ่อนไว้ที่นี่เท่านั้น และยังคงอยู่ในแอปเหล่านั้น"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefonundaki 90 günden eski kayıtlı geceleri notları, hissedişi, akşam rutini işaretleri ve gece kayıtlarıyla birlikte siler. Daha yeni geceler ve alarmların kalır. Diğer uygulamalardaki geceler burada yalnızca gizlenir ve o uygulamalarda kalır."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Видаляє на телефоні записані ночі, старші за 90 днів, разом з їхніми нотатками, самопочуттям, позначками вечірнього ритуалу й нічними записами. Новіші ночі та твої будильники залишаться. Ночі з інших застосунків тут лише приховуються й залишаються в тих застосунках."
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فون پر 90 دن سے پرانی ریکارڈ کی گئی راتیں ان کے نوٹس، کیفیت، شام کے معمول کے نشان اور رات کی ریکارڈنگز سمیت حذف ہو جائیں گی۔ نئی راتیں اور تمہارے الارم باقی رہیں گے۔ دوسری ایپس کی راتیں یہاں صرف چھپائی جاتی ہیں اور انہی ایپس میں رہتی ہیں۔"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Telefondagi 90 kundan eski yozilgan tunlarni ularning qaydlari, kayfiyati, kechki odat belgilari va tungi yozuvlari bilan birga oʻchiradi. Yangiroq tunlar va budilniklaring qoladi. Boshqa ilovalardagi tunlar bu yerda faqat yashiriladi va oʻsha ilovalarda qoladi."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Xóa các đêm đã ghi cũ hơn 90 ngày trên điện thoại của bạn, cùng ghi chú, cảm giác, dấu tích thói quen buổi tối và bản ghi ban đêm của chúng. Các đêm mới hơn và báo thức của bạn vẫn được giữ. Các đêm từ ứng dụng khác chỉ bị ẩn ở đây và vẫn nằm trong các ứng dụng đó."
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除手機上超過 90 日的晚上記錄，連同相關的筆記、感覺、晚間習慣的剔選和夜間錄製。較新的晚上和你的鬧鐘會保留。來自其他 App 的晚上只會在這裡隱藏，並會保留在那些 App 中。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将删除手机上超过 90 天的夜晚记录，连同相应的笔记、感觉、晚间习惯的勾选和夜间录制。较新的夜晚和你的闹钟会保留。来自其他应用的夜晚只会在这里隐藏，仍保留在那些应用中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將刪除手機上超過 90 天的夜晚記錄，連同相應的筆記、感覺、晚間習慣的勾選和夜間錄製。較新的夜晚和你的鬧鐘會保留。來自其他 App 的夜晚只會在這裡隱藏，仍會保留在那些 App 中。"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isusa ubusuku obuqoshiwe obudala kunezinsuku ezingu-90 efonini yakho, kanye namanothi, umuzwa, amamaki enqubo yakusihlwa nokuqoshwa kobusuku kwabo. Ubusuku obusha nama-alamu akho kuyasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app."
           }
         }
       }

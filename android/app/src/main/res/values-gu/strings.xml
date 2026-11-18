@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ક. %2$d મિ.</string>
     <string name="health_title">Health Connect પરથી ઊંઘના તબક્કા</string>
     <string name="health_rationale">તમારી હેલ્થ ઍપ (દા.ત. Samsung Health) જે ઊંઘનો ડેટા સાચવે છે, તે Phase Wake વાંચી શકે છે. તે તમારા ઇતિહાસમાં બતાવાય છે, જે રાતોમાં Phase Wake એ તમને જગાડ્યા તેની સાથે સરખામણી માટે પણ. Phase Wake ફક્ત વાંચે છે, ક્યારેય લખતું નથી, અને કંઈ પણ તમારા ફોનની બહાર જતું નથી.</string>
+    <string name="health_rationale_history">જો તમે અગાઉના ડેટાની ઍક્સેસ પણ આપો, તો Phase Wake 30 દિવસથી જૂનો ઊંઘનો ડેટા પણ વાંચે છે, જેથી તમારો ઇતિહાસ બે વર્ષ સુધી પાછળ જઈ શકે. આ મંજૂરી વિના Phase Wake ફક્ત પહેલી ઍક્સેસના 30 દિવસ પહેલાંથી ડેટા વાંચે છે.</string>
     <string name="health_connect">હેલ્થ ડેટા સાથે સરખાવો</string>
     <string name="health_connect_hint">જાગ્યા પછી Health Connect પરથી ઊંઘના તબક્કા વાંચે છે, ઓળખ તપાસવા અને સુધારવા માટે.</string>
     <string name="health_connected">કનેક્ટ થયેલ</string>
@@ -535,7 +536,12 @@
     <string name="night_open">વિગતો બતાવો</string>
     <string name="night_latency">ઊંઘ આવવાનો સમય</string>
     <string name="night_efficiency">ઊંઘની કાર્યક્ષમતા</string>
-    <string name="night_awakenings">જાગ્યાની સંખ્યા</string>
+    <string name="night_wake_moments">જાગવાની પળો</string>
+    <string name="night_wake_brief">ટૂંકી જાગૃતિ</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">તેમાંથી %1$d, %2$d મિ.થી વધુ</item>
+        <item quantity="other">તેમાંથી %1$d, %2$d મિ.થી વધુ</item>
+    </plurals>
     <string name="night_longest_deep">સૌથી લાંબી ગાઢ ઊંઘ</string>
     <string name="stages_typical">સામાન્ય શ્રેણી</string>
     <string name="stages_typical_range">સામાન્ય %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">તારો સૂવાનો સમય %1$s સુધી બદલાયો. સૂચન: દરરોજ લગભગ એક જ સમયે સૂ, સપ્તાહાંતે પણ.</string>
     <string name="finding_jetlag">સપ્તાહાંતે તારી ઊંઘ કામકાજના દિવસો કરતાં %1$s ખસી ગઈ. સૂચન: સપ્તાહાંતે પણ એ જ ઊંઘના સમય જાળવ.</string>
     <string name="weekly_deep">ગાઢ ઊંઘ તારી ઊંઘનો %1$s</string>
+    <string name="settings_clear_old">90 દિવસથી જૂનું કાઢી નાખો</string>
+    <string name="settings_clear_old_text">ફોન પરની 90 દિવસથી જૂની નોંધાયેલી રાતો, તેમની નોંધો, મૂડ, સાંજની દિનચર્યાના ટિક અને રાતના રેકોર્ડિંગ સાથે કાઢી નાખે છે. નવી રાતો અને તમારા એલાર્મ રહે છે. અન્ય ઍપની રાતો અહીં ફક્ત છુપાવાય છે અને તે ઍપમાં જ રહે છે.</string>
 </resources>

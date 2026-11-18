@@ -95,6 +95,28 @@ final class StageStatsTests: XCTestCase {
         XCTAssertEqual(s.latencyMinutes, 10)
     }
 
+    func testLongAwakeningsAreLongerThanFiveMinutesBetweenSleep() {
+        // Vor dem Einschlafen 30 Min und nach dem Aufwachen 20 Min wach: zählen nicht. Dazwischen 5 Min genau (kurz),
+        // 5 Min 1 s (lang), 1 Min (kurz) und 12 Min (lang).
+        let s = StageStats.of([
+            span(0, 30, .awake), span(30, 100, .light),
+            span(100, 105, .awake), span(105, 150, .deep),
+            StageSpan(start: at(150), end: at(155).addingTimeInterval(1), stage: .awake),
+            StageSpan(start: at(155).addingTimeInterval(1), end: at(200), stage: .rem),
+            span(200, 201, .awake), span(201, 250, .light),
+            span(250, 262, .awake), span(262, 300, .light), span(300, 320, .awake),
+        ], from: at(0), to: at(320))!
+        XCTAssertEqual(s.awakenings, 4)
+        XCTAssertEqual(s.longAwakenings, 2)
+        XCTAssertEqual(StageStats.longWakeMinutes, 5)
+    }
+
+    func testNoLongAwakeningsWithoutWakeBetweenSleep() {
+        let s = of(span(0, 40, .awake), span(40, 400, .light), span(400, 460, .awake))!
+        XCTAssertEqual(s.awakenings, 0)
+        XCTAssertEqual(s.longAwakenings, 0)
+    }
+
     func testRatingsMarkTheTypicalRange() {
         let deepAbove = of(span(0, 200, .light), span(200, 320, .deep), span(320, 400, .rem))!
         XCTAssertEqual(percents(deepAbove), [0, 20, 50, 30])

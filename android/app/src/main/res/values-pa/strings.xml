@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ਘੰ. %2$d ਮਿੰ.</string>
     <string name="health_title">Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ</string>
     <string name="health_rationale">ਤੁਹਾਡੀ ਸਿਹਤ ਐਪ (ਜਿਵੇਂ Samsung Health) ਨੀਂਦ ਦਾ ਜੋ ਡਾਟਾ ਸੰਭਾਲਦੀ ਹੈ, Phase Wake ਉਹ ਪੜ੍ਹ ਸਕਦਾ ਹੈ। ਇਹ ਤੁਹਾਡੇ ਇਤਿਹਾਸ ਵਿੱਚ ਦਿਖਾਇਆ ਜਾਂਦਾ ਹੈ, ਉਨ੍ਹਾਂ ਰਾਤਾਂ ਨਾਲ ਤੁਲਨਾ ਲਈ ਵੀ ਜਦੋਂ Phase Wake ਨੇ ਤੁਹਾਨੂੰ ਜਗਾਇਆ। Phase Wake ਸਿਰਫ਼ ਪੜ੍ਹਦਾ ਹੈ, ਕਦੇ ਲਿਖਦਾ ਨਹੀਂ, ਅਤੇ ਕੁਝ ਵੀ ਤੁਹਾਡੇ ਫ਼ੋਨ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦਾ।</string>
+    <string name="health_rationale_history">ਜੇ ਤੁਸੀਂ ਪਿਛਲੇ ਡਾਟਾ ਤੱਕ ਪਹੁੰਚ ਦੀ ਵੀ ਇਜਾਜ਼ਤ ਦਿੰਦੇ ਹੋ, ਤਾਂ Phase Wake 30 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣਾ ਨੀਂਦ ਦਾ ਡਾਟਾ ਵੀ ਪੜ੍ਹਦਾ ਹੈ, ਤਾਂ ਜੋ ਤੁਹਾਡਾ ਇਤਿਹਾਸ ਦੋ ਸਾਲ ਤੱਕ ਪਿੱਛੇ ਜਾ ਸਕੇ। ਇਸ ਇਜਾਜ਼ਤ ਤੋਂ ਬਿਨਾਂ Phase Wake ਸਿਰਫ਼ ਪਹਿਲੀ ਪਹੁੰਚ ਤੋਂ 30 ਦਿਨ ਪਹਿਲਾਂ ਤੋਂ ਡਾਟਾ ਪੜ੍ਹਦਾ ਹੈ।</string>
     <string name="health_connect">ਸਿਹਤ ਡਾਟੇ ਨਾਲ ਤੁਲਨਾ ਕਰੋ</string>
     <string name="health_connect_hint">ਜਾਗਣ ਤੋਂ ਬਾਅਦ Health Connect ਤੋਂ ਨੀਂਦ ਦੇ ਪੜਾਅ ਪੜ੍ਹਦਾ ਹੈ, ਪਛਾਣ ਜਾਂਚਣ ਅਤੇ ਸੁਧਾਰਨ ਲਈ।</string>
     <string name="health_connected">ਕਨੈਕਟ ਹੈ</string>
@@ -535,7 +536,12 @@
     <string name="night_open">ਵੇਰਵੇ ਦਿਖਾਓ</string>
     <string name="night_latency">ਨੀਂਦ ਆਉਣ ਦਾ ਸਮਾਂ</string>
     <string name="night_efficiency">ਨੀਂਦ ਦੀ ਕੁਸ਼ਲਤਾ</string>
-    <string name="night_awakenings">ਜਾਗਣ ਦੀ ਗਿਣਤੀ</string>
+    <string name="night_wake_moments">ਜਾਗਣ ਦੇ ਪਲ</string>
+    <string name="night_wake_brief">ਥੋੜ੍ਹੀ ਦੇਰ ਜਾਗਣਾ</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ %1$d, %2$d ਮਿੰ. ਤੋਂ ਵੱਧ</item>
+        <item quantity="other">ਇਨ੍ਹਾਂ ਵਿੱਚੋਂ %1$d, %2$d ਮਿੰ. ਤੋਂ ਵੱਧ</item>
+    </plurals>
     <string name="night_longest_deep">ਸਭ ਤੋਂ ਲੰਬੀ ਗੂੜ੍ਹੀ ਨੀਂਦ</string>
     <string name="stages_typical">ਆਮ ਦਾਇਰਾ</string>
     <string name="stages_typical_range">ਆਮ ਤੌਰ ’ਤੇ %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">ਤੇਰਾ ਸੌਣ ਦਾ ਸਮਾਂ %1$s ਤੱਕ ਬਦਲਿਆ। ਸੁਝਾਅ: ਹਰ ਰੋਜ਼ ਲਗਭਗ ਇੱਕੋ ਸਮੇਂ ਸੌਂ, ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ।</string>
     <string name="finding_jetlag">ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਤੇਰੀ ਨੀਂਦ ਕੰਮ ਦੇ ਦਿਨਾਂ ਦੇ ਮੁਕਾਬਲੇ %1$s ਖਿਸਕ ਗਈ। ਸੁਝਾਅ: ਹਫ਼ਤੇ ਦੇ ਅੰਤ ’ਤੇ ਵੀ ਉਹੀ ਸੌਣ ਦੇ ਸਮੇਂ ਰੱਖ।</string>
     <string name="weekly_deep">ਡੂੰਘੀ ਨੀਂਦ ਤੇਰੀ ਨੀਂਦ ਦਾ %1$s</string>
+    <string name="settings_clear_old">90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣਾ ਮਿਟਾਓ</string>
+    <string name="settings_clear_old_text">ਫ਼ੋਨ ’ਤੇ 90 ਦਿਨਾਂ ਤੋਂ ਪੁਰਾਣੀਆਂ ਦਰਜ ਰਾਤਾਂ ਨੂੰ ਉਨ੍ਹਾਂ ਦੇ ਨੋਟ, ਮੂਡ, ਸ਼ਾਮ ਦੀ ਰੁਟੀਨ ਦੇ ਨਿਸ਼ਾਨ ਅਤੇ ਰਾਤ ਦੀਆਂ ਰਿਕਾਰਡਿੰਗਾਂ ਸਮੇਤ ਮਿਟਾ ਦਿੰਦਾ ਹੈ। ਨਵੀਆਂ ਰਾਤਾਂ ਅਤੇ ਤੁਹਾਡੇ ਅਲਾਰਮ ਰਹਿੰਦੇ ਹਨ। ਹੋਰ ਐਪਾਂ ਦੀਆਂ ਰਾਤਾਂ ਇੱਥੇ ਸਿਰਫ਼ ਲੁਕਾਈਆਂ ਜਾਂਦੀਆਂ ਹਨ ਅਤੇ ਉਨ੍ਹਾਂ ਐਪਾਂ ਵਿੱਚ ਹੀ ਰਹਿੰਦੀਆਂ ਹਨ।</string>
 </resources>

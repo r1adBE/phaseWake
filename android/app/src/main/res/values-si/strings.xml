@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">පැය %1$d මිනි. %2$d</string>
     <string name="health_title">Health Connect වෙතින් නින්දේ අදියර</string>
     <string name="health_rationale">ඔබේ සෞඛ්‍ය යෙදුම (උදා. Samsung Health) සුරකින නින්දේ දත්ත Phase Wake හට කියවිය හැක. ඒවා ඔබේ ඉතිහාසයේ පෙන්වන අතර Phase Wake ඔබව අවදි කළ රාත්‍රී සමඟ සංසන්දනය කිරීමටද භාවිත කරයි. Phase Wake කියවන්නේ පමණි, කිසිදා ලියන්නේ නැත, කිසිවක් ඔබේ දුරකථනයෙන් පිට නොයයි.</string>
+    <string name="health_rationale_history">ඔබ පෙර දත්ත වෙත ප්‍රවේශයටද ඉඩ දුන්නොත්, Phase Wake දින 30කට වඩා පැරණි නින්දේ දත්තද කියවන අතර, ඔබේ ඉතිහාසය වසර දෙකක් දක්වා පසුපසට දිව යා හැක. මෙම අවසරය නොමැතිව Phase Wake කියවන්නේ පළමු ප්‍රවේශයට දින 30කට පෙර සිට ඇති දත්ත පමණි.</string>
     <string name="health_connect">සෞඛ්‍ය දත්ත සමඟ සසඳන්න</string>
     <string name="health_connect_hint">හඳුනාගැනීම පරීක්ෂා කර වැඩිදියුණු කිරීමට, අවදි වූ පසු Health Connect වෙතින් නින්දේ අදියර කියවයි.</string>
     <string name="health_connected">සම්බන්ධයි</string>
@@ -535,7 +536,12 @@
     <string name="night_open">විස්තර පෙන්වන්න</string>
     <string name="night_latency">නින්දට යාමට ගතවූ කාලය</string>
     <string name="night_efficiency">නින්දේ කාර්යක්ෂමතාව</string>
-    <string name="night_awakenings">අවදි වූ වාර</string>
+    <string name="night_wake_moments">අවදි වූ මොහොත්</string>
+    <string name="night_wake_brief">කෙටි අවදිවීම්</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">ඉන් %1$d ක් මිනි. %2$d ට වඩා දිගු</item>
+        <item quantity="other">ඉන් %1$d ක් මිනි. %2$d ට වඩා දිගු</item>
+    </plurals>
     <string name="night_longest_deep">දිගම ගැඹුරු නින්ද</string>
     <string name="stages_typical">සාමාන්‍ය පරාසය</string>
     <string name="stages_typical_range">සාමාන්‍යයෙන් %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">ඔබේ නින්දට යන වේලාව %1$s දක්වා වෙනස් විය. ඉඟිය: සෑම දිනකම දළ වශයෙන් එකම වේලාවට නින්දට යන්න, සති අන්තයේත්.</string>
     <string name="finding_jetlag">සති අන්තයේ ඔබේ නින්ද වැඩ කරන දිනවලට සාපේක්ෂව %1$s කින් විතැන් විය. ඉඟිය: සති අන්තයේත් එකම නින්දේ වේලාවන් පවත්වාගන්න.</string>
     <string name="weekly_deep">ගැඹුරු නින්ද ඔබේ නින්දෙන් %1$s</string>
+    <string name="settings_clear_old">දින 90කට වඩා පැරණි ඒවා මකන්න</string>
+    <string name="settings_clear_old_text">ඔබේ දුරකථනයේ දින 90කට වඩා පැරණි සටහන් වූ රාත්‍රි, ඒවායේ සටහන්, හැඟීම, සවස් චර්යාවේ ලකුණු සහ රාත්‍රී පටිගත කිරීම් සමඟ මකයි. නවතම රාත්‍රි සහ ඔබේ එලාම ඉතිරි වේ. වෙනත් යෙදුම්වල රාත්‍රී මෙහි සඟවනු ලබන්නේ පමණක් වන අතර ඒවා එම යෙදුම්වල පවතී.</string>
 </resources>

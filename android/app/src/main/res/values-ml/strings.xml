@@ -114,6 +114,7 @@
     <string name="duration_hours_minutes">%1$d മ. %2$d മി.</string>
     <string name="health_title">Health Connect-ൽ നിന്നുള്ള ഉറക്ക ഘട്ടങ്ങൾ</string>
     <string name="health_rationale">നിങ്ങളുടെ ആരോഗ്യ ആപ്പ് (ഉദാഹരണത്തിന് Samsung Health) സൂക്ഷിക്കുന്ന ഉറക്ക ഡാറ്റ Phase Wake-ന് വായിക്കാം. അത് നിങ്ങളുടെ ചരിത്രത്തിൽ കാണിക്കുന്നു, Phase Wake നിങ്ങളെ ഉണർത്തിയ രാത്രികളുമായി താരതമ്യം ചെയ്യാനും. Phase Wake വായിക്കുക മാത്രം ചെയ്യും, ഒരിക്കലും എഴുതില്ല, ഒന്നും ഫോണിൽ നിന്ന് പുറത്തുപോകില്ല.</string>
+    <string name="health_rationale_history">മുൻകാല ഡാറ്റയിലേക്കുള്ള ആക്‌സസും നിങ്ങൾ അനുവദിച്ചാൽ, 30 ദിവസത്തിലധികം പഴയ ഉറക്ക ഡാറ്റയും Phase Wake വായിക്കും, അങ്ങനെ നിങ്ങളുടെ ചരിത്രം രണ്ട് വർഷം വരെ പിന്നോട്ട് എത്താം. ഈ അനുമതി ഇല്ലെങ്കിൽ, ആദ്യ ആക്‌സസിന് 30 ദിവസം മുമ്പ് മുതലുള്ള ഡാറ്റ മാത്രമേ Phase Wake വായിക്കൂ.</string>
     <string name="health_connect">ആരോഗ്യ ഡാറ്റയുമായി താരതമ്യം ചെയ്യുക</string>
     <string name="health_connect_hint">കണ്ടെത്തൽ പരിശോധിച്ച് മെച്ചപ്പെടുത്താൻ, ഉണർന്ന ശേഷം Health Connect-ൽ നിന്ന് ഉറക്ക ഘട്ടങ്ങൾ വായിക്കും.</string>
     <string name="health_connected">കണക്റ്റ് ചെയ്‌തു</string>
@@ -534,7 +535,12 @@
     <string name="night_open">വിശദാംശങ്ങൾ കാണിക്കുക</string>
     <string name="night_latency">ഉറങ്ങാനെടുത്ത സമയം</string>
     <string name="night_efficiency">ഉറക്കത്തിന്റെ കാര്യക്ഷമത</string>
-    <string name="night_awakenings">ഉണർന്ന തവണകൾ</string>
+    <string name="night_wake_moments">ഉണർന്ന നിമിഷങ്ങൾ</string>
+    <string name="night_wake_brief">ചെറിയ ഉണർവുകൾ</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">അതിൽ %1$d എണ്ണം %2$d മി.-ൽ കൂടുതൽ</item>
+        <item quantity="other">അതിൽ %1$d എണ്ണം %2$d മി.-ൽ കൂടുതൽ</item>
+    </plurals>
     <string name="night_longest_deep">ഏറ്റവും നീണ്ട ഗാഢനിദ്ര</string>
     <string name="stages_typical">സാധാരണ പരിധി</string>
     <string name="stages_typical_range">സാധാരണ %1$d–%2$d %%</string>
@@ -659,4 +665,6 @@
     <string name="finding_bedtime">നിന്റെ ഉറങ്ങുന്ന സമയം %1$s വരെ മാറി. നുറുങ്ങ്: എല്ലാ ദിവസവും ഏകദേശം ഒരേ സമയത്ത് ഉറങ്ങുക, വാരാന്ത്യത്തിലും.</string>
     <string name="finding_jetlag">വാരാന്ത്യത്തിൽ നിന്റെ ഉറക്കം പ്രവൃത്തിദിവസങ്ങളെ അപേക്ഷിച്ച് %1$s മാറി. നുറുങ്ങ്: വാരാന്ത്യത്തിലും അതേ ഉറക്കസമയം പാലിക്കുക.</string>
     <string name="weekly_deep">ഗാഢനിദ്ര നിന്റെ ഉറക്കത്തിന്റെ %1$s</string>
+    <string name="settings_clear_old">90 ദിവസത്തിലധികം പഴയത് ഇല്ലാതാക്കുക</string>
+    <string name="settings_clear_old_text">ഫോണിൽ 90 ദിവസത്തിലധികം പഴയ രേഖപ്പെടുത്തിയ രാത്രികൾ അവയുടെ കുറിപ്പുകൾ, അനുഭവം, വൈകുന്നേരത്തെ ദിനചര്യയിലെ ടിക്കുകൾ, രാത്രി റെക്കോർഡിംഗുകൾ എന്നിവയോടൊപ്പം ഇല്ലാതാക്കും. പുതിയ രാത്രികളും അലാറങ്ങളും നിലനിൽക്കും. മറ്റ് ആപ്പുകളിലെ രാത്രികൾ ഇവിടെ മറയ്ക്കുക മാത്രമാണ് ചെയ്യുന്നത്, അവ ആ ആപ്പുകളിൽ തന്നെ തുടരും.</string>
 </resources>

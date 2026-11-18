@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ሰ %2$d ደቂቃ</string>
     <string name="health_title">ከHealth Connect የተገኙ የእንቅልፍ ደረጃዎች</string>
     <string name="health_rationale">Phase Wake የጤና መተግበሪያዎ (ለምሳሌ Samsung Health) የሚያስቀምጠውን የእንቅልፍ ውሂብ ማንበብ ይችላል። ውሂቡ በታሪክዎ ውስጥ ይታያል፣ Phase Wake ከቀሰቀሰዎት ምሽቶች ጋር ለማነጻጸርም ያገለግላል። Phase Wake ያነባል እንጂ በጭራሽ አይጽፍም፣ ምንም ነገርም ከስልክዎ አይወጣም።</string>
+    <string name="health_rationale_history">ያለፉ ውሂቦችንም መድረስ ከፈቀዱ፣ Phase Wake ከ30 ቀናት በላይ የቆየ የእንቅልፍ ውሂብም ያነባል፤ በዚህም ታሪክዎ እስከ ሁለት ዓመት ወደኋላ ሊደርስ ይችላል። ያለዚህ ፈቃድ Phase Wake የሚያነበው ከመጀመሪያው መዳረሻዎ 30 ቀናት በፊት ጀምሮ ያለውን ውሂብ ብቻ ነው።</string>
     <string name="health_connect">ከጤና ውሂብ ጋር አወዳድር</string>
     <string name="health_connect_hint">ማወቂያውን ለማረጋገጥና ለማሻሻል ከነቁ በኋላ የእንቅልፍ ደረጃዎችን ከHealth Connect ያነባል።</string>
     <string name="health_connected">ተገናኝቷል</string>
@@ -535,7 +536,12 @@
     <string name="night_open">ዝርዝሮችን አሳይ</string>
     <string name="night_latency">ለመተኛት የወሰደ ጊዜ</string>
     <string name="night_efficiency">የእንቅልፍ ብቃት</string>
-    <string name="night_awakenings">የነቁባቸው ጊዜያት</string>
+    <string name="night_wake_moments">የንቃት ጊዜያት</string>
+    <string name="night_wake_brief">አጭር የንቃት ጊዜያት</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">ከነዚህ %1$d ከ%2$d ደቂቃ በላይ</item>
+        <item quantity="other">ከነዚህ %1$d ከ%2$d ደቂቃ በላይ</item>
+    </plurals>
     <string name="night_longest_deep">ረጅሙ ጥልቅ እንቅልፍ</string>
     <string name="stages_typical">የተለመደ ክልል</string>
     <string name="stages_typical_range">የተለመደ %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">የመኝታ ሰዓትህ እስከ %1$s ተለዋውጧል። ምክር፦ በየቀኑ በግምት በተመሳሳይ ሰዓት ተኛ፣ ቅዳሜና እሁድም ጭምር።</string>
     <string name="finding_jetlag">ቅዳሜና እሁድ እንቅልፍህ ከሥራ ቀናት ጋር ሲነጻጸር በ%1$s ተዛውሯል። ምክር፦ ቅዳሜና እሁድም ተመሳሳይ የእንቅልፍ ሰዓት ጠብቅ።</string>
     <string name="weekly_deep">ጥልቅ እንቅልፍ ከእንቅልፍህ %1$s</string>
+    <string name="settings_clear_old">ከ90 ቀናት በላይ የቆዩትን ሰርዝ</string>
+    <string name="settings_clear_old_text">በስልክዎ ላይ ከ90 ቀናት በላይ የቆዩ የተመዘገቡ ሌሊቶችን ከማስታወሻዎቻቸው፣ ከስሜታቸው፣ ከምሽት ልማድ ምልክቶቻቸው እና ከሌሊት ቅጂዎቻቸው ጋር ይሰርዛል። አዳዲስ ሌሊቶች እና ማንቂያዎችዎ ይቆያሉ። ከሌሎች መተግበሪያዎች የመጡ ሌሊቶች እዚህ የሚደበቁት ብቻ ነው፣ በእነዚያ መተግበሪያዎች ውስጥም ይቆያሉ።</string>
 </resources>

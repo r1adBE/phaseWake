@@ -49,6 +49,8 @@ struct DiagView: View {
     @State private var failed: [PhoneCheck] = []
     /// Zeilen des Validierungs-Modus (``ValidationReport/lines(_:)``); leer: Abschnitt fehlt.
     @State private var validation: [String] = []
+    /// Befinden je Weckgrund (``FeelingByReason/lines(_:)``); leer: Abschnitt fehlt.
+    @State private var feeling: [String] = []
 
     var body: some View {
         List {
@@ -81,6 +83,13 @@ struct DiagView: View {
                         }
                     }
                 }
+                if !feeling.isEmpty {
+                    Section(FeelingByReason.title) {
+                        ForEach(feeling.indices, id: \.self) { i in
+                            Text(feeling[i]).font(.caption.monospaced())
+                        }
+                    }
+                }
                 Section(L("diag_events")) {
                     if allEntries.isEmpty { Text(L("diag_empty")).foregroundStyle(.secondary) }
                     ForEach(allEntries.indices.reversed(), id: \.self) { i in
@@ -98,6 +107,8 @@ struct DiagView: View {
             // Validierungs-Modus: nur gerechnet, ändert nichts am Wecken.
             let decisions = await ValidationData.entries(model: model)
             validation = ValidationReport.lines(decisions)
+            // Befinden je Weckgrund: nur gezählt, ändert nichts am Wecken.
+            feeling = FeelingByReason.lines(model.nights)
         }
     }
 
@@ -129,7 +140,8 @@ struct DiagView: View {
 
     private var shareText: String {
         let section = validation.isEmpty ? [] : [ValidationReport.title] + validation + [""]
-        return (status.map { "\($0.label): \($0.value)" } + [""] + section
+        let feelings = feeling.isEmpty ? [] : [FeelingByReason.title] + feeling + [""]
+        return (status.map { "\($0.label): \($0.value)" } + [""] + section + feelings
                 + [DiagLog.format(allEntries, timeZone: .current)]).joined(separator: "\n")
     }
 

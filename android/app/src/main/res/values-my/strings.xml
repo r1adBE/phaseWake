@@ -112,6 +112,7 @@
     <string name="duration_hours_minutes">%1$d နာရီ %2$d မိနစ်</string>
     <string name="health_title">Health Connect မှ အိပ်စက်မှုအဆင့်များ</string>
     <string name="health_rationale">သင့်ကျန်းမာရေးအက်ပ် (ဥပမာ Samsung Health) သိမ်းထားသော အိပ်စက်မှုဒေတာကို Phase Wake ဖတ်နိုင်သည်။ ၎င်းကို သင့်မှတ်တမ်းတွင် ပြပြီး Phase Wake က သင့်ကို နှိုးခဲ့သည့် ညများနှင့် နှိုင်းယှဉ်ရန်လည်း အသုံးပြုသည်။ Phase Wake သည် ဖတ်ရုံသာဖတ်ပြီး ဘယ်တော့မှ မရေးပါ၊ ဘာမှလည်း သင့်ဖုန်းမှ အပြင်မထွက်ပါ။</string>
+    <string name="health_rationale_history">ယခင်ဒေတာများကို ဝင်ရောက်ခွင့်ပါ ပေးပါက Phase Wake သည် ရက် 30 ထက် ဟောင်းသော အိပ်စက်မှုဒေတာကိုလည်း ဖတ်ပြီး သင့်မှတ်တမ်းကို နှစ်နှစ်အထိ နောက်ပြန်ကြည့်နိုင်သည်။ ဤခွင့်ပြုချက်မပါက Phase Wake သည် ပထမဆုံးဝင်ရောက်ခွင့်မတိုင်မီ ရက် 30 မှစ၍သာ ဒေတာကို ဖတ်သည်။</string>
     <string name="health_connect">ကျန်းမာရေးဒေတာနှင့် နှိုင်းယှဉ်ရန်</string>
     <string name="health_connect_hint">ရှာဖွေမှုကို စစ်ဆေးပြီး ပိုကောင်းစေရန် နိုးပြီးနောက် Health Connect မှ အိပ်စက်မှုအဆင့်များကို ဖတ်သည်။</string>
     <string name="health_connected">ချိတ်ဆက်ထားသည်</string>
@@ -519,7 +520,11 @@
     <string name="night_open">အသေးစိတ် ပြရန်</string>
     <string name="night_latency">အိပ်ပျော်ရန် ကြာချိန်</string>
     <string name="night_efficiency">အိပ်စက်မှု ထိရောက်မှု</string>
-    <string name="night_awakenings">နိုးလာသည့် အကြိမ်</string>
+    <string name="night_wake_moments">နိုးလာမှုများ</string>
+    <string name="night_wake_brief">ခဏနိုးလာမှုများ</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">ယင်းအနက် %1$d ကြိမ် %2$d မိနစ်ထက်ကြာ</item>
+    </plurals>
     <string name="night_longest_deep">အရှည်ဆုံး နက်ရှိုင်းသော အိပ်စက်မှု</string>
     <string name="stages_typical">ပုံမှန်အပိုင်းအခြား</string>
     <string name="stages_typical_range">ပုံမှန် %1$d–%2$d %%</string>
@@ -644,4 +649,6 @@
     <string name="finding_bedtime">သင့်အိပ်ချိန်သည် %1$s အထိ ကွာခြားခဲ့သည်။ အကြံပြုချက်- နေ့တိုင်း အချိန်တူနီးပါးတွင် အိပ်ပါ၊ စနေတနင်္ဂနွေတွင်လည်း။</string>
     <string name="finding_jetlag">စနေတနင်္ဂနွေတွင် သင့်အိပ်စက်ခြင်းသည် အလုပ်ရက်များထက် %1$s ရွှေ့သွားခဲ့သည်။ အကြံပြုချက်- စနေတနင်္ဂနွေတွင်လည်း အိပ်ချိန်တူအတိုင်း ထားပါ။</string>
     <string name="weekly_deep">နက်ရှိုင်းသောအိပ်စက်ခြင်း %1$s</string>
+    <string name="settings_clear_old">ရက် 90 ထက်ဟောင်းသည်များကို ဖျက်ရန်</string>
+    <string name="settings_clear_old_text">ဖုန်းပေါ်ရှိ ရက် 90 ထက်ဟောင်းသော မှတ်တမ်းတင်ထားသည့် ညများကို ၎င်းတို့၏ မှတ်စုများ၊ ခံစားမှု၊ ညနေ လုပ်ရိုးလုပ်စဉ် အမှတ်အသားများနှင့် ညအသံဖမ်းချက်များနှင့်အတူ ဖျက်သည်။ ပိုသစ်သော ညများနှင့် နှိုးစက်များ ကျန်ရှိမည်။ အခြားအက်ပ်များမှ ညများကို ဤနေရာတွင် ဖျောက်ထားရုံသာဖြစ်ပြီး ထိုအက်ပ်များတွင် ဆက်ရှိနေမည်။</string>
 </resources>

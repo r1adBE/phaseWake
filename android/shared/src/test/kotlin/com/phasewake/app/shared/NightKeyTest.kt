@@ -2,6 +2,7 @@ package com.phasewake.app.shared
 
 import com.phasewake.app.core.BatteryMark
 import com.phasewake.app.core.BatteryPoint
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import java.time.Duration
@@ -24,15 +25,18 @@ class NightKeyTest {
         feeling = feeling,
     )
 
+    private fun merge(current: List<NightRecord>, night: NightRecord) =
+        mergeNight(current, night, NightKeep.WATCH, start)
+
     @Test
     fun twoAlarmsWithTheSameWindowAreTwoNights() {
-        val merged = mergeNight(listOf(night("a")), night("b"))
+        val merged = merge(listOf(night("a")), night("b"))
         assertEquals(listOf("a", "b"), merged.map { it.alarmId })
     }
 
     @Test
     fun sameNightIsReplacedAndKeepsFeeling() {
-        val merged = mergeNight(listOf(night("a", feeling = 4), night("b", feeling = 2)), night("a", wokeMinutes = 25))
+        val merged = merge(listOf(night("a", feeling = 4), night("b", feeling = 2)), night("a", wokeMinutes = 25))
         assertEquals(2, merged.size)
         val a = merged.single { it.alarmId == "a" }
         assertEquals(start.plus(Duration.ofMinutes(25)), a.wokeAt)
@@ -42,7 +46,7 @@ class NightKeyTest {
 
     @Test
     fun newFeelingWins() {
-        assertEquals(5, mergeNight(listOf(night("a", feeling = 4)), night("a", feeling = 5)).single().feeling)
+        assertEquals(5, merge(listOf(night("a", feeling = 4)), night("a", feeling = 5)).single().feeling)
     }
 
     @Test
@@ -57,11 +61,11 @@ class NightKeyTest {
         )
         // Die Uhr schickt dieselbe Nacht noch einmal (mit ihrem Akku): der des Handys bleibt.
         val merged =
-            mergeNight(listOf(night("a").copy(phoneBattery = phone)), night("a").copy(watchBattery = watch)).single()
+            merge(listOf(night("a").copy(phoneBattery = phone)), night("a").copy(watchBattery = watch)).single()
         assertEquals(phone, merged.phoneBattery)
         assertEquals(watch, merged.watchBattery)
         // Ohne Akku noch einmal: beide bleiben.
-        assertEquals(merged, mergeNight(listOf(merged), night("a")).single())
+        assertEquals(merged, merge(listOf(merged), night("a")).single())
     }
 
     @Test
@@ -70,10 +74,10 @@ class NightKeyTest {
         val bed = start.minus(Duration.ofHours(7))
         val asleep = bed.plus(Duration.ofMinutes(25))
         val measured = night("a").copy(bedAt = bed, asleepAt = asleep)
-        assertEquals(measured, mergeNight(listOf(measured), night("a")).single())
+        assertEquals(measured, merge(listOf(measured), night("a")).single())
         // Neue Messung ersetzt beide; nur ein Beginn ohne Einschlafzeit ersetzt nichts.
         val newer = night("a").copy(bedAt = bed.plusSeconds(60), asleepAt = asleep.plusSeconds(600))
-        assertEquals(newer, mergeNight(listOf(measured), newer).single())
-        assertEquals(measured, mergeNight(listOf(measured), night("a").copy(bedAt = bed.plusSeconds(60))).single())
+        assertEquals(newer, merge(listOf(measured), newer).single())
+        assertEquals(measured, merge(listOf(measured), night("a").copy(bedAt = bed.plusSeconds(60))).single())
     }
 }

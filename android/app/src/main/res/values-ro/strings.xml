@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fazele somnului din Health Connect</string>
     <string name="health_rationale">Phase Wake poate citi datele de somn pe care aplicația ta de sănătate (de exemplu Samsung Health) le salvează. Sunt afișate în istoricul tău, și pentru comparație cu nopțile în care te-a trezit Phase Wake. Phase Wake doar citește, nu scrie niciodată, iar nimic nu părăsește telefonul tău.</string>
+    <string name="health_rationale_history">Dacă permiți și accesul la datele anterioare, Phase Wake citește și datele de somn mai vechi de 30 de zile, astfel încât istoricul tău poate ajunge până la doi ani în urmă. Fără această permisiune, Phase Wake citește doar datele începând cu 30 de zile înainte de primul acces.</string>
     <string name="health_connect">Compară cu datele de sănătate</string>
     <string name="health_connect_hint">Citește fazele somnului din Health Connect după trezire, ca să verifice și să îmbunătățească detectarea.</string>
     <string name="health_connected">Conectat</string>
@@ -547,7 +548,13 @@
     <string name="night_open">Afișează detaliile</string>
     <string name="night_latency">Adormire</string>
     <string name="night_efficiency">Eficiența somnului</string>
-    <string name="night_awakenings">Treziri</string>
+    <string name="night_wake_moments">Treziri</string>
+    <string name="night_wake_brief">Treziri scurte</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">dintre care %1$d mai lungă de %2$d min</item>
+        <item quantity="few">dintre care %1$d mai lungi de %2$d min</item>
+        <item quantity="other">dintre care %1$d mai lungi de %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Cel mai lung somn profund</string>
     <string name="stages_typical">Interval obișnuit</string>
     <string name="stages_typical_range">De obicei %1$d–%2$d %%</string>
@@ -672,4 +679,6 @@
     <string name="finding_bedtime">Ora ta de culcare a variat cu până la %1$s. Sfat: culcă-te în fiecare zi cam la aceeași oră, și în weekend.</string>
     <string name="finding_jetlag">În weekend somnul tău a fost decalat cu %1$s față de zilele lucrătoare. Sfat: păstrează aceleași ore de somn și în weekend.</string>
     <string name="weekly_deep">Somn profund %1$s din somnul tău</string>
+    <string name="settings_clear_old">Șterge ce e mai vechi de 90 de zile</string>
+    <string name="settings_clear_old_text">Șterge de pe telefon nopțile înregistrate mai vechi de 90 de zile, împreună cu notițele, starea, bifele rutinei de seară și înregistrările de noapte ale lor. Nopțile mai noi și alarmele tale rămân. Nopțile din alte aplicații sunt doar ascunse aici și rămân în acele aplicații.</string>
 </resources>

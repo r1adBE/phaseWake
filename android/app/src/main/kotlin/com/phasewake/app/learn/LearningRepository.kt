@@ -38,6 +38,13 @@ data class LearningState(
      */
     val active: Boolean get() = consent == true && since != null && (values == null || relearning)
 
+    /**
+     * Beginn der noch offenen Lernphase (begonnen und noch keine Werte, oder «Neu lernen» läuft; auch ohne Zustimmung
+     * gerade, denn sie läuft mit den gezählten Nächten weiter); `null`: keine offene. Ihre Aufzeichnungen bleiben bei
+     * «Älter als 90 Tage löschen» ([com.phasewake.app.core.HistoryPrune.keepsRecording]). Wie Swift.
+     */
+    val openSince: Instant? get() = if (values == null || relearning) since else null
+
     /** Noch nicht gefragt: Einrichtungsschritt bzw. Karte auf der Startseite «Lernphase starten» / «Später». */
     val askConsent: Boolean get() = consent == null
 

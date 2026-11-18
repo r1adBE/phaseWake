@@ -91,7 +91,8 @@ data class SettingsState(
 data class SettingsActions(
     val onThemeMode: (ThemeMode) -> Unit,
     val onExport: () -> Unit,
-    val onClearHistory: () -> Unit,
+    /** «Verlauf löschen»; mit `true` nur «Älter als 90 Tage löschen». */
+    val onClearHistory: (older: Boolean) -> Unit,
     val onConnectHealth: () -> Unit,
     val onEveningDark: (Boolean) -> Unit = {},
     val onEveningDarkFrom: (Int) -> Unit = {},

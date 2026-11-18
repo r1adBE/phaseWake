@@ -69,8 +69,8 @@ object BackupFile {
     const val KEY_BITS: Int = 256
 
     /**
-     * Grösste Datei, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB; eine
-     * versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
+     * Grösste Datei, die das Wiederherstellen liest: 20 MiB. 2 Jahre Verlauf (höchstens 800 Nächte, je rund 2–5 KB)
+     * ergeben höchstens rund 4 MB; eine versehentlich gewählte grosse Datei (Video) wird so abgelehnt.
      */
     const val MAX_FILE_BYTES: Long = 20L * 1024 * 1024
 

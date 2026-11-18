@@ -117,6 +117,7 @@
     <string name="duration_hours_minutes">%1$d godz. %2$d min</string>
     <string name="health_title">Fazy snu z Health Connect</string>
     <string name="health_rationale">Phase Wake może odczytywać dane o śnie, które zapisuje aplikacja zdrowotna (na przykład Samsung Health). Są wyświetlane w twojej historii, także do porównania z nocami, w których obudził cię Phase Wake. Phase Wake tylko czyta, nigdy nie zapisuje, a nic nie opuszcza twojego telefonu.</string>
+    <string name="health_rationale_history">Jeśli zezwolisz też na dostęp do wcześniejszych danych, Phase Wake odczyta również dane o śnie starsze niż 30 dni, więc twoja historia może sięgać do dwóch lat wstecz. Bez tego uprawnienia Phase Wake odczytuje tylko dane od 30 dni przed pierwszym dostępem.</string>
     <string name="health_connect">Porównaj z danymi zdrowotnymi</string>
     <string name="health_connect_hint">Po przebudzeniu odczytuje fazy snu z Health Connect, by sprawdzać i ulepszać wykrywanie.</string>
     <string name="health_connected">Połączono</string>
@@ -562,7 +563,14 @@
     <string name="night_open">Pokaż szczegóły</string>
     <string name="night_latency">Zasypianie</string>
     <string name="night_efficiency">Wydajność snu</string>
-    <string name="night_awakenings">Wybudzenia</string>
+    <string name="night_wake_moments">Wybudzenia</string>
+    <string name="night_wake_brief">Krótkie wybudzenia</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">w tym %1$d dłuższe niż %2$d min</item>
+        <item quantity="few">w tym %1$d dłuższe niż %2$d min</item>
+        <item quantity="many">w tym %1$d dłuższych niż %2$d min</item>
+        <item quantity="other">w tym %1$d dłuższych niż %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Najdłuższy sen głęboki</string>
     <string name="stages_typical">Typowy zakres</string>
     <string name="stages_typical_range">Typowo %1$d–%2$d %%</string>
@@ -687,4 +695,6 @@
     <string name="finding_bedtime">Pora twojego snu wahała się nawet o %1$s. Wskazówka: kładź się codziennie mniej więcej o tej samej porze, także w weekend.</string>
     <string name="finding_jetlag">W weekend twój sen był przesunięty o %1$s względem dni roboczych. Wskazówka: trzymaj te same godziny snu także w weekend.</string>
     <string name="weekly_deep">Sen głęboki %1$s twojego snu</string>
+    <string name="settings_clear_old">Usuń starsze niż 90 dni</string>
+    <string name="settings_clear_old_text">Usuwa z telefonu zapisane noce starsze niż 90 dni razem z ich notatkami, samopoczuciem, odhaczeniami wieczornej rutyny i nagraniami nocy. Nowsze noce i twoje budziki zostają. Noce z innych aplikacji są tu tylko ukrywane i zostają w tych aplikacjach.</string>
 </resources>

@@ -8,7 +8,7 @@ extension PhaseWakeStorage {
     /// Bewegung und Puls je Epoche in iCloud. Frühere Versionen legten `nights.v1` direkt in Application Support ab;
     /// `adopt` holt die Datei einmalig herüber.
     static let watch = PhaseWakeStorage(defaults: SettingsFile.watchAlarms,
-                                        directory: PrivateFiles.adopt(["nights.v1"]))
+                                        directory: PrivateFiles.adopt(["nights.v1"]), keep: .watch)
 }
 
 extension SettingsFile {

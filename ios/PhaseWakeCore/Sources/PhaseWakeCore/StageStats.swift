@@ -84,6 +84,9 @@ public struct NightStages: Equatable, Sendable {
     public let efficiencyPercent: Int
     /// Wachphasen: Blöcke «wach» mit einem Schlafblock davor und danach (Anfang und Ende zählen nicht).
     public let awakenings: Int
+    /// Davon länger als ``StageStats/longWakeMinutes`` (auf die Millisekunde; genau so lang zählt als kurz). Die
+    /// übrigen sind kurze Wachmomente, wie sie die Uhr oft zählt.
+    public let longAwakenings: Int
     /// Längster Tiefschlaf-Block in Minuten; 0 ohne Tiefschlaf.
     public let longestDeepMinutes: Int
     /// Geschlafene Minuten (wie bei der Effizienz), abgerundet.
@@ -111,6 +114,9 @@ public enum StageStats {
     /// Schlafprofil von oben).
     public static let order: [SleepStage] = [.awake, .rem, .light, .deep]
 
+    /// Ab hier (echt länger) ist ein Wachmoment mitten in der Nacht lang (``NightStages/longAwakenings``).
+    public static let longWakeMinutes = 5
+
     /// Auswertung von `spans`, zugeschnitten auf `from`–`to` (``StageCheck/clip(_:from:to:)``).
     /// `nil`, wenn `to` nicht nach `from` liegt oder keine Schlafphase (REM, leicht, tief) im Bereich ist: Eine Quelle
     /// ohne Phasendetail (Schlaf «unbekannt» und «wach») hat keine Phasen, sonst stünde dort «Wach 100 %».
@@ -123,6 +129,7 @@ public enum StageStats {
         let sleepMs = clipped.filter { $0.stage != .awake }.reduce(Int64(0)) { $0 + millis($1.start, $1.end) }
         let totals = totalsOf(known, asleepMinutes: minutes(sleepMs))
         let rangeMs = millis(from, to)
+        let inner = innerAwake(blocks)
         let latency: Int? = blocks.count > 1 && blocks[0].stage == .awake ? minutes(millis(blocks[0].start,
                                                                                            blocks[1].start)) : nil
         return NightStages(
@@ -132,7 +139,8 @@ public enum StageStats {
             totals: totals,
             latencyMinutes: latency,
             efficiencyPercent: rangeMs > 0 ? Int(min(100, (sleepMs * 100 + rangeMs / 2) / rangeMs)) : 0,
-            awakenings: awakenings(blocks),
+            awakenings: inner.count,
+            longAwakenings: inner.filter { millis($0.start, $0.end) > Int64(longWakeMinutes) * 60_000 }.count,
             longestDeepMinutes: blocks.filter { $0.stage == .deep }.map(\.minutes).max() ?? 0,
             asleepMinutes: minutes(sleepMs)
         )
@@ -195,12 +203,12 @@ public enum StageStats {
     }
 
     /// Blöcke «wach» mit einem Schlafblock irgendwo davor und danach.
-    private static func awakenings(_ blocks: [StageBlock]) -> Int {
+    private static func innerAwake(_ blocks: [StageBlock]) -> [StageBlock] {
         blocks.indices.filter { i in
             blocks[i].stage == .awake
                 && blocks[..<i].contains { $0.stage != .awake }
                 && blocks[(i + 1)...].contains { $0.stage != .awake }
-        }.count
+        }.map { blocks[$0] }
     }
 
     /// Ganze Millisekunden von `from` bis `to` (wie `Instant`), nie negativ.

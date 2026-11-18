@@ -118,6 +118,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Faze spanca iz Health Connect</string>
     <string name="health_rationale">Phase Wake lahko prebere podatke o spanju, ki jih tvoja zdravstvena aplikacija (na primer Samsung Health) shrani. Prikazani so v tvoji zgodovini, tudi za primerjavo z nočmi, ko te je zbudil Phase Wake. Phase Wake samo bere, nikoli ne piše, in nič ne zapusti tvojega telefona.</string>
+    <string name="health_rationale_history">Če dovoliš tudi dostop do preteklih podatkov, Phase Wake prebere tudi podatke o spanju, starejše od 30 dni, zato lahko tvoja zgodovina sega do dve leti nazaj. Brez tega dovoljenja Phase Wake prebere le podatke od 30 dni pred prvim dostopom naprej.</string>
     <string name="health_connect">Primerjaj z zdravstvenimi podatki</string>
     <string name="health_connect_hint">Po prebujenju prebere faze spanca iz Health Connect, da preveri in izboljša zaznavanje.</string>
     <string name="health_connected">Povezano</string>
@@ -564,7 +565,14 @@
     <string name="night_open">Prikaži podrobnosti</string>
     <string name="night_latency">Uspavanje</string>
     <string name="night_efficiency">Učinkovitost spanja</string>
-    <string name="night_awakenings">Prebujanja</string>
+    <string name="night_wake_moments">Prebujanja</string>
+    <string name="night_wake_brief">Kratka prebujanja</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">od tega %1$d daljše od %2$d min</item>
+        <item quantity="two">od tega %1$d daljši od %2$d min</item>
+        <item quantity="few">od tega %1$d daljša od %2$d min</item>
+        <item quantity="other">od tega %1$d daljših od %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Najdaljši globok spanec</string>
     <string name="stages_typical">Običajen razpon</string>
     <string name="stages_typical_range">Običajno %1$d–%2$d %%</string>
@@ -689,4 +697,6 @@
     <string name="finding_bedtime">Čas, ko greš spat, je nihal do %1$s. Nasvet: vsak dan pojdi spat ob približno istem času, tudi med vikendom.</string>
     <string name="finding_jetlag">Med vikendom je bil tvoj spanec zamaknjen za %1$s glede na delavnike. Nasvet: tudi med vikendom ohrani enake čase spanja.</string>
     <string name="weekly_deep">Globoki spanec %1$s tvojega spanca</string>
+    <string name="settings_clear_old">Izbriši starejše od 90 dni</string>
+    <string name="settings_clear_old_text">Izbriše zabeležene noči na telefonu, starejše od 90 dni, skupaj z njihovimi zapiski, počutjem, kljukicami večerne rutine in nočnimi posnetki. Novejše noči in budilke ostanejo. Noči iz drugih aplikacij se tukaj samo skrijejo in ostanejo v teh aplikacijah.</string>
 </resources>

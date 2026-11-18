@@ -98,7 +98,7 @@ class WeeklyReminder(private val context: Context, private val now: () -> Instan
         val text = prepared ?: textOf(
             WeeklySummary.of(
                 app.nights.load(),
-                app.health.recentSleep(NightHistory.MAX_NIGHTS + 1L, app.settings.historyClearedAt.first()),
+                app.health.recentSleep(NightHistory.INSIGHT_NIGHTS + 1L, app.settings.historyClearedAt.first()),
                 app.notes.current(), zone, app.settings.sleepGoalNow(), weekEnd,
             ),
             app.notes.custom.first(),

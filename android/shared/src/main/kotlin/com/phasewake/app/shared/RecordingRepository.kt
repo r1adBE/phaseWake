@@ -3,6 +3,7 @@ package com.phasewake.app.shared
 import android.util.AtomicFile
 import android.util.Log
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.HistoryPrune
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -103,15 +104,18 @@ class RecordingRepository(
     }
 
     /**
-     * Löscht die abgeschlossenen Aufzeichnungen («Verlauf löschen»), mit [before] nur die bis dahin beendeten. Eine
-     * laufende bleibt (sie misst weiter und wird erst mit ihrem Ende gespeichert); unlesbare Dateien fallen ganz weg.
+     * Löscht die abgeschlossenen Aufzeichnungen («Verlauf löschen»), mit [before] nur die bis dahin beendeten, ausser
+     * denen der offenen Lernphase ab [learningSince] ([HistoryPrune.keepsRecording]). Eine laufende bleibt (sie misst
+     * weiter und wird erst mit ihrem Ende gespeichert); unlesbare Dateien fallen ganz weg.
      */
-    suspend fun clear(before: Instant? = null) = mutex.withLock {
+    suspend fun clear(before: Instant? = null, learningSince: Instant? = null) = mutex.withLock {
         withContext(io) {
             for (file in files()) {
                 val recording = read(file)
                 val end = recording?.end
-                if (recording == null || (end != null && (before == null || !end.isAfter(before)))) file.delete()
+                val drop = recording == null || (end != null && (before == null ||
+                    !HistoryPrune.keepsRecording(recording.start, end, before, learningSince)))
+                if (drop) file.delete()
             }
         }
         state.value = null

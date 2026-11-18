@@ -8,6 +8,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     /// Intern statt privat: Die Erweiterung in `Storage+Notes.swift` liest und schreibt darüber.
     let defaults: any SettingsStore
     private let nightsURL: URL
+    private let keep: NightKeep
     /// Intern statt privat, wie `defaults`.
     let lock = NSLock()
 
@@ -67,9 +68,10 @@ public final class PhaseWakeStorage: @unchecked Sendable {
 
     /// Erzeugt einen Speicher. `defaults` = Ort der Wecker und Einstellungen (iPhone und Uhr: eine ``SettingsFile``
     /// ausserhalb der Sicherung). `directory` = Ordner für die Nächte (Standard: Application Support); Tests geben
-    /// einen eigenen.
-    public init(defaults: any SettingsStore = UserDefaults.standard, directory: URL? = nil) {
+    /// einen eigenen. `keep` = wie viele Nächte bleiben (iPhone ``NightKeep/phone``, Uhr ``NightKeep/watch``).
+    public init(defaults: any SettingsStore = UserDefaults.standard, directory: URL? = nil, keep: NightKeep = .watch) {
         self.defaults = defaults
+        self.keep = keep
         let dir = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         nightsURL = dir.appendingPathComponent("nights.v1")
@@ -287,12 +289,12 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         return ProtectedFile.read(nightsURL) != .unreadable
     }
 
-    /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt auf 90 Nächte.
+    /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt nach ``keep``.
     /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal
     /// schickt. Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor
     /// dem ersten Entsperren): nichts geschrieben. - Returns: ob die Nacht gespeichert ist.
     @discardableResult
-    public func add(_ night: NightRecord) -> Bool {
+    public func add(_ night: NightRecord, now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
         guard let current = nightsLocked() else {
             Self.log("Verlauf nicht lesbar, Nacht nicht gespeichert")
@@ -309,7 +311,7 @@ public final class PhaseWakeStorage: @unchecked Sendable {
                                  phoneBattery: night.phoneBattery ?? old?.phoneBattery,
                                  bedAt: night.asleepAt != nil ? night.bedAt : old?.bedAt,
                                  asleepAt: night.asleepAt ?? old?.asleepAt)
-        return writeNightsLocked(NightHistory.trim(current.filter { !Self.sameNight($0, night) } + [merged]))
+        return writeNightsLocked(keep.trim(current.filter { !Self.sameNight($0, night) } + [merged], now: now))
     }
 
     /// Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn; Verlauf nicht lesbar: nichts.
@@ -355,12 +357,22 @@ public final class PhaseWakeStorage: @unchecked Sendable {
         }
     }
 
-    /// Ersetzt alle Nächte (Wiederherstellen einer Sicherung); gleiche Nächte zählen einmal, höchstens 90.
-    public func replaceNights(_ nights: [NightRecord]) {
+    /// Ersetzt alle Nächte (Wiederherstellen einer Sicherung); gleiche Nächte zählen einmal, gekürzt nach ``keep``.
+    public func replaceNights(_ nights: [NightRecord], now: Date = Date()) {
         lock.lock(); defer { lock.unlock() }
         var unique: [NightRecord] = []
         for night in nights where !unique.contains(where: { Self.sameNight($0, night) }) { unique.append(night) }
-        writeNightsLocked(NightHistory.trim(unique))
+        writeNightsLocked(keep.trim(unique, now: now))
+    }
+
+    /// «Älter als 90 Tage löschen» (``HistoryPrune``): Nächte bis `cutoff` weg. - Returns: neu, `nil` = unlesbar.
+    @discardableResult
+    public func clearNights(before cutoff: Date) -> [NightRecord]? {
+        lock.lock(); defer { lock.unlock() }
+        guard let current = nightsLocked() else { return nil }
+        let kept = HistoryPrune.nights(current, cutoff: cutoff)
+        writeNightsLocked(kept)
+        return kept
     }
 
     /// Löscht alle Nächte (Datei weg); fehlt sie schon, ist das kein Fehler.

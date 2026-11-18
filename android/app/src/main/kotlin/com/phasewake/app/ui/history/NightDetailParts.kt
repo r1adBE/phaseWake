@@ -8,8 +8,11 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -27,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -40,9 +44,11 @@ import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.NightStages
 import com.phasewake.app.core.SleepStage
 import com.phasewake.app.core.SoundEvents
+import com.phasewake.app.core.StageStats
 import com.phasewake.app.core.StageTotal
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.notes.NightNotes
+import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.sounds.SoundClipsSection
 import java.text.NumberFormat
 import java.time.Duration
@@ -196,26 +202,43 @@ private fun StageTotalRow(total: StageTotal) {
 
 private const val PERCENT = 100f
 
+/** Eine Kachel: [value] gross, darunter [label] und, falls vorhanden, [note] noch leiser. */
+private data class Tile(val label: String, val value: String, val note: String? = null)
+
 /**
  * Kennzahlen als Kacheln: Einschlafdauer (falls bekannt und nicht schon beim Schlafwert, [withLatency]),
- * Schlafeffizienz, Wachphasen, längster Tiefschlaf.
+ * Schlafeffizienz, Wachmomente (sonst nur kurze, oder «davon N länger als 5 Min»), längster Tiefschlaf.
  */
 @Composable
 internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {
     val context = LocalContext.current
+    val longWake = stats.longAwakenings
     val tiles = listOfNotNull(
         stats.latencyMinutes?.takeIf { withLatency }
-            ?.let { stringResource(R.string.night_latency) to Format.duration(context, Duration.ofMinutes(it)) },
-        stringResource(R.string.night_efficiency) to stringResource(R.string.stages_share, stats.efficiencyPercent),
-        stringResource(R.string.night_awakenings) to NumberFormat.getIntegerInstance().format(stats.awakenings),
-        stringResource(R.string.night_longest_deep) to Format.duration(
-            context, Duration.ofMinutes(stats.longestDeepMinutes),
+            ?.let { Tile(stringResource(R.string.night_latency), Format.duration(context, Duration.ofMinutes(it))) },
+        Tile(stringResource(R.string.night_efficiency), stringResource(R.string.stages_share, stats.efficiencyPercent)),
+        Tile(
+            stringResource(if (longWake > 0) R.string.night_wake_moments else R.string.night_wake_brief),
+            NumberFormat.getIntegerInstance().format(stats.awakenings),
+            longWake.takeIf { it > 0 }?.let {
+                LocalResources.current.getQuantityString(
+                    R.plurals.night_wake_long, it, it, StageStats.LONG_WAKE_MINUTES.toInt(),
+                )
+            },
+        ),
+        Tile(
+            stringResource(R.string.night_longest_deep),
+            Format.duration(context, Duration.ofMinutes(stats.longestDeepMinutes)),
         ),
     )
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         tiles.chunked(2).forEach { row ->
-            Row(horizontalArrangement = Arrangement.spacedBy(12.dp), modifier = Modifier.fillMaxWidth()) {
-                row.forEach { (label, value) -> NightTile(label, value, Modifier.weight(1f)) }
+            // Gleich hohe Kacheln je Reihe, auch wenn eine eine Zusatzzeile hat.
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min),
+            ) {
+                row.forEach { NightTile(it, Modifier.weight(1f).fillMaxHeight()) }
                 if (row.size == 1) Spacer(Modifier.weight(1f))
             }
         }
@@ -223,7 +246,7 @@ internal fun NightTiles(stats: NightStages, withLatency: Boolean = true) {
 }
 
 @Composable
-private fun NightTile(label: String, value: String, modifier: Modifier) {
+private fun NightTile(tile: Tile, modifier: Modifier) {
     val scheme = MaterialTheme.colorScheme
     Card(
         shape = MaterialTheme.shapes.medium,
@@ -232,9 +255,15 @@ private fun NightTile(label: String, value: String, modifier: Modifier) {
         elevation = skyCardLift(),
         modifier = modifier.semantics(mergeDescendants = true) { },
     ) {
-        Column(Modifier.background(tileTint(scheme.primary)).padding(16.dp)) {
-            Text(value, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold))
-            Text(label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
+        Column(Modifier.fillMaxSize().background(tileTint(scheme.primary)).padding(16.dp)) {
+            Text(tile.value, style = MaterialTheme.typography.headlineMedium.copy(fontWeight = FontWeight.ExtraBold))
+            Text(tile.label, style = MaterialTheme.typography.labelMedium, color = scheme.onSurfaceVariant)
+            tile.note?.let {
+                Text(
+                    it, style = MaterialTheme.typography.labelSmall, color = PhaseWakeTheme.brand.mutedSoft,
+                    modifier = Modifier.padding(top = 2.dp),
+                )
+            }
         }
     }
 }

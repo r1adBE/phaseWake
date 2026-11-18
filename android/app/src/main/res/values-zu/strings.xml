@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Izigaba zokulala ezivela ku-Health Connect</string>
     <string name="health_rationale">I-Phase Wake ingafunda idatha yokulala egcinwa yi-app yakho yezempilo (isibonelo i-Samsung Health). Iboniswa emlandweni wakho, futhi ukuze iqhathaniswe nobusuku i-Phase Wake ekuvuse ngabo. I-Phase Wake iyafunda kuphela, ayibhali neze, futhi akukho okuphuma efonini yakho.</string>
+    <string name="health_rationale_history">Uma uvumela nokufinyelela kudatha edlule, i-Phase Wake ifunda nedatha yokulala endala kunezinsuku ezingu-30, ukuze umlando wakho ubuyele emuva kuze kube iminyaka emibili. Ngaphandle kwale mvume, i-Phase Wake ifunda kuphela idatha kusukela ezinsukwini ezingu-30 ngaphambi kokufinyelela kokuqala.</string>
     <string name="health_connect">Qhathanisa nedatha yezempilo</string>
     <string name="health_connect_hint">Ifunda izigaba zokulala ku-Health Connect ngemva kokuvuka, ukuze ihlole futhi ithuthukise ukutholwa.</string>
     <string name="health_connected">Ixhunyiwe</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Bonisa imininingwane</string>
     <string name="night_latency">Isikhathi sokuzumeka</string>
     <string name="night_efficiency">Ukusebenza kahle kokulala</string>
-    <string name="night_awakenings">Izikhathi uvukile</string>
+    <string name="night_wake_moments">Izikhathi zokuvuka</string>
+    <string name="night_wake_brief">Ukuvuka okufushane</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">kuzo %1$d ezingaphezu kuka-%2$d min</item>
+        <item quantity="other">kuzo %1$d ezingaphezu kuka-%2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Ubuthongo obujulile obude kakhulu</string>
     <string name="stages_typical">Ibanga elijwayelekile</string>
     <string name="stages_typical_range">Ngokujwayelekile %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Isikhathi sakho sokulala sishintshe kufika ku-%1$s. Ithiphu: lala cishe ngesikhathi esifanayo nsuku zonke, nangezimpelasonto.</string>
     <string name="finding_jetlag">Ngezimpelasonto ukulala kwakho kushintshe ngo-%1$s uma kuqhathaniswa nezinsuku zomsebenzi. Ithiphu: gcina izikhathi ezifanayo zokulala nangezimpelasonto.</string>
     <string name="weekly_deep">Ukulala okujulile %1$s wokulala kwakho</string>
+    <string name="settings_clear_old">Susa okudala kunezinsuku ezingu-90</string>
+    <string name="settings_clear_old_text">Isusa ubusuku obuqoshiwe obudala kunezinsuku ezingu-90 efonini yakho, kanye namanothi, umuzwa, amamaki enqubo yakusihlwa nokuqoshwa kobusuku kwabo. Ubusuku obusha nama-alamu akho kuyasala. Ubusuku obuvela kwamanye ama-app bufihlwa lapha kuphela futhi buhlala kulawo ma-app.</string>
 </resources>

@@ -72,7 +72,8 @@ struct FindingHomeCard: View {
     /// Liest Apple Health und rechnet die Auffälligkeiten bis heute (Nachtdatum von «jetzt»).
     private func reload() async {
         guard healthRequested, scenePhase == .active else { return }
-        let sessions = await model.health.sessions().sessions
+        // Auffälligkeiten betreffen die letzten 7 Nächte: 90 Tage genügen (nicht der ganze Verlauf).
+        let sessions = await model.health.sessions(days: NightHistory.insightNights).sessions
         let calendar = Calendar.gregorianLocal
         // Ohne Einschlafdauer aus Apple Health gilt die eigene Messung der Uhr: zuerst die Nacht im Verlauf
         // (``OwnOnset/of(_:)``), sonst die Aufzeichnung (``NightRecording/ownOnset``).

@@ -26,15 +26,13 @@ func healthLive(sourceName: String?) -> String {
 }
 
 /// Nacht aus Apple Health ohne Phase-Wake-Wecker: Datum und Aufwachzeit, Vermerk mit Herz-Symbol (nicht nur
-/// Farbe), Quelle nur einmal im Hinweis, Zeiten, Dauern, Hinweis auf den Spiegel der Quelle, kleines Schlafprofil
-/// mit Summen, Befinden (falls gewählt), Notizen und Geräusche kompakt. Kein Weckmoment. Antippen öffnet die
-/// Detailseite; dort wird das Befinden gewählt. Wie Android.
+/// Farbe), Zeiten, Dauern, kleines Schlafprofil mit Summen, Befinden (falls gewählt), Notizen und Geräusche kompakt.
+/// Den Hinweis auf den Spiegel der Quelle (``healthLive(sourceName:)``) nennt die Liste einmal unter allen Karten.
+/// Kein Weckmoment. Antippen öffnet die Detailseite; dort wird das Befinden gewählt. Wie Android.
 struct HealthNightCard: View {
     let session: HealthSession
     /// Nachtdatum für Befinden, Notizen und Geräusche (`HistoryItem.date`).
     let nightDate: String
-    /// Anzeigename der Quelle; `nil` = unbekannt.
-    let sourceName: String?
     /// Befinden (1–5), nur bei Phase Wake gespeichert (nie in HealthKit); `nil`: keine Zeile (gewählt wird auf der
     /// Detailseite).
     let feeling: Int?
@@ -76,7 +74,7 @@ struct HealthNightCard: View {
         .card()
     }
 
-    /// Kopf, Zeiten, Quelle und Schlafprofil: der Teil, der die Detailseite öffnet.
+    /// Kopf, Vermerk, Zeiten und Schlafprofil: der Teil, der die Detailseite öffnet.
     private var summary: some View {
         let lines = self.lines
         return VStack(alignment: .leading, spacing: 8) {
@@ -96,8 +94,6 @@ struct HealthNightCard: View {
             }
             .font(Fonts.manrope(12, relativeTo: .caption))
             .foregroundStyle(.secondary)
-            Text(healthLive(sourceName: sourceName))
-                .font(Fonts.manrope(11, relativeTo: .caption2)).foregroundStyle(.secondary)
             if session.hasStages {
                 MiniHypnogram(steps: session.steps, totalMinutes: session.end.timeIntervalSince(session.start) / 60)
                     .frame(height: miniHypnogramHeight)

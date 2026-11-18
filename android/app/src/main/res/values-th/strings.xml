@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d ชม. %2$d นาที</string>
     <string name="health_title">ระยะการนอนหลับจาก Health Connect</string>
     <string name="health_rationale">Phase Wake อ่านข้อมูลการนอนที่แอปสุขภาพของคุณ (เช่น Samsung Health) บันทึกไว้ได้ ข้อมูลจะแสดงในประวัติของคุณ รวมถึงใช้เปรียบเทียบกับคืนที่ Phase Wake ปลุกคุณ Phase Wake อ่านอย่างเดียว ไม่เขียนข้อมูล และไม่มีข้อมูลใดออกจากโทรศัพท์ของคุณ</string>
+    <string name="health_rationale_history">หากคุณอนุญาตให้เข้าถึงข้อมูลย้อนหลังด้วย Phase Wake จะอ่านข้อมูลการนอนที่เก่ากว่า 30 วันด้วย ประวัติของคุณจึงย้อนหลังได้สูงสุดสองปี หากไม่อนุญาต Phase Wake จะอ่านเฉพาะข้อมูลตั้งแต่ 30 วันก่อนการเข้าถึงครั้งแรกเท่านั้น</string>
     <string name="health_connect">เปรียบเทียบกับข้อมูลสุขภาพ</string>
     <string name="health_connect_hint">อ่านระยะการนอนหลับจาก Health Connect หลังตื่น เพื่อตรวจสอบและพัฒนาการตรวจจับ</string>
     <string name="health_connected">เชื่อมต่อแล้ว</string>
@@ -517,7 +518,11 @@
     <string name="night_open">แสดงรายละเอียด</string>
     <string name="night_latency">เวลาจนหลับ</string>
     <string name="night_efficiency">ประสิทธิภาพการนอน</string>
-    <string name="night_awakenings">จำนวนครั้งที่ตื่น</string>
+    <string name="night_wake_moments">การตื่น</string>
+    <string name="night_wake_brief">การตื่นสั้นๆ</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">ในนั้น %1$d ครั้งนานกว่า %2$d นาที</item>
+    </plurals>
     <string name="night_longest_deep">หลับลึกนานที่สุด</string>
     <string name="stages_typical">ช่วงปกติ</string>
     <string name="stages_typical_range">ปกติ %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">เวลาเข้านอนของคุณต่างกันได้ถึง %1$s เคล็ดลับ: เข้านอนเวลาใกล้เคียงกันทุกวัน รวมถึงวันหยุดสุดสัปดาห์</string>
     <string name="finding_jetlag">ช่วงสุดสัปดาห์ การนอนของคุณเลื่อนไป %1$s เมื่อเทียบกับวันทำงาน เคล็ดลับ: รักษาเวลานอนเดิมในวันหยุดด้วย</string>
     <string name="weekly_deep">หลับลึก %1$s ของการนอน</string>
+    <string name="settings_clear_old">ลบข้อมูลที่เก่ากว่า 90 วัน</string>
+    <string name="settings_clear_old_text">ลบคืนที่บันทึกไว้บนโทรศัพท์ซึ่งเก่ากว่า 90 วัน พร้อมบันทึก ความรู้สึก เครื่องหมายกิจวัตรตอนเย็น และการบันทึกตอนกลางคืนของคืนนั้น คืนที่ใหม่กว่าและการปลุกของคุณจะยังอยู่ คืนจากแอปอื่นจะถูกซ่อนไว้ที่นี่เท่านั้น และยังคงอยู่ในแอปเหล่านั้น</string>
 </resources>

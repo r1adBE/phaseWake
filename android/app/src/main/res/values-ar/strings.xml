@@ -121,6 +121,7 @@
     <string name="duration_hours_minutes">%1$d س %2$d د</string>
     <string name="health_title">مراحل النوم من Health Connect</string>
     <string name="health_rationale">يمكن لـ Phase Wake قراءة بيانات النوم التي يحفظها تطبيق الصحة لديك (مثل Samsung Health). تُعرض في سجلك، وأيضًا للمقارنة مع الليالي التي أيقظك فيها Phase Wake. يقرأ Phase Wake فقط ولا يكتب أبدًا، ولا شيء يغادر هاتفك.</string>
+    <string name="health_rationale_history">إذا سمحت أيضًا بالوصول إلى البيانات السابقة، يقرأ Phase Wake أيضًا بيانات النوم الأقدم من ٣٠ يومًا، فيمتد سجلك حتى عامين إلى الوراء. وبدون هذا الإذن، يقرأ Phase Wake البيانات بدءًا من ٣٠ يومًا قبل أول وصول فقط.</string>
     <string name="health_connect">المقارنة ببيانات الصحة</string>
     <string name="health_connect_hint">يقرأ مراحل النوم من Health Connect بعد الاستيقاظ للتحقق من الرصد وتحسينه.</string>
     <string name="health_connected">متصل</string>
@@ -592,7 +593,16 @@
     <string name="night_open">عرض التفاصيل</string>
     <string name="night_latency">مدة الخلود إلى النوم</string>
     <string name="night_efficiency">كفاءة النوم</string>
-    <string name="night_awakenings">مرات الاستيقاظ</string>
+    <string name="night_wake_moments">لحظات الاستيقاظ</string>
+    <string name="night_wake_brief">لحظات استيقاظ قصيرة</string>
+    <plurals name="night_wake_long">
+        <item quantity="zero">منها %1$d أطول من %2$d دقيقة</item>
+        <item quantity="one">منها %1$d أطول من %2$d دقيقة</item>
+        <item quantity="two">منها %1$d أطول من %2$d دقيقة</item>
+        <item quantity="few">منها %1$d أطول من %2$d دقيقة</item>
+        <item quantity="many">منها %1$d أطول من %2$d دقيقة</item>
+        <item quantity="other">منها %1$d أطول من %2$d دقيقة</item>
+    </plurals>
     <string name="night_longest_deep">أطول نوم عميق</string>
     <string name="stages_typical">النطاق المعتاد</string>
     <string name="stages_typical_range">المعتاد %1$d–%2$d %%</string>
@@ -717,4 +727,6 @@
     <string name="finding_bedtime">تفاوت موعد نومك حتى %1$s. نصيحة: نم كل يوم في الموعد نفسه تقريبًا، وفي عطلة نهاية الأسبوع أيضًا.</string>
     <string name="finding_jetlag">في عطلة نهاية الأسبوع تأخر نومك %1$s مقارنةً بأيام العمل. نصيحة: حافظ على مواعيد النوم نفسها في العطلة أيضًا.</string>
     <string name="weekly_deep">النوم العميق %1$s من نومك</string>
+    <string name="settings_clear_old">حذف ما هو أقدم من 90 يومًا</string>
+    <string name="settings_clear_old_text">يحذف الليالي المسجّلة الأقدم من 90 يومًا على هاتفك، مع ملاحظاتها والشعور وعلامات روتين المساء وتسجيلات الليل. تبقى الليالي الأحدث ومنبّهاتك. الليالي من التطبيقات الأخرى تُخفى هنا فقط وتبقى في تلك التطبيقات.</string>
 </resources>

@@ -82,6 +82,7 @@ PERMISSIONS = {
         ("android.permission.RECORD_AUDIO", ""),
         ("android.permission.FOREGROUND_SERVICE_MICROPHONE", ""),
         ("android.permission.health.READ_SLEEP", ""),
+        ("android.permission.health.READ_HEALTH_DATA_HISTORY", ""),
         ("android.permission.USE_BIOMETRIC", ""),
         ("android.permission.BLUETOOTH_CONNECT", ""),
         ("android.permission.BLUETOOTH", "30"),

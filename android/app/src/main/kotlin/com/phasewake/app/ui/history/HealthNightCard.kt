@@ -88,7 +88,7 @@ internal fun MiniStages(model: HypnoModel, stats: NightStages) {
     }
 }
 
-/** «Ohne Phase-Wake-Wecker»; die Quelle nennt nur der Hinweis darunter (einmal statt zweimal). */
+/** «Ohne Phase-Wake-Wecker»; die Quelle nennt nur der Hinweis unter der Liste bzw. auf der Detailseite. */
 internal fun healthMark(context: Context): String = context.getString(R.string.history_health_mark)
 
 /**
@@ -121,8 +121,9 @@ private fun sessionLines(context: Context, session: HealthSession, zone: ZoneId)
 
 /**
  * Nacht aus Health Connect ohne Phase-Wake-Wecker, kompakt: Datum und Aufwachzeit, Vermerk mit Herz-Symbol (nicht nur
- * Farbe), Zeiten, Dauern, Mini-Hypnogramm mit Summen, Hinweis zur Quelle, Befinden, Notizen und Geräusche je eine
- * Zeile. Antippen öffnet die Detailseite ([onOpen]); dort Befinden wählen und Geräusche anhören. Kein Weckmoment.
+ * Farbe), Zeiten, Dauern, Mini-Hypnogramm mit Summen, Befinden, Notizen und Geräusche je eine Zeile. Den Hinweis
+ * zur Quelle ([healthLiveHint]) nennt die Liste einmal unter allen Karten. Antippen öffnet die Detailseite
+ * ([onOpen]); dort Befinden wählen und Geräusche anhören. Kein Weckmoment.
  */
 @Composable
 internal fun HealthNightCard(
@@ -178,12 +179,6 @@ internal fun HealthNightCard(
                 amounts, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             stats?.let { MiniStages(HypnoModel(session.start, session.end, it.blocks, zone = session.timeZone), it) }
-            Text(
-                healthLiveHint(context, session),
-                style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = 6.dp),
-            )
             feeling?.let { CompactLine(stringResource(R.string.feeling_value, feelingName(context, it))) }
             soundSummary(context, extras.clips)?.let { CompactLine(it) }
             NightNotes(extras.notes, extras.customNotes, extras.onToggleNote, Modifier.padding(top = 4.dp)) {

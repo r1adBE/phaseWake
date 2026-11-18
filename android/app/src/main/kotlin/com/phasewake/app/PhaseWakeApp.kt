@@ -13,7 +13,9 @@ import com.phasewake.app.ring.onsetShiftReceived
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagDevice
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.HistoryPrune
 import com.phasewake.app.core.Learning
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.learn.LearningRepository
 import com.phasewake.app.holidays.HolidayRepository
 import com.phasewake.app.shared.AlarmRepository
@@ -39,6 +41,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /**
@@ -56,7 +59,7 @@ open class PhaseWakeApp : Application() {
     )
 
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
-    val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
+    val nights by lazy { NightRepository(File(filesDir, "nights.v1"), NightKeep.PHONE) }
     val settings by lazy { SettingsRepository(phaseWakeStore) }
     val sync by lazy { WearSync(this, com.phasewake.app.shared.DataLayer.CAPABILITY_WATCH) }
 
@@ -348,6 +351,25 @@ open class PhaseWakeApp : Application() {
         sync.clearHistoryEverywhere()
         // Die Lernphase beruht auf den Aufzeichnungen: von vorn.
         restartLearning()
+    }
+
+    /**
+     * «Älter als 90 Tage löschen» ([HistoryPrune]): eigene Nächte, Notizen, Befinden, Haken und Aufzeichnungen, die bis
+     * vor 90 Tagen endeten, weg; Nächte aus Health Connect bis dahin ausgeblendet (wie [clearHistory] über den
+     * Zeitpunkt «Verlauf löschen», nie früher als ein späteres Löschen). Die Uhr behält ihre Nächte; schickt sie eine
+     * davon noch einmal, nimmt das Handy sie nicht an (endet vor dem Zeitpunkt). Geräusche verfallen ohnehin nach
+     * 7 Tagen; die Lernphase läuft weiter, ihre Aufzeichnungen bleiben ([HistoryPrune.keepsRecording]).
+     */
+    suspend fun clearOlderHistory() {
+        val cutoff = HistoryPrune.cutoff(Instant.now())
+        val zone = ZoneId.systemDefault()
+        settings.setHistoryClearedAt(HistoryPrune.clearedAt(settings.historyClearedAt.first(), cutoff))
+        nights.clearBefore(cutoff)
+        com.phasewake.app.ui.history.Export.cleanup(this, java.time.Duration.ZERO)
+        notes.clearNotesBefore(cutoff, zone)
+        routine.clearTicksBefore(cutoff, zone)
+        recordings.clear(before = cutoff, learningSince = learning.current().openSince)
+        diag.log(DiagKind.SYNC, "history cleared older than ${HistoryPrune.DAYS} days")
     }
 }
 

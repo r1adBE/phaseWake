@@ -1,9 +1,13 @@
 package com.phasewake.app.ui
 
 import android.content.Context
+import android.content.res.Resources
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DayFormat
+import java.math.RoundingMode
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
@@ -50,6 +54,29 @@ object Format {
 
     /** Ganze Zahl mit den Ziffern der Sprache (wie [digits]). */
     fun number(value: Int): String = String.format(Locale.getDefault(), "%d", value)
+
+    /**
+     * Eine Nachkommastelle mit dem Dezimalzeichen der Sprache der Texte: «1,5» auf Deutsch – auch in der Schweiz, wo
+     * die Region sonst den Punkt vorgibt –, «1.5» auf Englisch. Ziffern und übrige Zeichen nach Sprache und Region;
+     * schreibt die Sprache allein andere Ziffern (Arabisch), bleibt das Zeichen der Region. [signed]: mit Vorzeichen
+     * und echtem Minus («+0,5», «−0,8»). Sprache aus [resources], nicht aus `Locale.getDefault()`, damit sie zum Text
+     * daneben passt.
+     */
+    fun decimal(resources: Resources, value: Double, signed: Boolean = false): String =
+        decimal(resources.configuration.locales[0], value, signed)
+
+    /** [decimal] für [locale]. */
+    fun decimal(locale: Locale, value: Double, signed: Boolean = false): String {
+        val symbols = DecimalFormatSymbols.getInstance(locale)
+        val language = DecimalFormatSymbols.getInstance(Locale.forLanguageTag(locale.language))
+        if (language.zeroDigit == symbols.zeroDigit) symbols.decimalSeparator = language.decimalSeparator
+        val format = DecimalFormat("0.0", symbols).apply { roundingMode = RoundingMode.HALF_UP }
+        if (signed) {
+            format.positivePrefix = "+"
+            format.negativePrefix = "−"
+        }
+        return format.format(value)
+    }
 
     fun time(t: LocalTime): String = time.format(t)
 

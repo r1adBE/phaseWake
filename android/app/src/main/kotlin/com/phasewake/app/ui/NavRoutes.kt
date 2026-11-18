@@ -169,6 +169,7 @@ private fun AlarmsRoute(
             soundFile = { app.sounds.file(it) },
             routineItems = data.routineItems,
             routineTicks = data.routineTicks,
+            sleepWeek = com.phasewake.app.core.SleepWeek.of(state.insights.trends, state.insights.goalWeek),
         ),
         actions = HomeActions(
             onHideFinding = findings.onHide,
@@ -307,10 +308,10 @@ private fun SettingsRoute(app: PhaseWakeApp, state: NavState, actions: NavAction
             onEveningDarkFrom = { app.appScope.launch { app.settings.setEveningDarkFrom(it) } },
             onEveningDarkUntil = { app.appScope.launch { app.settings.setEveningDarkUntil(it) } },
             onExport = actions.onExport,
-            onClearHistory = {
+            onClearHistory = { older ->
                 // Nach der Rückfrage noch die Gerätesperre (falls eingerichtet); Abbruch löscht nichts.
                 DeviceAuth.confirm(context, res.getString(R.string.auth_clear_history)) {
-                    app.appScope.launch { app.clearHistory() }
+                    app.appScope.launch { if (older) app.clearOlderHistory() else app.clearHistory() }
                 }
             },
             onConnectHealth = actions.connectHealth,

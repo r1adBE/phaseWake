@@ -105,6 +105,7 @@
     <string name="duration_hours_minutes">%1$d сағ %2$d мин</string>
     <string name="health_title">Health Connect-тен ұйқы фазалары</string>
     <string name="health_rationale">Phase Wake денсаулық қолданбаң (мысалы, Samsung Health) сақтайтын ұйқы деректерін оқи алады. Олар тарихыңда көрсетіледі, сондай-ақ Phase Wake сені оятқан түндермен салыстыру үшін. Phase Wake тек оқиды, ешқашан жазбайды, ешнәрсе телефоныңнан шықпайды.</string>
+    <string name="health_rationale_history">Бұрынғы деректерге қол жеткізуге де рұқсат етсең, Phase Wake 30 күннен ескі ұйқы деректерін де оқиды, сонда тарихың екі жылға дейін артқа созылуы мүмкін. Бұл рұқсатсыз Phase Wake тек алғашқы қол жеткізуден 30 күн бұрыннан бастап деректерді оқиды.</string>
     <string name="health_connect">Денсаулық деректерімен салыстыру</string>
     <string name="health_connect_hint">Оянғаннан кейін Health Connect-тен ұйқы фазаларын оқып, анықтауды тексереді және жақсартады.</string>
     <string name="health_connected">Қосылған</string>
@@ -520,7 +521,12 @@
     <string name="night_open">Толығырақ көрсету</string>
     <string name="night_latency">Ұйықтап кету уақыты</string>
     <string name="night_efficiency">Ұйқы тиімділігі</string>
-    <string name="night_awakenings">Оянған рет</string>
+    <string name="night_wake_moments">Ояну сәттері</string>
+    <string name="night_wake_brief">Қысқа оянулар</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">оның %1$d-і %2$d минуттан ұзақ</item>
+        <item quantity="other">оның %1$d-і %2$d минуттан ұзақ</item>
+    </plurals>
     <string name="night_longest_deep">Ең ұзақ терең ұйқы</string>
     <string name="stages_typical">Әдеттегі ауқым</string>
     <string name="stages_typical_range">Әдетте %1$d–%2$d %%</string>
@@ -645,4 +651,6 @@
     <string name="finding_bedtime">Ұйықтау уақытың %1$s дейін өзгерді. Кеңес: күн сайын шамамен бір уақытта жат, демалыс күндері де.</string>
     <string name="finding_jetlag">Демалыс күндері ұйқың жұмыс күндерімен салыстырғанда %1$s ығысты. Кеңес: демалыс күндері де сол ұйқы уақытын сақта.</string>
     <string name="weekly_deep">Терең ұйқы ұйқыңның %1$s</string>
+    <string name="settings_clear_old">90 күннен ескісін жою</string>
+    <string name="settings_clear_old_text">Телефондағы 90 күннен ескі жазылған түндерді олардың жазбаларымен, көңіл-күйімен, кешкі рәсім белгілерімен және түнгі жазбаларымен бірге жояды. Жаңарақ түндер мен оятқыштарың сақталады. Басқа қолданбалардың түндері мұнда тек жасырылады және сол қолданбаларда қалады.</string>
 </resources>

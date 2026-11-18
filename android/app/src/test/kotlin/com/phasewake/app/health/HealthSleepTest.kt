@@ -2,6 +2,8 @@ package com.phasewake.app.health
 
 import android.app.Application
 import androidx.health.connect.client.HealthConnectClient
+import androidx.health.connect.client.HealthConnectFeatures
+import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.SleepSessionRecord
 import androidx.health.connect.client.records.metadata.DataOrigin
 import androidx.health.connect.client.records.metadata.Metadata
@@ -92,6 +94,27 @@ class HealthSleepTest {
         assertEquals(emptyList(), health.sessions(t0, at(600)))
         assertEquals(emptyList(), health.stagesFor(night()))
         assertTrue(client.requests.isEmpty())
+    }
+
+    /** «Verlauf lesen» nur anfragen, wo Health Connect es kennt; Lesen braucht es nie. */
+    @Test
+    fun historyIsAskedOnlyWhereAvailableAndStaysOptional() = runBlocking {
+        val sleep = HealthPermission.getReadPermission(SleepSessionRecord::class)
+        val history = HealthPermission.PERMISSION_READ_HEALTH_DATA_HISTORY
+        assertFalse(health.historyAvailable)
+        assertEquals(setOf(sleep), health.requestPermissions)
+        client.history = HealthConnectFeatures.FEATURE_STATUS_AVAILABLE
+        assertTrue(health.historyAvailable)
+        assertEquals(setOf(sleep, history), health.requestPermissions)
+        // Nur Schlaf erlaubt: Zugriff besteht, gelesen wird wie bisher.
+        client.granted = setOf(sleep)
+        client.pages = listOf(listOf(session(0, 60)))
+        assertTrue(health.isGranted())
+        assertEquals(1, health.sessions(t0, at(600)).size)
+        // Ohne Health Connect wird nichts angefragt, was es nicht kennt.
+        status = HealthConnectClient.SDK_UNAVAILABLE
+        assertFalse(health.historyAvailable)
+        assertEquals(setOf(sleep), health.requestPermissions)
     }
 
     @Test

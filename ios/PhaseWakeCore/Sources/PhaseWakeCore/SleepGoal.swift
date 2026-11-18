@@ -40,6 +40,25 @@ public enum SleepGoal {
     }
 }
 
+/// Zeile der Startseite (Karte «Letzte Nacht»): Ø Schlaf der letzten 7 Tage (`asleepMinutes`,
+/// ``Trends/asleepThisWeek``) und Schlafziel erreicht (`reached` von `nights`,
+/// ``SleepGoal/weekStatus(_:goalMinutes:)``) – dieselben Werte wie die Trends im Verlauf, nichts neu gerechnet.
+/// Identisch zu `SleepWeek` (Kotlin).
+public struct SleepWeek: Equatable, Sendable {
+    /// Ø Schlaf der letzten 7 Tage in Minuten.
+    public let asleepMinutes: Int
+    /// Nächte mit erreichtem Schlafziel.
+    public let reached: Int
+    /// Gezählte Nächte der Wochenbilanz.
+    public let nights: Int
+
+    /// Aus den Trends und der Wochenbilanz; `nil` ohne Ø, also unter ``Trends/minNightsPerWeek`` Nächten mit
+    /// Schlafdauer in den letzten 7 Tagen.
+    public static func of(trends: Trends, goalWeek: (reached: Int, total: Int)) -> SleepWeek? {
+        trends.asleepThisWeek.map { SleepWeek(asleepMinutes: $0, reached: goalWeek.reached, nights: goalWeek.total) }
+    }
+}
+
 /// Bettzeit vor dem nächsten Wecker: Bettzeit = Zielzeit des nächsten Weckers − Schlafziel; erinnert
 /// `leadMinutes` Minuten davor. Beim Einschlaf-Modus gilt die eingestellte (späteste) Weckzeit. Identisch zu Kotlin.
 public enum Bedtime {

@@ -13,6 +13,8 @@ struct HomeView: View {
     @State private var sounds = false
     /// Gescrollt: «Neuer Wecker» nur noch als runder Knopf, damit er ruhiger über den Karten liegt.
     @State private var fabCompact = false
+    /// Ø Schlaf und Schlafziel der letzten 7 Nächte für «Letzte Nacht» (``HomeSleepWeek``); `nil`: keine Zeile.
+    @State private var sleepWeek: SleepWeek?
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
@@ -53,6 +55,7 @@ struct HomeView: View {
                     if opened {
                         opened = false
                         await PhoneWidgetSync.refreshAsleep(model)
+                        sleepWeek = await HomeSleepWeek.load(model)
                     }
                     // «Geräusche aufnehmen»: ab der Bettzeit (Vorgabe) bzw. am Abend (selbst eingeschaltet) von selbst
                     // starten.
@@ -163,7 +166,8 @@ struct HomeView: View {
                 // Ungemessene erste Minuten der Apple Watch zählen nicht als Lücke.
                 hint: MissHint.of(model.alarms.first { $0.id == night.alarmId },
                                   nights: model.nights.map(measuredPart)),
-                morningFirst: morningFirst
+                morningFirst: morningFirst,
+                sleepWeek: sleepWeek
             ) { model.setFeeling($0, for: night) }
         }
     }
@@ -263,11 +267,13 @@ struct HomeView: View {
 /// hell weiss; Radius 22 wie auf Android. `tinted`: Kennzahl mit einem Hauch der Hauptfarbe oben (wie `tileTint`).
 struct CardBackground: ViewModifier {
     var tinted = false
+    /// Innenabstand; 0 für Karten aus Zeilen mit eigenem Abstand (Liste der Wochen im Verlauf).
+    var inset: CGFloat = 16
     @Environment(\.colorScheme) private var scheme
     @Environment(\.skyPanel) private var panel
     func body(content: Content) -> some View {
         content
-            .padding(16)
+            .padding(inset)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background {
                 if tinted {
@@ -284,7 +290,9 @@ struct CardBackground: ViewModifier {
 }
 
 extension View {
-    func card(tinted: Bool = false) -> some View { modifier(CardBackground(tinted: tinted)) }
+    func card(tinted: Bool = false, inset: CGFloat = 16) -> some View {
+        modifier(CardBackground(tinted: tinted, inset: inset))
+    }
 }
 
 private struct LastNightCard: View {
@@ -293,6 +301,8 @@ private struct LastNightCard: View {
     let hint: MissHint?
     /// Am Morgen zuoberst (`isMorningFirst`): unter dem Titel «Geweckt um 6:42» gross statt nur der Uhrzeit.
     var morningFirst = false
+    /// Ø Schlaf und Schlafziel der letzten 7 Nächte (``HomeSleepWeek``); `nil`: keine Zeile.
+    var sleepWeek: SleepWeek?
     let onFeeling: (Int) -> Void
     @Environment(\.colorScheme) private var scheme
 
@@ -335,6 +345,11 @@ private struct LastNightCard: View {
             if let unmeasured = unmeasuredText(night) {
                 Text(unmeasured)
                     .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.tertiaryText(scheme))
+            }
+            if let sleepWeek {
+                Text(HomeSleepWeek.text(sleepWeek))
+                    .font(Fonts.manrope(12, relativeTo: .caption)).foregroundStyle(Brand.secondaryText(scheme))
+                    .padding(.top, 2)
             }
             if let hint {
                 VStack(alignment: .leading, spacing: 2) {

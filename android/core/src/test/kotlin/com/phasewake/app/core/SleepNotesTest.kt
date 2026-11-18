@@ -79,11 +79,12 @@ class SleepNotesTest {
     }
 
     @Test
-    fun keepsNewestNinetyDates() {
-        val many = (0L until 100L).associate { day.minusDays(it) to listOf(SleepNotes.NAP) }
+    fun keepsNewestDatesLikeTheHistory() {
+        // So weit wie der Verlauf: 2 Jahre und heute (731 Nachtdaten).
+        val many = (0L until 800L).associate { day.minusDays(it) to listOf(SleepNotes.NAP) }
         val kept = SleepNotes.trim(many)
-        assertEquals(90, kept.size)
-        assertEquals(day.minusDays(89), kept.keys.first())
+        assertEquals(731, kept.size)
+        assertEquals(day.minusDays(730), kept.keys.first())
         assertEquals(day, kept.keys.last())
     }
 

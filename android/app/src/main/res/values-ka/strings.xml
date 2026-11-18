@@ -105,6 +105,7 @@
     <string name="duration_hours_minutes">%1$d სთ %2$d წთ</string>
     <string name="health_title">ძილის ფაზები Health Connect-დან</string>
     <string name="health_rationale">Phase Wake-ს შეუძლია წაიკითხოს ძილის მონაცემები, რომლებსაც შენი ჯანმრთელობის აპი (მაგალითად, Samsung Health) ინახავს. ისინი ჩანს შენს ისტორიაში, მათ შორის იმ ღამეებთან შესადარებლად, როცა Phase Wake-მა გაგაღვიძა. Phase Wake მხოლოდ კითხულობს, არასოდეს წერს და არაფერი ტოვებს შენს ტელეფონს.</string>
+    <string name="health_rationale_history">თუ წარსულ მონაცემებზე წვდომასაც დაუშვებ, Phase Wake 30 დღეზე ძველ ძილის მონაცემებსაც წაიკითხავს და შენი ისტორია ორ წლამდე უკან შეიძლება გავრცელდეს. ამ ნებართვის გარეშე Phase Wake მხოლოდ პირველ წვდომამდე 30 დღით ადრე დაწყებულ მონაცემებს კითხულობს.</string>
     <string name="health_connect">შედარება ჯანმრთელობის მონაცემებთან</string>
     <string name="health_connect_hint">გაღვიძების შემდეგ კითხულობს ძილის ფაზებს Health Connect-დან, რათა შეამოწმოს და გააუმჯობესოს ამოცნობა.</string>
     <string name="health_connected">დაკავშირებულია</string>
@@ -520,7 +521,12 @@
     <string name="night_open">დეტალების ჩვენება</string>
     <string name="night_latency">ჩაძინების დრო</string>
     <string name="night_efficiency">ძილის ეფექტიანობა</string>
-    <string name="night_awakenings">გაღვიძებები</string>
+    <string name="night_wake_moments">გაღვიძებები</string>
+    <string name="night_wake_brief">მოკლე გაღვიძებები</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">მათგან %1$d — %2$d წთ-ზე მეტი</item>
+        <item quantity="other">მათგან %1$d — %2$d წთ-ზე მეტი</item>
+    </plurals>
     <string name="night_longest_deep">ყველაზე გრძელი ღრმა ძილი</string>
     <string name="stages_typical">ჩვეული დიაპაზონი</string>
     <string name="stages_typical_range">ჩვეულებრივ %1$d–%2$d %%</string>
@@ -645,4 +651,6 @@
     <string name="finding_bedtime">შენი დაძინების დრო %1$s-მდე მერყეობდა. რჩევა: ყოველდღე დაახლოებით ერთსა და იმავე დროს დაწექი, შაბათ-კვირასაც.</string>
     <string name="finding_jetlag">შაბათ-კვირას შენი ძილი სამუშაო დღეებთან შედარებით %1$s-ით გადაინაცვლა. რჩევა: შაბათ-კვირასაც იგივე ძილის დრო შეინარჩუნე.</string>
     <string name="weekly_deep">ღრმა ძილი შენი ძილის %1$s</string>
+    <string name="settings_clear_old">90 დღეზე ძველის წაშლა</string>
+    <string name="settings_clear_old_text">შლის ტელეფონზე 90 დღეზე ძველ ჩაწერილ ღამეებს მათ ჩანაწერებთან, თვითგრძნობასთან, საღამოს რუტინის მონიშვნებთან და ღამის ჩანაწერებთან ერთად. უფრო ახალი ღამეები და მაღვიძარები რჩება. სხვა აპების ღამეები აქ მხოლოდ იმალება და იმ აპებში რჩება.</string>
 </resources>

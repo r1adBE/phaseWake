@@ -269,7 +269,7 @@ final class HealthHistoryTests: XCTestCase {
         XCTAssertEqual(HealthHistory.napLatestHour, 19)
         XCTAssertEqual(HealthHistory.continuationGap, 60 * 60)
         XCTAssertEqual(HealthHistory.overlapTolerance, 5 * 60)
-        XCTAssertEqual(HealthHistory.days, 90)
+        XCTAssertEqual(HealthHistory.days, 730)
         XCTAssertEqual(Trends.minNightsPerWeek, 3)
         XCTAssertEqual(Trends.minNightsForSpread, 5)
         XCTAssertEqual(Regularity.toleranceMinutes, 30)

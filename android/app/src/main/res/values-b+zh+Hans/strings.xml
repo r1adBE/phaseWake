@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d 小时 %2$d 分钟</string>
     <string name="health_title">来自 Health Connect 的睡眠阶段</string>
     <string name="health_rationale">Phase Wake 可以读取你的健康应用（例如 Samsung Health）保存的睡眠数据。这些数据会显示在你的记录中，也可与 Phase Wake 叫醒你的那些夜晚进行对比。Phase Wake 只读取、从不写入，数据也不会离开你的手机。</string>
+    <string name="health_rationale_history">如果你同时允许访问过往数据，Phase Wake 也会读取 30 天以前的睡眠数据，这样你的记录最多可追溯到两年前。若不允许，Phase Wake 只读取首次授权前 30 天起的数据。</string>
     <string name="health_connect">与健康数据对比</string>
     <string name="health_connect_hint">醒来后从 Health Connect 读取睡眠阶段，用于检查并改进检测。</string>
     <string name="health_connected">已连接</string>
@@ -517,7 +518,11 @@
     <string name="night_open">显示详情</string>
     <string name="night_latency">入睡时长</string>
     <string name="night_efficiency">睡眠效率</string>
-    <string name="night_awakenings">醒来次数</string>
+    <string name="night_wake_moments">醒来次数</string>
+    <string name="night_wake_brief">短暂醒来次数</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">其中 %1$d 次超过 %2$d 分钟</item>
+    </plurals>
     <string name="night_longest_deep">最长深睡</string>
     <string name="stages_typical">常见范围</string>
     <string name="stages_typical_range">常见 %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">你的就寝时间最多相差 %1$s。建议：每天大约同一时间上床，周末也一样。</string>
     <string name="finding_jetlag">周末你的睡眠比工作日推迟了 %1$s。建议：周末也保持相同的作息时间。</string>
     <string name="weekly_deep">深睡占你睡眠的 %1$s</string>
+    <string name="settings_clear_old">删除 90 天前的记录</string>
+    <string name="settings_clear_old_text">将删除手机上超过 90 天的夜晚记录，连同相应的笔记、感觉、晚间习惯的勾选和夜间录制。较新的夜晚和你的闹钟会保留。来自其他应用的夜晚只会在这里隐藏，仍保留在那些应用中。</string>
 </resources>

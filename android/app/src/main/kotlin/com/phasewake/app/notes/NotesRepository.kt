@@ -7,8 +7,11 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.HealthFeelings
+import com.phasewake.app.core.HistoryPrune
 import com.phasewake.app.core.SleepNotes
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -57,6 +60,16 @@ class NotesRepository(private val store: DataStore<Preferences>) {
         store.edit {
             it.remove(NOTES)
             it.remove(HEALTH_FEELINGS)
+        }
+    }
+
+    /** «Älter als 90 Tage löschen»: Notizen und Befinden zu Nachtdaten vor [cutoff] ([HistoryPrune.dates]). */
+    suspend fun clearNotesBefore(cutoff: Instant, zone: ZoneId) {
+        store.edit { prefs ->
+            prefs[NOTES] = SleepNotes.encode(HistoryPrune.dates(SleepNotes.decode(prefs[NOTES]), cutoff, zone))
+            prefs[HEALTH_FEELINGS] = HealthFeelings.encode(
+                HistoryPrune.dates(HealthFeelings.decode(prefs[HEALTH_FEELINGS]), cutoff, zone),
+            )
         }
     }
 

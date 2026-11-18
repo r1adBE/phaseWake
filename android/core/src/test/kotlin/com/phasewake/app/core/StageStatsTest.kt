@@ -120,6 +120,33 @@ class StageStatsTest {
     }
 
     @Test
+    fun longAwakeningsAreLongerThanFiveMinutesBetweenSleep() {
+        // Vor dem Einschlafen 30 Min und nach dem Aufwachen 20 Min wach: zählen nicht. Dazwischen 5 Min genau (kurz),
+        // 5 Min 1 s (lang), 1 Min (kurz) und 12 Min (lang).
+        val s = StageStats.of(
+            listOf(
+                span(0, 30, SleepStage.AWAKE), span(30, 100, SleepStage.LIGHT),
+                span(100, 105, SleepStage.AWAKE), span(105, 150, SleepStage.DEEP),
+                StageSpan(at(150), at(155).plusSeconds(1), SleepStage.AWAKE),
+                StageSpan(at(155).plusSeconds(1), at(200), SleepStage.REM),
+                span(200, 201, SleepStage.AWAKE), span(201, 250, SleepStage.LIGHT),
+                span(250, 262, SleepStage.AWAKE), span(262, 300, SleepStage.LIGHT), span(300, 320, SleepStage.AWAKE),
+            ),
+            at(0), at(320),
+        )!!
+        assertEquals(4, s.awakenings)
+        assertEquals(2, s.longAwakenings)
+        assertEquals(5L, StageStats.LONG_WAKE_MINUTES)
+    }
+
+    @Test
+    fun noLongAwakeningsWithoutWakeBetweenSleep() {
+        val s = of(span(0, 40, SleepStage.AWAKE), span(40, 400, SleepStage.LIGHT), span(400, 460, SleepStage.AWAKE))!!
+        assertEquals(0, s.awakenings)
+        assertEquals(0, s.longAwakenings)
+    }
+
+    @Test
     fun ratingsMarkTheTypicalRange() {
         val deepAbove =
             of(span(0, 200, SleepStage.LIGHT), span(200, 320, SleepStage.DEEP), span(320, 400, SleepStage.REM))!!

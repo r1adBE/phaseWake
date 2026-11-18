@@ -5,9 +5,12 @@ import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.phasewake.app.core.HistoryPrune
 import com.phasewake.app.core.Routine
 import com.phasewake.app.core.RoutineItem
+import java.time.Instant
 import java.time.LocalDate
+import java.time.ZoneId
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -53,6 +56,13 @@ class RoutineRepository(private val store: DataStore<Preferences>) {
     /** «Verlauf löschen»: die Haken aller Abende; die Punkte bleiben. */
     suspend fun clearTicks() {
         store.edit { it.remove(TICKS) }
+    }
+
+    /** «Älter als 90 Tage löschen»: Haken vor dem Nachtdatum von [cutoff] ([HistoryPrune.dates]); Punkte bleiben. */
+    suspend fun clearTicksBefore(cutoff: Instant, zone: ZoneId) {
+        store.edit { prefs ->
+            prefs[TICKS] = Routine.encodeTicks(HistoryPrune.dates(Routine.decodeTicks(prefs[TICKS]), cutoff, zone))
+        }
     }
 
     /** Gespeicherte Texte (Punkte oder `null` = nie geändert, Haken) für die Sicherung. */

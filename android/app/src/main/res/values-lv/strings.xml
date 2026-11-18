@@ -117,6 +117,7 @@
     <string name="duration_hours_minutes">%1$d st. %2$d min</string>
     <string name="health_title">Miega fāzes no Health Connect</string>
     <string name="health_rationale">Phase Wake var nolasīt miega datus, ko tava veselības lietotne (piemēram, Samsung Health) saglabā. Tie tiek rādīti tavā vēsturē, arī salīdzināšanai ar naktīm, kad tevi pamodināja Phase Wake. Phase Wake tikai lasa, nekad neraksta, un nekas neatstāj tavu tālruni.</string>
+    <string name="health_rationale_history">Ja atļausi arī piekļuvi iepriekšējiem datiem, Phase Wake nolasīs arī miega datus, kas vecāki par 30 dienām, tāpēc tava vēsture var sniegties līdz pat diviem gadiem atpakaļ. Bez šīs atļaujas Phase Wake nolasa tikai datus, sākot no 30 dienām pirms pirmās piekļuves.</string>
     <string name="health_connect">Salīdzināt ar veselības datiem</string>
     <string name="health_connect_hint">Pēc pamošanās nolasa miega fāzes no Health Connect, lai pārbaudītu un uzlabotu noteikšanu.</string>
     <string name="health_connected">Savienots</string>
@@ -550,7 +551,13 @@
     <string name="night_open">Rādīt sīkāk</string>
     <string name="night_latency">Iemigšana</string>
     <string name="night_efficiency">Miega efektivitāte</string>
-    <string name="night_awakenings">Pamošanās reizes</string>
+    <string name="night_wake_moments">Pamošanās</string>
+    <string name="night_wake_brief">Īsas pamošanās</string>
+    <plurals name="night_wake_long">
+        <item quantity="zero">no tām %1$d ilgākas par %2$d min</item>
+        <item quantity="one">no tām %1$d ilgāka par %2$d min</item>
+        <item quantity="other">no tām %1$d ilgākas par %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Garākais dziļais miegs</string>
     <string name="stages_typical">Ierastais diapazons</string>
     <string name="stages_typical_range">Parasti %1$d–%2$d %%</string>
@@ -675,4 +682,6 @@
     <string name="finding_bedtime">Tavs gulētiešanas laiks svārstījās līdz %1$s. Padoms: ej gulēt katru dienu apmēram vienā laikā, arī brīvdienās.</string>
     <string name="finding_jetlag">Brīvdienās tavs miegs nobīdījās par %1$s, salīdzinot ar darbdienām. Padoms: ievēro tos pašus miega laikus arī brīvdienās.</string>
     <string name="weekly_deep">Dziļais miegs: %1$s no tava miega</string>
+    <string name="settings_clear_old">Dzēst vecākus par 90 dienām</string>
+    <string name="settings_clear_old_text">Dzēš tālrunī ierakstītās naktis, kas vecākas par 90 dienām, kopā ar to piezīmēm, pašsajūtu, vakara rituāla atzīmēm un nakts ierakstiem. Jaunākās naktis un modinātāji paliek. Naktis no citām lietotnēm šeit tiek tikai paslēptas un paliek šajās lietotnēs.</string>
 </resources>

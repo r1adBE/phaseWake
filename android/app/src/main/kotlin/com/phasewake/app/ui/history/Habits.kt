@@ -20,7 +20,6 @@ import com.phasewake.app.core.WeeklySummary
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.notes.noteEffectLine
 import java.time.Duration
-import java.util.Locale
 
 /**
  * Gewohnheiten für die Trends-Karte; jede Angabe `null`, wenn die Daten sie nicht tragen.
@@ -58,13 +57,15 @@ fun habitLines(
                 res.getQuantityString(R.plurals.habit_streak_best, habits.bestStreak, habits.bestStreak)
             )
         }
-        habits.routineAverage?.let { add(res.getString(R.string.routine_avg, decimal(it), habits.routineItems)) }
+        habits.routineAverage?.let {
+            add(res.getString(R.string.routine_avg, Format.decimal(res, it), habits.routineItems))
+        }
     }
 }
 
 /** Der Rückblick in einer Zeile; ohne Gesundheitsdaten nur das Befinden. */
 fun weeklyText(context: Context, summary: WeeklySummary): String {
-    val feeling = summary.feelingAverage?.let(::decimal) ?: NONE
+    val feeling = summary.feelingAverage?.let { Format.decimal(context.resources, it) } ?: NONE
     if (!summary.hasSleep) return context.getString(R.string.weekly_notification_feeling, feeling)
     val asleep = summary.asleepAverage?.let { Format.duration(context, Duration.ofMinutes(it)) } ?: NONE
     return context.getString(R.string.weekly_notification_text, asleep, summary.goalReached, summary.regular, feeling)
@@ -102,6 +103,3 @@ fun WeeklyCard(summary: WeeklySummary, custom: List<CustomNote>, deep: Pair<Int,
 
 /** Platzhalter für einen fehlenden Wert. */
 private const val NONE = "–"
-
-/** Eine Nachkommastelle nach Sprache (wie in den Trends). */
-private fun decimal(value: Double) = String.format(Locale.getDefault(), "%.1f", value)

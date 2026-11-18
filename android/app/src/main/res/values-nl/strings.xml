@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d u %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
     <string name="health_rationale">Phase Wake kan de slaapgegevens lezen die je gezondheidsapp (bijvoorbeeld Samsung Health) opslaat. Ze worden in je geschiedenis getoond, ook om te vergelijken met de nachten waarin Phase Wake je heeft gewekt. Phase Wake leest alleen, schrijft nooit, en er verlaat niets je telefoon.</string>
+    <string name="health_rationale_history">Als je ook toegang tot eerdere gegevens toestaat, leest Phase Wake ook slaapgegevens die ouder zijn dan 30 dagen, zodat je geschiedenis tot twee jaar terug kan gaan. Zonder deze toestemming leest Phase Wake alleen gegevens vanaf 30 dagen vóór de eerste toegang.</string>
     <string name="health_connect">Vergelijken met gezondheidsgegevens</string>
     <string name="health_connect_hint">Leest na het wakker worden de slaapfases uit Health Connect, om de herkenning te controleren en te verbeteren.</string>
     <string name="health_connected">Verbonden</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Details tonen</string>
     <string name="night_latency">Inslapen</string>
     <string name="night_efficiency">Slaapefficiëntie</string>
-    <string name="night_awakenings">Keren wakker</string>
+    <string name="night_wake_moments">Ontwaakmomenten</string>
+    <string name="night_wake_brief">Korte ontwaakmomenten</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">waarvan %1$d langer dan %2$d min</item>
+        <item quantity="other">waarvan %1$d langer dan %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Langste diepe slaap</string>
     <string name="stages_typical">Gebruikelijk bereik</string>
     <string name="stages_typical_range">Gebruikelijk %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Je bedtijd schommelde tot %1$s. Tip: ga elke dag rond dezelfde tijd naar bed, ook in het weekend.</string>
     <string name="finding_jetlag">In het weekend was je slaap %1$s verschoven ten opzichte van doordeweeks. Tip: houd ook in het weekend dezelfde slaaptijden aan.</string>
     <string name="weekly_deep">Diepe slaap %1$s van je slaap</string>
+    <string name="settings_clear_old">Ouder dan 90 dagen wissen</string>
+    <string name="settings_clear_old_text">Wist opgenomen nachten ouder dan 90 dagen op je telefoon, samen met hun notities, gevoel, vinkjes van de avondroutine en nachtopnamen. Nieuwere nachten en je wekkers blijven. Nachten uit andere apps worden hier alleen verborgen en blijven in die apps.</string>
 </resources>

@@ -157,9 +157,10 @@ fun HistoryScreen(
             return@LazyColumn
         }
         summaryItems(state, actions)
-        groupedItems(model.groups, folding, state, state.today ?: LocalDate.now()) { entry ->
+        groupedItems(model.groups, folding, CompactRows(state, actions), state.today ?: LocalDate.now()) { entry ->
             EntrySection(entry, state, actions, model, Modifier.animateItem())
         }
+        healthHintItem(model.entries)
     }
     }
 }
@@ -242,8 +243,10 @@ private fun EntrySection(
     }
 }
 
+/** Kennzahlen wie die übrigen über die jüngsten [NightHistory.INSIGHT_NIGHTS] Nächte, nicht den ganzen Verlauf. */
 @Composable
-private fun Stats(nights: List<NightRecord>) {
+private fun Stats(all: List<NightRecord>) {
+    val nights = remember(all) { NightHistory.latest(all) }
     val average = nights.map { it.minutesBeforeTarget }.average().roundToInt()
     // Nur Nächte, in denen früher wecken erlaubt war (ohne «Genau» und kurze Nächte); ohne solche keine Kachel.
     val lightShare = NightHistory.lightShare(nights)

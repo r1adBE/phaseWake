@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fasi del sonno da Health Connect</string>
     <string name="health_rationale">Phase Wake può leggere i dati sul sonno che la tua app di salute (ad esempio Samsung Health) salva. Vengono mostrati nella tua cronologia, anche per confrontarli con le notti in cui ti ha svegliato Phase Wake. Phase Wake legge soltanto, non scrive mai, e nulla lascia il tuo telefono.</string>
+    <string name="health_rationale_history">Se consenti anche l’accesso ai dati passati, Phase Wake legge anche i dati sul sonno più vecchi di 30 giorni, così la tua cronologia può risalire fino a due anni fa. Senza questo permesso, Phase Wake legge solo i dati a partire da 30 giorni prima del primo accesso.</string>
     <string name="health_connect">Confronta con i dati di salute</string>
     <string name="health_connect_hint">Legge le fasi del sonno da Health Connect dopo il risveglio, per verificare e migliorare il rilevamento.</string>
     <string name="health_connected">Connesso</string>
@@ -547,7 +548,13 @@
     <string name="night_open">Mostra dettagli</string>
     <string name="night_latency">Tempo per addormentarsi</string>
     <string name="night_efficiency">Efficienza del sonno</string>
-    <string name="night_awakenings">Risvegli</string>
+    <string name="night_wake_moments">Risvegli</string>
+    <string name="night_wake_brief">Risvegli brevi</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">di cui %1$d oltre %2$d min</item>
+        <item quantity="many">di cui %1$d oltre %2$d min</item>
+        <item quantity="other">di cui %1$d oltre %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Sonno profondo più lungo</string>
     <string name="stages_typical">Intervallo abituale</string>
     <string name="stages_typical_range">Di solito %1$d–%2$d %%</string>
@@ -672,4 +679,6 @@
     <string name="finding_bedtime">L’ora in cui vai a letto è variata fino a %1$s. Consiglio: vai a letto ogni giorno più o meno alla stessa ora, anche nel fine settimana.</string>
     <string name="finding_jetlag">Nel fine settimana il tuo sonno era spostato di %1$s rispetto ai giorni feriali. Consiglio: mantieni gli stessi orari anche nel fine settimana.</string>
     <string name="weekly_deep">Sonno profondo %1$s del tuo sonno</string>
+    <string name="settings_clear_old">Elimina più vecchi di 90 giorni</string>
+    <string name="settings_clear_old_text">Elimina dal telefono le notti registrate più vecchie di 90 giorni, insieme a note, sensazione, spunte della routine serale e registrazioni notturne. Le notti più recenti e le tue sveglie restano. Le notti di altre app vengono solo nascoste qui e restano in quelle app.</string>
 </resources>

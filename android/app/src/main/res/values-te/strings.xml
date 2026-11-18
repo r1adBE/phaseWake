@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d గం. %2$d ని.</string>
     <string name="health_title">Health Connect నుంచి నిద్ర దశలు</string>
     <string name="health_rationale">మీ హెల్త్ యాప్ (ఉదా. Samsung Health) భద్రపరిచే నిద్ర డేటాను Phase Wake చదవగలదు. అది మీ చరిత్రలో కనిపిస్తుంది, Phase Wake మిమ్మల్ని లేపిన రాత్రులతో పోల్చడానికి కూడా. Phase Wake చదువుతుంది మాత్రమే, ఎప్పుడూ రాయదు, ఏదీ మీ ఫోన్ దాటి వెళ్లదు.</string>
+    <string name="health_rationale_history">మునుపటి డేటాకు యాక్సెస్‌ను కూడా మీరు అనుమతిస్తే, Phase Wake 30 రోజుల కంటే పాత నిద్ర డేటాను కూడా చదువుతుంది, దీంతో మీ చరిత్ర రెండు సంవత్సరాల వరకు వెనక్కి వెళ్లగలదు. ఈ అనుమతి లేకుండా, మొదటి యాక్సెస్‌కు 30 రోజుల ముందు నుంచి ఉన్న డేటాను మాత్రమే Phase Wake చదువుతుంది.</string>
     <string name="health_connect">హెల్త్ డేటాతో పోల్చండి</string>
     <string name="health_connect_hint">మేల్కొన్న తర్వాత Health Connect నుంచి నిద్ర దశలను చదువుతుంది, గుర్తింపును తనిఖీ చేసి మెరుగుపరచడానికి.</string>
     <string name="health_connected">కనెక్ట్ అయింది</string>
@@ -535,7 +536,12 @@
     <string name="night_open">వివరాలు చూపించండి</string>
     <string name="night_latency">నిద్రపట్టడానికి పట్టిన సమయం</string>
     <string name="night_efficiency">నిద్ర సామర్థ్యం</string>
-    <string name="night_awakenings">మేల్కొన్న సార్లు</string>
+    <string name="night_wake_moments">మేల్కొన్న క్షణాలు</string>
+    <string name="night_wake_brief">కొద్దిసేపు మేల్కొనడం</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">వాటిలో %1$d, %2$d ని. కంటే ఎక్కువ</item>
+        <item quantity="other">వాటిలో %1$d, %2$d ని. కంటే ఎక్కువ</item>
+    </plurals>
     <string name="night_longest_deep">అత్యంత పొడవైన గాఢ నిద్ర</string>
     <string name="stages_typical">సాధారణ పరిధి</string>
     <string name="stages_typical_range">సాధారణంగా %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">నీ పడుకునే సమయం %1$s వరకు మారింది. సూచన: ప్రతిరోజూ దాదాపు ఒకే సమయానికి పడుకో, వారాంతంలో కూడా.</string>
     <string name="finding_jetlag">వారాంతంలో నీ నిద్ర పని దినాలతో పోలిస్తే %1$s జరిగింది. సూచన: వారాంతంలో కూడా అవే నిద్ర సమయాలు పాటించు.</string>
     <string name="weekly_deep">గాఢ నిద్ర నీ నిద్రలో %1$s</string>
+    <string name="settings_clear_old">90 రోజుల కంటే పాతవి తొలగించండి</string>
+    <string name="settings_clear_old_text">ఫోన్‌లో 90 రోజుల కంటే పాత నమోదైన రాత్రులను వాటి గమనికలు, మూడ్, సాయంత్రపు దినచర్య టిక్‌లు, రాత్రి రికార్డింగ్‌లతో సహా తొలగిస్తుంది. కొత్త రాత్రులు, మీ అలారాలు అలాగే ఉంటాయి. ఇతర యాప్‌ల రాత్రులు ఇక్కడ దాచబడతాయి మాత్రమే, అవి ఆ యాప్‌లలోనే ఉంటాయి.</string>
 </resources>

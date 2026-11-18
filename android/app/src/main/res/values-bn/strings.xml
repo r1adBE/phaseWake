@@ -114,6 +114,7 @@
     <string name="duration_hours_minutes">%1$d ঘ. %2$d মি.</string>
     <string name="health_title">Health Connect থেকে ঘুমের পর্যায়</string>
     <string name="health_rationale">তোমার স্বাস্থ্য অ্যাপ (যেমন Samsung Health) যে ঘুমের ডেটা সংরক্ষণ করে, Phase Wake সেটা পড়তে পারে। এটি তোমার ইতিহাসে দেখানো হয়, যেসব রাতে Phase Wake তোমাকে জাগিয়েছে সেগুলোর সঙ্গে তুলনার জন্যও। Phase Wake শুধু পড়ে, কখনও লেখে না, আর কিছুই তোমার ফোনের বাইরে যায় না।</string>
+    <string name="health_rationale_history">তুমি যদি আগের ডেটায় অ্যাক্সেসও দাও, Phase Wake 30 দিনের বেশি পুরোনো ঘুমের ডেটাও পড়ে, ফলে তোমার ইতিহাস দুই বছর পর্যন্ত পিছিয়ে যেতে পারে। এটি ছাড়া Phase Wake শুধু প্রথম অ্যাক্সেসের 30 দিন আগে থেকে ডেটা পড়ে।</string>
     <string name="health_connect">স্বাস্থ্য ডেটার সঙ্গে মেলাও</string>
     <string name="health_connect_hint">জাগার পর Health Connect থেকে ঘুমের পর্যায় পড়ে, শনাক্তকরণ যাচাই ও উন্নত করতে।</string>
     <string name="health_connected">সংযুক্ত</string>
@@ -534,7 +535,12 @@
     <string name="night_open">বিস্তারিত দেখাও</string>
     <string name="night_latency">ঘুমিয়ে পড়তে সময়</string>
     <string name="night_efficiency">ঘুমের দক্ষতা</string>
-    <string name="night_awakenings">জেগে ওঠার সংখ্যা</string>
+    <string name="night_wake_moments">জেগে ওঠার মুহূর্ত</string>
+    <string name="night_wake_brief">অল্পক্ষণ জেগে ওঠা</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">এর মধ্যে %1$dটি %2$d মি.-এর বেশি</item>
+        <item quantity="other">এর মধ্যে %1$dটি %2$d মি.-এর বেশি</item>
+    </plurals>
     <string name="night_longest_deep">দীর্ঘতম গভীর ঘুম</string>
     <string name="stages_typical">সাধারণ পরিসর</string>
     <string name="stages_typical_range">সাধারণত %1$d–%2$d %%</string>
@@ -659,4 +665,6 @@
     <string name="finding_bedtime">তোমার শোয়ার সময় %1$s পর্যন্ত বদলেছে। পরামর্শ: প্রতিদিন প্রায় একই সময়ে শুতে যাও, সপ্তাহান্তেও।</string>
     <string name="finding_jetlag">সপ্তাহান্তে তোমার ঘুম কাজের দিনের তুলনায় %1$s সরে গেছে। পরামর্শ: সপ্তাহান্তেও একই ঘুমের সময় বজায় রাখো।</string>
     <string name="weekly_deep">গভীর ঘুম তোমার ঘুমের %1$s</string>
+    <string name="settings_clear_old">৯০ দিনের পুরোনো মুছে ফেলো</string>
+    <string name="settings_clear_old_text">ফোনে ৯০ দিনের বেশি পুরোনো রেকর্ড করা রাতগুলো মুছে যাবে, সঙ্গে সেগুলোর নোট, অনুভূতি, সন্ধ্যার রুটিনের টিক আর রাতের রেকর্ডিংও। নতুন রাত আর তোমার অ্যালার্মগুলো থাকবে। অন্য অ্যাপের রাতগুলো এখানে শুধু লুকানো হয় এবং সেই অ্যাপগুলোতেই থেকে যায়।</string>
 </resources>

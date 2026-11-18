@@ -57,10 +57,13 @@ struct HistoryChartsData {
 
     /// Eingaben von ``of(_:now:calendar:)``: eigene Nächte, Schlaf und Phasen aus Apple Health, Notizen, Befinden
     /// auch zu Nächten aus anderen Apps (`health`). `nextTarget`, `goalMinutes` und `latencyMinutes` (gelernte
-    /// Einschlafdauer) ergeben die Bettzeit-Linie; `firstDay`: erster Tag der Woche für die Übersicht.
+    /// Einschlafdauer) ergeben die Bettzeit-Linie; `firstDay`: erster Tag der Woche für die Übersicht. `monthSleeps`:
+    /// Nächte aus Apple Health über den ganzen Verlauf für die Übersicht «Monate», deren älteste Säule vor die 90 Tage
+    /// von `sleeps` reicht; `nil`: `sleeps`. Wie `ChartSource.monthSleeps` (Android).
     struct Input {
         var nights: [NightRecord] = []
         var sleeps: [SleepSummary] = []
+        var monthSleeps: [SleepSummary]?
         var stages: [StageSpan] = []
         var notes: [String: [String]] = [:]
         var health: [HealthFeeling] = []
@@ -89,9 +92,11 @@ struct HistoryChartsData {
                                                  days: count, health: input.health)
             )
         }
+        // «Monate» mit allen Nächten der gezeigten Monate, «Tage» und «Wochen» wie die übrigen Kennzahlen.
         var overview: [OverviewUnit: SleepOverview] = [:]
         for unit in OverviewUnit.allCases {
-            overview[unit] = SleepOverviews.of(sleeps, calendar: calendar, today: today, goalMinutes: input.goalMinutes,
+            let source = unit == .months ? input.monthSleeps ?? sleeps : sleeps
+            overview[unit] = SleepOverviews.of(source, calendar: calendar, today: today, goalMinutes: input.goalMinutes,
                                                unit: unit, firstDay: input.firstDay, stages: stages)
         }
         return HistoryChartsData(

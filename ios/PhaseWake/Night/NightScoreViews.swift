@@ -291,20 +291,8 @@ struct ScoreLine: View {
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
-        let palette = ChartPalette(scheme)
-        let style = result.provisional
-            ? StrokeStyle(lineWidth: 2, lineCap: .butt, dash: [3, 2.4])
-            : StrokeStyle(lineWidth: 4, lineCap: .round)
         HStack(spacing: 10) {
-            ZStack {
-                Circle().inset(by: 2).stroke(palette.track, lineWidth: 4)
-                Circle().inset(by: 2)
-                    .trim(from: 0, to: Double(result.score) / 100)
-                    .stroke(palette.active, style: style)
-                    .rotationEffect(.degrees(-90))
-                Text(result.score.formatted()).font(Fonts.manrope(13, .bold, relativeTo: .footnote))
-            }
-            .frame(width: 40, height: 40)
+            ScoreRing(result: result)
             VStack(alignment: .leading, spacing: 0) {
                 Text(L("score_title"))
                     .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
@@ -314,5 +302,31 @@ struct ScoreLine: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(scoreDescription(result))
+    }
+}
+
+/// Ring mit dem Wert, `size` gross (Kurzzeile 40 pt, kompakte Zeile im Verlauf kleiner, Strich im selben Mass);
+/// vorläufig gestrichelt und dünner. Wie `ScoreRing` (Android).
+struct ScoreRing: View {
+    let result: SleepScoreResult
+    var size: CGFloat = 40
+    var fontSize: CGFloat = 13
+    @Environment(\.colorScheme) private var scheme
+
+    var body: some View {
+        let palette = ChartPalette(scheme)
+        let width = 4 * min(1, size / 40)
+        let style = result.provisional
+            ? StrokeStyle(lineWidth: width / 2, lineCap: .butt, dash: [3, 2.4])
+            : StrokeStyle(lineWidth: width, lineCap: .round)
+        ZStack {
+            Circle().inset(by: width / 2).stroke(palette.track, lineWidth: width)
+            Circle().inset(by: width / 2)
+                .trim(from: 0, to: Double(result.score) / 100)
+                .stroke(palette.active, style: style)
+                .rotationEffect(.degrees(-90))
+            Text(result.score.formatted()).font(Fonts.manrope(fontSize, .bold, relativeTo: .footnote))
+        }
+        .frame(width: size, height: size)
     }
 }

@@ -1,6 +1,7 @@
 package com.phasewake.app.health
 
 import androidx.health.connect.client.HealthConnectClient
+import androidx.health.connect.client.HealthConnectFeatures
 import androidx.health.connect.client.PermissionController
 import androidx.health.connect.client.aggregate.AggregationResult
 import androidx.health.connect.client.aggregate.AggregationResultGroupedByDuration
@@ -21,19 +22,26 @@ import kotlin.reflect.KClass
 
 /**
  * Health Connect im Speicher für [HealthSleep]: liefert [pages] (je Seite eine Liste, verbunden über Seiten-Kennungen),
- * merkt sich die Anfragen, kann den Zugriff verweigern ([granted]) oder beim Lesen scheitern ([failure]). Alles andere
- * braucht Phase Wake nicht und bricht ab.
+ * merkt sich die Anfragen, kann den Zugriff verweigern ([granted]) oder beim Lesen scheitern ([failure]); [history]:
+ * Stand der Funktion «Verlauf lesen». Alles andere braucht Phase Wake nicht und bricht ab.
  */
 internal class FakeHealthClient(
     var pages: List<List<SleepSessionRecord>> = emptyList(),
     var granted: Set<String> = emptySet(),
     var failure: Exception? = null,
+    var history: Int = HealthConnectFeatures.FEATURE_STATUS_UNAVAILABLE,
 ) : HealthConnectClient {
     val requests = mutableListOf<ReadRecordsRequest<*>>()
 
     override val permissionController: PermissionController = object : PermissionController {
         override suspend fun getGrantedPermissions(): Set<String> = granted
         override suspend fun revokeAllPermissions() = Unit
+    }
+
+    override val features: HealthConnectFeatures = object : HealthConnectFeatures {
+        override fun getFeatureStatus(feature: Int): Int =
+            if (feature == HealthConnectFeatures.FEATURE_READ_HEALTH_DATA_HISTORY) history
+            else HealthConnectFeatures.FEATURE_STATUS_UNAVAILABLE
     }
 
     @Suppress("UNCHECKED_CAST")

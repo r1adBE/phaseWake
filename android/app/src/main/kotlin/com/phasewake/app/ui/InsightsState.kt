@@ -88,7 +88,8 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     }
     val clearedAt by app.settings.historyClearedAt.collectAsStateWithLifecycle(initialValue = null)
     // Eine Abfrage für alles (Verlauf, Diagramme, Trends, Wirkung der Notizen, Phasen der eigenen Nächte):
-    // so weit zurück wie der Verlauf, mindestens bis vor die älteste eigene Nacht. Nur im Speicher; dazwischen bleibt
+    // so weit zurück wie der Verlauf (2 Jahre), mindestens bis vor die älteste eigene Nacht. Die Kennzahlen nehmen
+    // davon nur die letzten 90 Tage ([derive]). Nur im Speicher; dazwischen bleibt
     // das zuletzt Gelesene.
     val reads = remember { HealthReadGate() }
     val sessions by produceState(emptyList<HealthSession>(), health, healthCheck, healthGrant, nights?.size) {
@@ -136,7 +137,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     }
     return Insights(
         health, derived.stages, derived.trends, derived.goalWeek, derived.noteEffects, derived.habits, derived.charts,
-        derived.weekly, derived.history, sessions, remember(sleeps, zone) { NoteEffect.asleepByNight(sleeps, zone) },
+        derived.weekly, derived.history, sessions, derived.asleep,
     )
 }
 
@@ -158,7 +159,10 @@ internal data class InsightInputs(
 /** Ergebnis von [derive] zu [inputs]. */
 internal class Derived(
     val inputs: InsightInputs,
+    /** Nächte aus Health Connect der letzten 90 Tage, Grundlage der Kennzahlen ([HealthHistory.forInsights]). */
     val sleeps: List<SleepSummary>,
+    /** Schlaf je Nachtdatum über den ganzen Verlauf, für den Schnitt der Wochen und Jahre ([Insights.asleep]). */
+    val asleep: Map<LocalDate, Long>,
     val stages: List<StageSpan>,
     val history: List<HistoryItem>,
     val feelings: List<HealthFeeling>,
@@ -192,13 +196,17 @@ internal class EagerDerived {
  */
 internal fun derive(i: InsightInputs, checkpoint: () -> Unit = {}): Derived {
     val zone = i.zone
-    val nights = i.nights.orEmpty()
-    val sleeps = HealthHistory.summaries(i.sessions, i.clearedAt, zone)
-    val stages = HealthHistory.stages(i.sessions, i.clearedAt, zone)
-    val history = HealthHistory.merge(nights, i.sessions, i.clearedAt, zone)
-    // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
-    val feelings = HealthFeelings.of(history, i.healthFeelings)
     val now = Instant.now()
+    // Verlauf, Phasen und die Übersicht «Monate» über alles (2 Jahre); die übrigen Kennzahlen wie bisher über die
+    // jüngsten 90 eigenen Nächte und die Nächte aus Health Connect der letzten 90 Tage.
+    val history = HealthHistory.merge(i.nights.orEmpty(), i.sessions, i.clearedAt, zone)
+    val stages = HealthHistory.stages(i.sessions, i.clearedAt, zone)
+    val allSleeps = HealthHistory.summaries(i.sessions, i.clearedAt, zone)
+    val asleep = NoteEffect.asleepByNight(allSleeps, zone)
+    val (nights, sessions) = HealthHistory.forInsights(i.nights.orEmpty(), i.sessions, now, STAGES_BEFORE)
+    val sleeps = HealthHistory.summaries(sessions, i.clearedAt, zone)
+    // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
+    val feelings = HealthFeelings.of(HealthHistory.merge(nights, sessions, i.clearedAt, zone), i.healthFeelings)
     checkpoint()
     val trends = Trends.compute(nights, sleeps, now, zone, feelings)
     val goalWeek = SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, zone), i.sleepGoal)
@@ -208,13 +216,13 @@ internal fun derive(i: InsightInputs, checkpoint: () -> Unit = {}): Derived {
     checkpoint()
     // Diagramme im Verlauf: Schlaf aus Health Connect, Weckmomente und Befinden aus dem Verlauf.
     val charts = HistoryCharts.of(
-        ChartSource(nights, sleeps, stages, i.notes, feelings), i.alarms, i.sleepGoal, now, zone,
-        latencyMinutes = i.latency,
+        ChartSource(nights, sleeps, stages, i.notes, feelings, monthSleeps = allSleeps),
+        i.alarms, i.sleepGoal, now, zone, latencyMinutes = i.latency,
     )
     checkpoint()
     return Derived(
-        inputs = i, sleeps = sleeps, stages = stages, history = history, feelings = feelings, trends = trends,
-        goalWeek = goalWeek, noteEffects = noteEffects, habits = habits, charts = charts,
+        inputs = i, sleeps = sleeps, asleep = asleep, stages = stages, history = history, feelings = feelings,
+        trends = trends, goalWeek = goalWeek, noteEffects = noteEffects, habits = habits, charts = charts,
         weekly = weeklyCard(nights, sleeps, i, feelings),
     )
 }

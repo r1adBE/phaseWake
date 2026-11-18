@@ -118,6 +118,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fázy spánku z Health Connect</string>
     <string name="health_rationale">Phase Wake vie čítať údaje o spánku, ktoré ukladá tvoja zdravotná aplikácia (napríklad Samsung Health). Zobrazujú sa v tvojej histórii, aj na porovnanie s nocami, keď ťa zobudil Phase Wake. Phase Wake iba číta, nikdy nezapisuje a nič neopustí tvoj telefón.</string>
+    <string name="health_rationale_history">Ak povolíš aj prístup k starším údajom, Phase Wake číta aj údaje o spánku staršie ako 30 dní, takže tvoja história môže siahať až dva roky dozadu. Bez tohto povolenia číta Phase Wake iba údaje od 30 dní pred prvým prístupom.</string>
     <string name="health_connect">Porovnať so zdravotnými údajmi</string>
     <string name="health_connect_hint">Po prebudení načíta fázy spánku z Health Connect, aby rozpoznávanie overil a zlepšil.</string>
     <string name="health_connected">Pripojené</string>
@@ -564,7 +565,14 @@
     <string name="night_open">Zobraziť podrobnosti</string>
     <string name="night_latency">Zaspávanie</string>
     <string name="night_efficiency">Efektivita spánku</string>
-    <string name="night_awakenings">Prebudenia</string>
+    <string name="night_wake_moments">Prebudenia</string>
+    <string name="night_wake_brief">Krátke prebudenia</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">z toho %1$d dlhšie ako %2$d min</item>
+        <item quantity="few">z toho %1$d dlhšie ako %2$d min</item>
+        <item quantity="many">z toho %1$d dlhšie ako %2$d min</item>
+        <item quantity="other">z toho %1$d dlhšie ako %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Najdlhší hlboký spánok</string>
     <string name="stages_typical">Obvyklý rozsah</string>
     <string name="stages_typical_range">Obvykle %1$d–%2$d %%</string>
@@ -689,4 +697,6 @@
     <string name="finding_bedtime">Čas, keď ideš spať, kolísal až o %1$s. Tip: choď spať každý deň zhruba v rovnakom čase, aj cez víkend.</string>
     <string name="finding_jetlag">Cez víkend bol tvoj spánok posunutý o %1$s oproti pracovným dňom. Tip: dodržiavaj rovnaké časy spánku aj cez víkend.</string>
     <string name="weekly_deep">Hlboký spánok %1$s tvojho spánku</string>
+    <string name="settings_clear_old">Vymazať staršie ako 90 dní</string>
+    <string name="settings_clear_old_text">Vymaže z telefónu zaznamenané noci staršie ako 90 dní spolu s ich poznámkami, pocitom, zaškrtnutiami večernej rutiny a nočnými záznamami. Novšie noci a budíky zostanú. Noci z iných aplikácií sa tu iba skryjú a zostanú v týchto aplikáciách.</string>
 </resources>

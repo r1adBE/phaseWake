@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d ó %2$d p</string>
     <string name="health_title">Alvási fázisok a Health Connectből</string>
     <string name="health_rationale">A Phase Wake el tudja olvasni az alvási adatokat, amelyeket az egészségügyi appod (például a Samsung Health) eltárol. Ezek megjelennek az előzményeidben, összehasonlításként azokkal az éjszakákkal is, amikor a Phase Wake ébresztett. A Phase Wake csak olvas, soha nem ír, és semmi sem hagyja el a telefonodat.</string>
+    <string name="health_rationale_history">Ha a korábbi adatokhoz való hozzáférést is engedélyezed, a Phase Wake a 30 napnál régebbi alvási adatokat is beolvassa, így az előzményeid akár két évre visszamenőleg is elérhetők. Enélkül a Phase Wake csak az első hozzáférés előtti 30. naptól kezdődő adatokat olvassa.</string>
     <string name="health_connect">Összevetés egészségügyi adatokkal</string>
     <string name="health_connect_hint">Ébredés után beolvassa az alvási fázisokat a Health Connectből, hogy ellenőrizze és javítsa az észlelést.</string>
     <string name="health_connected">Csatlakoztatva</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Részletek megjelenítése</string>
     <string name="night_latency">Elalvás</string>
     <string name="night_efficiency">Alváshatékonyság</string>
-    <string name="night_awakenings">Ébredések</string>
+    <string name="night_wake_moments">Ébredések</string>
+    <string name="night_wake_brief">Rövid ébredések</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">ebből %1$d hosszabb %2$d percnél</item>
+        <item quantity="other">ebből %1$d hosszabb %2$d percnél</item>
+    </plurals>
     <string name="night_longest_deep">Leghosszabb mélyalvás</string>
     <string name="stages_typical">Szokásos tartomány</string>
     <string name="stages_typical_range">Szokásos %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">A lefekvésed ideje akár %1$s eltérést is mutatott. Tipp: feküdj le minden nap nagyjából ugyanakkor, hétvégén is.</string>
     <string name="finding_jetlag">Hétvégén az alvásod %1$s eltolódott a hétköznapokhoz képest. Tipp: hétvégén is tartsd ugyanazokat az alvásidőket.</string>
     <string name="weekly_deep">Mélyalvás: az alvásod %1$s-a</string>
+    <string name="settings_clear_old">90 napnál régebbiek törlése</string>
+    <string name="settings_clear_old_text">Törli a telefonodról a 90 napnál régebbi rögzített éjszakákat a jegyzeteikkel, az érzéssel, az esti rutin pipáival és az éjszakai felvételekkel együtt. Az újabb éjszakák és az ébresztőid megmaradnak. A más alkalmazásokból származó éjszakák itt csak el lesznek rejtve, és megmaradnak azokban az alkalmazásokban.</string>
 </resources>

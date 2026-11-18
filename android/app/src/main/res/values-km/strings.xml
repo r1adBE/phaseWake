@@ -112,6 +112,7 @@
     <string name="duration_hours_minutes">%1$d ម៉ោង %2$d នាទី</string>
     <string name="health_title">ដំណាក់កាលដំណេកពី Health Connect</string>
     <string name="health_rationale">Phase Wake អាចអានទិន្នន័យដំណេក ដែលកម្មវិធីសុខភាពរបស់អ្នក (ឧទាហរណ៍ Samsung Health) រក្សាទុក។ វាបង្ហាញក្នុងប្រវត្តិរបស់អ្នក ក៏ដូចជាសម្រាប់ប្រៀបធៀបជាមួយយប់ដែល Phase Wake បានដាស់អ្នក។ Phase Wake គ្រាន់តែអាន មិនដែលសរសេរ ហើយគ្មានអ្វីចេញពីទូរសព្ទរបស់អ្នកទេ។</string>
+    <string name="health_rationale_history">ប្រសិនបើអ្នកអនុញ្ញាតឱ្យចូលប្រើទិន្នន័យពីមុនផងដែរ Phase Wake ក៏អានទិន្នន័យដំណេកដែលចាស់ជាង 30 ថ្ងៃដែរ ដូច្នេះប្រវត្តិរបស់អ្នកអាចថយក្រោយបានរហូតដល់ពីរឆ្នាំ។ បើគ្មានការអនុញ្ញាតនេះ Phase Wake អានតែទិន្នន័យចាប់ពី 30 ថ្ងៃមុនការចូលប្រើលើកដំបូងប៉ុណ្ណោះ។</string>
     <string name="health_connect">ប្រៀបធៀបជាមួយទិន្នន័យសុខភាព</string>
     <string name="health_connect_hint">អានដំណាក់កាលដំណេកពី Health Connect ក្រោយភ្ញាក់ ដើម្បីពិនិត្យ និងកែលម្អការរកឃើញ។</string>
     <string name="health_connected">បានភ្ជាប់</string>
@@ -519,7 +520,11 @@
     <string name="night_open">បង្ហាញព័ត៌មានលម្អិត</string>
     <string name="night_latency">រយៈពេលលង់លក់</string>
     <string name="night_efficiency">ប្រសិទ្ធភាពដំណេក</string>
-    <string name="night_awakenings">ចំនួនដងភ្ញាក់</string>
+    <string name="night_wake_moments">ការភ្ញាក់</string>
+    <string name="night_wake_brief">ការភ្ញាក់ខ្លីៗ</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">ក្នុងនោះ %1$d លើស %2$d នាទី</item>
+    </plurals>
     <string name="night_longest_deep">ដំណេកជ្រៅយូរបំផុត</string>
     <string name="stages_typical">ចន្លោះធម្មតា</string>
     <string name="stages_typical_range">ធម្មតា %1$d–%2$d %%</string>
@@ -644,4 +649,6 @@
     <string name="finding_bedtime">ម៉ោងចូលគេងរបស់អ្នកប្រែប្រួលរហូតដល់ %1$s។ គន្លឹះ៖ ចូលគេងប្រហែលម៉ោងដដែលរៀងរាល់ថ្ងៃ រួមទាំងចុងសប្តាហ៍។</string>
     <string name="finding_jetlag">នៅចុងសប្តាហ៍ ដំណេករបស់អ្នករំកិល %1$s បើធៀបនឹងថ្ងៃធ្វើការ។ គន្លឹះ៖ រក្សាម៉ោងគេងដដែលនៅចុងសប្តាហ៍ផងដែរ។</string>
     <string name="weekly_deep">ដំណេកជ្រៅ %1$s នៃដំណេករបស់អ្នក</string>
+    <string name="settings_clear_old">លុបអ្វីដែលចាស់ជាង 90 ថ្ងៃ</string>
+    <string name="settings_clear_old_text">លុបយប់ដែលបានកត់ត្រាចាស់ជាង 90 ថ្ងៃលើទូរសព្ទ រួមទាំងកំណត់ចំណាំ អារម្មណ៍ សញ្ញាធីកនៃទម្លាប់ពេលល្ងាច និងការថតពេលយប់របស់វា។ យប់ថ្មីៗ និងម៉ោងរោទ៍របស់អ្នកនៅដដែល។ យប់ពីកម្មវិធីផ្សេងត្រូវបានលាក់នៅទីនេះប៉ុណ្ណោះ ហើយនៅតែមាននៅក្នុងកម្មវិធីទាំងនោះ។</string>
 </resources>

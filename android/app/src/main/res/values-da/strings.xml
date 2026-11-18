@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Søvnfaser fra Health Connect</string>
     <string name="health_rationale">Phase Wake kan læse de søvndata, som din sundheds-app (for eksempel Samsung Health) gemmer. De vises i din historik, også til sammenligning med de nætter, hvor Phase Wake vækkede dig. Phase Wake læser kun, skriver aldrig, og intet forlader din telefon.</string>
+    <string name="health_rationale_history">Hvis du også tillader adgang til tidligere data, læser Phase Wake også søvndata, der er ældre end 30 dage, så din historik kan række op til to år tilbage. Uden denne tilladelse læser Phase Wake kun data fra 30 dage før din første adgang.</string>
     <string name="health_connect">Sammenlign med sundhedsdata</string>
     <string name="health_connect_hint">Læser søvnfaser fra Health Connect efter opvågning for at tjekke og forbedre registreringen.</string>
     <string name="health_connected">Forbundet</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Vis detaljer</string>
     <string name="night_latency">Indsovning</string>
     <string name="night_efficiency">Søvneffektivitet</string>
-    <string name="night_awakenings">Gange vågen</string>
+    <string name="night_wake_moments">Opvågninger</string>
+    <string name="night_wake_brief">Korte opvågninger</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">heraf %1$d over %2$d min</item>
+        <item quantity="other">heraf %1$d over %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Længste dybe søvn</string>
     <string name="stages_typical">Typisk interval</string>
     <string name="stages_typical_range">Typisk %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Din sengetid svingede med op til %1$s. Tip: gå i seng omtrent samme tid hver dag, også i weekenden.</string>
     <string name="finding_jetlag">I weekenden var din søvn forskudt %1$s i forhold til hverdage. Tip: hold de samme sovetider i weekenden.</string>
     <string name="weekly_deep">Dyb søvn %1$s af din søvn</string>
+    <string name="settings_clear_old">Slet ældre end 90 dage</string>
+    <string name="settings_clear_old_text">Sletter optagede nætter ældre end 90 dage på din telefon sammen med deres noter, følelse, flueben i aftenrutinen og natoptagelser. Nyere nætter og dine alarmer bliver. Nætter fra andre apps skjules kun her og bliver i de apps.</string>
 </resources>

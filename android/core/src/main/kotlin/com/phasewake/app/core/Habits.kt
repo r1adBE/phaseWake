@@ -105,8 +105,8 @@ object Regularity {
 
 /** Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. */
 object Streak {
-    /** Zeitraum der längsten Serie in Nachtdaten, gleich lang wie der Verlauf ([NightHistory.MAX_NIGHTS]). */
-    const val LONGEST_DAYS: Int = 90
+    /** Zeitraum der längsten Serie in Nachtdaten, wie die übrigen Kennzahlen ([NightHistory.INSIGHT_NIGHTS]). */
+    const val LONGEST_DAYS: Int = NightHistory.INSIGHT_NIGHTS
 
     /** Schlafziel erreicht je Nachtdatum (aus der Gesundheits-App; mehrere Nächte am selben Datum → die längste). */
     fun reachedByNight(sleeps: List<SleepSummary>, zone: ZoneId, goalMinutes: Int): Map<LocalDate, Boolean> =

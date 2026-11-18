@@ -14,8 +14,10 @@ final class NightHistoryTests: XCTestCase {
                            reason: reason, snoozes: 1, epochs: epochs)
     }
 
-    func testKeepsNewestNinety() {
-        let kept = NightHistory.trim((0..<100).reversed().map { night($0) })
+    func testWatchKeepsNewestNinety() {
+        // Die Uhr behält wie bisher 90 Nächte, ohne Altersgrenze (auch Jahre später).
+        let kept = NightKeep.watch.trim((0..<100).reversed().map { night($0) },
+                                        now: start.addingTimeInterval(5_000 * 86_400))
         XCTAssertEqual(kept.count, 90)
         XCTAssertEqual(kept.first?.windowStart, start.addingTimeInterval(10 * 86_400))
         XCTAssertEqual(kept.last?.windowStart, start.addingTimeInterval(99 * 86_400))

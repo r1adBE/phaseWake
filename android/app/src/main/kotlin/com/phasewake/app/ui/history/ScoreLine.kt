@@ -22,6 +22,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
 import com.phasewake.app.core.SleepScoreResult
@@ -37,37 +39,13 @@ import com.phasewake.app.ui.theme.PhaseWakeTheme
 @Composable
 internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val brand = PhaseWakeTheme.brand
     val scheme = MaterialTheme.colorScheme
     val description = scoreDescription(context, result)
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.padding(top = 10.dp).clearAndSetSemantics { contentDescription = description },
     ) {
-        Box(Modifier.size(40.dp), contentAlignment = Alignment.Center) {
-            Canvas(Modifier.fillMaxSize()) {
-                val stroke = 4.dp.toPx()
-                val inset = stroke / 2
-                val arc = Size(size.width - stroke, size.height - stroke)
-                drawArc(brand.chartTrack, 0f, 360f, false, Offset(inset, inset), arc, style = Stroke(stroke))
-                val sweep = 360f * result.score / 100f
-                if (result.provisional) {
-                    // Gestrichelt in halber Stärke: «noch nicht ganz gemessen», ohne neue Farbe.
-                    val dash = 3.dp.toPx()
-                    val thin = Stroke(
-                        stroke / 2, cap = StrokeCap.Butt,
-                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(dash, dash * 0.8f)),
-                    )
-                    drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = thin)
-                } else {
-                    drawArc(
-                        brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc,
-                        style = Stroke(stroke, cap = StrokeCap.Round),
-                    )
-                }
-            }
-            Text(Format.number(result.score), style = MaterialTheme.typography.labelLarge)
-        }
+        ScoreRing(result)
         Column(Modifier.padding(start = 10.dp)) {
             Text(
                 stringResource(R.string.score_title), style = MaterialTheme.typography.labelMedium,
@@ -75,5 +53,39 @@ internal fun ScoreLine(result: SleepScoreResult, modifier: Modifier = Modifier) 
             )
             Text(bandName(context, result.band), style = MaterialTheme.typography.titleSmall)
         }
+    }
+}
+
+/** Ring mit dem Wert, [size] gross (Kurzzeile 40 dp, kompakte Zeile im Verlauf kleiner, Strich im selben Mass). */
+@Composable
+internal fun ScoreRing(
+    result: SleepScoreResult,
+    size: Dp = 40.dp,
+    textStyle: TextStyle = MaterialTheme.typography.labelLarge,
+) {
+    val brand = PhaseWakeTheme.brand
+    Box(Modifier.size(size), contentAlignment = Alignment.Center) {
+        Canvas(Modifier.fillMaxSize()) {
+            val stroke = 4.dp.toPx() * (size / 40.dp).coerceAtMost(1f)
+            val inset = stroke / 2
+            val arc = Size(this.size.width - stroke, this.size.height - stroke)
+            drawArc(brand.chartTrack, 0f, 360f, false, Offset(inset, inset), arc, style = Stroke(stroke))
+            val sweep = 360f * result.score / 100f
+            if (result.provisional) {
+                // Gestrichelt in halber Stärke: «noch nicht ganz gemessen», ohne neue Farbe.
+                val dash = 3.dp.toPx()
+                val thin = Stroke(
+                    stroke / 2, cap = StrokeCap.Butt,
+                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(dash, dash * 0.8f)),
+                )
+                drawArc(brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc, style = thin)
+            } else {
+                drawArc(
+                    brand.chartActive, -90f, sweep, false, Offset(inset, inset), arc,
+                    style = Stroke(stroke, cap = StrokeCap.Round),
+                )
+            }
+        }
+        Text(Format.number(result.score), style = textStyle)
     }
 }

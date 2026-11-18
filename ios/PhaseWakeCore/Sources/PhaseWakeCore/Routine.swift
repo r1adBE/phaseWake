@@ -40,7 +40,7 @@ public enum Routine {
     /// … über so viele Nachtdaten bis heute.
     public static let averageNights = 30
     /// Abgehakt bleibt so viele Nachtdaten (wie die Notizen).
-    public static let maxDates = NightHistory.maxNights
+    public static let maxDates = NightHistory.maxDates
 
     /// Ob die Kennung einer der drei Vorschläge ist.
     public static func isBuiltIn(_ id: String) -> Bool { id == phone || id == light || id == water }
@@ -91,7 +91,7 @@ public enum Routine {
         return trim(result)
     }
 
-    /// Behält die jüngsten 90 Nachtdaten mit Haken.
+    /// Behält die jüngsten ``maxDates`` Nachtdaten mit Haken.
     public static func trim(_ ticks: [String: [String]]) -> [String: [String]] {
         let kept = ticks.filter { !$0.value.isEmpty }.keys.sorted().suffix(maxDates)
         return Dictionary(uniqueKeysWithValues: kept.map { ($0, ticks[$0] ?? []) })

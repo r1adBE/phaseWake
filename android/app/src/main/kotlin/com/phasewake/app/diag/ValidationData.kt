@@ -1,6 +1,7 @@
 package com.phasewake.app.diag
 
 import com.phasewake.app.PhaseWakeApp
+import com.phasewake.app.core.NightHistory
 import com.phasewake.app.core.Validation
 import java.time.Duration
 import java.time.Instant
@@ -18,7 +19,8 @@ internal object ValidationData {
 
     /** Alle Entscheide mit Referenzphase; leer ohne Nächte und Aufzeichnungen. */
     suspend fun entries(app: PhaseWakeApp): List<Validation.Entry> {
-        val nights = app.nights.load()
+        // Wie die übrigen Kennzahlen über die jüngsten 90 Nächte, nicht den ganzen Verlauf.
+        val nights = NightHistory.latest(app.nights.load())
         val recordings = app.recordings.load().map { it.toLearnNight() }
         val oldest = (nights.map { it.windowStart } + recordings.map { it.start }).minOrNull() ?: return emptyList()
         val sessions = app.health.sessions(oldest.minus(LOOK_BACK), Instant.now())

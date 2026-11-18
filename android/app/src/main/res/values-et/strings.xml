@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Unefaasid Health Connectist</string>
     <string name="health_rationale">Phase Wake saab lugeda uneandmeid, mille sinu terviserakendus (näiteks Samsung Health) salvestab. Neid näidatakse sinu ajaloos, ka võrdluseks öödega, mil Phase Wake sind äratas. Phase Wake ainult loeb, ei kirjuta kunagi midagi ja miski ei lahku sinu telefonist.</string>
+    <string name="health_rationale_history">Kui lubad ka juurdepääsu varasematele andmetele, loeb Phase Wake ka üle 30 päeva vanuseid uneandmeid, nii et sinu ajalugu võib ulatuda kuni kaks aastat tagasi. Ilma selle loata loeb Phase Wake ainult andmeid alates 30 päevast enne esimest juurdepääsu.</string>
     <string name="health_connect">Võrdle terviseandmetega</string>
     <string name="health_connect_hint">Loeb pärast ärkamist unefaase Health Connectist, et tuvastust kontrollida ja parandada.</string>
     <string name="health_connected">Ühendatud</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Näita üksikasju</string>
     <string name="night_latency">Uinumisaeg</string>
     <string name="night_efficiency">Une tõhusus</string>
-    <string name="night_awakenings">Ärkamisi</string>
+    <string name="night_wake_moments">Ärkamised</string>
+    <string name="night_wake_brief">Lühikesed ärkamised</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">neist %1$d üle %2$d min</item>
+        <item quantity="other">neist %1$d üle %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Pikim sügav uni</string>
     <string name="stages_typical">Tavaline vahemik</string>
     <string name="stages_typical_range">Tavaliselt %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Sinu magamamineku aeg kõikus kuni %1$s. Nõuanne: mine iga päev magama umbes samal ajal, ka nädalavahetusel.</string>
     <string name="finding_jetlag">Nädalavahetusel nihkus su uni tööpäevadega võrreldes %1$s. Nõuanne: hoia samu uneaegu ka nädalavahetusel.</string>
     <string name="weekly_deep">Sügav uni %1$s sinu unest</string>
+    <string name="settings_clear_old">Kustuta vanemad kui 90 päeva</string>
+    <string name="settings_clear_old_text">Kustutab telefonist üle 90 päeva vanad salvestatud ööd koos nende märkmete, enesetunde, õhturutiini linnukeste ja öiste salvestustega. Uuemad ööd ja äratused jäävad alles. Teiste rakenduste ööd peidetakse siin ainult ära ja need jäävad neisse rakendustesse.</string>
 </resources>

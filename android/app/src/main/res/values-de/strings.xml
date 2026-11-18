@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d Std. %2$d Min</string>
     <string name="health_title">Schlafphasen aus Health Connect</string>
     <string name="health_rationale">Phase Wake kann die Schlafdaten lesen, die deine Gesundheits-App (zum Beispiel Samsung Health) ablegt. Sie erscheinen in deinem Verlauf, auch zum Vergleich mit den Nächten, in denen Phase Wake geweckt hat. Phase Wake liest nur, schreibt nie, und nichts verlässt dein Handy.</string>
+    <string name="health_rationale_history">Erlaubst du auch den Zugriff auf frühere Daten, liest Phase Wake auch Schlafdaten, die älter als 30 Tage sind – so reicht dein Verlauf bis zu zwei Jahre zurück. Ohne diese Erlaubnis liest Phase Wake nur Daten ab 30 Tagen vor dem ersten Zugriff.</string>
     <string name="health_connect">Mit Gesundheitsdaten abgleichen</string>
     <string name="health_connect_hint">Liest nach dem Aufwachen die Schlafphasen aus Health Connect, um die Erkennung zu prüfen und zu verbessern.</string>
     <string name="health_connected">Verbunden</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Details anzeigen</string>
     <string name="night_latency">Einschlafdauer</string>
     <string name="night_efficiency">Schlafeffizienz</string>
-    <string name="night_awakenings">Wachphasen</string>
+    <string name="night_wake_moments">Wachmomente</string>
+    <string name="night_wake_brief">Kurze Wachmomente</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">davon %1$d länger als %2$d Min</item>
+        <item quantity="other">davon %1$d länger als %2$d Min</item>
+    </plurals>
     <string name="night_longest_deep">Längster Tiefschlaf</string>
     <string name="stages_typical">Üblicher Bereich</string>
     <string name="stages_typical_range">Üblich %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Deine Bettzeit schwankte um bis zu %1$s. Tipp: Geh jeden Tag etwa zur gleichen Zeit ins Bett, auch am Wochenende.</string>
     <string name="finding_jetlag">Am Wochenende war dein Schlaf um %1$s gegenüber den Werktagen verschoben. Tipp: Behalte deine Schlafzeiten auch am Wochenende bei.</string>
     <string name="weekly_deep">Tiefschlaf %1$s deines Schlafs</string>
+    <string name="settings_clear_old">Älter als 90 Tage löschen</string>
+    <string name="settings_clear_old_text">Löscht aufgezeichnete Nächte, die älter als 90 Tage sind, auf dem Handy, samt ihren Notizen, Befinden, Haken der Abendroutine und Aufzeichnungen. Neuere Nächte und deine Wecker bleiben. Nächte aus anderen Apps werden hier nur ausgeblendet und bleiben in diesen Apps.</string>
 </resources>

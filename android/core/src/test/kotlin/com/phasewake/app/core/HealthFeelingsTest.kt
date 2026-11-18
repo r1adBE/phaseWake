@@ -52,10 +52,11 @@ class HealthFeelingsTest {
         assertEquals(one, HealthFeelings.set(one, d("2026-10-02"), 0))
         assertEquals(one, HealthFeelings.set(one, d("2026-10-02"), 6))
         var many = emptyMap<LocalDate, Int>()
-        for (i in 0L until 91L) many = HealthFeelings.set(many, d("2026-01-01").plusDays(i), 4)
+        for (i in 0L until 732L) many = HealthFeelings.set(many, d("2026-01-01").plusDays(i), 4)
+        assertEquals(731, HealthFeelings.MAX_DATES)
         assertEquals(HealthFeelings.MAX_DATES, many.size)
         assertFalse(d("2026-01-01") in many)
-        assertTrue(d("2026-04-01") in many)
+        assertTrue(d("2026-01-02") in many)
     }
 
     @Test

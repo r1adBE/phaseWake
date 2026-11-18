@@ -4,7 +4,8 @@ import android.util.AtomicFile
 import android.util.Log
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.CodecException
-import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.HistoryPrune
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import java.io.File
 import java.io.FileNotFoundException
@@ -18,12 +19,15 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 
 /**
- * Verlauf der aufgezeichneten Nächte, höchstens [NightHistory.MAX_NIGHTS], in einer Datei.
+ * Verlauf der aufgezeichneten Nächte in einer Datei, gekürzt nach [keep] (Handy: 2 Jahre, Uhr: 90 Nächte).
  * Schreibt atomar, damit ein Absturz nie einen halben Verlauf hinterlässt.
  */
 class NightRepository(
     file: File,
+    private val keep: NightKeep,
     private val io: CoroutineDispatcher = Dispatchers.IO,
+    /** Jetzt, für die Altersgrenze von [keep] (Tests geben eine feste Zeit). */
+    private val now: () -> java.time.Instant = java.time.Instant::now,
 ) {
     private val atomic = AtomicFile(file)
     private val mutex = Mutex()
@@ -39,7 +43,7 @@ class NightRepository(
      * Ein schon angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
      */
     suspend fun add(night: NightRecord) = mutex.withLock {
-        val updated = mergeNight(loadLocked(), night)
+        val updated = mergeNight(loadLocked(), night, keep, now())
         write(updated)
         state.value = updated
     }
@@ -52,12 +56,19 @@ class NightRepository(
     }
 
     /**
-     * Ersetzt den ganzen Verlauf (Wiederherstellen einer Sicherung); mehr als [NightHistory.MAX_NIGHTS] werden gekürzt.
+     * Ersetzt den ganzen Verlauf (Wiederherstellen einer Sicherung), gekürzt nach [keep].
      */
     suspend fun replaceAll(nights: List<NightRecord>) = mutex.withLock {
-        val trimmed = NightHistory.trim(nights)
+        val trimmed = keep.trim(nights, now())
         write(trimmed)
         state.value = trimmed
+    }
+
+    /** «Älter als 90 Tage löschen»: Nächte, die bis [cutoff] geweckt haben, weg ([HistoryPrune.nights]). */
+    suspend fun clearBefore(cutoff: java.time.Instant) = mutex.withLock {
+        val kept = HistoryPrune.nights(loadLocked(), cutoff)
+        write(kept)
+        state.value = kept
     }
 
     suspend fun clear() = mutex.withLock {

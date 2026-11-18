@@ -11,8 +11,13 @@ struct HistoryView: View {
     /// gelesen, nur im Speicher (nie gespeichert oder gesichert) – was dort geändert oder gelöscht wird, ist es hier
     /// auch.
     @State private var health = HealthNights()
-    /// Daraus: Nächte für Diagramme und Trends sowie die Phasen für die eigenen Nächte (ohne ausgeblendete).
+    /// Daraus: Nächte für den Schnitt der Wochen und Jahre und die Übersicht «Monate» sowie die Phasen der eigenen
+    /// Nächte (ohne ausgeblendete).
     @State private var sleeps: [SleepSummary] = []
+    /// Kennzahlen (Diagramme, Trends, Notizen, Wochenrückblick) wie bisher nur über die letzten 90 Tage
+    /// (`HealthHistory.forInsights`), nicht den ganzen Verlauf: Sitzungen und Nächte daraus.
+    @State private var recentSessions: [HealthSession] = []
+    @State private var recentSleeps: [SleepSummary] = []
     @State private var allStages: [StageSpan] = []
     /// Ob Apple Health schon gelesen wurde (sonst zeigt der leere Verlauf zu früh «keine Daten»).
     @State private var loaded = false
@@ -30,8 +35,13 @@ struct HistoryView: View {
     var body: some View {
         let items = self.items
         let entries = self.entries(items)
+        // Kennzahlen über die jüngsten 90 eigenen Nächte (der Verlauf reicht 2 Jahre zurück).
+        let recent = NightHistory.latest(model.nights)
         // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen: zählt in Diagrammen und Trends wie das eigene.
-        let feelings = HealthFeelings.of(items, feelings: model.healthFeelings)
+        let feelings = HealthFeelings.of(HealthHistory.merge(nights: recent, sessions: recentSessions,
+                                                             clearedAt: model.historyClearedAt,
+                                                             calendar: .gregorianLocal),
+                                         feelings: model.healthFeelings)
         let charts = self.charts(feelings)
         NavigationStack(path: $path) {
             ScrollView {
@@ -55,46 +65,45 @@ struct HistoryView: View {
                                                   calendar: .gregorianLocal,
                                                   own: PhoneLearning.shared.recordings.compactMap(\.ownOnset),
                                                   watch: model.nights.compactMap(OwnOnset.of))
-                        if let summary = weekly(feelings) {
+                        if let summary = weekly(feelings, nights: recent) {
                             WeeklyCard(summary: summary, deep: Findings.weekDeep(facts, weekEnd: summary.to))
                         }
-                        if !model.nights.isEmpty { stats }
+                        if !recent.isEmpty { stats(recent) }
                         TrendsCard(
-                            trends: Trends.compute(nights: model.nights, sleeps: sleeps, now: Date(),
+                            trends: Trends.compute(nights: recent, sleeps: recentSleeps, now: Date(),
                                                    calendar: .gregorianLocal, health: feelings),
                             goalWeek: goalWeek,
                             healthConnected: healthRequested,
                             onConnectHealth: { connectHealth() },
-                            habits: habitLines(model: model, sleeps: sleeps, healthConnected: healthRequested,
+                            habits: habitLines(model: model, sleeps: recentSleeps, healthConnected: healthRequested,
                                                regularShown: charts.covered.contains(.regular)),
                             covered: charts.covered,
                             findings: Findings.of(facts, today: SleepNotes.nightDate(Date(), calendar: .gregorianLocal),
                                                   calendar: .gregorianLocal)
                         )
-                        NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes,
-                                                                    asleepByNight: asleepByNight,
+                        NoteEffectsCard(effects: NoteEffect.compute(nights: recent, notes: model.notes,
+                                                                    asleepByNight: recentAsleep,
                                                                     health: feelings, calendar: .gregorianLocal))
                         // Die neusten Nächte einzeln, ältere je Woche bzw. Jahr (aufklappbar).
                         let today = NightDate.today(Date(), calendar: .gregorianLocal)
                         let asleep = asleepByNight
+                        let compact = CompactRowsContext(asleep: asleep, healthFeelings: model.healthFeelings,
+                                                         goalMinutes: model.sleepGoal,
+                                                         recordings: PhoneLearning.shared.recordings,
+                                                         stages: stages(of:), open: { path.append($0) })
                         HistoryGroupList(groups: HistoryEntry.groups(entries, today: today), open: $open,
                                          summary: { HistoryEntry.summary($0, asleep: asleep,
                                                                          healthFeelings: model.healthFeelings) },
                                          today: today) { entry in
                             switch entry {
                             case .night(let night):
-                                NightCard(night: night,
-                                          stages: allStages.filter {
-                                              $0.end > night.windowStart.addingTimeInterval(-14 * 3600)
-                                                  && $0.start < night.wokeAt.addingTimeInterval(Self.stagesAfter)
-                                          },
+                                NightCard(night: night, stages: stages(of: night),
                                           goalMinutes: model.sleepGoal, recordings: PhoneLearning.shared.recordings) {
                                     let date = SleepNotes.nightDate(of: night, calendar: .gregorianLocal)
                                     path.append(HistoryItem(kind: .phaseWake, date: date, night: night).key)
                                 }
                             case .health(let session, let date):
-                                HealthNightCard(session: session, nightDate: date, sourceName: sourceName(session),
-                                                feeling: model.healthFeelings[date],
+                                HealthNightCard(session: session, nightDate: date, feeling: model.healthFeelings[date],
                                                 onOpen: { path.append(HistoryItem(kind: .health, date: date,
                                                                                   session: session).key) },
                                                 score: nightScore(stages: StageStats.forSession(session),
@@ -105,7 +114,10 @@ struct HistoryView: View {
                             case .recording(let recording):
                                 RecordingCard(recording: recording)
                             }
+                        } compact: { entry in
+                            HistoryCompactEntry(entry: entry, context: compact)
                         }
+                        healthHint(entries)
                         if !model.nights.isEmpty || !PhoneLearning.shared.recordings.isEmpty { export }
                     }
                 }
@@ -133,6 +145,10 @@ struct HistoryView: View {
         }
         health = await model.health.sessions()
         sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
+        recentSessions = HealthHistory.forInsights(nights: model.nights, sessions: health.sessions,
+                                                   now: Date()).sessions
+        recentSleeps = HealthHistory.summaries(recentSessions, clearedAt: model.historyClearedAt,
+                                               calendar: .gregorianLocal)
         allStages = HealthHistory.stages(health.sessions, clearedAt: model.historyClearedAt, calendar: .gregorianLocal)
         PhoneWidgetSync.publishAsleep(model, sleeps: sleeps)
         loaded = true
@@ -153,6 +169,31 @@ struct HistoryView: View {
         return source == HealthSleep.appleSource ? L("health_apple") : health.names[source]
     }
 
+    /// Phasen für die Karte bzw. Zeile einer eigenen Nacht: Beginn bis `stagesAfter` nach dem Wecken.
+    private func stages(of night: NightRecord) -> [StageSpan] {
+        allStages.filter {
+            $0.end > night.windowStart.addingTimeInterval(-14 * 3600)
+                && $0.start < night.wokeAt.addingTimeInterval(Self.stagesAfter)
+        }
+    }
+
+    /// Hinweis zur Quelle der Nächte aus Apple Health, einmal unter der Liste statt auf jeder Karte; aus mehreren
+    /// Quellen einmal die allgemeine Fassung. Wie `healthHintItem` (Android).
+    @ViewBuilder private func healthHint(_ entries: [HistoryEntry]) -> some View {
+        let hints = Set(entries.compactMap { entry -> String? in
+            if case .health(let session, _) = entry { return healthLive(sourceName: sourceName(session)) }
+            return nil
+        })
+        if !hints.isEmpty {
+            Text(hints.count == 1 ? hints.first ?? "" : healthLive(sourceName: nil))
+                .font(Fonts.manrope(11, relativeTo: .caption2))
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity)
+                .padding(.horizontal, 32)
+        }
+    }
+
     private var export: some View {
         VStack(spacing: 0) {
             HistoryExportLink { Label(L("history_export"), systemImage: "square.and.arrow.up") }
@@ -170,7 +211,9 @@ struct HistoryView: View {
     private func charts(_ feelings: [HealthFeeling]) -> HistoryChartsData {
         let now = Date()
         let input = HistoryChartsData.Input(
-            nights: model.nights, sleeps: sleeps, stages: allStages, notes: model.notes, health: feelings,
+            nights: NightHistory.latest(model.nights), sleeps: recentSleeps, monthSleeps: sleeps, stages: allStages,
+            notes: model.notes,
+            health: feelings,
             nextTarget: model.nextPlan(now: now)?.target,
             goalMinutes: model.sleepGoal, latencyMinutes: model.learnedLatency,
             // Erster Tag der Woche nach der Sprache des Geräts (Calendar: 1 = Sonntag; Weekday: 1 = Montag).
@@ -223,30 +266,34 @@ struct HistoryView: View {
     /// Geschlafene Minuten je Nachtdatum (Mitte der Nacht, wie Diagramme und Android); bei zwei Einträgen der längere.
     private var asleepByNight: [String: Int] { NoteEffect.asleepByNight(sleeps, calendar: .gregorianLocal) }
 
+    /// Wie ``asleepByNight``, nur die letzten 90 Tage (Kennzahlen).
+    private var recentAsleep: [String: Int] { NoteEffect.asleepByNight(recentSleeps, calendar: .gregorianLocal) }
+
     /// Wochenrückblick am Sonntag und Montag; `nil` an anderen Tagen oder ohne Daten.
-    private func weekly(_ feelings: [HealthFeeling]) -> WeeklySummary? {
+    private func weekly(_ feelings: [HealthFeeling], nights: [NightRecord]) -> WeeklySummary? {
         let today = NightDate.today(Date(), calendar: .gregorianLocal)
         guard WeeklySummary.cardVisible(today: today) else { return nil }
-        let summary = WeeklySummary.of(nights: model.nights, sleeps: sleeps, notes: model.notes,
+        let summary = WeeklySummary.of(nights: nights, sleeps: recentSleeps, notes: model.notes,
                                        calendar: .gregorianLocal,
                                        goalMinutes: model.sleepGoal, weekEnd: WeeklySummary.weekEnd(today: today),
                                        health: feelings)
         return summary.hasData ? summary : nil
     }
 
-    /// Schlafziel der letzten 7 Nächte; `nil` ohne Daten aus Apple Health.
+    /// Schlafziel der jüngsten 7 Nachtdaten im Fenster der Kennzahlen (90 Tage), wie Android und die Startseite
+    /// (``HomeSleepWeek``); `nil` ohne Daten aus Apple Health.
     private var goalWeek: (reached: Int, total: Int)? {
-        let weekAgo = Date().addingTimeInterval(-7 * 86_400)
         // Nachtdatum über die Mitte der Nacht, wie Android (`SleepGoal.nightsOf`).
-        let recent = SleepGoal.nightsOf(sleeps.filter { $0.end > weekAgo }, calendar: .gregorianLocal)
+        let recent = SleepGoal.nightsOf(recentSleeps, calendar: .gregorianLocal)
         let status = SleepGoal.weekStatus(recent, goalMinutes: model.sleepGoal)
         return status.total > 0 ? status : nil
     }
 
-    private var stats: some View {
-        let average = model.nights.map(\.minutesBeforeTarget).reduce(0, +) / max(1, model.nights.count)
+    /// Kennzahlen über `nights` (die jüngsten 90, nicht der ganze Verlauf).
+    private func stats(_ nights: [NightRecord]) -> some View {
+        let average = nights.map(\.minutesBeforeTarget).reduce(0, +) / max(1, nights.count)
         // Nur Nächte, in denen früher wecken erlaubt war (ohne «Genau» und kurze Nächte); ohne solche keine Angabe.
-        let light = NightHistory.lightShare(model.nights)
+        let light = NightHistory.lightShare(nights)
         return HStack(spacing: 12) {
             Text(L("history_average", average)).frame(maxWidth: .infinity, alignment: .leading)
             if let light {

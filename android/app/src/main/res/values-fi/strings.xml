@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d t %2$d min</string>
     <string name="health_title">Univaiheet Health Connectista</string>
     <string name="health_rationale">Phase Wake voi lukea unitiedot, jotka terveyssovelluksesi (esimerkiksi Samsung Health) tallentaa. Ne näytetään historiassasi, myös vertailuun öihin, joina Phase Wake herätti sinut. Phase Wake vain lukee, ei koskaan kirjoita, eikä mikään poistu puhelimestasi.</string>
+    <string name="health_rationale_history">Jos sallit myös pääsyn aiempiin tietoihin, Phase Wake lukee myös yli 30 päivää vanhat unitiedot, joten historiasi voi ulottua jopa kahden vuoden taakse. Ilman tätä lupaa Phase Wake lukee vain tiedot alkaen 30 päivää ennen ensimmäistä käyttöoikeutta.</string>
     <string name="health_connect">Vertaa terveystietoihin</string>
     <string name="health_connect_hint">Lukee univaiheet Health Connectista heräämisen jälkeen tunnistuksen tarkistamiseksi ja parantamiseksi.</string>
     <string name="health_connected">Yhdistetty</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Näytä tiedot</string>
     <string name="night_latency">Nukahtamisaika</string>
     <string name="night_efficiency">Unen tehokkuus</string>
-    <string name="night_awakenings">Heräämiset</string>
+    <string name="night_wake_moments">Heräämiset</string>
+    <string name="night_wake_brief">Lyhyet heräämiset</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">joista %1$d yli %2$d min</item>
+        <item quantity="other">joista %1$d yli %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Pisin syvä uni</string>
     <string name="stages_typical">Tavallinen vaihteluväli</string>
     <string name="stages_typical_range">Tavallisesti %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Nukkumaanmenoaikasi vaihteli jopa %1$s. Vinkki: mene nukkumaan joka päivä suunnilleen samaan aikaan, myös viikonloppuna.</string>
     <string name="finding_jetlag">Viikonloppuna unesi siirtyi %1$s arkipäiviin verrattuna. Vinkki: pidä samat unirytmit myös viikonloppuna.</string>
     <string name="weekly_deep">Syvää unta %1$s unestasi</string>
+    <string name="settings_clear_old">Poista yli 90 päivää vanhat</string>
+    <string name="settings_clear_old_text">Poistaa puhelimesta yli 90 päivää vanhat tallennetut yöt sekä niiden muistiinpanot, olon, iltarutiinin rastit ja yötallenteet. Uudemmat yöt ja herätyksesi säilyvät. Muiden sovellusten yöt vain piilotetaan täällä, ja ne pysyvät niissä sovelluksissa.</string>
 </resources>

@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del sueño de Health Connect</string>
     <string name="health_rationale">Phase Wake puede leer los datos de sueño que guarda tu app de salud (por ejemplo, Samsung Health). Se muestran en tu historial, también para compararlos con las noches en que Phase Wake te despertó. Phase Wake solo lee, nunca escribe, y nada sale de tu móvil.</string>
+    <string name="health_rationale_history">Si también permites el acceso a datos anteriores, Phase Wake lee además los datos de sueño de hace más de 30 días, para que tu historial llegue hasta dos años atrás. Sin este permiso, Phase Wake solo lee los datos desde 30 días antes del primer acceso.</string>
     <string name="health_connect">Comparar con datos de salud</string>
     <string name="health_connect_hint">Lee las fases del sueño de Health Connect al despertar, para comprobar y mejorar la detección.</string>
     <string name="health_connected">Conectado</string>
@@ -547,7 +548,13 @@
     <string name="night_open">Mostrar detalles</string>
     <string name="night_latency">Tiempo en dormirse</string>
     <string name="night_efficiency">Eficiencia del sueño</string>
-    <string name="night_awakenings">Veces despierto</string>
+    <string name="night_wake_moments">Despertares</string>
+    <string name="night_wake_brief">Despertares breves</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d de más de %2$d min</item>
+        <item quantity="many">%1$d de más de %2$d min</item>
+        <item quantity="other">%1$d de más de %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Sueño profundo más largo</string>
     <string name="stages_typical">Rango habitual</string>
     <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
@@ -672,4 +679,6 @@
     <string name="finding_bedtime">Tu hora de dormir varió hasta %1$s. Consejo: acuéstate cada día más o menos a la misma hora, también el fin de semana.</string>
     <string name="finding_jetlag">El fin de semana tu sueño se desplazó %1$s respecto a los días laborables. Consejo: mantén los mismos horarios también el fin de semana.</string>
     <string name="weekly_deep">Sueño profundo %1$s de tu sueño</string>
+    <string name="settings_clear_old">Borrar lo anterior a 90 días</string>
+    <string name="settings_clear_old_text">Borra de tu móvil las noches registradas hace más de 90 días, junto con sus notas, la sensación, las marcas de la rutina nocturna y las grabaciones nocturnas. Las noches más recientes y tus alarmas se mantienen. Las noches de otras apps solo se ocultan aquí y se quedan en esas apps.</string>
 </resources>

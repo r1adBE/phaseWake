@@ -52,8 +52,8 @@ public enum BackupFile {
     public static let iterationsV1 = 210_000
     /// Schlüssellänge in Bit (AES-256).
     public static let keyBits = 256
-    /// Grösste Datei in Byte, die das Wiederherstellen liest: 20 MiB. 90 Nächte mit Verlauf ergeben weit unter 1 MB;
-    /// eine versehentlich gewählte grosse Datei (Video) wird so abgelehnt statt ganz in den Speicher gelesen.
+    /// Grösste Datei in Byte, die das Wiederherstellen liest: 20 MiB. 2 Jahre Verlauf (höchstens 800 Nächte, je rund
+    /// 2–5 KB) ergeben höchstens rund 4 MB; eine versehentlich gewählte grosse Datei (Video) wird so abgelehnt.
     public static let maxFileBytes: Int64 = 20 * 1024 * 1024
 
     /// Ob `password` für eine neue Sicherung genügt: lang genug und nicht trivial (``BackupPassword``). Nur fürs

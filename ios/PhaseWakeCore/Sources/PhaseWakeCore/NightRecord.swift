@@ -81,14 +81,58 @@ public struct NightRecord: Equatable, Sendable {
     public var minutesAfterTarget: Int { max(0, Int(wokeAt.timeIntervalSince(target) / 60)) }
 }
 
+/// Wie viele eigene Nächte ein Gerät behält: höchstens `maxNights`, mit `maxAge` (Sekunden) nur die, deren Wecken
+/// (`wokeAt`) höchstens so lange vor jetzt liegt (genau `maxAge`: bleibt). Identisch zu `NightKeep` (Kotlin).
+public struct NightKeep: Sendable {
+    /// Höchstzahl Nächte.
+    public let maxNights: Int
+    /// Höchstalter in Sekunden ab dem Wecken; `nil` = ohne Altersgrenze.
+    public let maxAge: TimeInterval?
+
+    /// Grenze aus Höchstzahl und Höchstalter (Sekunden, `nil` = ohne).
+    public init(maxNights: Int, maxAge: TimeInterval?) {
+        self.maxNights = maxNights
+        self.maxAge = maxAge
+    }
+
+    /// Die behaltenen Nächte nach Fensterbeginn sortiert (älteste zuerst); ältere fallen beim Speichern weg.
+    public func trim(_ nights: [NightRecord], now: Date) -> [NightRecord] {
+        let from = maxAge.map { now.addingTimeInterval(-$0) }
+        let kept = nights.filter { night in from.map { night.wokeAt >= $0 } ?? true }
+        return Array(kept.sorted { $0.windowStart < $1.windowStart }.suffix(maxNights))
+    }
+
+    /// iPhone: der Verlauf reicht ``NightHistory/days`` Tage (2 Jahre) zurück, höchstens
+    /// ``NightHistory/phoneNights`` Nächte (Nächte mit zwei Weckern).
+    public static let phone = NightKeep(maxNights: NightHistory.phoneNights, maxAge: Double(NightHistory.days) * 86_400)
+
+    /// Uhr: wie bisher die jüngsten ``NightHistory/watchNights`` Nächte, ohne Altersgrenze.
+    public static let watch = NightKeep(maxNights: NightHistory.watchNights, maxAge: nil)
+}
+
 /// Aufbewahrung und CSV-Export. Identisch zu `NightHistory` (Kotlin).
 public enum NightHistory {
-    /// Höchstens so viele Nächte bleiben gespeichert (rund drei Monate); ältere fallen weg.
-    public static let maxNights = 90
+    /// So viele Tage reicht der Verlauf auf dem iPhone zurück (2 Jahre), eigene Nächte wie Gesundheitsdaten.
+    public static let days = 730
 
-    /// Die jüngsten 90 Nächte nach Fensterbeginn, älteste zuerst.
-    public static func trim(_ nights: [NightRecord]) -> [NightRecord] {
-        Array(nights.sorted { $0.windowStart < $1.windowStart }.suffix(maxNights))
+    /// Höchstzahl eigener Nächte auf dem iPhone (``NightKeep/phone``): ``days`` plus rund 10 % für Nächte mit zwei
+    /// Weckern oder Probeweckern. Begrenzt nur die Dateigrösse, im Alltag gilt die Grenze von ``days`` Tagen.
+    public static let phoneNights = 800
+
+    /// So viele Nächte behält die Uhr (``NightKeep/watch``).
+    public static let watchNights = 90
+
+    /// Kennzahlen (Übersicht, Diagramme, Trends, Wirkung der Notizen, Wochenrückblick) rechnen über die jüngsten so
+    /// vielen eigenen Nächte (``latest(_:count:)``) und die Gesundheitsdaten der letzten so vielen Tage
+    /// (`HealthHistory.forInsights`), unabhängig davon, wie weit der Verlauf zurückreicht.
+    public static let insightNights = 90
+
+    /// Höchstzahl Nachtdaten für Notizen, Befinden und Haken: so weit wie der Verlauf (``days`` und heute).
+    public static let maxDates = days + 1
+
+    /// Die jüngsten `count` Nächte nach Fensterbeginn, älteste zuerst.
+    public static func latest(_ nights: [NightRecord], count: Int = insightNights) -> [NightRecord] {
+        Array(nights.sorted { $0.windowStart < $1.windowStart }.suffix(count))
     }
 
     /// Anteil der Nächte in Prozent (gerundet), in denen im leichten Schlaf geweckt wurde. Es zählen nur
@@ -102,19 +146,19 @@ public enum NightHistory {
         return Int((100 * Double(light) / Double(counted.count)).rounded())
     }
 
-    /// Bewegung je Epoche der gespeicherten Nächte, älteste zuerst, als Eingabe für ``Calibration``.
+    /// Bewegung je Epoche der jüngsten ``watchNights`` Nächte, älteste zuerst, als Eingabe für ``Calibration``.
     public static func motionsForCalibration(_ nights: [NightRecord]) -> [[Double?]] {
-        trim(nights).map { $0.epochs.map(\.motion) }
+        latest(nights, count: watchNights).map { $0.epochs.map(\.motion) }
     }
 
-    /// CSV-Export ohne Kennungen und Datumsangaben, aber mit Bewegungs- und Pulsreihen (nicht anonym im engeren Sinn):
-    /// gleiche Spalten und Zahlenformate wie Android. Die Spalte `notes` steht
-    /// zuletzt, damit ältere Leser weiter funktionieren: Notizen je Nachtdatum (siehe `SleepNotes`),
-    /// mit «;» getrennt, eigene nur als «custom».
+    /// CSV-Export aller übergebenen Nächte (der ganze Verlauf, 1 = älteste) ohne Kennungen und Datumsangaben, aber mit
+    /// Bewegungs- und Pulsreihen (nicht anonym im engeren Sinn): gleiche Spalten und Zahlenformate wie Android. Die
+    /// Spalte `notes` steht zuletzt, damit ältere Leser weiter funktionieren: Notizen je Nachtdatum (siehe
+    /// `SleepNotes`), mit «;» getrennt, eigene nur als «custom».
     public static func exportCsv(_ nights: [NightRecord], notes: [String: [String]] = [:],
                                  calendar: Calendar = .current) -> String {
         var out = "night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n"
-        for (nightIndex, night) in trim(nights).enumerated() {
+        for (nightIndex, night) in nights.sorted(by: { $0.windowStart < $1.windowStart }).enumerated() {
             let windowMinutes = Int(night.target.timeIntervalSince(night.windowStart) / 60)
             let noteValue = SleepNotes.csvValue(notes[SleepNotes.nightDate(of: night, calendar: calendar)] ?? [])
             for (epochIndex, epoch) in night.epochs.enumerated() {

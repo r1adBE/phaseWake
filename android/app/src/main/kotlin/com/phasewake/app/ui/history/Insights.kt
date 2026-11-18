@@ -37,7 +37,6 @@ import com.phasewake.app.core.Trends
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.home.findingText
 import java.time.Duration
-import java.util.Locale
 import kotlin.math.abs
 import com.phasewake.app.ui.theme.outlinedBorder
 
@@ -144,10 +143,9 @@ fun TrendsCard(
             if (spread > IRREGULAR_MINUTES) add(res.getString(R.string.trends_bedtime_hint))
         }
         trends.feelingThisWeek?.takeIf { TrendLine.FEELING !in covered }?.let { feeling ->
-            val last =
-                trends.feelingLastWeek?.let { " · " + res.getString(R.string.trends_feeling_change, decimal(it)) }
-                    .orEmpty()
-            add(res.getString(R.string.trends_feeling, decimal(feeling)) + last)
+            val last = trends.feelingLastWeek
+                ?.let { " · " + res.getString(R.string.trends_feeling_change, Format.decimal(res, it)) }.orEmpty()
+            add(res.getString(R.string.trends_feeling, Format.decimal(res, feeling)) + last)
         }
         habits?.let { addAll(habitLines(context, it, healthConnected, regularShown = TrendLine.REGULAR in covered)) }
         // Steht der Hinweis auf regelmässige Schlafzeiten schon da, nicht noch einmal die schwankende Bettzeit.
@@ -192,5 +190,3 @@ fun TrendsCard(
 
 /** Ab dieser Schwankung der Einschlafzeit gibt es den Hinweis auf regelmässige Schlafzeiten. */
 private const val IRREGULAR_MINUTES = 45L
-
-private fun decimal(value: Double) = String.format(Locale.getDefault(), "%.1f", value)

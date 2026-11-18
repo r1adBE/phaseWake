@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d orë %2$d min</string>
     <string name="health_title">Fazat e gjumit nga Health Connect</string>
     <string name="health_rationale">Phase Wake mund të lexojë të dhënat e gjumit që ruan aplikacioni yt i shëndetit (për shembull Samsung Health). Ato shfaqen në historikun tënd, edhe për krahasim me netët kur të zgjoi Phase Wake. Phase Wake vetëm lexon, nuk shkruan kurrë dhe asgjë nuk del nga telefoni yt.</string>
+    <string name="health_rationale_history">Nëse lejon edhe qasjen te të dhënat e mëparshme, Phase Wake lexon edhe të dhënat e gjumit më të vjetra se 30 ditë, që historiku yt të shkojë deri në dy vjet pas. Pa këtë leje, Phase Wake lexon vetëm të dhënat nga 30 ditë para qasjes së parë.</string>
     <string name="health_connect">Krahaso me të dhënat e shëndetit</string>
     <string name="health_connect_hint">Pas zgjimit lexon fazat e gjumit nga Health Connect, për të kontrolluar dhe përmirësuar dallimin.</string>
     <string name="health_connected">E lidhur</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Shfaq detajet</string>
     <string name="night_latency">Koha për të fjetur</string>
     <string name="night_efficiency">Efikasiteti i gjumit</string>
-    <string name="night_awakenings">Herë zgjuar</string>
+    <string name="night_wake_moments">Zgjime</string>
+    <string name="night_wake_brief">Zgjime të shkurtra</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">nga to %1$d më shumë se %2$d min</item>
+        <item quantity="other">nga to %1$d më shumë se %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Gjumi i thellë më i gjatë</string>
     <string name="stages_typical">Diapazoni i zakonshëm</string>
     <string name="stages_typical_range">Zakonisht %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Ora jote e gjumit ndryshoi deri në %1$s. Këshillë: shko të flesh çdo ditë afërsisht në të njëjtën orë, edhe në fundjavë.</string>
     <string name="finding_jetlag">Në fundjavë gjumi yt u zhvendos %1$s krahasuar me ditët e punës. Këshillë: mbaj të njëjtat orare gjumi edhe në fundjavë.</string>
     <string name="weekly_deep">Gjumi i thellë %1$s e gjumit tënd</string>
+    <string name="settings_clear_old">Fshi më të vjetrat se 90 ditë</string>
+    <string name="settings_clear_old_text">Fshin netët e regjistruara në telefon që janë më të vjetra se 90 ditë, bashkë me shënimet, gjendjen, shenjat e rutinës së mbrëmjes dhe regjistrimet e natës. Netët më të reja dhe alarmet e tua mbeten. Netët nga aplikacione të tjera këtu vetëm fshihen nga pamja dhe mbeten në ato aplikacione.</string>
 </resources>

@@ -58,37 +58,49 @@ struct NightDetailData {
     }
 }
 
-/// Kennzahlen als Kacheln: Einschlafdauer (falls bekannt), Schlafeffizienz, Wachphasen, längster Tiefschlaf.
+/// Kennzahlen als Kacheln: Einschlafdauer (falls bekannt), Schlafeffizienz, Wachmomente (sonst nur kurze, oder
+/// «davon N länger als 5 Min»), längster Tiefschlaf. Wie Android `NightTiles`.
 struct NightMetricTiles: View {
     let stages: NightStages
     /// `false`, wenn die Einschlafdauer schon als Faktor beim Schlafwert steht.
     var withLatency = true
 
-    private var tiles: [(title: String, value: String, symbol: String)] {
-        var out: [(String, String, String)] = []
+    private var tiles: [MetricTile] {
+        var out: [MetricTile] = []
         if withLatency, let latency = stages.latencyMinutes {
-            out.append((L("night_latency"), Format.duration(minutes: latency), "moon.zzz"))
+            out.append(MetricTile(title: L("night_latency"), value: Format.duration(minutes: latency),
+                                  symbol: "moon.zzz"))
         }
-        out.append((L("night_efficiency"), L("stages_share", Int64(stages.efficiencyPercent)), "gauge.medium"))
-        out.append((L("night_awakenings"), stages.awakenings.formatted(), "eye"))
-        out.append((L("night_longest_deep"), Format.duration(minutes: stages.longestDeepMinutes), "water.waves"))
-        return out.map { (title: $0.0, value: $0.1, symbol: $0.2) }
+        out.append(MetricTile(title: L("night_efficiency"), value: L("stages_share", Int64(stages.efficiencyPercent)),
+                              symbol: "gauge.medium"))
+        let long = stages.longAwakenings
+        out.append(MetricTile(title: L(long > 0 ? "night_wake_moments" : "night_wake_brief"),
+                              value: stages.awakenings.formatted(), symbol: "eye",
+                              note: long > 0 ? LP("night_wake_long", long, long, StageStats.longWakeMinutes) : nil))
+        out.append(MetricTile(title: L("night_longest_deep"),
+                              value: Format.duration(minutes: stages.longestDeepMinutes), symbol: "water.waves"))
+        return out
     }
 
     var body: some View {
-        LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible(), spacing: 12)], spacing: 12) {
-            ForEach(tiles, id: \.title) { tile in
-                MetricTile(title: tile.title, value: tile.value, symbol: tile.symbol)
+        // Gleich hohe Kacheln je Reihe, auch wenn eine eine Zusatzzeile hat.
+        Grid(horizontalSpacing: 12, verticalSpacing: 12) {
+            ForEach(Array(stride(from: 0, to: tiles.count, by: 2)), id: \.self) { i in
+                GridRow {
+                    tiles[i]
+                    if i + 1 < tiles.count { tiles[i + 1] } else { Color.clear.gridCellUnsizedAxes(.vertical) }
+                }
             }
         }
     }
 }
 
-/// Eine Kachel: Symbol und Titel klein, Wert gross (wie Android).
+/// Eine Kachel: Symbol und Titel klein, Wert gross, darunter falls vorhanden `note` noch leiser (wie Android).
 private struct MetricTile: View {
     let title: String
     let value: String
     let symbol: String
+    var note: String?
     @Environment(\.colorScheme) private var scheme
 
     var body: some View {
@@ -97,9 +109,14 @@ private struct MetricTile: View {
                 .font(Fonts.manrope(12, .semibold, relativeTo: .caption))
                 .foregroundStyle(Brand.secondaryText(scheme))
             Text(value).font(Fonts.manrope(28, .heavy, relativeTo: .title))
+            if let note {
+                Text(note)
+                    .font(Fonts.manrope(11, relativeTo: .caption2))
+                    .foregroundStyle(Brand.tertiaryText(scheme))
+            }
         }
         .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(StageColors.track(scheme).opacity(scheme == .dark ? 0.6 : 0.7),
                     in: RoundedRectangle(cornerRadius: 16))
         // Hauch der Hauptfarbe oben (dunkel 18 %, hell 10 %, wie Android `tileTop`).
@@ -108,6 +125,6 @@ private struct MetricTile: View {
                     in: RoundedRectangle(cornerRadius: 16))
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
-        .accessibilityValue(value)
+        .accessibilityValue(note.map { value + ", " + $0 } ?? value)
     }
 }

@@ -43,10 +43,11 @@ final class HealthFeelingsTests: XCTestCase {
         XCTAssertEqual(HealthFeelings.set(one, date: "2026-10-02", feeling: 0), one)
         XCTAssertEqual(HealthFeelings.set(one, date: "2026-10-02", feeling: 6), one)
         var many: [String: Int] = [:]
-        for i in 0..<91 { many = HealthFeelings.set(many, date: NightDate.adding(i, to: "2026-01-01"), feeling: 4) }
+        for i in 0..<732 { many = HealthFeelings.set(many, date: NightDate.adding(i, to: "2026-01-01"), feeling: 4) }
+        XCTAssertEqual(HealthFeelings.maxDates, 731)
         XCTAssertEqual(many.count, HealthFeelings.maxDates)
         XCTAssertNil(many["2026-01-01"])
-        XCTAssertEqual(many["2026-04-01"], 4)
+        XCTAssertEqual(many["2026-01-02"], 4)
     }
 
     func testOnlyNightsFromOtherAppsInHistory() {

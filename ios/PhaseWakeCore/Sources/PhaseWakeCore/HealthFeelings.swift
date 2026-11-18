@@ -26,7 +26,7 @@ public struct HealthFeeling: Equatable, Sendable {
 /// Speicherformat: je Nachtdatum eine Zeile «yyyy-MM-dd|n», nach Datum sortiert.
 public enum HealthFeelings {
     /// Höchstens so viele Nachtdaten bleiben gespeichert (wie der Verlauf).
-    public static let maxDates = NightHistory.maxNights
+    public static let maxDates = NightHistory.maxDates
 
     /// Setzt das Befinden `feeling` für `date`; ein Wert ausserhalb 1–5 oder ein ungültiges Datum ändert nichts.
     /// Höchstens ``maxDates`` bleiben.

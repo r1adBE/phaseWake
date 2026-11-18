@@ -117,6 +117,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Sleep stages from Health Connect</string>
     <string name="health_rationale">Phase Wake can read the sleep data that your health app (for example Samsung Health) stores. It is shown in your history, also for comparison with the nights Phase Wake woke you. Phase Wake only reads, never writes, and nothing leaves your phone.</string>
+    <string name="health_rationale_history">If you also allow access to past data, Phase Wake reads sleep data older than 30 days too, so your history can reach back up to two years. Without it, Phase Wake only reads data from 30 days before your first access onwards.</string>
     <string name="health_connect">Compare with health data</string>
     <string name="health_connect_hint">Reads sleep stages from Health Connect after waking, to check and improve detection.</string>
     <string name="health_connected">Connected</string>
@@ -387,7 +388,12 @@
     <string name="night_open">Show details</string>
     <string name="night_latency">Falling asleep</string>
     <string name="night_efficiency">Sleep efficiency</string>
-    <string name="night_awakenings">Times awake</string>
+    <string name="night_wake_moments">Awakenings</string>
+    <string name="night_wake_brief">Brief awakenings</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d of them over %2$d min</item>
+        <item quantity="other">%1$d of them over %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Longest deep sleep</string>
     <string name="stages_typical">Typical range</string>
     <string name="stages_typical_range" tools:ignore="PluralsCandidate">Typical %1$d–%2$d %%</string>
@@ -663,4 +669,6 @@
     <string name="finding_bedtime">Your bedtime varied by up to %1$s. Tip: go to bed at about the same time every day, weekends included.</string>
     <string name="finding_jetlag">On weekends your sleep was shifted by %1$s compared with weekdays. Tip: keep the same sleep times on weekends too.</string>
     <string name="weekly_deep">Deep sleep %1$s of your sleep</string>
+    <string name="settings_clear_old">Delete older than 90 days</string>
+    <string name="settings_clear_old_text">Deletes recorded nights older than 90 days on your phone, along with their notes, how you felt, evening routine ticks and night recordings. Newer nights and your alarms stay. Nights from other apps are only hidden here and stay in those apps.</string>
 </resources>

@@ -121,6 +121,7 @@
     <string name="duration_hours_minutes">%1$d u %2$d nóim</string>
     <string name="health_title">Céimeanna codlata ó Health Connect</string>
     <string name="health_rationale">Is féidir le Phase Wake na sonraí codlata a shábhálann d’aip sláinte (mar shampla Samsung Health) a léamh. Taispeántar iad i do stair, freisin chun comparáid a dhéanamh leis na hoícheanta ar dhúisigh Phase Wake thú. Ní dhéanann Phase Wake ach léamh, ní scríobhann sé riamh, agus ní fhágann aon rud do fhón.</string>
+    <string name="health_rationale_history">Má cheadaíonn tú rochtain ar shonraí roimhe seo freisin, léann Phase Wake sonraí codlata atá níos sine ná 30 lá freisin, ionas gur féidir le do stair dul siar suas le dhá bhliain. Gan an cead sin, ní léann Phase Wake ach sonraí ó 30 lá roimh an gcéad rochtain ar aghaidh.</string>
     <string name="health_connect">Cuir i gcomparáid le sonraí sláinte</string>
     <string name="health_connect_hint">Léann sé céimeanna codlata ó Health Connect tar éis duit dúiseacht, chun an brath a sheiceáil agus a fheabhsú.</string>
     <string name="health_connected">Ceangailte</string>
@@ -580,7 +581,15 @@
     <string name="night_open">Taispeáin sonraí</string>
     <string name="night_latency">Ag titim i do chodladh</string>
     <string name="night_efficiency">Éifeachtúlacht codlata</string>
-    <string name="night_awakenings">Uaireanta i do dhúiseacht</string>
+    <string name="night_wake_moments">Dúisithe</string>
+    <string name="night_wake_brief">Dúisithe gearra</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d díobh níos faide ná %2$d nóim</item>
+        <item quantity="two">%1$d díobh níos faide ná %2$d nóim</item>
+        <item quantity="few">%1$d díobh níos faide ná %2$d nóim</item>
+        <item quantity="many">%1$d díobh níos faide ná %2$d nóim</item>
+        <item quantity="other">%1$d díobh níos faide ná %2$d nóim</item>
+    </plurals>
     <string name="night_longest_deep">An codladh trom is faide</string>
     <string name="stages_typical">Raon gnáth</string>
     <string name="stages_typical_range">Gnáth %1$d–%2$d %%</string>
@@ -705,4 +714,6 @@
     <string name="finding_bedtime">D’athraigh d’am codlata suas le %1$s. Leid: téigh a chodladh thart ar an am céanna gach lá, ag an deireadh seachtaine freisin.</string>
     <string name="finding_jetlag">Ag an deireadh seachtaine bhog do chodladh %1$s i gcomparáid le laethanta oibre. Leid: coinnigh na hamanna codlata céanna ag an deireadh seachtaine freisin.</string>
     <string name="weekly_deep">Codladh domhain %1$s de do chodladh</string>
+    <string name="settings_clear_old">Scrios níos sine ná 90 lá</string>
+    <string name="settings_clear_old_text">Scriosann sé oícheanta taifeadta níos sine ná 90 lá ar do fhón, mar aon lena nótaí, mothú, ticeanna an ghnáthaimh tráthnóna agus taifeadtaí oíche. Fanann oícheanta níos nuaí agus na haláraim. Ní dhéantar ach oícheanta ó aipeanna eile a cheilt anseo agus fanann siad sna haipeanna sin.</string>
 </resources>

@@ -44,6 +44,11 @@ public struct LearningState: Equatable, Sendable, Codable {
     /// Uhr nachts automatisch auf.
     public var active: Bool { consent == true && since != nil && (values == nil || relearning) }
 
+    /// Beginn der noch offenen Lernphase (begonnen und noch keine Werte, oder «Neu lernen» läuft; auch ohne Zustimmung
+    /// gerade, denn sie läuft mit den gezählten Nächten weiter); `nil`: keine offene. Ihre Aufzeichnungen bleiben bei
+    /// «Älter als 90 Tage löschen» (``HistoryPrune/keepsRecording(start:end:cutoff:learningSince:)``). Wie Kotlin.
+    public var openSince: Date? { values == nil || relearning ? since : nil }
+
     /// Noch nicht gefragt: Einrichtungsschritt bzw. Karte auf der Startseite «Lernphase starten» / «Später».
     public var askConsent: Bool { consent == nil }
 

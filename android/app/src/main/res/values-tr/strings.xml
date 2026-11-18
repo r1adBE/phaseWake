@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d sa %2$d dk</string>
     <string name="health_title">Health Connect\'ten uyku evreleri</string>
     <string name="health_rationale">Phase Wake, sağlık uygulamanın (örneğin Samsung Health) kaydettiği uyku verilerini okuyabilir. Bunlar geçmişinde gösterilir, Phase Wake\'in seni uyandırdığı gecelerle karşılaştırma için de. Phase Wake yalnızca okur, asla yazmaz ve hiçbir şey telefonundan çıkmaz.</string>
+    <string name="health_rationale_history">Geçmiş verilere erişime de izin verirsen Phase Wake 30 günden eski uyku verilerini de okur; böylece geçmişin iki yıla kadar geriye uzanabilir. Bu izin olmadan Phase Wake yalnızca ilk erişimden 30 gün öncesinden itibaren verileri okur.</string>
     <string name="health_connect">Sağlık verileriyle karşılaştır</string>
     <string name="health_connect_hint">Uyandıktan sonra uyku evrelerini Health Connect\'ten okuyarak algılamayı kontrol eder ve geliştirir.</string>
     <string name="health_connected">Bağlı</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Ayrıntıları göster</string>
     <string name="night_latency">Uykuya dalma süresi</string>
     <string name="night_efficiency">Uyku verimliliği</string>
-    <string name="night_awakenings">Uyanma sayısı</string>
+    <string name="night_wake_moments">Uyanmalar</string>
+    <string name="night_wake_brief">Kısa uyanmalar</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d tanesi %2$d dk’dan uzun</item>
+        <item quantity="other">%1$d tanesi %2$d dk’dan uzun</item>
+    </plurals>
     <string name="night_longest_deep">En uzun derin uyku</string>
     <string name="stages_typical">Olağan aralık</string>
     <string name="stages_typical_range">Olağan %%%1$d–%2$d</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Yatma saatin %1$s kadar değişti. İpucu: hafta sonu dahil her gün yaklaşık aynı saatte yat.</string>
     <string name="finding_jetlag">Hafta sonu uykun hafta içine göre %1$s kaydı. İpucu: hafta sonu da aynı uyku saatlerini koru.</string>
     <string name="weekly_deep">Derin uyku: uykunun %1$s kadarı</string>
+    <string name="settings_clear_old">90 günden eskiyi sil</string>
+    <string name="settings_clear_old_text">Telefonundaki 90 günden eski kayıtlı geceleri notları, hissedişi, akşam rutini işaretleri ve gece kayıtlarıyla birlikte siler. Daha yeni geceler ve alarmların kalır. Diğer uygulamalardaki geceler burada yalnızca gizlenir ve o uygulamalarda kalır.</string>
 </resources>

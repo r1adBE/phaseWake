@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d ώ. %2$d λ.</string>
     <string name="health_title">Φάσεις ύπνου από το Health Connect</string>
     <string name="health_rationale">Το Phase Wake μπορεί να διαβάζει τα δεδομένα ύπνου που αποθηκεύει η εφαρμογή υγείας σου (για παράδειγμα το Samsung Health). Εμφανίζονται στο ιστορικό σου, και για σύγκριση με τις νύχτες που σε ξύπνησε το Phase Wake. Το Phase Wake μόνο διαβάζει, δεν γράφει ποτέ, και τίποτα δεν φεύγει από το κινητό σου.</string>
+    <string name="health_rationale_history">Αν επιτρέψεις και την πρόσβαση σε παλαιότερα δεδομένα, το Phase Wake διαβάζει και δεδομένα ύπνου παλαιότερα από 30 ημέρες, ώστε το ιστορικό σου να φτάνει έως και δύο χρόνια πίσω. Χωρίς αυτή την άδεια, το Phase Wake διαβάζει μόνο δεδομένα από 30 ημέρες πριν από την πρώτη πρόσβαση.</string>
     <string name="health_connect">Σύγκριση με δεδομένα υγείας</string>
     <string name="health_connect_hint">Διαβάζει τις φάσεις ύπνου από το Health Connect μετά το ξύπνημα, για έλεγχο και βελτίωση της ανίχνευσης.</string>
     <string name="health_connected">Συνδέθηκε</string>
@@ -532,7 +533,12 @@
     <string name="night_open">Εμφάνιση λεπτομερειών</string>
     <string name="night_latency">Χρόνος αποκοίμισης</string>
     <string name="night_efficiency">Αποδοτικότητα ύπνου</string>
-    <string name="night_awakenings">Φορές ξύπνιος</string>
+    <string name="night_wake_moments">Αφυπνίσεις</string>
+    <string name="night_wake_brief">Σύντομες αφυπνίσεις</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">εκ των οποίων %1$d πάνω από %2$d λεπτά</item>
+        <item quantity="other">εκ των οποίων %1$d πάνω από %2$d λεπτά</item>
+    </plurals>
     <string name="night_longest_deep">Μεγαλύτερος βαθύς ύπνος</string>
     <string name="stages_typical">Συνήθες εύρος</string>
     <string name="stages_typical_range">Συνήθως %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">Η ώρα ύπνου σου διέφερε έως και %1$s. Συμβουλή: πήγαινε για ύπνο κάθε μέρα περίπου την ίδια ώρα, και τα Σαββατοκύριακα.</string>
     <string name="finding_jetlag">Τα Σαββατοκύριακα ο ύπνος σου μετατοπίστηκε κατά %1$s σε σχέση με τις καθημερινές. Συμβουλή: κράτα τις ίδιες ώρες ύπνου και τα Σαββατοκύριακα.</string>
     <string name="weekly_deep">Βαθύς ύπνος %1$s του ύπνου σου</string>
+    <string name="settings_clear_old">Διαγραφή παλαιότερων των 90 ημερών</string>
+    <string name="settings_clear_old_text">Διαγράφει από το κινητό σου τις καταγεγραμμένες νύχτες που είναι παλαιότερες από 90 ημέρες, μαζί με τις σημειώσεις, την αίσθηση, τα σημάδια της βραδινής ρουτίνας και τις νυχτερινές καταγραφές τους. Οι νεότερες νύχτες και τα ξυπνητήρια σου παραμένουν. Οι νύχτες από άλλες εφαρμογές απλώς αποκρύπτονται εδώ και παραμένουν σε εκείνες τις εφαρμογές.</string>
 </resources>

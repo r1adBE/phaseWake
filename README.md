@@ -39,7 +39,7 @@ Du stellst eine Zielzeit und ein Weckfenster (Galaxy Watch 10–60, Apple Watch 
 - **Geräusche in der Nacht** (Option pro Nacht, standardmässig aus): erkennt mögliches Schnarchen und Sprechen über das Mikrofon des Handys, behält nur kurze Ausschnitte zum Anhören, nach 7 Tagen gelöscht – alles bleibt auf dem Handy
 - **Gewohnheiten**: «Regelmässig ins Bett: N von 7 Abenden», Serien mit erreichtem Schlafziel, Wochenrückblick am Sonntag (Option) und eine eigene Abendroutine zum Abhaken
 - **Weckaufgabe** (Option pro Wecker, Android): Zum Beenden 3 Rechenaufgaben am Handy lösen statt halten; Schlummern geht ohne Aufgabe
-- **Verlauf** der letzten 90 Nächte mit Bewegungskurve; optional die Schlafphasen aus Health Connect bzw. Apple Health zum Vergleich
+- **Verlauf** der letzten 2 Jahre mit Bewegungskurve (die Uhr behält 90 Nächte); optional die Schlafphasen aus Health Connect bzw. Apple Health zum Vergleich
 - **Gleicht ab**: Nach drei aufgezeichneten Nächten werden die Schwellen an deine Bewegungswerte angepasst, also ab der vierten Nacht.
 - **Lernphase** (Option): Nur wenn du sie startest, zeichnet die Uhr 7 Nächte lang über die ganze Nacht Bewegung und Puls auf und passt danach den Wecker an dich an; jederzeit in den Einstellungen abschaltbar. Galaxy Watch: in Stichproben (60 Sekunden alle 5 Minuten, Start ab 40 % Akku; gemessen ca. 2 % Akku pro Stunde; «Nacht aufzeichnen» durchgehend ca. 4.3 % pro Stunde). Apple Watch: Bewegung über den Bewegungs-Rekorder von watchOS (Start frühestens 1 Stunde vor der Bettzeit, wenn du die Uhr-App öffnest, ab 40 % Akku; Auswertung nach dem Wecken), Puls und «Im Bett» aus Apple Health
 - **Genau** (Option pro Wecker): ohne Weckfenster, klingelt genau zur Zielzeit; die Uhr misst trotzdem für den Verlauf

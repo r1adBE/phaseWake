@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.material3.FilledTonalButton
@@ -40,6 +41,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.phasewake.app.R
 import com.phasewake.app.core.DiagEntry
 import com.phasewake.app.core.DiagLog
+import com.phasewake.app.core.FeelingByReason
 import com.phasewake.app.core.ValidationReport
 import com.phasewake.app.phoneApp
 import java.time.ZoneId
@@ -62,6 +64,7 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
     var status by remember { mutableStateOf(emptyList<StatusLine>()) }
     var phoneEntries by remember { mutableStateOf(emptyList<DiagEntry>()) }
     var validation by remember { mutableStateOf(emptyList<String>()) }
+    var feeling by remember { mutableStateOf(emptyList<String>()) }
     var noAnswer by remember { mutableStateOf(false) }
     LaunchedEffect(report, changes) {
         status = PhoneStatus.lines(context, app, report)
@@ -71,6 +74,8 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
     // an [changes] gebunden: Das Lesen von Health Connect schreibt selbst eine Zeile ins Protokoll.
     LaunchedEffect(Unit) {
         validation = withContext(Dispatchers.IO) { ValidationReport.lines(ValidationData.entries(app)) }
+        // Befinden je Weckgrund: nur gezählt, ändert nichts am Wecken.
+        feeling = withContext(Dispatchers.IO) { FeelingByReason.lines(app.nights.load()) }
     }
     val entries = (phoneEntries + report?.entries.orEmpty()).sortedByDescending { it.at }
     DiagnosticsContent(
@@ -78,10 +83,14 @@ fun DiagnosticsScreen(onBack: () -> Unit, onHide: () -> Unit) {
         entries = entries,
         noAnswer = noAnswer,
         validation = validation,
+        feeling = feeling,
         actions = DiagnosticsActions(
             onBack = onBack,
             onHide = onHide,
-            onShare = { share(context, status, validation, entries) },
+            onShare = {
+                val sections = listOf(ValidationReport.TITLE to validation, FeelingByReason.TITLE to feeling)
+                share(context, status, sections, entries)
+            },
             onFetchWatch = { scope.launch { noAnswer = WatchReport.fetch(app) == null } },
             onClear = { scope.launch(Dispatchers.IO) { app.diag.clear() } },
         ),
@@ -100,7 +109,8 @@ internal class DiagnosticsActions(
 /**
  * Diagnose-Seite ohne eigenen Zustand (auch für Bildschirmfotos): [status] als «Bezeichnung: Wert», [entries]
  * neueste zuerst; [noAnswer]: Die Uhr hat auf «Von der Uhr holen» nicht geantwortet. [validation]: Zeilen des
- * Validierungs-Modus ([ValidationReport.lines]); leer: Abschnitt fehlt.
+ * Validierungs-Modus ([ValidationReport.lines]); leer: Abschnitt fehlt. [feeling]: Befinden je Weckgrund
+ * ([FeelingByReason.lines]); leer: Abschnitt fehlt.
  */
 @Composable
 internal fun DiagnosticsContent(
@@ -109,6 +119,7 @@ internal fun DiagnosticsContent(
     noAnswer: Boolean,
     actions: DiagnosticsActions,
     validation: List<String> = emptyList(),
+    feeling: List<String> = emptyList(),
 ) {
     SkyBarPage(bar = {
         IconButton(onClick = actions.onBack) {
@@ -166,16 +177,8 @@ internal fun DiagnosticsContent(
             items(status) { line ->
                 Text("${line.label}: ${line.value}", style = MaterialTheme.typography.bodyMedium)
             }
-            if (validation.isNotEmpty()) {
-                // Technischer Abschnitt wie die Zeilen des Protokolls, darum ohne übersetzten Titel.
-                item {
-                    Text(
-                        ValidationReport.TITLE, style = MaterialTheme.typography.titleMedium,
-                        modifier = Modifier.padding(top = 8.dp),
-                    )
-                }
-                items(validation) { line -> Text(line, style = MaterialTheme.typography.bodySmall) }
-            }
+            technicalSection(ValidationReport.TITLE, validation)
+            technicalSection(FeelingByReason.TITLE, feeling)
             item {
                 Text(
                     stringResource(R.string.diag_events), style = MaterialTheme.typography.titleMedium,
@@ -193,10 +196,29 @@ internal fun DiagnosticsContent(
     }
 }
 
-/** Teilt Zustand, Validierung (falls vorhanden) und Protokoll als Text über das Teilen-Menü. */
-private fun share(context: Context, status: List<StatusLine>, validation: List<String>, entries: List<DiagEntry>) {
-    val section =
-        if (validation.isEmpty()) "" else (listOf(ValidationReport.TITLE) + validation).joinToString("\n") + "\n\n"
+/**
+ * Technischer Abschnitt wie die Zeilen des Protokolls, darum ohne übersetzten Titel; ohne [lines] nichts.
+ */
+private fun LazyListScope.technicalSection(title: String, lines: List<String>) {
+    if (lines.isEmpty()) return
+    item {
+        Text(title, style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
+    }
+    items(lines) { line -> Text(line, style = MaterialTheme.typography.bodySmall) }
+}
+
+/**
+ * Teilt Zustand, technische Abschnitte ([sections]: Titel und Zeilen; leere fehlen, wie Validierung und Befinden) und
+ * Protokoll als Text über das Teilen-Menü.
+ */
+private fun share(
+    context: Context,
+    status: List<StatusLine>,
+    sections: List<Pair<String, List<String>>>,
+    entries: List<DiagEntry>,
+) {
+    val section = sections.filter { it.second.isNotEmpty() }
+        .joinToString("") { (title, lines) -> (listOf(title) + lines).joinToString("\n") + "\n\n" }
     val text = status.joinToString("\n") { "${it.label}: ${it.value}" } +
         "\n\n" + section + DiagLog.format(entries, ZoneId.systemDefault())
     val send = Intent(Intent.ACTION_SEND).setType("text/plain").putExtra(Intent.EXTRA_TEXT, text)

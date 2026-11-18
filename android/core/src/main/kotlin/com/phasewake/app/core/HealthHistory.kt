@@ -159,7 +159,27 @@ object HealthHistory {
     }
 
     /** So viele Tage zurück werden die Gesundheitsdaten gelesen: so weit wie der eigene Verlauf. */
-    const val DAYS: Long = NightHistory.MAX_NIGHTS.toLong()
+    const val DAYS: Long = NightHistory.DAYS
+
+    /**
+     * Eingaben der Kennzahlen, so weit wie vor dem längeren Verlauf: die jüngsten [NightHistory.INSIGHT_NIGHTS] eigenen
+     * Nächte und die Sitzungen, die nach `now − (INSIGHT_NIGHTS + 1) Tage` enden (einen Tag mehr, damit die älteste
+     * Nacht ganz drin ist). Mit [before] auch die bis zum Beginn der ältesten dieser Nächte minus [before] (Android
+     * liest so weit für die Phasen der eigenen Nächte). Der Verlauf selbst nimmt alles ([merge]).
+     */
+    fun forInsights(
+        nights: List<NightRecord>,
+        sessions: List<HealthSession>,
+        now: Instant,
+        before: Duration? = null,
+    ): Pair<List<NightRecord>, List<HealthSession>> {
+        val recent = NightHistory.latest(nights)
+        val from = listOfNotNull(
+            now.minus(Duration.ofDays(NightHistory.INSIGHT_NIGHTS + 1L)),
+            before?.let { b -> recent.minOfOrNull { it.windowStart }?.minus(b) },
+        ).min()
+        return recent to sessions.filter { it.end.isAfter(from) }
+    }
 
     /**
      * Sitzungen, die nach «Verlauf löschen» noch sichtbar sind: Ende echt nach [clearedAt]

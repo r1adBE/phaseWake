@@ -163,6 +163,7 @@ private fun NightSection(state: HomeState, actions: HomeActions, view: HomeView)
     val date = SleepNotes.nightDate(lastNight, view.zone)
     LastNightCard(
         lastNight, view.now, state.missHint,
+        sleepWeek = state.sleepWeek,
         onFeeling = { actions.onFeeling(lastNight, it) },
         extras = MorningExtras(
             notes = state.notes[date].orEmpty(),

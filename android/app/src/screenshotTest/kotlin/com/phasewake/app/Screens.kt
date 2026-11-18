@@ -35,6 +35,7 @@ import com.phasewake.app.ui.home.HomeScreen
 import com.phasewake.app.ui.home.HomeState
 import com.phasewake.app.ui.home.NightCheckState
 import com.phasewake.app.core.Trends
+import com.phasewake.app.core.SleepWeek
 import com.phasewake.app.ui.settings.HealthState
 import com.phasewake.app.ui.settings.SettingsActions
 import com.phasewake.app.ui.settings.SettingsScreen
@@ -107,24 +108,28 @@ internal fun Themed(mode: ThemeMode, content: @Composable () -> Unit) {
 /** Himmel der Seiten zur festen Testzeit (Morgendämmerung um 07:20), wie die Startseite in den Bildschirmfotos. */
 internal val SHOT_MOOD: SkyMood = SkyMood.at(FIXED_NOW, java.time.ZoneId.of("Europe/Zurich"), null)
 
+/** Ø 7 Std. 12 Min Schlaf, Schlafziel 4 von 7 Nächten (Zeile in «Letzte Nacht»). */
+private val shotWeek = SleepWeek(asleepMinutes = 432, reached = 4, nights = 7)
+
 @Composable
 private fun Home(
     mode: ThemeMode,
     list: List<AlarmSpec>,
     check: NightCheckState = NightCheckState(emptyList()),
+    week: SleepWeek? = null,
 ) = Themed(mode) {
     HomeScreen(
-        HomeState(list, nights.last(), check = check),
+        HomeState(list, nights.last(), check = check, sleepWeek = week),
         HomeActions(onFix = {}, onAdd = {}, onEdit = {}, onToggle = { _, _ -> }), contentPadding = padding,
         clock = { FIXED_NOW },
     )
 }
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite hell", device = PHONE) @Composable
-fun HomeLight() = Home(ThemeMode.LIGHT, alarms)
+fun HomeLight() = Home(ThemeMode.LIGHT, alarms, week = shotWeek)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite dunkel", device = PHONE) @Composable
-fun HomeDark() = Home(ThemeMode.DARK, alarms)
+fun HomeDark() = Home(ThemeMode.DARK, alarms, week = shotWeek)
 
 @PreviewTest @Preview(locale = "de-rCH", name = "Startseite leer hell", device = PHONE) @Composable
 fun HomeEmptyLight() = Home(ThemeMode.LIGHT, emptyList())

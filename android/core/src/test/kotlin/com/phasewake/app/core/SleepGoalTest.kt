@@ -37,6 +37,29 @@ class SleepGoalTest {
         assertEquals(1 to 2, SleepGoal.weekStatus(listOf(day to 300L, day to 460L, day.minusDays(1) to 200L), 450))
     }
 
+    /**
+     * Schlafziel der Startseite und der Trends (`goal_week`): die jüngsten 7 Nachtdaten aus dem Fenster der Kennzahlen
+     * ([HealthHistory.forInsights], 90 Tage), nicht nur die Nächte der letzten 7 Tage. Gleich auf dem iPhone
+     * (`HomeSleepWeekPhoneTests`).
+     */
+    @Test
+    fun goalWeekTakesTheNewestSevenNightDatesOfTheInsightWindow() {
+        val now = at("2026-11-18T12:00")
+        fun session(daysBack: Long, minutes: Long): HealthSession {
+            val start = at("2026-11-18T23:00").minus(java.time.Duration.ofDays(daysBack))
+            val end = start.plus(java.time.Duration.ofMinutes(minutes))
+            return HealthSession(start, end, listOf(StageSpan(start, end, SleepStage.LIGHT)))
+        }
+        // Letzte 7 Tage: 3 Nächte über dem Ziel; davor (10–14 Tage zurück) 5 Nächte darunter.
+        val sessions = listOf(1L, 2L, 3L).map { session(it, 480) } + (10L..14L).map { session(it, 300) }
+        val (nights, recent) = HealthHistory.forInsights(emptyList(), sessions, now)
+        val sleeps = HealthHistory.summaries(recent, null, zone)
+        val week = SleepWeek.of(
+            Trends.compute(nights, sleeps, now, zone), SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, zone), 450),
+        )
+        assertEquals(SleepWeek(480, 3, 7), week)
+    }
+
     private fun alarm(
         id: String,
         hour: Int,
@@ -123,5 +146,20 @@ class SleepGoalTest {
         val sleep = SleepSummary(at("2026-10-27T23:00"), at("2026-10-28T06:30"), 420)
         assertEquals(listOf(day to 420L), SleepGoal.nightsOf(listOf(sleep), zone))
         assertEquals(0 to 0, SleepGoal.weekStatus(emptyList(), 450))
+    }
+
+    @Test
+    fun sleepWeekNeedsThreeNightsWithDuration() {
+        // Nächte bis 28.10.: 480, 420 und 400 Min, Ziel 450 → Ø 433 Min, Ziel 1 von 3; mit zwei Nächten keine Zeile.
+        val now = at("2026-10-28T12:00")
+        val sleeps = listOf(480L, 420L, 400L).mapIndexed { i, minutes ->
+            val end = at("2026-10-28T06:30").minus(java.time.Duration.ofDays(i.toLong()))
+            SleepSummary(end.minus(java.time.Duration.ofMinutes(minutes + 10)), end, minutes)
+        }
+        fun week(list: List<SleepSummary>) = SleepWeek.of(
+            Trends.compute(emptyList(), list, now, zone), SleepGoal.weekStatus(SleepGoal.nightsOf(list, zone), 450),
+        )
+        assertEquals(SleepWeek(433, 1, 3), week(sleeps))
+        assertNull(week(sleeps.take(2)))
     }
 }

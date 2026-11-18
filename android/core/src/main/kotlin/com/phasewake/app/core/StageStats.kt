@@ -75,6 +75,11 @@ data class NightStages(
     val efficiencyPercent: Int,
     /** Wachphasen mitten in der Nacht: Wach-Blöcke mit Schlaf davor und danach (Anfang und Ende zählen nicht). */
     val awakenings: Int,
+    /**
+     * Davon länger als [StageStats.LONG_WAKE_MINUTES] (auf die Millisekunde; genau so lang zählt als kurz). Die
+     * übrigen sind kurze Wachmomente, wie sie die Uhr oft zählt.
+     */
+    val longAwakenings: Int,
     /** Längster Tiefschlaf-Block in Minuten; 0 ohne Tiefschlaf. */
     val longestDeepMinutes: Long,
     /** Schlaf in Minuten (wie bei [efficiencyPercent]), abgerundet. */
@@ -110,6 +115,9 @@ object StageStats {
 
     internal const val MS_PER_MINUTE: Long = 60_000
 
+    /** Ab hier (echt länger) ist ein Wachmoment mitten in der Nacht lang ([NightStages.longAwakenings]). */
+    const val LONG_WAKE_MINUTES: Long = 5
+
     private const val PERCENT: Long = 100
 
     /**
@@ -126,8 +134,8 @@ object StageStats {
         val sleepMs = clipped.filter { it.stage != SleepStage.AWAKE }.sumOf { millis(it) }
         val totals = totalsOf(ms, sleepMs / MS_PER_MINUTE)
         val rangeMs = Duration.between(from, to).toMillis()
-        val awakenings = blocks.indices.count { i ->
-            blocks[i].stage == SleepStage.AWAKE &&
+        val awakenings = blocks.filterIndexed { i, block ->
+            block.stage == SleepStage.AWAKE &&
                 blocks.take(i).any { it.stage != SleepStage.AWAKE } &&
                     blocks.drop(i + 1).any { it.stage != SleepStage.AWAKE }
         }
@@ -142,7 +150,10 @@ object StageStats {
                 null
             },
             efficiencyPercent = ((sleepMs * PERCENT + rangeMs / 2) / rangeMs).coerceAtMost(PERCENT).toInt(),
-            awakenings = awakenings,
+            awakenings = awakenings.size,
+            longAwakenings = awakenings.count {
+                Duration.between(it.start, it.end).toMillis() > LONG_WAKE_MINUTES * MS_PER_MINUTE
+            },
             longestDeepMinutes = blocks.filter { it.stage == SleepStage.DEEP }.maxOfOrNull { it.minutes } ?: 0,
             asleepMinutes = sleepMs / MS_PER_MINUTE,
         )

@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d시간 %2$d분</string>
     <string name="health_title">Health Connect의 수면 단계</string>
     <string name="health_rationale">Phase Wake는 건강 앱(예: Samsung Health)에 저장된 수면 데이터를 읽을 수 있어요. 이 데이터는 기록에 표시되며, Phase Wake가 깨운 밤과 비교하는 데도 쓰여요. Phase Wake는 읽기만 하고 쓰지 않으며, 데이터는 휴대폰 밖으로 나가지 않아요.</string>
+    <string name="health_rationale_history">과거 데이터 접근도 허용하면 Phase Wake가 30일보다 오래된 수면 데이터도 읽어서, 기록을 최대 2년 전까지 볼 수 있어요. 허용하지 않으면 Phase Wake는 처음 접근하기 30일 전부터의 데이터만 읽어요.</string>
     <string name="health_connect">건강 데이터와 비교</string>
     <string name="health_connect_hint">일어난 뒤 Health Connect에서 수면 단계를 읽어 감지를 확인하고 개선해요.</string>
     <string name="health_connected">연결됨</string>
@@ -517,7 +518,11 @@
     <string name="night_open">자세히 보기</string>
     <string name="night_latency">잠드는 데 걸린 시간</string>
     <string name="night_efficiency">수면 효율</string>
-    <string name="night_awakenings">깬 횟수</string>
+    <string name="night_wake_moments">깬 횟수</string>
+    <string name="night_wake_brief">잠깐 깬 횟수</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">그중 %1$d번은 %2$d분 넘게</item>
+    </plurals>
     <string name="night_longest_deep">가장 긴 깊은 잠</string>
     <string name="stages_typical">일반적인 범위</string>
     <string name="stages_typical_range">일반적으로 %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">취침 시간이 최대 %1$s까지 달라졌어요. 팁: 주말을 포함해 매일 비슷한 시간에 잠자리에 드세요.</string>
     <string name="finding_jetlag">주말에는 평일보다 수면이 %1$s 밀렸어요. 팁: 주말에도 같은 수면 시간을 지키세요.</string>
     <string name="weekly_deep">깊은 수면: 수면의 %1$s</string>
+    <string name="settings_clear_old">90일보다 오래된 기록 삭제</string>
+    <string name="settings_clear_old_text">휴대폰에서 90일보다 오래된 밤 기록을 메모, 기분, 저녁 루틴 체크, 밤 녹화와 함께 삭제해요. 더 최근의 밤과 알람은 그대로 유지돼요. 다른 앱의 밤은 여기서 숨겨지기만 하고 그 앱에는 그대로 남아 있어요.</string>
 </resources>

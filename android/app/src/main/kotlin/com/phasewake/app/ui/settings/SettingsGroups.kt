@@ -261,9 +261,17 @@ internal fun Group(title: String, content: @Composable ColumnScope.() -> Unit) {
     }
 }
 
-/** Gruppe «Daten»: Teilen, Sichern und Wiederherstellen, Verlauf löschen (mit Rückfrage). */
+/**
+ * Gruppe «Daten»: Teilen, Sichern und Wiederherstellen, «Älter als 90 Tage löschen» und «Verlauf löschen» (je mit
+ * Rückfrage). [onClearHistory] mit `true`: nur älter als 90 Tage.
+ */
 @Composable
-internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory: () -> Unit, extras: SettingsExtras) {
+internal fun DataGroup(
+    onExport: () -> Unit,
+    canExport: Boolean,
+    onClearHistory: (older: Boolean) -> Unit,
+    extras: SettingsExtras,
+) {
     Group(stringResource(R.string.settings_data)) {
         Text(stringResource(R.string.settings_data_text), style = MaterialTheme.typography.bodyMedium)
         ListRow(
@@ -271,19 +279,25 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
             enabled = canExport, onClick = onExport,
         )
         extras.backup(this)
-        var confirm by remember { mutableStateOf(false) }
-        ListRow(stringResource(R.string.settings_clear_history), color = MaterialTheme.colorScheme.error) {
+        // Offene Rückfrage: `true` älter als 90 Tage, `false` alles, `null` keine.
+        var confirm by remember { mutableStateOf<Boolean?>(null) }
+        ListRow(stringResource(R.string.settings_clear_old), color = MaterialTheme.colorScheme.error) {
             confirm = true
         }
-        if (confirm) {
+        ListRow(stringResource(R.string.settings_clear_history), color = MaterialTheme.colorScheme.error) {
+            confirm = false
+        }
+        confirm?.let { older ->
             AlertDialog(
-                onDismissRequest = { confirm = false },
-                title = { Text(stringResource(R.string.settings_clear_history)) },
+                onDismissRequest = { confirm = null },
+                title = {
+                    Text(stringResource(if (older) R.string.settings_clear_old else R.string.settings_clear_history))
+                },
                 // Was alles gelöscht wird, wie am iPhone: Nächte, dazu Notizen, Befinden, Haken und Geräusche, die
-                // Lernphase.
-                text = { Text(clearHistoryText()) },
+                // Lernphase; bei «älter als 90 Tage» nur, was bis dahin endete.
+                text = { Text(if (older) stringResource(R.string.settings_clear_old_text) else clearHistoryText()) },
                 confirmButton = {
-                    TextButton(onClick = { confirm = false; onClearHistory() }) {
+                    TextButton(onClick = { confirm = null; onClearHistory(older) }) {
                         Text(
                             stringResource(R.string.settings_clear_history_confirm),
                             color = MaterialTheme.colorScheme.error,
@@ -291,7 +305,7 @@ internal fun DataGroup(onExport: () -> Unit, canExport: Boolean, onClearHistory:
                     }
                 },
                 dismissButton = {
-                    TextButton(onClick = { confirm = false }) { Text(stringResource(R.string.action_cancel)) }
+                    TextButton(onClick = { confirm = null }) { Text(stringResource(R.string.action_cancel)) }
                 },
             )
         }

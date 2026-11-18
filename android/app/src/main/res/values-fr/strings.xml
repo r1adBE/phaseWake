@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Phases de sommeil depuis Health Connect</string>
     <string name="health_rationale">Phase Wake peut lire les données de sommeil que ton application santé (par exemple Samsung Health) enregistre. Elles s\'affichent dans ton historique, aussi pour les comparer aux nuits où Phase Wake t\'a réveillé. Phase Wake lit seulement, n\'écrit jamais, et rien ne quitte ton téléphone.</string>
+    <string name="health_rationale_history">Si tu autorises aussi l\'accès aux données passées, Phase Wake lit aussi les données de sommeil de plus de 30 jours, pour que ton historique remonte jusqu\'à deux ans. Sans cette autorisation, Phase Wake ne lit que les données à partir de 30 jours avant le premier accès.</string>
     <string name="health_connect">Comparer avec les données santé</string>
     <string name="health_connect_hint">Lit les phases de sommeil dans Health Connect après le réveil, pour vérifier et améliorer la détection.</string>
     <string name="health_connected">Connecté</string>
@@ -547,7 +548,13 @@
     <string name="night_open">Afficher les détails</string>
     <string name="night_latency">Endormissement</string>
     <string name="night_efficiency">Efficacité du sommeil</string>
-    <string name="night_awakenings">Réveils</string>
+    <string name="night_wake_moments">Réveils</string>
+    <string name="night_wake_brief">Réveils brefs</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">dont %1$d de plus de %2$d min</item>
+        <item quantity="many">dont %1$d de plus de %2$d min</item>
+        <item quantity="other">dont %1$d de plus de %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Plus long sommeil profond</string>
     <string name="stages_typical">Plage habituelle</string>
     <string name="stages_typical_range">Habituel %1$d–%2$d %%</string>
@@ -672,4 +679,6 @@
     <string name="finding_bedtime">Ton heure de coucher a varié jusqu’à %1$s. Conseil : couche-toi chaque jour à peu près à la même heure, week-end compris.</string>
     <string name="finding_jetlag">Le week-end, ton sommeil était décalé de %1$s par rapport à la semaine. Conseil : garde les mêmes horaires de sommeil le week-end aussi.</string>
     <string name="weekly_deep">Sommeil profond %1$s de ton sommeil</string>
+    <string name="settings_clear_old">Effacer ce qui date de plus de 90 jours</string>
+    <string name="settings_clear_old_text">Efface de ton téléphone les nuits enregistrées il y a plus de 90 jours, avec leurs notes, le ressenti, les coches de la routine du soir et les enregistrements de nuit. Les nuits plus récentes et tes alarmes restent. Les nuits d’autres apps sont seulement masquées ici et restent dans ces apps.</string>
 </resources>

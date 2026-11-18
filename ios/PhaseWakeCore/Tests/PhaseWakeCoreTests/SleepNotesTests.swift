@@ -265,13 +265,13 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.decode("kaputt\n2026-10-27|NAP,,NAP\n2026-10-28|"), ["2026-10-27": ["NAP"]])
     }
 
-    /// Wie `SleepNotesTest.keepsNewestNinetyDates` (Kotlin).
-    func testKeepsNewestNinetyDates() {
+    /// Wie `SleepNotesTest.keepsNewestDatesLikeTheHistory` (Kotlin): 2 Jahre und heute (731 Nachtdaten).
+    func testKeepsNewestDatesLikeTheHistory() {
         var many: [String: [String]] = [:]
-        for day in 0..<100 { many[NightDate.adding(-day, to: "2026-10-27")] = ["NAP"] }
+        for day in 0..<800 { many[NightDate.adding(-day, to: "2026-10-27")] = ["NAP"] }
         let kept = SleepNotes.trim(many)
-        XCTAssertEqual(kept.count, 90)
-        XCTAssertEqual(kept.keys.sorted().first, NightDate.adding(-89, to: "2026-10-27"))
+        XCTAssertEqual(kept.count, 731)
+        XCTAssertEqual(kept.keys.sorted().first, NightDate.adding(-730, to: "2026-10-27"))
         XCTAssertEqual(kept.keys.sorted().last, "2026-10-27")
     }
 }

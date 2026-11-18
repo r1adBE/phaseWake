@@ -18,23 +18,21 @@ import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.ui.Format
 import com.phasewake.app.core.ChartData
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.FeelingSeries
 import com.phasewake.app.ui.notes.noteName
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import java.time.LocalDate
-import java.util.Locale
 
 // --- 5. Befinden ---
 
-/** Eine Nachkommastelle nach Sprache (wie in den Trends). */
-private fun decimal(value: Double) = String.format(Locale.getDefault(), "%.1f", value)
-
 fun feelingTakeaway(context: Context, f: FeelingSeries): String? {
-    val last = f.lastWeek?.let { context.getString(R.string.trends_feeling_change, decimal(it)) }
+    val res = context.resources
+    val last = f.lastWeek?.let { context.getString(R.string.trends_feeling_change, Format.decimal(res, it)) }
     val thisWeek = f.thisWeek ?: return last
-    return context.getString(R.string.trends_feeling, decimal(thisWeek)) + (last?.let { " · $it" } ?: "")
+    return context.getString(R.string.trends_feeling, Format.decimal(res, thisWeek)) + (last?.let { " · $it" } ?: "")
 }
 
 /** «28. Okt. · Befinden: Gut · Notizen: Koffein, Sport» */

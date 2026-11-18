@@ -105,6 +105,7 @@
     <string name="duration_hours_minutes">%1$d ժ %2$d ր</string>
     <string name="health_title">Քնի փուլերը Health Connect-ից</string>
     <string name="health_rationale">Phase Wake-ը կարող է կարդալ քնի տվյալները, որոնք առողջության հավելվածդ (օրինակ՝ Samsung Health) պահում է։ Դրանք ցուցադրվում են քո պատմության մեջ, նաև համեմատելու համար այն գիշերների հետ, երբ քեզ արթնացրել է Phase Wake-ը։ Phase Wake-ը միայն կարդում է, երբեք չի գրում, և ոչինչ դուրս չի գալիս հեռախոսիցդ։</string>
+    <string name="health_rationale_history">Եթե թույլ տաս նաև անցյալ տվյալների հասանելիությունը, Phase Wake-ը կկարդա նաև 30 օրից ավելի հին քնի տվյալները, և քո պատմությունը կարող է հասնել մինչև երկու տարի հետ։ Առանց այդ թույլտվության Phase Wake-ը կարդում է միայն առաջին հասանելիությունից 30 օր առաջվանից սկսած տվյալները։</string>
     <string name="health_connect">Համեմատել առողջության տվյալների հետ</string>
     <string name="health_connect_hint">Արթնանալուց հետո կարդում է քնի փուլերը Health Connect-ից՝ հայտնաբերումը ստուգելու և բարելավելու համար։</string>
     <string name="health_connected">Միացված է</string>
@@ -520,7 +521,12 @@
     <string name="night_open">Ցույց տալ մանրամասները</string>
     <string name="night_latency">Քնելու ժամանակ</string>
     <string name="night_efficiency">Քնի արդյունավետություն</string>
-    <string name="night_awakenings">Արթնանալու անգամներ</string>
+    <string name="night_wake_moments">Արթնացումներ</string>
+    <string name="night_wake_brief">Կարճ արթնացումներ</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">որից %1$d-ը՝ %2$d ր-ից ավելի</item>
+        <item quantity="other">որից %1$d-ը՝ %2$d ր-ից ավելի</item>
+    </plurals>
     <string name="night_longest_deep">Ամենաերկար խոր քուն</string>
     <string name="stages_typical">Սովորական միջակայք</string>
     <string name="stages_typical_range">Սովորաբար %1$d–%2$d %%</string>
@@ -645,4 +651,6 @@
     <string name="finding_bedtime">Քո քնելու ժամը տատանվել է մինչև %1$s։ Խորհուրդ՝ ամեն օր քնիր մոտավորապես նույն ժամին, նաև հանգստյան օրերին։</string>
     <string name="finding_jetlag">Հանգստյան օրերին քո քունը աշխատանքային օրերի համեմատ տեղաշարժվել է %1$s։ Խորհուրդ՝ նույն քնի ժամերը պահիր նաև հանգստյան օրերին։</string>
     <string name="weekly_deep">Խոր քուն՝ քո քնի %1$s</string>
+    <string name="settings_clear_old">Ջնջել 90 օրից հինը</string>
+    <string name="settings_clear_old_text">Ջնջում է հեռախոսիդ վրա 90 օրից հին գրանցված գիշերները՝ նրանց նշումների, ինքնազգացման, երեկոյան ծեսի նշիչների և գիշերային ձայնագրությունների հետ։ Ավելի նոր գիշերները և զարթուցիչները մնում են։ Այլ հավելվածների գիշերներն այստեղ միայն թաքցվում են և մնում են այդ հավելվածներում։</string>
 </resources>

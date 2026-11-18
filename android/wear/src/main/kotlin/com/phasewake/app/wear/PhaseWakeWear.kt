@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagDevice
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.shared.BatteryNight
 import com.phasewake.app.shared.AlarmRepository
 import com.phasewake.app.shared.DiagnosticsLog
@@ -62,7 +63,7 @@ open class PhaseWakeWear : Application() {
     )
 
     val alarms by lazy { AlarmRepository(phaseWakeStore) }
-    val nights by lazy { NightRepository(File(filesDir, "nights.v1")) }
+    val nights by lazy { NightRepository(File(filesDir, "nights.v1"), NightKeep.WATCH) }
     val sync by lazy { WearSync(this, com.phasewake.app.shared.DataLayer.CAPABILITY_PHONE) }
 
     /** «Nacht aufzeichnen»: Aufzeichnungen (privat, nicht gesichert) und ihr Austausch mit dem Handy. */

@@ -86,6 +86,19 @@ final class PrivateNotes: @unchecked Sendable {
         remove(.feelings)
     }
 
+    /// «Älter als 90 Tage löschen»: Notizen und Befinden zu Nachtdaten vor `cutoff` (`HistoryPrune.dates`).
+    /// - Returns: neuer Stand beider.
+    func clearNotes(before cutoff: Date, calendar: Calendar) -> (notes: [String: [String]], feelings: [String: Int]) {
+        lock.lock(); defer { lock.unlock() }
+        let notes = SleepNotes.encode(HistoryPrune.dates(SleepNotes.decode(read(.notes) ?? ""), cutoff: cutoff,
+                                                         calendar: calendar))
+        let feelings = HealthFeelings.encode(HistoryPrune.dates(HealthFeelings.decode(read(.feelings) ?? ""),
+                                                                cutoff: cutoff, calendar: calendar))
+        write(notes, to: .notes)
+        write(feelings, to: .feelings)
+        return (SleepNotes.decode(notes), HealthFeelings.decode(feelings))
+    }
+
     /// Die eigenen Notizen in gespeicherter Reihenfolge, höchstens 5.
     func customNotes() -> [CustomNote] {
         lock.lock(); defer { lock.unlock() }

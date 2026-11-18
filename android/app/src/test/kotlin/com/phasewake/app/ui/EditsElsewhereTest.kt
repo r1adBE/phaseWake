@@ -188,4 +188,17 @@ class EditsElsewhereTest {
         assertTrue(text.contains(context.getString(R.string.settings_clear_history_learn)), text)
         DialogNodes.click(context.getString(R.string.action_cancel))
     }
+
+    /** «Älter als 90 Tage löschen»: eigene Rückfrage, die nennt, was gelöscht wird; die Lernphase bleibt. */
+    @Test
+    fun clearOlderNamesWhatGoes() {
+        val tree = start(emptyList())
+        openSettings(tree)
+        tree.click(context.getString(R.string.settings_clear_old))
+        tree.idle(500)
+        val text = DialogNodes.texts().joinToString(" ")
+        assertTrue(text.contains(context.getString(R.string.settings_clear_old_text)), text)
+        assertFalse(text.contains(context.getString(R.string.settings_clear_history_learn)), text)
+        DialogNodes.click(context.getString(R.string.action_cancel))
+    }
 }

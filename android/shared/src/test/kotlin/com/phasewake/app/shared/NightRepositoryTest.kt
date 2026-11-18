@@ -3,6 +3,7 @@ package com.phasewake.app.shared
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import java.io.File
@@ -37,7 +38,7 @@ class NightRepositoryTest {
 
     @Test
     fun emptyWithoutFile() = runTest {
-        val repo = NightRepository(file, Dispatchers.Unconfined)
+        val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
         assertNull(repo.nights.value)
         assertEquals(emptyList(), repo.load())
         assertEquals(emptyList(), repo.nights.value)
@@ -45,7 +46,7 @@ class NightRepositoryTest {
 
     @Test
     fun addReplaceAndKeepFeeling() = runTest {
-        val repo = NightRepository(file, Dispatchers.Unconfined)
+        val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
         repo.add(night("a", 1_000, feeling = 4))
         repo.add(night("b", 1_000))
         // Dieselbe Nacht noch einmal von der Uhr, ohne Befinden: das Befinden bleibt.
@@ -54,17 +55,53 @@ class NightRepositoryTest {
         assertEquals(4, repo.load().last().feeling)
         repo.setFeeling("b", Instant.ofEpochMilli(1_000), 2)
         // Neu aus der Datei gelesen: alles noch da.
-        val again = NightRepository(file, Dispatchers.Unconfined).load()
+        val again = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined).load()
         assertEquals(listOf(2, 4), again.map { it.feeling })
     }
 
     @Test
     fun replaceAllTrimsAndClear() = runTest {
-        val repo = NightRepository(file, Dispatchers.Unconfined)
-        repo.replaceAll((0 until NightHistory.MAX_NIGHTS + 3).map { night("a", it * 100_000_000L) })
-        assertEquals(NightHistory.MAX_NIGHTS, NightRepository(file, Dispatchers.Unconfined).load().size)
+        val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
+        repo.replaceAll((0 until NightHistory.WATCH_NIGHTS + 3).map { night("a", it * 100_000_000L) })
+        assertEquals(
+            NightHistory.WATCH_NIGHTS, NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined).load().size,
+        )
         repo.clear()
-        assertEquals(emptyList(), NightRepository(file, Dispatchers.Unconfined).load())
+        assertEquals(emptyList(), NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined).load())
+    }
+
+    /** Handy: alles jünger als 2 Jahre bleibt beim Speichern, Älteres fällt weg; die Uhr behält 90 Nächte. */
+    @Test
+    fun phoneKeepsTwoYearsOnSave() = runTest {
+        val day = 86_400_000L
+        val now = Instant.ofEpochMilli(1_000 * day)
+        val repo = NightRepository(file, NightKeep.PHONE, Dispatchers.Unconfined) { now }
+        // Wecken 20 Min nach Fensterbeginn: Fensterbeginn so wählen, dass das Wecken genau auf der Grenze liegt.
+        val edge = now.toEpochMilli() - 730 * day - 1_200_000
+        val days = (1..200).map { night("n$it", edge + it * day) }
+        repo.replaceAll(listOf(night("alt", edge - 1), night("grenze", edge)) + days)
+        assertEquals(201, repo.load().size)
+        assertEquals("grenze", repo.load().first().alarmId)
+        repo.add(night("neu", now.toEpochMilli() - 1_200_000))
+        assertEquals(202, NightRepository(file, NightKeep.PHONE, Dispatchers.Unconfined) { now }.load().size)
+        // Ein Tag später: die Nacht auf der Grenze fällt beim nächsten Speichern weg.
+        val later = NightRepository(file, NightKeep.PHONE, Dispatchers.Unconfined) { now.plusMillis(day) }
+        later.add(night("noch-neuer", now.toEpochMilli()))
+        assertEquals("n1", later.load().first().alarmId)
+        // Die Uhr kürzt dieselben Nächte auf 90.
+        val watch = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
+        watch.add(night("uhr", now.toEpochMilli()))
+        assertEquals(NightHistory.WATCH_NIGHTS, watch.load().size)
+    }
+
+    /** «Älter als 90 Tage löschen»: was bis zur Grenze geweckt hat, ist weg. */
+    @Test
+    fun clearBeforeRemovesOlderNights() = runTest {
+        val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
+        repo.replaceAll(listOf(night("alt", 1_000), night("neu", 5_000_000)))
+        repo.clearBefore(Instant.ofEpochMilli(1_000 + 1_200_000))
+        val again = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined).load()
+        assertEquals(listOf("neu"), again.map { it.alarmId })
     }
 
     @Test
@@ -74,6 +111,7 @@ class NightRepositoryTest {
                 night("b", 2_000),
             ),
         )
-        assertEquals(listOf("a", "b"), NightRepository(file, Dispatchers.Unconfined).load().map { it.alarmId })
+        val loaded = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined).load()
+        assertEquals(listOf("a", "b"), loaded.map { it.alarmId })
     }
 }

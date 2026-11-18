@@ -290,6 +290,17 @@ final class PhoneLearning {
         }
     }
 
+    /// «Älter als 90 Tage löschen»: Aufzeichnungen, die bis `cutoff` endeten, weg, ausser denen der noch offenen
+    /// Lernphase (``HistoryPrune/keepsRecording(start:end:cutoff:learningSince:)``, wie Android); die Lernphase läuft
+    /// weiter.
+    func dropRecordings(endedBy cutoff: Date) {
+        guard load() else { return }
+        let since = state.openSince
+        setRecordings(recordings.filter {
+            HistoryPrune.keepsRecording(start: $0.start, end: $0.until, cutoff: cutoff, learningSince: since)
+        })
+    }
+
     /// Speichert die Aufzeichnungen (die letzten ``NightRecording/maxKept``, älteste zuerst).
     private func setRecordings(_ list: [NightRecording]) {
         guard loaded else { return }

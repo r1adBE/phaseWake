@@ -167,10 +167,11 @@ enum BackupIO {
     }
 
     /// Schreibt Verlauf und Notizen der Sicherung als Dateien nach `staging`, mit denselben Regeln wie im Betrieb
-    /// (gleiche Nächte einmal, höchstens 90). - Returns: Namen der Dateien. - Throws: wenn eine Datei fehlt
-    /// (nicht geschrieben, z. B. Speicher voll).
+    /// (gleiche Nächte einmal, 2 Jahre, `NightKeep.phone`). - Returns: Namen der Dateien. - Throws: wenn eine Datei
+    /// fehlt (nicht geschrieben, z. B. Speicher voll).
     private static func stage(_ payload: BackupPayload, in staging: URL) throws -> [String] {
-        PhaseWakeStorage(directory: staging).replaceNights(payload.nights.compactMap { try? Codec.decodeNight($0) })
+        PhaseWakeStorage(directory: staging, keep: .phone)
+            .replaceNights(payload.nights.compactMap { try? Codec.decodeNight($0) })
         let notes = PrivateNotes(directory: staging, defaults: nil)
         notes.replaceNotes(SleepNotes.decode(payload.notes))
         notes.setCustomNotes(SleepNotes.decodeCustom(payload.customNotes))

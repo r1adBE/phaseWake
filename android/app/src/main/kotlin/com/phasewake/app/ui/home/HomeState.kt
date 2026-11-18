@@ -7,6 +7,7 @@ import com.phasewake.app.core.FindingKind
 import com.phasewake.app.core.MissHint
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.RoutineItem
+import com.phasewake.app.core.SleepWeek
 import com.phasewake.app.core.SoundClip
 import com.phasewake.app.sounds.SleepSoundService
 import java.io.File
@@ -24,6 +25,8 @@ import java.time.LocalDate
  * @property soundRec «Geräusche aufnehmen» für diese Nacht; `null`: kein Schalter (Bildschirmfotos).
  * @property soundClips Aufgenommene Geräusche (alle Nächte) für den Morgenbericht; [soundFile] liefert die Datei.
  * @property routineItems Abendroutine: Punkte; [routineTicks] die Haken je Nachtdatum.
+ * @property sleepWeek Ø Schlaf und Schlafziel der letzten 7 Nächte für die Karte «Letzte Nacht» (wie die Trends im
+ *   Verlauf); `null`: keine Zeile.
  */
 data class HomeState(
     val alarms: List<AlarmSpec>,
@@ -40,6 +43,7 @@ data class HomeState(
     val soundFile: (SoundClip) -> File? = { null },
     val routineItems: List<RoutineItem> = emptyList(),
     val routineTicks: Map<LocalDate, List<String>> = emptyMap(),
+    val sleepWeek: SleepWeek? = null,
 )
 
 /**

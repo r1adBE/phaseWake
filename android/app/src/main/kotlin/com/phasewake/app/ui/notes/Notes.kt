@@ -39,11 +39,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import com.phasewake.app.R
+import com.phasewake.app.ui.Format
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.NoteEffect
 import com.phasewake.app.core.SleepNotes
 import com.phasewake.app.ui.theme.PhaseWakeTheme
-import java.util.Locale
 
 /** Anzeigename einer Notiz; `null` für eine gelöschte eigene Notiz (vergangene Nächte zeigen sie nicht). */
 fun noteName(context: Context, id: String, custom: List<CustomNote>): String? = when (id) {
@@ -182,8 +182,8 @@ fun NoteEffectsCard(effects: List<NoteEffect>, custom: List<CustomNote>) {
                 notable.isNotEmpty() -> notable.forEach { (effect, name) ->
                     Text(
                         res.getQuantityString(
-                            R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta),
-                            effect.nightsWith, effect.nightsWithout,
+                            R.plurals.notes_effect_line, effect.nightsWithout, name,
+                            Format.decimal(res, effect.delta, signed = true), effect.nightsWith, effect.nightsWithout,
                         ),
                         style = MaterialTheme.typography.bodyMedium,
                     )
@@ -201,15 +201,12 @@ fun NoteEffectsCard(effects: List<NoteEffect>, custom: List<CustomNote>) {
     }
 }
 
-/** «+0,5» bzw. «−0,8» (echtes Minuszeichen), eine Nachkommastelle nach Sprache. */
-private fun signed(value: Double): String =
-    String.format(Locale.getDefault(), "%+.1f", value).replace('-', '−')
-
 /** Eine Zeile «Nach ‹Alkohol› Befinden −0,8 (3 vs. 7 Nächte)»; `null` für eine gelöschte eigene Notiz. */
 fun noteEffectLine(context: Context, effect: NoteEffect, custom: List<CustomNote>): String? {
     val name = noteName(context, effect.noteId, custom) ?: return null
     return context.resources.getQuantityString(
-        R.plurals.notes_effect_line, effect.nightsWithout, name, signed(effect.delta), effect.nightsWith,
+        R.plurals.notes_effect_line, effect.nightsWithout, name,
+        Format.decimal(context.resources, effect.delta, signed = true), effect.nightsWith,
         effect.nightsWithout,
     )
 }

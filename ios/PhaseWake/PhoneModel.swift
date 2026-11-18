@@ -9,13 +9,14 @@ final class PhoneModel {
     static let shared = PhoneModel()
 
     /// Wecker (`SettingsFile.phone`) und Nächte im von der Sicherung ausgenommenen Ordner (`PrivateFiles`).
-    let storage = PhaseWakeStorage(defaults: SettingsFile.phone, directory: PrivateFiles.adopt(["nights.v1"]))
+    let storage = PhaseWakeStorage(defaults: SettingsFile.phone, directory: PrivateFiles.adopt(["nights.v1"]),
+                                   keep: .phone)
     /// Notizen und Befinden, ebenfalls ausgenommen.
     let privateNotes = PrivateNotes()
     let backup = BackupAlarm()
     let health = HealthSleep()
     private(set) var alarms: [AlarmSpec] = []
-    private(set) var nights: [NightRecord] = []
+    var nights: [NightRecord] = []
     let bedtime = BedtimeReminder()
     let sounds = SoundPlayer()
     /// Geräusche in der Nacht (nur auf Wunsch).
@@ -41,14 +42,15 @@ final class PhoneModel {
     static let soundRecDefaultKey = "soundRecDefault"
     static let soundRecNightKey = "soundRecNight"
     static let weeklyKey = "weeklyReview"
-    /// «Verlauf löschen» (ms seit 1970): Nächte aus Apple Health, die nicht danach enden, bleiben ausgeblendet.
-    private(set) var historyClearedAt: Date?
+    /// «Verlauf löschen» (ms seit 1970): Nächte aus Apple Health, die nicht danach enden, bleiben ausgeblendet. Setzer
+    /// von Verlauf, Notizen und Befinden intern: «Älter als 90 Tage löschen» (`PhoneModel+Prune.swift`) setzt sie.
+    var historyClearedAt: Date?
     static let historyClearedKey = "historyClearedAt"
     /// Schlafnotizen je Nachtdatum und eigene Notizen (nur iPhone, nicht an die Uhr).
-    private(set) var notes: [String: [String]] = [:]
+    var notes: [String: [String]] = [:]
     private(set) var customNotes: [CustomNote] = []
     /// Befinden (1–5) je Nachtdatum zu Nächten aus anderen Apps; nur bei Phase Wake gespeichert, nie in HealthKit.
-    private(set) var healthFeelings: [String: Int] = [:]
+    var healthFeelings: [String: Int] = [:]
     /// Schlafziel in Minuten (360–600, Standard 450).
     private(set) var sleepGoal: Int = SleepGoal.defaultMinutes
     /// Bettzeit-Erinnerung, Standard aus.

@@ -3,6 +3,7 @@ package com.phasewake.app.health
 import android.content.Context
 import android.util.Log
 import androidx.health.connect.client.HealthConnectClient
+import androidx.health.connect.client.HealthConnectFeatures
 import androidx.health.connect.client.permission.HealthPermission
 import androidx.health.connect.client.records.SleepSessionRecord
 import androidx.health.connect.client.request.ReadRecordsRequest
@@ -35,7 +36,25 @@ class HealthSleep internal constructor(
         { HealthConnectClient.getOrCreate(context) },
     )
 
+    /** Pflicht für das Lesen: Schlaf lesen. [isGranted] prüft nur diese. */
     val permissions: Set<String> = setOf(HealthPermission.getReadPermission(SleepSessionRecord::class))
+
+    /**
+     * Ob Health Connect das Recht «Verlauf lesen» kennt (Daten älter als 30 Tage vor dem ersten Zugriff). Ohne
+     * Health Connect oder bei einem Fehler: nein.
+     */
+    val historyAvailable: Boolean
+        get() = isAvailable && runCatching {
+            client.features.getFeatureStatus(HealthConnectFeatures.FEATURE_READ_HEALTH_DATA_HISTORY) ==
+                HealthConnectFeatures.FEATURE_STATUS_AVAILABLE
+        }.getOrDefault(false)
+
+    /**
+     * Was beim Verbinden angefragt wird: [permissions], dazu «Verlauf lesen», wo verfügbar. Optional: Ohne dieses
+     * Recht liest Health Connect nur ab 30 Tagen vor dem ersten Zugriff, sonst bleibt alles gleich.
+     */
+    val requestPermissions: Set<String>
+        get() = if (historyAvailable) permissions + HISTORY_PERMISSION else permissions
 
     /** Ob Health Connect auf dem Gerät nutzbar ist. */
     val isAvailable: Boolean
@@ -166,6 +185,9 @@ class HealthSleep internal constructor(
 
     private companion object {
         const val TAG = "HealthSleep"
+
+        /** «Verlauf lesen» (Health Connect): Daten älter als 30 Tage vor dem ersten Zugriff. */
+        const val HISTORY_PERMISSION = HealthPermission.PERMISSION_READ_HEALTH_DATA_HISTORY
         val LOOK_BACK: Duration = Duration.ofHours(14)
         val LOOK_AHEAD: Duration = Duration.ofHours(2)
     }

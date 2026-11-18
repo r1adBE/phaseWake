@@ -33,6 +33,25 @@ final class SleepGoalTests: XCTestCase {
         XCTAssertFalse(SleepGoal.reached(asleepMinutes: 449, goalMinutes: 450))
     }
 
+    /// Schlafziel der Startseite und der Trends (`goal_week`): die jüngsten 7 Nachtdaten aus dem Fenster der Kennzahlen
+    /// (`HealthHistory.forInsights`, 90 Tage), nicht nur die Nächte der letzten 7 Tage.
+    func testGoalWeekTakesTheNewestSevenNightDatesOfTheInsightWindow() {
+        let now = at("2026-11-18T12:00")
+        func session(_ daysBack: Int, _ minutes: Int) -> HealthSession {
+            let start = at("2026-11-18T23:00").addingTimeInterval(-Double(daysBack) * 86_400)
+            let end = start.addingTimeInterval(Double(minutes) * 60)
+            return HealthSession(start: start, end: end, stages: [StageSpan(start: start, end: end, stage: .light)])
+        }
+        // Letzte 7 Tage: 3 Nächte über dem Ziel; davor (10–14 Tage zurück) 5 Nächte darunter.
+        let sessions = [1, 2, 3].map { session($0, 480) } + (10...14).map { session($0, 300) }
+        let (nights, recent) = HealthHistory.forInsights(nights: [], sessions: sessions, now: now)
+        let sleeps = HealthHistory.summaries(recent, clearedAt: nil, calendar: zurich)
+        let week = SleepWeek.of(trends: Trends.compute(nights: nights, sleeps: sleeps, now: now, calendar: zurich),
+                                goalWeek: SleepGoal.weekStatus(SleepGoal.nightsOf(sleeps, calendar: zurich),
+                                                               goalMinutes: 450))
+        XCTAssertEqual(week, SleepWeek(asleepMinutes: 480, reached: 3, nights: 7))
+    }
+
     func testWeekStatusCountsNewestSevenNights() {
         let nights: [(date: String, asleepMinutes: Int)] = (0..<10).map { i in
             (date: NightDate.adding(-i, to: "2026-10-27"), asleepMinutes: i % 2 == 0 ? 480 : 400)
@@ -140,5 +159,21 @@ final class SleepGoalTests: XCTestCase {
         XCTAssertEqual(nights.map(\.date), ["2026-10-27"])
         XCTAssertEqual(nights.map(\.asleepMinutes), [420])
         XCTAssertEqual(SleepGoal.weekStatus([], goalMinutes: 450).total, 0)
+    }
+
+    func testSleepWeekNeedsThreeNightsWithDuration() {
+        // Nächte bis 28.10.: 480, 420 und 400 Min, Ziel 450 → Ø 433 Min, Ziel 1 von 3; mit zwei Nächten keine Zeile.
+        let now = at("2026-10-28T12:00")
+        let sleeps = [480, 420, 400].enumerated().map { i, minutes -> SleepSummary in
+            let end = at("2026-10-28T06:30").addingTimeInterval(-Double(i) * 86_400)
+            return SleepSummary(start: end.addingTimeInterval(-Double(minutes + 10) * 60), end: end,
+                                asleepMinutes: minutes)
+        }
+        func week(_ list: [SleepSummary]) -> SleepWeek? {
+            SleepWeek.of(trends: Trends.compute(nights: [], sleeps: list, now: now, calendar: zurich),
+                         goalWeek: SleepGoal.weekStatus(SleepGoal.nightsOf(list, calendar: zurich), goalMinutes: 450))
+        }
+        XCTAssertEqual(week(sleeps), SleepWeek(asleepMinutes: 433, reached: 1, nights: 3))
+        XCTAssertNil(week(Array(sleeps.prefix(2))))
     }
 }

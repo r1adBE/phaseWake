@@ -34,13 +34,15 @@ final class WeeklyReview {
         guard UIApplication.shared.isProtectedDataAvailable else { return }
         let calendar = Calendar.gregorianLocal
         guard let at = WeeklySummary.nextNotification(after: Date(), calendar: calendar) else { return }
-        let health = await model.health.sessions()
+        // Wie die Kennzahlen im Verlauf nur die letzten 90 Tage bzw. Nächte (wie `WeeklyReminder` auf Android).
+        let health = await model.health.sessions(days: NightHistory.insightNights)
+        let nights = NightHistory.latest(model.nights)
         let sleeps = HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt, calendar: calendar)
         // Befinden zu Nächten aus anderen Apps, die im Verlauf stehen.
-        let items = HealthHistory.merge(nights: model.nights, sessions: health.sessions,
+        let items = HealthHistory.merge(nights: nights, sessions: health.sessions,
                                         clearedAt: model.historyClearedAt, calendar: calendar)
         let summary = WeeklySummary.of(
-            nights: model.nights, sleeps: sleeps, notes: model.notes, calendar: calendar,
+            nights: nights, sleeps: sleeps, notes: model.notes, calendar: calendar,
             goalMinutes: model.sleepGoal,
             weekEnd: WeeklySummary.weekEnd(today: NightDate.today(at, calendar: calendar)),
             health: HealthFeelings.of(items, feelings: model.healthFeelings)
@@ -109,10 +111,37 @@ func weeklyNoteLine(_ summary: WeeklySummary, model: PhoneModel) -> String? {
 
 /// «Nach ‹Alkohol› Befinden −0,8 (3 vs. 7 Nächte)», wie im Verlauf.
 func noteEffectText(_ effect: NoteEffect, name: String) -> String {
-    let value = abs(effect.delta).formatted(.number.precision(.fractionLength(1)))
-    let signed = (effect.delta < 0 ? "\u{2212}" : "+") + value
-    return LP("notes_effect_line", effect.nightsWithout, name, signed, effect.nightsWith, effect.nightsWithout)
+    LP("notes_effect_line", effect.nightsWithout, name, decimalText(effect.delta, signed: true), effect.nightsWith,
+       effect.nightsWithout)
 }
 
-/// Eine Nachkommastelle nach Sprache (wie in den Trends).
-func decimalText(_ value: Double) -> String { value.formatted(.number.precision(.fractionLength(1))) }
+/// Eine Nachkommastelle mit dem Dezimalzeichen der Sprache: «1,5» auf Deutsch – auch in der Schweiz, wo die Region
+/// sonst den Punkt vorgibt –, «1.5» auf Englisch. Ziffern nach Sprache und Region; schreibt die Sprache allein andere
+/// Ziffern (Arabisch), bleibt das Zeichen der Region. `signed`: mit Vorzeichen und echtem Minus («+0,5», «−0,8»).
+/// Gerundet wie Android (halb auf). Wie `Format.decimal` (Android).
+func decimalText(_ value: Double, signed: Bool = false, locale: Locale = .current) -> String {
+    func formatter(_ locale: Locale, style: NumberFormatter.Style) -> NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.locale = locale
+        formatter.numberStyle = style
+        return formatter
+    }
+    let format = formatter(locale, style: .decimal)
+    format.minimumFractionDigits = 1
+    format.maximumFractionDigits = 1
+    format.roundingMode = .halfUp
+    format.usesGroupingSeparator = false
+    if let code = locale.language.languageCode?.identifier {
+        let language = Locale(identifier: code)
+        // Gleiche Ziffern (Ganzzahl ohne Zeichen): dann das Dezimalzeichen der Sprache.
+        let five = NSNumber(value: 5)
+        if formatter(language, style: .none).string(from: five) == formatter(locale, style: .none).string(from: five) {
+            format.decimalSeparator = formatter(language, style: .decimal).decimalSeparator
+        }
+    }
+    if signed {
+        format.positivePrefix = "+"
+        format.negativePrefix = "\u{2212}"
+    }
+    return format.string(from: NSNumber(value: value)) ?? String(value)
+}

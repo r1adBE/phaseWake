@@ -1,6 +1,6 @@
 package com.phasewake.app.shared
 
-import com.phasewake.app.core.NightHistory
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import java.time.Instant
 
@@ -14,9 +14,14 @@ internal fun NightRecord.isNight(alarmId: String, windowStart: Instant): Boolean
 /**
  * Ersetzt dieselbe Nacht oder hängt sie an; ein schon angegebenes Befinden, ein schon gespeicherter Akkustand
  * (z. B. der des Handys) und die Einschlafzeit samt Beginn bleiben, wenn die neue keine hat (die Uhr schickt dieselbe
- * Nacht noch einmal, eine ältere Uhr-App ohne Einschlafzeit).
+ * Nacht noch einmal, eine ältere Uhr-App ohne Einschlafzeit). Danach gekürzt nach [keep] (Handy oder Uhr).
  */
-internal fun mergeNight(current: List<NightRecord>, night: NightRecord): List<NightRecord> {
+internal fun mergeNight(
+    current: List<NightRecord>,
+    night: NightRecord,
+    keep: NightKeep,
+    now: Instant,
+): List<NightRecord> {
     val same: (NightRecord) -> Boolean = { it.isNight(night.alarmId, night.windowStart) }
     val old = current.firstOrNull(same)
     val merged = night.copy(
@@ -27,5 +32,5 @@ internal fun mergeNight(current: List<NightRecord>, night: NightRecord): List<Ni
         bedAt = if (night.asleepAt != null) night.bedAt else old?.bedAt,
         asleepAt = night.asleepAt ?: old?.asleepAt,
     )
-    return NightHistory.trim(current.filterNot(same) + merged)
+    return keep.trim(current.filterNot(same) + merged, now)
 }

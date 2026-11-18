@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d klst %2$d mín</string>
     <string name="health_title">Svefnstig úr Health Connect</string>
     <string name="health_rationale">Phase Wake getur lesið svefngögnin sem heilsuforritið þitt (til dæmis Samsung Health) vistar. Þau birtast í ferlinum þínum, líka til samanburðar við næturnar sem Phase Wake vakti þig. Phase Wake les bara, skrifar aldrei, og ekkert fer úr símanum.</string>
+    <string name="health_rationale_history">Ef þú leyfir líka aðgang að eldri gögnum les Phase Wake einnig svefngögn sem eru eldri en 30 daga, svo ferillinn þinn getur náð allt að tvö ár aftur í tímann. Án þessa leyfis les Phase Wake aðeins gögn frá 30 dögum fyrir fyrsta aðgang.</string>
     <string name="health_connect">Bera saman við heilsugögn</string>
     <string name="health_connect_hint">Les svefnstig úr Health Connect eftir að þú vaknar, til að athuga og bæta greininguna.</string>
     <string name="health_connected">Tengt</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Sýna nánar</string>
     <string name="night_latency">Að sofna</string>
     <string name="night_efficiency">Svefnnýtni</string>
-    <string name="night_awakenings">Skipti vakandi</string>
+    <string name="night_wake_moments">Vaknanir</string>
+    <string name="night_wake_brief">Stuttar vaknanir</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">þar af %1$d lengri en %2$d mín</item>
+        <item quantity="other">þar af %1$d lengri en %2$d mín</item>
+    </plurals>
     <string name="night_longest_deep">Lengsti djúpsvefn</string>
     <string name="stages_typical">Venjulegt bil</string>
     <string name="stages_typical_range">Venjulega %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Háttatíminn þinn sveiflaðist um allt að %1$s. Ráð: farðu að sofa á svipuðum tíma alla daga, líka um helgar.</string>
     <string name="finding_jetlag">Um helgar hliðraðist svefninn um %1$s miðað við virka daga. Ráð: haltu sömu svefntímum líka um helgar.</string>
     <string name="weekly_deep">Djúpsvefn %1$s af svefninum</string>
+    <string name="settings_clear_old">Eyða eldra en 90 daga</string>
+    <string name="settings_clear_old_text">Eyðir skráðum nóttum eldri en 90 daga í símanum, ásamt athugasemdum, líðan, hökum í kvöldrútínu og næturupptökum þeirra. Nýrri nætur og vekjararnir haldast. Nætur úr öðrum forritum eru aðeins faldar hér og haldast í þeim forritum.</string>
 </resources>

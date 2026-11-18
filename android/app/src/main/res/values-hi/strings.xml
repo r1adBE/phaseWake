@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d घं. %2$d मि.</string>
     <string name="health_title">Health Connect से नींद के चरण</string>
     <string name="health_rationale">Phase Wake वह नींद का डेटा पढ़ सकता है जो तुम्हारा हेल्थ ऐप (जैसे Samsung Health) सेव करता है। यह तुम्हारे इतिहास में दिखता है, उन रातों से तुलना के लिए भी जब Phase Wake ने तुम्हें जगाया। Phase Wake सिर्फ़ पढ़ता है, कभी लिखता नहीं, और कुछ भी तुम्हारे फ़ोन से बाहर नहीं जाता।</string>
+    <string name="health_rationale_history">अगर तुम पुराने डेटा का ऐक्सेस भी दो, तो Phase Wake 30 दिन से पुराना नींद का डेटा भी पढ़ता है, ताकि तुम्हारा इतिहास दो साल तक पीछे जा सके। इसके बिना Phase Wake सिर्फ़ पहले ऐक्सेस से 30 दिन पहले से डेटा पढ़ता है।</string>
     <string name="health_connect">हेल्थ डेटा से मिलान करो</string>
     <string name="health_connect_hint">जागने के बाद Health Connect से नींद के चरण पढ़ता है, ताकि पहचान जाँची और बेहतर की जा सके।</string>
     <string name="health_connected">जुड़ा है</string>
@@ -532,7 +533,12 @@
     <string name="night_open">विवरण दिखाओ</string>
     <string name="night_latency">नींद आने में समय</string>
     <string name="night_efficiency">नींद की दक्षता</string>
-    <string name="night_awakenings">जागने की बार</string>
+    <string name="night_wake_moments">जागने के पल</string>
+    <string name="night_wake_brief">थोड़ी देर जागना</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">इनमें से %1$d, %2$d मिनट से ज़्यादा</item>
+        <item quantity="other">इनमें से %1$d, %2$d मिनट से ज़्यादा</item>
+    </plurals>
     <string name="night_longest_deep">सबसे लंबी गहरी नींद</string>
     <string name="stages_typical">सामान्य दायरा</string>
     <string name="stages_typical_range">सामान्य %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">तुम्हारे सोने का समय %1$s तक बदलता रहा। सुझाव: हर दिन लगभग एक ही समय पर सोओ, सप्ताहांत में भी।</string>
     <string name="finding_jetlag">सप्ताहांत में तुम्हारी नींद कामकाजी दिनों की तुलना में %1$s खिसक गई। सुझाव: सप्ताहांत में भी वही सोने का समय रखो।</string>
     <string name="weekly_deep">गहरी नींद तुम्हारी नींद का %1$s</string>
+    <string name="settings_clear_old">90 दिन से पुराना हटाएँ</string>
+    <string name="settings_clear_old_text">फ़ोन पर 90 दिन से पुरानी रिकॉर्ड की गई रातें हट जाएँगी, साथ में उनके नोट्स, एहसास, शाम की दिनचर्या के टिक और रात की रिकॉर्डिंग भी। नई रातें और तुम्हारे अलार्म बने रहेंगे। दूसरे ऐप की रातें यहाँ सिर्फ़ छिपाई जाती हैं और उन्हीं ऐप में रहती हैं।</string>
 </resources>

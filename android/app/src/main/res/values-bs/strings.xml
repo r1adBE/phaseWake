@@ -117,6 +117,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Faze sna iz Health Connecta</string>
     <string name="health_rationale">Phase Wake može čitati podatke o snu koje tvoja zdravstvena aplikacija (na primjer Samsung Health) pohranjuje. Prikazuju se u tvojoj historiji, i za poređenje s noćima u kojima te je probudio Phase Wake. Phase Wake samo čita, nikad ne zapisuje i ništa ne napušta tvoj telefon.</string>
+    <string name="health_rationale_history">Ako dozvoliš i pristup ranijim podacima, Phase Wake čita i podatke o snu starije od 30 dana, pa tvoja historija može sezati do dvije godine unazad. Bez te dozvole Phase Wake čita samo podatke od 30 dana prije prvog pristupa.</string>
     <string name="health_connect">Uporedi sa zdravstvenim podacima</string>
     <string name="health_connect_hint">Nakon buđenja čita faze sna iz Health Connecta kako bi provjerio i poboljšao prepoznavanje.</string>
     <string name="health_connected">Povezano</string>
@@ -550,7 +551,13 @@
     <string name="night_open">Prikaži detalje</string>
     <string name="night_latency">Uspavljivanje</string>
     <string name="night_efficiency">Efikasnost sna</string>
-    <string name="night_awakenings">Buđenja</string>
+    <string name="night_wake_moments">Buđenja</string>
+    <string name="night_wake_brief">Kratka buđenja</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">od toga %1$d duže od %2$d min</item>
+        <item quantity="few">od toga %1$d duže od %2$d min</item>
+        <item quantity="other">od toga %1$d duže od %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Najduži duboki san</string>
     <string name="stages_typical">Uobičajeni raspon</string>
     <string name="stages_typical_range">Uobičajeno %1$d–%2$d %%</string>
@@ -675,4 +682,6 @@
     <string name="finding_bedtime">Vrijeme odlaska na spavanje variralo je do %1$s. Savjet: idi spavati svaki dan otprilike u isto vrijeme, i vikendom.</string>
     <string name="finding_jetlag">Vikendom ti je san bio pomjeren za %1$s u odnosu na radne dane. Savjet: zadrži iste termine spavanja i vikendom.</string>
     <string name="weekly_deep">Duboki san %1$s tvog sna</string>
+    <string name="settings_clear_old">Izbriši starije od 90 dana</string>
+    <string name="settings_clear_old_text">Briše zabilježene noći starije od 90 dana na telefonu, zajedno s njihovim bilješkama, osjećajem, kvačicama večernje rutine i noćnim snimcima. Novije noći i tvoji alarmi ostaju. Noći iz drugih aplikacija ovdje se samo sakrivaju i ostaju u tim aplikacijama.</string>
 </resources>

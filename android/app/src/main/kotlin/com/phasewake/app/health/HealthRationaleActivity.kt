@@ -22,12 +22,13 @@ import com.phasewake.app.ui.theme.EveningDarkTicker
 import com.phasewake.app.ui.theme.PhaseWakeTheme
 import com.phasewake.app.ui.theme.ThemeMode
 
-/** Erklärt, wofür Phase Wake die Schlafdaten liest (Pflicht für Health Connect). */
+/** Erklärt, wofür Phase Wake die Schlafdaten liest und wozu «Verlauf lesen» dient (Pflicht für Health Connect). */
 class HealthRationaleActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         val app = phoneApp
+        val history = app.health.historyAvailable
         setContent {
             val mode = app.settings.themeMode.collectAsStateWithLifecycle(initialValue = ThemeMode.SYSTEM).value
             val evening = remember { EveningDarkTicker.flow(app.settings.eveningDark) }
@@ -41,6 +42,14 @@ class HealthRationaleActivity : ComponentActivity() {
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(top = 12.dp),
                         )
+                        // Nur wo Health Connect das Recht «Verlauf lesen» kennt (sonst wird es nicht angefragt).
+                        if (history) {
+                            Text(
+                                stringResource(R.string.health_rationale_history),
+                                style = MaterialTheme.typography.bodyLarge,
+                                modifier = Modifier.padding(top = 12.dp),
+                            )
+                        }
                     }
                 }
             }

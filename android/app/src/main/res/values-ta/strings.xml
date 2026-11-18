@@ -114,6 +114,7 @@
     <string name="duration_hours_minutes">%1$d மணி %2$d நிமி.</string>
     <string name="health_title">Health Connect இலிருந்து தூக்க நிலைகள்</string>
     <string name="health_rationale">உங்கள் ஆரோக்கிய ஆப்ஸ் (உதாரணமாக Samsung Health) சேமிக்கும் தூக்கத் தரவை Phase Wake படிக்க முடியும். அது உங்கள் வரலாற்றில் காட்டப்படும், Phase Wake உங்களை எழுப்பிய இரவுகளுடன் ஒப்பிடவும் பயன்படும். Phase Wake படிக்க மட்டுமே செய்யும், ஒருபோதும் எழுதாது, எதுவும் உங்கள் ஃபோனை விட்டு வெளியேறாது.</string>
+    <string name="health_rationale_history">முந்தைய தரவுக்கான அணுகலையும் நீங்கள் அனுமதித்தால், 30 நாட்களுக்கு மேல் பழைய தூக்கத் தரவையும் Phase Wake படிக்கும், இதனால் உங்கள் வரலாறு இரண்டு ஆண்டுகள் வரை பின்னோக்கிச் செல்லலாம். இந்த அனுமதி இல்லாமல், முதல் அணுகலுக்கு 30 நாட்களுக்கு முன்பிருந்தான தரவை மட்டுமே Phase Wake படிக்கும்.</string>
     <string name="health_connect">ஆரோக்கியத் தரவுடன் ஒப்பிடு</string>
     <string name="health_connect_hint">எழுந்த பிறகு Health Connect இலிருந்து தூக்க நிலைகளைப் படித்து, கண்டறிதலைச் சரிபார்த்து மேம்படுத்தும்.</string>
     <string name="health_connected">இணைக்கப்பட்டது</string>
@@ -534,7 +535,12 @@
     <string name="night_open">விவரங்களைக் காட்டவும்</string>
     <string name="night_latency">தூங்க ஆன நேரம்</string>
     <string name="night_efficiency">தூக்கத் திறன்</string>
-    <string name="night_awakenings">விழித்த முறைகள்</string>
+    <string name="night_wake_moments">விழித்த தருணங்கள்</string>
+    <string name="night_wake_brief">குறுகிய விழிப்புகள்</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">அவற்றில் %1$d, %2$d நிமி.க்கு மேல்</item>
+        <item quantity="other">அவற்றில் %1$d, %2$d நிமி.க்கு மேல்</item>
+    </plurals>
     <string name="night_longest_deep">மிக நீண்ட ஆழ்ந்த தூக்கம்</string>
     <string name="stages_typical">வழக்கமான வரம்பு</string>
     <string name="stages_typical_range">வழக்கமாக %1$d–%2$d %%</string>
@@ -659,4 +665,6 @@
     <string name="finding_bedtime">உன் தூங்கும் நேரம் %1$s வரை மாறியது. குறிப்பு: தினமும் ஏறக்குறைய ஒரே நேரத்தில் தூங்கு, வார இறுதியிலும்.</string>
     <string name="finding_jetlag">வார இறுதியில் உன் தூக்கம் வேலை நாட்களை விட %1$s நகர்ந்தது. குறிப்பு: வார இறுதியிலும் அதே தூக்க நேரங்களைக் கடைப்பிடி.</string>
     <string name="weekly_deep">ஆழ்ந்த தூக்கம் உன் தூக்கத்தில் %1$s</string>
+    <string name="settings_clear_old">90 நாட்களுக்கு மேற்பட்டதை நீக்கு</string>
+    <string name="settings_clear_old_text">ஃபோனில் 90 நாட்களுக்கு மேற்பட்ட பதிவான இரவுகள், அவற்றின் குறிப்புகள், உணர்வு, மாலை வழக்கத்தின் குறிகள் மற்றும் இரவுப் பதிவுகளுடன் நீக்கப்படும். புதிய இரவுகளும் உங்கள் அலாரங்களும் அப்படியே இருக்கும். பிற ஆப்களின் இரவுகள் இங்கே மறைக்கப்படும் மட்டுமே, அவை அந்த ஆப்களிலேயே இருக்கும்.</string>
 </resources>

@@ -6,6 +6,7 @@ struct SettingsView: View {
     @Environment(PhoneModel.self) private var model
     @PrivateSetting("themeMode") private var themeMode = ThemeMode.system
     @State private var confirmClear = false
+    @State private var confirmOlder = false
     @AppStorage("healthRequested") private var healthRequested = false
     @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
     @State private var diagUnlocked = DiagStore.shared.unlocked
@@ -69,6 +70,7 @@ struct SettingsView: View {
                         Text(L("settings_data_text_apple")).font(.footnote)
                         HistoryExportLink { Text(L("settings_export")) }
                         Text(L("export_contents_hint")).font(.footnote).foregroundStyle(.secondary)
+                        Button(L("settings_clear_old"), role: .destructive) { confirmOlder = true }
                         Button(L("settings_clear_history"), role: .destructive) { confirmClear = true }
                     }
                     BackupSection()
@@ -97,6 +99,12 @@ struct SettingsView: View {
                 // Mit Gerätesperre zusätzlich Face ID, Touch ID oder Code; ohne Sperre genügt diese Rückfrage.
                 Button(L("settings_clear_history_confirm"), role: .destructive) {
                     Task { if await DeviceAuth.confirm(reason: L("auth_clear_history")) { model.clearHistory() } }
+                }
+            }
+            // «Älter als 90 Tage löschen»: gleiche Rückfrage, der Text nennt, was gelöscht wird.
+            .confirmationDialog(L("settings_clear_old_text"), isPresented: $confirmOlder, titleVisibility: .visible) {
+                Button(L("settings_clear_history_confirm"), role: .destructive) {
+                    Task { if await DeviceAuth.confirm(reason: L("auth_clear_history")) { model.clearOlderHistory() } }
                 }
             }
         }

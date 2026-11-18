@@ -116,6 +116,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Fases del son de Health Connect</string>
     <string name="health_rationale">Phase Wake pot llegir les dades de son que la teva app de salut (per exemple, Samsung Health) desa. Es mostren al teu historial, també per comparar-les amb les nits en què Phase Wake t’ha despertat. Phase Wake només llegeix, mai no escriu, i res no surt del teu telèfon.</string>
+    <string name="health_rationale_history">Si també permets l’accés a les dades anteriors, Phase Wake llegeix també les dades de son de fa més de 30 dies, de manera que el teu historial pot arribar fins a dos anys enrere. Sense aquest permís, Phase Wake només llegeix les dades a partir de 30 dies abans del primer accés.</string>
     <string name="health_connect">Compara amb les dades de salut</string>
     <string name="health_connect_hint">Després de despertar-te, llegeix les fases del son de Health Connect per comprovar i millorar la detecció.</string>
     <string name="health_connected">Connectat</string>
@@ -549,7 +550,13 @@
     <string name="night_open">Mostra els detalls</string>
     <string name="night_latency">Temps per adormir-se</string>
     <string name="night_efficiency">Eficiència del son</string>
-    <string name="night_awakenings">Vegades despert</string>
+    <string name="night_wake_moments">Despertades</string>
+    <string name="night_wake_brief">Despertades breus</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d de més de %2$d min</item>
+        <item quantity="many">%1$d de més de %2$d min</item>
+        <item quantity="other">%1$d de més de %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Son profund més llarg</string>
     <string name="stages_typical">Interval habitual</string>
     <string name="stages_typical_range">Habitual %1$d–%2$d %%</string>
@@ -674,4 +681,6 @@
     <string name="finding_bedtime">La teva hora d’anar a dormir va variar fins a %1$s. Consell: ves a dormir cada dia més o menys a la mateixa hora, també el cap de setmana.</string>
     <string name="finding_jetlag">El cap de setmana el teu son es va desplaçar %1$s respecte als dies feiners. Consell: mantén els mateixos horaris també el cap de setmana.</string>
     <string name="weekly_deep">Son profund %1$s del teu son</string>
+    <string name="settings_clear_old">Suprimeix el que tingui més de 90 dies</string>
+    <string name="settings_clear_old_text">Suprimeix del telèfon les nits registrades de fa més de 90 dies, amb les seves notes, l’estat, les marques de la rutina del vespre i els enregistraments nocturns. Les nits més recents i les alarmes es mantenen. Les nits d’altres apps només s’amaguen aquí i es queden en aquestes apps.</string>
 </resources>

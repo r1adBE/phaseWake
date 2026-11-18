@@ -114,6 +114,7 @@
     <string name="duration_hours_minutes">saa %1$d dak %2$d</string>
     <string name="health_title">Hatua za usingizi kutoka Health Connect</string>
     <string name="health_rationale">Phase Wake inaweza kusoma data ya usingizi ambayo programu yako ya afya (kwa mfano Samsung Health) huhifadhi. Inaonyeshwa kwenye historia yako, pia kwa kulinganisha na usiku ambao Phase Wake ilikuamsha. Phase Wake inasoma tu, haiandiki kamwe, na hakuna kinachotoka kwenye simu yako.</string>
+    <string name="health_rationale_history">Ukiruhusu pia ufikiaji wa data ya awali, Phase Wake husoma pia data ya usingizi iliyo na zaidi ya siku 30, ili historia yako ifike hadi miaka miwili nyuma. Bila ruhusa hii, Phase Wake husoma tu data kuanzia siku 30 kabla ya ufikiaji wa kwanza.</string>
     <string name="health_connect">Linganisha na data ya afya</string>
     <string name="health_connect_hint">Husoma hatua za usingizi kutoka Health Connect baada ya kuamka, ili kukagua na kuboresha utambuzi.</string>
     <string name="health_connected">Imeunganishwa</string>
@@ -534,7 +535,12 @@
     <string name="night_open">Onyesha maelezo</string>
     <string name="night_latency">Muda wa kupata usingizi</string>
     <string name="night_efficiency">Ufanisi wa usingizi</string>
-    <string name="night_awakenings">Mara ulizoamka</string>
+    <string name="night_wake_moments">Nyakati za kuamka</string>
+    <string name="night_wake_brief">Kuamka kwa muda mfupi</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">kati yake %1$d zaidi ya dak %2$d</item>
+        <item quantity="other">kati yake %1$d zaidi ya dak %2$d</item>
+    </plurals>
     <string name="night_longest_deep">Usingizi mzito mrefu zaidi</string>
     <string name="stages_typical">Kiwango cha kawaida</string>
     <string name="stages_typical_range">Kawaida %1$d–%2$d %%</string>
@@ -659,4 +665,6 @@
     <string name="finding_bedtime">Muda wako wa kulala ulitofautiana hadi %1$s. Kidokezo: lala karibu saa ileile kila siku, hata wikendi.</string>
     <string name="finding_jetlag">Wikendi usingizi wako ulisogea %1$s ukilinganisha na siku za kazi. Kidokezo: shika muda uleule wa kulala hata wikendi.</string>
     <string name="weekly_deep">Usingizi mzito %1$s ya usingizi wako</string>
+    <string name="settings_clear_old">Futa vya zaidi ya siku 90</string>
+    <string name="settings_clear_old_text">Inafuta usiku uliorekodiwa wa zaidi ya siku 90 kwenye simu yako, pamoja na madokezo, hali, alama za ratiba ya jioni na rekodi za usiku zake. Usiku mpya zaidi na kengele zako zinabaki. Usiku kutoka programu nyingine unafichwa hapa tu na unabaki kwenye programu hizo.</string>
 </resources>

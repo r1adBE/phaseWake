@@ -114,6 +114,7 @@
     <string name="duration_hours_minutes">%1$d گھنٹے %2$d منٹ</string>
     <string name="health_title">Health Connect سے نیند کے مراحل</string>
     <string name="health_rationale">Phase Wake نیند کا وہ ڈیٹا پڑھ سکتا ہے جو تمہاری صحت کی ایپ (مثلاً Samsung Health) محفوظ کرتی ہے۔ یہ تمہارے تاریخچے میں دکھایا جاتا ہے، ان راتوں سے موازنے کے لیے بھی جب Phase Wake نے تمہیں جگایا۔ Phase Wake صرف پڑھتا ہے، کبھی لکھتا نہیں، اور کچھ بھی تمہارے فون سے باہر نہیں جاتا۔</string>
+    <string name="health_rationale_history">اگر تم پچھلے ڈیٹا تک رسائی کی بھی اجازت دو تو Phase Wake 30 دن سے پرانا نیند کا ڈیٹا بھی پڑھتا ہے، تاکہ تمہارا تاریخچہ دو سال تک پیچھے جا سکے۔ اس اجازت کے بغیر Phase Wake صرف پہلی رسائی سے 30 دن پہلے سے ڈیٹا پڑھتا ہے۔</string>
     <string name="health_connect">صحت کے ڈیٹا سے موازنہ کرو</string>
     <string name="health_connect_hint">جاگنے کے بعد Health Connect سے نیند کے مراحل پڑھتا ہے، تاکہ پہچان کو جانچا اور بہتر بنایا جا سکے۔</string>
     <string name="health_connected">منسلک</string>
@@ -534,7 +535,12 @@
     <string name="night_open">تفصیلات دکھاؤ</string>
     <string name="night_latency">نیند آنے کا وقت</string>
     <string name="night_efficiency">نیند کی کارکردگی</string>
-    <string name="night_awakenings">جاگنے کی بار</string>
+    <string name="night_wake_moments">جاگنے کے لمحات</string>
+    <string name="night_wake_brief">تھوڑی دیر جاگنا</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">ان میں سے %1$d، %2$d منٹ سے زیادہ</item>
+        <item quantity="other">ان میں سے %1$d، %2$d منٹ سے زیادہ</item>
+    </plurals>
     <string name="night_longest_deep">سب سے لمبی گہری نیند</string>
     <string name="stages_typical">معمول کی حد</string>
     <string name="stages_typical_range">عموماً %1$d–%2$d %%</string>
@@ -659,4 +665,6 @@
     <string name="finding_bedtime">آپ کے سونے کا وقت %1$s تک بدلتا رہا۔ مشورہ: ہر روز تقریباً ایک ہی وقت پر سوئیں، ہفتے کے آخر میں بھی۔</string>
     <string name="finding_jetlag">ہفتے کے آخر میں آپ کی نیند کام کے دنوں کے مقابلے میں %1$s سرک گئی۔ مشورہ: ہفتے کے آخر میں بھی سونے کے وہی اوقات رکھیں۔</string>
     <string name="weekly_deep">گہری نیند آپ کی نیند کا %1$s</string>
+    <string name="settings_clear_old">90 دن سے پرانا حذف کرو</string>
+    <string name="settings_clear_old_text">فون پر 90 دن سے پرانی ریکارڈ کی گئی راتیں ان کے نوٹس، کیفیت، شام کے معمول کے نشان اور رات کی ریکارڈنگز سمیت حذف ہو جائیں گی۔ نئی راتیں اور تمہارے الارم باقی رہیں گے۔ دوسری ایپس کی راتیں یہاں صرف چھپائی جاتی ہیں اور انہی ایپس میں رہتی ہیں۔</string>
 </resources>

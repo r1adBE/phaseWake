@@ -1,6 +1,7 @@
 package com.phasewake.app.backup
 
 import android.app.Application
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.shared.NightRepository
@@ -28,10 +29,15 @@ class RestoreJournalTest {
     private val dir: File get() = RuntimeEnvironment.getApplication().filesDir
     private val nightsFile get() = File(dir, "nights.v1")
 
+    private fun repo() = NightRepository(nightsFile, NightKeep.PHONE)
+
+    // Nächte von vor wenigen Tagen: Der Verlauf des Handys behält 2 Jahre ([NightKeep.PHONE]).
+    private val base = Instant.now().minusSeconds(10 * 86_400L).toEpochMilli()
+
     private fun night(id: String, start: Long) =
         NightRecord(
-            id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000),
-            Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
+            id, Instant.ofEpochMilli(base + start), Instant.ofEpochMilli(base + start + 1_800_000),
+            Instant.ofEpochMilli(base + start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
         )
 
     private val old = listOf(night("alt", 1_000_000))
@@ -39,7 +45,7 @@ class RestoreJournalTest {
 
     /** Bis zum Tausch der Nächte, dann «Prozessende» (kein `edit`, keine Aufräumarbeit). */
     private fun interruptedRestore(token: String) = runBlocking {
-        val nights = NightRepository(nightsFile)
+        val nights = repo()
         nights.replaceAll(old)
         RestoreJournal(dir).begin(token, nights.load())
         nights.replaceAll(restored)
@@ -48,11 +54,11 @@ class RestoreJournalTest {
     @Test
     fun interruptedBeforeDataStoreRollsBack() = runBlocking {
         interruptedRestore("t1")
-        val nights = NightRepository(nightsFile)
+        val nights = repo()
         val journal = RestoreJournal(dir)
         // Der DataStore trägt noch die Kennung eines früheren Wiederherstellens (oder keine).
         assertEquals(RestoreJournal.Outcome.ROLLED_BACK, journal.recover("t0", nights))
-        assertEquals(old, NightRepository(nightsFile).load())
+        assertEquals(old, repo().load())
         assertNull(journal.pendingToken())
         assertFalse(File(dir, "restore-nights-before.v1").exists(), "Kopie nach dem Abschluss weg")
     }
@@ -62,24 +68,24 @@ class RestoreJournalTest {
         interruptedRestore("t2")
         val journal = RestoreJournal(dir)
         // Das `edit` hatte die Kennung schon geschrieben: der neue Stand ist vollständig.
-        assertEquals(RestoreJournal.Outcome.FINISHED, journal.recover("t2", NightRepository(nightsFile)))
-        assertEquals(restored, NightRepository(nightsFile).load())
+        assertEquals(RestoreJournal.Outcome.FINISHED, journal.recover("t2", repo()))
+        assertEquals(restored, repo().load())
         // Die Marke bleibt bis nach dem Abgleich mit der Uhr: Endet der Prozess vorher, wieder FINISHED.
         assertEquals("t2", journal.pendingToken())
-        assertEquals(RestoreJournal.Outcome.FINISHED, RestoreJournal(dir).recover("t2", NightRepository(nightsFile)))
-        assertEquals(restored, NightRepository(nightsFile).load())
+        assertEquals(RestoreJournal.Outcome.FINISHED, RestoreJournal(dir).recover("t2", repo()))
+        assertEquals(restored, repo().load())
         journal.finish()
         assertNull(journal.pendingToken())
     }
 
     @Test
     fun withoutMarkerNothingChangesAndStaleCopyGoes() = runBlocking {
-        val nights = NightRepository(nightsFile)
+        val nights = repo()
         nights.replaceAll(old)
         // Prozessende nach der Kopie, aber vor der Marke: Kopie ohne Marke.
-        NightRepository(File(dir, "restore-nights-before.v1")).replaceAll(restored)
+        NightRepository(File(dir, "restore-nights-before.v1"), NightKeep.PHONE).replaceAll(restored)
         assertEquals(RestoreJournal.Outcome.NONE, RestoreJournal(dir).recover(null, nights))
-        assertEquals(old, NightRepository(nightsFile).load())
+        assertEquals(old, repo().load())
         assertFalse(File(dir, "restore-nights-before.v1").exists())
     }
 
@@ -90,6 +96,6 @@ class RestoreJournalTest {
         assertEquals("t3", journal.pendingToken())
         journal.finish()
         assertNull(journal.pendingToken())
-        assertEquals(RestoreJournal.Outcome.NONE, RestoreJournal(dir).recover("t3", NightRepository(nightsFile)))
+        assertEquals(RestoreJournal.Outcome.NONE, RestoreJournal(dir).recover("t3", repo()))
     }
 }

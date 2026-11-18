@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Mga yugto ng tulog mula sa Health Connect</string>
     <string name="health_rationale">Mababasa ng Phase Wake ang sleep data na sine-save ng health app mo (halimbawa, Samsung Health). Ipinapakita ito sa kasaysayan mo, pati para ikumpara sa mga gabing ginising ka ng Phase Wake. Nagbabasa lang ang Phase Wake, hindi kailanman nagsusulat, at walang lumalabas sa telepono mo.</string>
+    <string name="health_rationale_history">Kung papayagan mo rin ang access sa mga nakaraang data, babasahin din ng Phase Wake ang sleep data na mas luma sa 30 araw, kaya aabot hanggang dalawang taon pabalik ang kasaysayan mo. Kung wala nito, data lang mula 30 araw bago ang unang access ang babasahin ng Phase Wake.</string>
     <string name="health_connect">Ikumpara sa health data</string>
     <string name="health_connect_hint">Binabasa ang mga yugto ng tulog mula sa Health Connect pagkagising, para tingnan at pahusayin ang pag-detect.</string>
     <string name="health_connected">Nakakonekta</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Ipakita ang mga detalye</string>
     <string name="night_latency">Pagkakatulog</string>
     <string name="night_efficiency">Episyensiya ng tulog</string>
-    <string name="night_awakenings">Ilang beses nagising</string>
+    <string name="night_wake_moments">Mga sandaling gising</string>
+    <string name="night_wake_brief">Maiikling sandaling gising</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">%1$d dito ay higit sa %2$d min</item>
+        <item quantity="other">%1$d dito ay higit sa %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Pinakamahabang malalim na tulog</string>
     <string name="stages_typical">Karaniwang saklaw</string>
     <string name="stages_typical_range">Karaniwan %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Nag-iba-iba ang oras ng pagtulog mo nang hanggang %1$s. Tip: matulog sa halos parehong oras araw-araw, pati sa weekend.</string>
     <string name="finding_jetlag">Sa weekend, umusog ang tulog mo nang %1$s kumpara sa mga araw ng trabaho. Tip: panatilihin ang parehong oras ng tulog kahit weekend.</string>
     <string name="weekly_deep">Malalim na tulog %1$s ng iyong tulog</string>
+    <string name="settings_clear_old">I-delete ang lampas 90 araw</string>
+    <string name="settings_clear_old_text">Dine-delete ang mga naitalang gabi na lampas 90 araw sa telepono mo, kasama ang mga tala, pakiramdam, tsek sa routine sa gabi at mga recording ng gabi nila. Mananatili ang mas bagong gabi at ang mga alarm mo. Itinatago lang dito ang mga gabi mula sa ibang app at nananatili sila sa mga app na iyon.</string>
 </resources>

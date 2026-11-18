@@ -23,7 +23,7 @@ final class WatchLastNight {
         if !loaded { reload() }
     }
 
-    /// Fügt eine Nacht hinzu (``PhaseWakeStorage/add(_:)``). - Returns: ob sie gespeichert ist.
+    /// Fügt eine Nacht hinzu (``PhaseWakeStorage/add(_:now:)``). - Returns: ob sie gespeichert ist.
     @discardableResult
     func add(_ record: NightRecord) -> Bool {
         let saved = storage.add(record)
@@ -31,7 +31,7 @@ final class WatchLastNight {
         return saved
     }
 
-    /// Ersetzt alle Nächte (``PhaseWakeStorage/replaceNights(_:)``).
+    /// Ersetzt alle Nächte (``PhaseWakeStorage/replaceNights(_:now:)``).
     func replace(_ nights: [NightRecord]) {
         storage.replaceNights(nights)
         reload()

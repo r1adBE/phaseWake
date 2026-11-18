@@ -46,6 +46,7 @@ import com.phasewake.app.ui.sounds.SoundClipsSection
 import java.io.File
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.NightRecord
+import com.phasewake.app.core.SleepWeek
 import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.components.NightBars
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -78,6 +79,8 @@ internal fun LastNightCard(
     missHint: MissHint?,
     onFeeling: (Int) -> Unit,
     extras: MorningExtras,
+    /** Ø Schlaf und Schlafziel der letzten 7 Nächte; `null`: keine Zeile. */
+    sleepWeek: SleepWeek? = null,
 ) {
     // Morgenbericht: am Morgen nach dem Wecken fragt die Karte nach dem Befinden.
     val morning = Duration.between(night.wokeAt, now) < MORNING
@@ -128,6 +131,14 @@ internal fun LastNightCard(
                 color = PhaseWakeTheme.brand.mutedSoft,
                 modifier = Modifier.padding(top = 2.dp),
             )
+            sleepWeek?.let {
+                Text(
+                    sleepWeekText(context, it),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = 6.dp),
+                )
+            }
             missHint?.let { hint ->
                 Column(
                     Modifier
@@ -172,6 +183,19 @@ internal fun LastNightCard(
             if (morning) SoundClipsSection(extras.clips, extras.soundFile, extras.onDeleteClip, extras.onDeleteClips)
         }
     }
+}
+
+/**
+ * «Ø 7 Std. 12 Min Schlaf · Schlafziel erreicht: 4 von 7 Nächten»: dieselben Texte wie die Trends im Verlauf; die
+ * Dauer bricht nicht in sich um (wie im Kopf der Startseite).
+ */
+internal fun sleepWeekText(context: android.content.Context, week: SleepWeek): String {
+    val asleep = context.getString(
+        R.string.trends_asleep, Format.duration(context, Duration.ofMinutes(week.asleepMinutes), keepTogether = true),
+    )
+    if (week.nights <= 0) return asleep
+    val goal = context.resources.getQuantityString(R.plurals.goal_week, week.nights, week.reached, week.nights)
+    return "$asleep · $goal"
 }
 
 /** Einstieg zu den Einschlafklängen; läuft ein Klang, mit Restzeit. */

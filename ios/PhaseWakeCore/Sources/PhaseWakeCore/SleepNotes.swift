@@ -35,7 +35,7 @@ public enum SleepNotes {
     /// Höchstlänge eines Namens in Zeichen; passt auf einen Chip.
     public static let maxNameLength = 30
     /// Wie der Verlauf: höchstens so viele Nachtdaten.
-    public static let maxNights = NightHistory.maxNights
+    public static let maxNights = NightHistory.maxDates
     /// Ab dieser Stunde (Ortszeit) lassen sich Notizen für die kommende Nacht setzen.
     public static let eveningHour = 17
 
@@ -130,7 +130,7 @@ public enum SleepNotes {
 
     // MARK: Speicherformat
 
-    /// Eine Zeile je Nachtdatum «yyyy-MM-dd|id,id,…», nach Datum sortiert, höchstens 90 Daten;
+    /// Eine Zeile je Nachtdatum «yyyy-MM-dd|id,id,…», nach Datum sortiert, höchstens ``maxNights`` Daten;
     /// Nächte ohne Notiz fallen weg.
     public static func encode(_ notes: [String: [String]]) -> String {
         trim(notes).sorted { $0.key < $1.key }
@@ -150,7 +150,7 @@ public enum SleepNotes {
         return trim(out)
     }
 
-    /// Behält die 90 jüngsten Nachtdaten mit mindestens einer Notiz.
+    /// Behält die ``maxNights`` jüngsten Nachtdaten mit mindestens einer Notiz.
     public static func trim(_ notes: [String: [String]]) -> [String: [String]] {
         let kept = notes.filter { !$0.value.isEmpty }.keys.sorted().suffix(maxNights)
         return Dictionary(uniqueKeysWithValues: kept.map { ($0, normalize(notes[$0] ?? [])) })
@@ -231,7 +231,7 @@ public struct NoteEffect: Equatable, Sendable {
     /// Sortiert nach |delta| absteigend, bei Gleichstand nach Kennung.
     public static func compute(nights: [NightRecord], notes: [String: [String]], asleepByNight: [String: Int] = [:],
                                health: [HealthFeeling] = [], calendar: Calendar) -> [NoteEffect] {
-        let latest = HealthFeelings.byDate(NightHistory.trim(nights), health: health, calendar: calendar)
+        let latest = HealthFeelings.byDate(NightHistory.latest(nights), health: health, calendar: calendar)
         let rated = latest.keys.sorted().compactMap { date -> (date: String, feeling: Int)? in
             latest[date].map { (date: date, feeling: $0) }
         }

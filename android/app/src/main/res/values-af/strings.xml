@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Slaapfases uit Health Connect</string>
     <string name="health_rationale">Phase Wake kan die slaapdata lees wat jou gesondheidsapp (byvoorbeeld Samsung Health) stoor. Dit word in jou geskiedenis gewys, ook om te vergelyk met die nagte waarin Phase Wake jou wakker gemaak het. Phase Wake lees net, skryf nooit, en niks verlaat jou foon nie.</string>
+    <string name="health_rationale_history">As jy ook toegang tot vroeëre data toelaat, lees Phase Wake ook slaapdata ouer as 30 dae, sodat jou geskiedenis tot twee jaar terug kan strek. Daarsonder lees Phase Wake net data vanaf 30 dae voor jou eerste toegang.</string>
     <string name="health_connect">Vergelyk met gesondheidsdata</string>
     <string name="health_connect_hint">Lees ná die wakker word slaapfases uit Health Connect om die bespeuring na te gaan en te verbeter.</string>
     <string name="health_connected">Gekoppel</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Wys besonderhede</string>
     <string name="night_latency">Insluimer</string>
     <string name="night_efficiency">Slaapdoeltreffendheid</string>
-    <string name="night_awakenings">Kere wakker</string>
+    <string name="night_wake_moments">Wakker oomblikke</string>
+    <string name="night_wake_brief">Kort wakker oomblikke</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">waarvan %1$d langer as %2$d min</item>
+        <item quantity="other">waarvan %1$d langer as %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Langste diep slaap</string>
     <string name="stages_typical">Gewone omvang</string>
     <string name="stages_typical_range">Gewoonlik %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Jou slaaptyd het met tot %1$s gewissel. Wenk: gaan elke dag omtrent dieselfde tyd slaap, ook oor naweke.</string>
     <string name="finding_jetlag">Oor naweke het jou slaap %1$s verskuif teenoor weeksdae. Wenk: hou dieselfde slaaptye ook oor naweke.</string>
     <string name="weekly_deep">Diep slaap %1$s van jou slaap</string>
+    <string name="settings_clear_old">Vee ouer as 90 dae uit</string>
+    <string name="settings_clear_old_text">Vee aangetekende nagte ouer as 90 dae op jou foon uit, saam met hul notas, gevoel, aandroetine-merkies en nagopnames. Nuwer nagte en jou wekkers bly. Nagte uit ander apps word hier net versteek en bly in daardie apps.</string>
 </resources>

@@ -117,6 +117,7 @@
     <string name="duration_hours_minutes">%1$d год %2$d хв</string>
     <string name="health_title">Фази сну з Health Connect</string>
     <string name="health_rationale">Phase Wake може читати дані про сон, які зберігає твій застосунок для здоров\'я (наприклад, Samsung Health). Вони показуються в твоїй історії, зокрема для порівняння з ночами, коли тебе будив Phase Wake. Phase Wake лише читає, нічого не записує, і дані не залишають твій телефон.</string>
+    <string name="health_rationale_history">Якщо ти дозволиш також доступ до минулих даних, Phase Wake читатиме й дані про сон, старші за 30 днів, і твоя історія зможе сягати до двох років назад. Без цього дозволу Phase Wake читає лише дані, починаючи з 30 днів до першого доступу.</string>
     <string name="health_connect">Звіряти з даними про здоров\'я</string>
     <string name="health_connect_hint">Після пробудження читає фази сну з Health Connect, щоб перевіряти й покращувати розпізнавання.</string>
     <string name="health_connected">Підключено</string>
@@ -562,7 +563,14 @@
     <string name="night_open">Показати докладніше</string>
     <string name="night_latency">Засинання</string>
     <string name="night_efficiency">Ефективність сну</string>
-    <string name="night_awakenings">Пробудження</string>
+    <string name="night_wake_moments">Пробудження</string>
+    <string name="night_wake_brief">Короткі пробудження</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">з них %1$d довше %2$d хв</item>
+        <item quantity="few">з них %1$d довше %2$d хв</item>
+        <item quantity="many">з них %1$d довше %2$d хв</item>
+        <item quantity="other">з них %1$d довше %2$d хв</item>
+    </plurals>
     <string name="night_longest_deep">Найдовший глибокий сон</string>
     <string name="stages_typical">Звичайний діапазон</string>
     <string name="stages_typical_range">Зазвичай %1$d–%2$d %%</string>
@@ -687,4 +695,6 @@
     <string name="finding_bedtime">Час відходу до сну коливався до %1$s. Порада: лягай щодня приблизно в той самий час, і у вихідні теж.</string>
     <string name="finding_jetlag">У вихідні твій сон зсувався на %1$s порівняно з буднями. Порада: дотримуйся того самого режиму сну й у вихідні.</string>
     <string name="weekly_deep">Глибокий сон %1$s твого сну</string>
+    <string name="settings_clear_old">Видалити старші за 90 днів</string>
+    <string name="settings_clear_old_text">Видаляє на телефоні записані ночі, старші за 90 днів, разом з їхніми нотатками, самопочуттям, позначками вечірнього ритуалу й нічними записами. Новіші ночі та твої будильники залишаться. Ночі з інших застосунків тут лише приховуються й залишаються в тих застосунках.</string>
 </resources>

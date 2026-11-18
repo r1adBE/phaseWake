@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d h %2$d min</string>
     <string name="health_title">Lo-faseak Health Connect-etik</string>
     <string name="health_rationale">Phase Wake-k zure osasun-aplikazioak (adibidez, Samsung Health) gordetzen dituen lo-datuak irakur ditzake. Zure historian erakusten dira, baita Phase Wake-k esnatu zaituen gauekin alderatzeko ere. Phase Wake-k irakurri bakarrik egiten du, ez du inoiz idazten, eta ezer ez da telefonotik ateratzen.</string>
+    <string name="health_rationale_history">Aurreko datuetarako sarbidea ere baimentzen baduzu, Phase Wake-k 30 egun baino zaharragoak diren lo-datuak ere irakurtzen ditu, eta zure historiak bi urte atzera arte irits daiteke. Baimen hori gabe, Phase Wake-k lehen sarbidea baino 30 egun lehenagotik aurrerako datuak soilik irakurtzen ditu.</string>
     <string name="health_connect">Alderatu osasun-datuekin</string>
     <string name="health_connect_hint">Esnatu ondoren, lo-faseak irakurtzen ditu Health Connect-etik, hautematea egiaztatu eta hobetzeko.</string>
     <string name="health_connected">Konektatuta</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Erakutsi xehetasunak</string>
     <string name="night_latency">Lokartzeko denbora</string>
     <string name="night_efficiency">Loaren eraginkortasuna</string>
-    <string name="night_awakenings">Esnatze kopurua</string>
+    <string name="night_wake_moments">Esnatzeak</string>
+    <string name="night_wake_brief">Esnatze laburrak</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">horietatik %1$d %2$d min baino luzeagoa</item>
+        <item quantity="other">horietatik %1$d %2$d min baino luzeagoak</item>
+    </plurals>
     <string name="night_longest_deep">Lo sakon luzeena</string>
     <string name="stages_typical">Ohiko tartea</string>
     <string name="stages_typical_range">Ohikoa %%%1$d–%2$d</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Oheratzeko ordua %1$s arte aldatu zen. Aholkua: oheratu egunero gutxi gorabehera ordu berean, asteburuetan ere bai.</string>
     <string name="finding_jetlag">Asteburuan zure loa %1$s lekualdatu zen lanegunekin alderatuta. Aholkua: mantendu lo-ordutegi berak asteburuan ere.</string>
     <string name="weekly_deep">Lo sakona: zure loaren %1$s</string>
+    <string name="settings_clear_old">Ezabatu 90 egun baino zaharragoak</string>
+    <string name="settings_clear_old_text">Telefonoan 90 egun baino zaharragoak diren gau erregistratuak ezabatzen ditu, haien oharrekin, sentipenarekin, gaueko errutinaren markekin eta gaueko grabazioekin batera. Gau berriagoak eta alarmak mantendu egiten dira. Beste aplikazio batzuetako gauak hemen ezkutatu baino ez dira egiten, eta aplikazio horietan geratzen dira.</string>
 </resources>

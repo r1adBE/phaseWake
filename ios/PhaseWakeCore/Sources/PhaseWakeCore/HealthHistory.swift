@@ -171,8 +171,22 @@ public enum HealthHistory {
     private static func clash(_ a: HealthSession, _ b: HealthSession) -> Bool {
         min(a.end, b.end).timeIntervalSince(max(a.start, b.start)) > overlapTolerance
     }
-    /// Lesefenster der Gesundheitsdaten in Tagen, so lang wie der eigene Verlauf (`NightHistory.maxNights`).
-    public static let days = 90
+    /// Lesefenster der Gesundheitsdaten in Tagen, so lang wie der eigene Verlauf (`NightHistory.days`).
+    public static let days = NightHistory.days
+
+    /// Eingaben der Kennzahlen, so weit wie vor dem längeren Verlauf: die jüngsten `NightHistory.insightNights` eigenen
+    /// Nächte und die Sitzungen, die nach `now − (insightNights + 1) Tage` enden (einen Tag mehr, damit die älteste
+    /// Nacht ganz drin ist). Mit `before` (Sekunden) auch die bis zum Beginn der ältesten dieser Nächte minus `before`.
+    /// Der Verlauf selbst nimmt alles (``merge(nights:sessions:clearedAt:calendar:)``). Identisch zu Kotlin.
+    public static func forInsights(nights: [NightRecord], sessions: [HealthSession], now: Date,
+                                   before: TimeInterval? = nil) -> (nights: [NightRecord], sessions: [HealthSession]) {
+        let recent = NightHistory.latest(nights)
+        var from = now.addingTimeInterval(-Double(NightHistory.insightNights + 1) * 86_400)
+        if let before, let oldest = recent.map(\.windowStart).min() {
+            from = min(from, oldest.addingTimeInterval(-before))
+        }
+        return (recent, sessions.filter { $0.end > from })
+    }
 
     /// Sitzungen, die nach «Verlauf löschen» sichtbar bleiben: Ende echt nach `clearedAt` (gleich = ausgeblendet).
     /// `clearedAt` `nil` = alle. Die Reihenfolge bleibt.

@@ -39,7 +39,8 @@ enum PhoneWidgetSync {
     static func refreshAsleep(_ model: PhoneModel, now: Date = Date()) async {
         guard UserDefaults.standard.bool(forKey: "healthRequested"), UIApplication.shared.isProtectedDataAvailable,
               PhoneWidgetSnapshot.load()?.morningNight(at: now) != nil else { return }
-        let health = await model.health.sessions(now: now)
+        // Nur die jüngste Nacht zählt: die letzten 90 Tage genügen (nicht der ganze Verlauf).
+        let health = await model.health.sessions(now: now, days: NightHistory.insightNights)
         publishAsleep(model,
                       sleeps: HealthHistory.summaries(health.sessions, clearedAt: model.historyClearedAt,
                                                       calendar: .gregorianLocal))

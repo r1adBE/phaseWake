@@ -26,7 +26,7 @@ data class HealthFeeling(
  */
 object HealthFeelings {
     /** Höchstens so viele Nachtdaten bleiben gespeichert (wie der Verlauf). */
-    const val MAX_DATES: Int = NightHistory.MAX_NIGHTS
+    const val MAX_DATES: Int = NightHistory.MAX_DATES
 
     /**
      * Setzt das Befinden [feeling] für [date]; ein Wert ausserhalb 1–5 ändert nichts. Höchstens [MAX_DATES] bleiben.

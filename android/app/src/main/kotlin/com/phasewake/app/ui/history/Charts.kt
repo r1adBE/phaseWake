@@ -50,7 +50,8 @@ enum class TrendLine { ASLEEP, GOAL, REGULAR, FEELING }
 
 /**
  * Verlauf, Gesundheitsdaten und Notizen, aus denen [HistoryCharts.of] rechnet. [health]: Befinden auch zu Nächten aus
- * anderen Apps.
+ * anderen Apps. [monthSleeps]: Nächte aus der Gesundheits-App über den ganzen Verlauf für die Übersicht «Monate», deren
+ * älteste Säule vor die 90 Tage von [sleeps] reicht; `null`: [sleeps].
  */
 data class ChartSource(
     val nights: List<NightRecord>,
@@ -58,6 +59,7 @@ data class ChartSource(
     val stages: List<StageSpan>,
     val notes: Map<LocalDate, List<String>>,
     val health: List<HealthFeeling> = emptyList(),
+    val monthSleeps: List<SleepSummary>? = null,
 )
 
 /**
@@ -114,7 +116,7 @@ data class HistoryCharts(
             /** Gelernte Einschlafdauer für die Bettzeit-Linie (die eine Bettzeit); `null` = nicht gelernt. */
             latencyMinutes: Int? = null,
         ): HistoryCharts {
-            val (nights, sleeps, stages, notes, health) = source
+            val (nights, sleeps, stages, notes, health, monthSleeps) = source
             val today = SleepNotes.nightDate(now, zone)
             val nextTarget = AlarmSchedule.earliestPlan(alarms, now, zone)?.target
             val hypnoNight = if (stages.isEmpty()) null else nights.sortedByDescending {
@@ -129,8 +131,10 @@ data class HistoryCharts(
                 hypnogramNight = hypnoNight,
                 hypnogramStages = hypnoNight?.let { StageStats.forNight(stages, it) },
                 feeling = periods { ChartData.feelingSeries(nights, notes, zone, today, it, health) },
+                // «Monate» mit allen Nächten der gezeigten Monate, «Tage» und «Wochen» wie die übrigen Kennzahlen.
                 overview = OverviewUnit.entries.mapNotNull { unit ->
-                    SleepOverviews.of(sleeps, zone, today, goalMinutes, unit, firstDay, stages)?.let { unit to it }
+                    val input = if (unit == OverviewUnit.MONTHS) monthSleeps ?: sleeps else sleeps
+                    SleepOverviews.of(input, zone, today, goalMinutes, unit, firstDay, stages)?.let { unit to it }
                 }.toMap(),
             )
         }

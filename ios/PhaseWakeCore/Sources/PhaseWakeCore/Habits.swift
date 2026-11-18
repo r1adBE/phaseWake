@@ -147,7 +147,7 @@ public enum Regularity {
 /// Serien: Nächte in Folge mit erreichtem Schlafziel. Keine Punkte, keine Abzeichen. Identisch zu Kotlin.
 public enum Streak {
     /// Zeitraum für die längste Serie in Nachtdaten (wie die gespeicherten Notizen).
-    public static let longestDays = 90
+    public static let longestDays = NightHistory.insightNights
 
     /// Schlafziel erreicht je Nachtdatum (aus der Gesundheits-App; mehrere Nächte am selben Datum → die längste).
     public static func reachedByNight(_ sleeps: [SleepSummary], calendar: Calendar,

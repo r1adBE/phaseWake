@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d giờ %2$d phút</string>
     <string name="health_title">Các giai đoạn ngủ từ Health Connect</string>
     <string name="health_rationale">Phase Wake có thể đọc dữ liệu giấc ngủ mà ứng dụng sức khỏe của bạn (ví dụ Samsung Health) lưu. Dữ liệu được hiển thị trong lịch sử của bạn, cũng để so sánh với những đêm Phase Wake đã đánh thức bạn. Phase Wake chỉ đọc, không bao giờ ghi, và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="health_rationale_history">Nếu bạn cũng cho phép truy cập dữ liệu trước đây, Phase Wake sẽ đọc cả dữ liệu giấc ngủ cũ hơn 30 ngày, nhờ đó lịch sử của bạn có thể kéo dài đến hai năm trước. Nếu không có quyền này, Phase Wake chỉ đọc dữ liệu từ 30 ngày trước lần truy cập đầu tiên.</string>
     <string name="health_connect">So sánh với dữ liệu sức khỏe</string>
     <string name="health_connect_hint">Đọc các giai đoạn ngủ từ Health Connect sau khi thức dậy để kiểm tra và cải thiện nhận diện.</string>
     <string name="health_connected">Đã kết nối</string>
@@ -517,7 +518,11 @@
     <string name="night_open">Hiện chi tiết</string>
     <string name="night_latency">Thời gian vào giấc</string>
     <string name="night_efficiency">Hiệu quả giấc ngủ</string>
-    <string name="night_awakenings">Số lần thức giấc</string>
+    <string name="night_wake_moments">Lần thức giấc</string>
+    <string name="night_wake_brief">Thức giấc ngắn</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">trong đó %1$d lần quá %2$d phút</item>
+    </plurals>
     <string name="night_longest_deep">Ngủ sâu dài nhất</string>
     <string name="stages_typical">Khoảng thông thường</string>
     <string name="stages_typical_range">Thông thường %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">Giờ đi ngủ của bạn chênh nhau tới %1$s. Mẹo: đi ngủ vào khoảng cùng một giờ mỗi ngày, kể cả cuối tuần.</string>
     <string name="finding_jetlag">Cuối tuần giấc ngủ của bạn lệch %1$s so với ngày thường. Mẹo: giữ cùng giờ ngủ cả vào cuối tuần.</string>
     <string name="weekly_deep">Ngủ sâu %1$s giấc ngủ của bạn</string>
+    <string name="settings_clear_old">Xóa dữ liệu cũ hơn 90 ngày</string>
+    <string name="settings_clear_old_text">Xóa các đêm đã ghi cũ hơn 90 ngày trên điện thoại của bạn, cùng ghi chú, cảm giác, dấu tích thói quen buổi tối và bản ghi ban đêm của chúng. Các đêm mới hơn và báo thức của bạn vẫn được giữ. Các đêm từ ứng dụng khác chỉ bị ẩn ở đây và vẫn nằm trong các ứng dụng đó.</string>
 </resources>

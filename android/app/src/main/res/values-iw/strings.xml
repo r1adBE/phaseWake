@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ש׳ %2$d דק׳</string>
     <string name="health_title">שלבי שינה מ-Health Connect</string>
     <string name="health_rationale">ניתן לאפשר ל-Phase Wake לקרוא את נתוני השינה שאפליקציית הבריאות שלכם (למשל Samsung Health) שומרת. הם מוצגים בהיסטוריה שלכם, גם להשוואה עם הלילות שבהם Phase Wake העיר אתכם. הגישה היא לקריאה בלבד, ושום דבר לא יוצא מהטלפון.</string>
+    <string name="health_rationale_history">אם תאפשרו גם גישה לנתונים קודמים, Phase Wake יקרא גם נתוני שינה ישנים מ-30 יום, כך שההיסטוריה יכולה להגיע עד שנתיים אחורה. בלי ההרשאה הזו, Phase Wake קורא רק נתונים מ-30 יום לפני הגישה הראשונה ואילך.</string>
     <string name="health_connect">השוואה לנתוני בריאות</string>
     <string name="health_connect_hint">קורא את שלבי השינה מ-Health Connect אחרי ההתעוררות, כדי לבדוק ולשפר את הזיהוי.</string>
     <string name="health_connected">מחובר</string>
@@ -547,7 +548,13 @@
     <string name="night_open">הצגת פרטים</string>
     <string name="night_latency">זמן הירדמות</string>
     <string name="night_efficiency">יעילות שינה</string>
-    <string name="night_awakenings">פעמים ערים</string>
+    <string name="night_wake_moments">התעוררויות</string>
+    <string name="night_wake_brief">התעוררויות קצרות</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">מהן %1$d ארוכה מ־%2$d דק׳</item>
+        <item quantity="two">מהן %1$d ארוכות מ־%2$d דק׳</item>
+        <item quantity="other">מהן %1$d ארוכות מ־%2$d דק׳</item>
+    </plurals>
     <string name="night_longest_deep">השינה העמוקה הארוכה ביותר</string>
     <string name="stages_typical">טווח רגיל</string>
     <string name="stages_typical_range">בדרך כלל %1$d–%2$d %%</string>
@@ -672,4 +679,6 @@
     <string name="finding_bedtime">שעת השינה שלך השתנתה בעד %1$s. טיפ: לך לישון כל יום בערך באותה שעה, גם בסוף השבוע.</string>
     <string name="finding_jetlag">בסוף השבוע השינה שלך זזה ב־%1$s לעומת ימי חול. טיפ: שמור על אותן שעות שינה גם בסוף השבוע.</string>
     <string name="weekly_deep">שינה עמוקה %1$s מהשינה שלך</string>
+    <string name="settings_clear_old">מחיקת מה שישן מ־90 יום</string>
+    <string name="settings_clear_old_text">מחיקת הלילות שהוקלטו בטלפון ושישנים מ־90 יום, יחד עם ההערות, התחושה, הסימונים בשגרת הערב והקלטות הלילה שלהם. לילות חדשים יותר והמעוררים שלך נשארים. לילות מאפליקציות אחרות רק מוסתרים כאן ונשארים באפליקציות האלה.</string>
 </resources>

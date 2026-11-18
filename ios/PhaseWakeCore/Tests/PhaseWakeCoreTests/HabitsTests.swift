@@ -211,12 +211,12 @@ final class HabitsTests: XCTestCase {
         XCTAssertEqual(Routine.cleanText("  Buch\nlesen|jetzt  "), "Buch lesen jetzt")
         XCTAssertEqual(Routine.cleanText(String(repeating: "a", count: 50)).count, Routine.maxTextLength)
         var ticks: [String: [String]] = [:]
-        for day in 0..<100 { ticks[minus(day, today)] = [Routine.phone] }
+        for day in 0..<(Routine.maxDates + 10) { ticks[minus(day, today)] = [Routine.phone] }
         ticks["2026-10-29"] = []
         let kept = Routine.trim(ticks)
         XCTAssertEqual(kept.count, Routine.maxDates)
         XCTAssertNotNil(kept[today])
-        XCTAssertNil(kept[minus(90, today)])
+        XCTAssertNil(kept[minus(Routine.maxDates, today)])
         XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T12:00"), calendar: zurich), 0)
         XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-28T23:30"), calendar: zurich), 690)
         XCTAssertEqual(Regularity.minutesFromNoon(at("2026-10-29T00:30"), calendar: zurich), 750)

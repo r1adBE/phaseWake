@@ -22,11 +22,11 @@ import java.time.ZoneId
 private val zone = ZoneId.of("Europe/Zurich")
 private val padding = PaddingValues(top = 24.dp, bottom = 96.dp)
 
-/** Höher als [PHONE_TALL]: Unter den fünf einzelnen Nächten sollen alle Wochen- und Jahreszeilen sichtbar sein. */
-private const val PHONE_LIST = "spec:width=411dp,height=2400dp"
+/** Höher als [PHONE_TALL]: Unter den fünf einzelnen Nächten soll die ganze Karte der Wochen und Jahre sichtbar sein. */
+private const val PHONE_LIST = "spec:width=411dp,height=1800dp"
 
-/** Noch höher für die aufgeklappte Woche und das aufgeklappte Jahr. */
-private const val PHONE_LIST_OPEN = "spec:width=411dp,height=4000dp"
+/** Noch höher für die aufgeklappte Woche und das aufgeklappte Jahr (kompakte Zeilen der Nächte). */
+private const val PHONE_LIST_OPEN = "spec:width=411dp,height=2300dp"
 
 /** Heute wie [FIXED_NOW]: Mittwoch 28.10.2026. */
 private val today = LocalDate.of(2026, 10, 28)

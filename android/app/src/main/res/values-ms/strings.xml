@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d j %2$d min</string>
     <string name="health_title">Peringkat tidur daripada Health Connect</string>
     <string name="health_rationale">Phase Wake boleh membaca data tidur yang disimpan oleh apl kesihatan awak (contohnya Samsung Health). Data ini dipaparkan dalam sejarah awak, juga untuk dibandingkan dengan malam-malam Phase Wake mengejutkan awak. Phase Wake hanya membaca, tidak pernah menulis, dan tiada apa-apa keluar dari telefon awak.</string>
+    <string name="health_rationale_history">Jika awak juga membenarkan akses kepada data lampau, Phase Wake turut membaca data tidur yang lebih lama daripada 30 hari, jadi sejarah awak boleh menjangkau sehingga dua tahun ke belakang. Tanpa kebenaran ini, Phase Wake hanya membaca data dari 30 hari sebelum akses pertama.</string>
     <string name="health_connect">Banding dengan data kesihatan</string>
     <string name="health_connect_hint">Membaca peringkat tidur daripada Health Connect selepas bangun, untuk menyemak dan menambah baik pengesanan.</string>
     <string name="health_connected">Disambungkan</string>
@@ -517,7 +518,11 @@
     <string name="night_open">Tunjukkan butiran</string>
     <string name="night_latency">Masa untuk tertidur</string>
     <string name="night_efficiency">Kecekapan tidur</string>
-    <string name="night_awakenings">Kali berjaga</string>
+    <string name="night_wake_moments">Saat berjaga</string>
+    <string name="night_wake_brief">Berjaga sekejap</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">%1$d daripadanya lebih %2$d min</item>
+    </plurals>
     <string name="night_longest_deep">Tidur lena paling lama</string>
     <string name="stages_typical">Julat biasa</string>
     <string name="stages_typical_range">Biasanya %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">Waktu tidur anda berubah sehingga %1$s. Petua: tidur pada waktu yang hampir sama setiap hari, termasuk hujung minggu.</string>
     <string name="finding_jetlag">Pada hujung minggu tidur anda beralih %1$s berbanding hari bekerja. Petua: kekalkan waktu tidur yang sama pada hujung minggu juga.</string>
     <string name="weekly_deep">Tidur nyenyak %1$s daripada tidur anda</string>
+    <string name="settings_clear_old">Padam yang lebih lama daripada 90 hari</string>
+    <string name="settings_clear_old_text">Memadam malam yang direkodkan lebih lama daripada 90 hari pada telefonmu, bersama nota, perasaan, tanda rutin malam dan rakaman malamnya. Malam yang lebih baharu dan penggeramu kekal. Malam daripada apl lain hanya disembunyikan di sini dan kekal dalam apl tersebut.</string>
 </resources>

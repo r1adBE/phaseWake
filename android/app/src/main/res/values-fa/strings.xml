@@ -113,6 +113,7 @@
     <string name="duration_hours_minutes">%1$d س %2$d دق</string>
     <string name="health_title">مراحل خواب از Health Connect</string>
     <string name="health_rationale">Phase Wake می‌تواند داده‌های خوابی را که برنامهٔ سلامتت (مثلاً Samsung Health) ذخیره می‌کند بخواند. این داده‌ها در تاریخچه‌ات نمایش داده می‌شوند، از جمله برای مقایسه با شب‌هایی که Phase Wake بیدارت کرده است. Phase Wake فقط می‌خواند، هیچ‌وقت چیزی نمی‌نویسد و هیچ چیز از گوشی‌ات بیرون نمی‌رود.</string>
+    <string name="health_rationale_history">اگر دسترسی به داده‌های گذشته را هم اجازه بدهی، Phase Wake داده‌های خواب قدیمی‌تر از ۳۰ روز را هم می‌خواند تا تاریخچه‌ات تا دو سال به عقب برسد. بدون این اجازه، Phase Wake فقط داده‌ها را از ۳۰ روز پیش از اولین دسترسی به بعد می‌خواند.</string>
     <string name="health_connect">مقایسه با داده‌های سلامت</string>
     <string name="health_connect_hint">بعد از بیدار شدن مراحل خواب را از Health Connect می‌خواند تا تشخیص را بسنجد و بهتر کند.</string>
     <string name="health_connected">وصل شد</string>
@@ -532,7 +533,12 @@
     <string name="night_open">نمایش جزئیات</string>
     <string name="night_latency">زمان به خواب رفتن</string>
     <string name="night_efficiency">بازده خواب</string>
-    <string name="night_awakenings">دفعات بیداری</string>
+    <string name="night_wake_moments">لحظه‌های بیداری</string>
+    <string name="night_wake_brief">بیداری‌های کوتاه</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">از این میان %1$d بیش از %2$d دقیقه</item>
+        <item quantity="other">از این میان %1$d بیش از %2$d دقیقه</item>
+    </plurals>
     <string name="night_longest_deep">طولانی‌ترین خواب عمیق</string>
     <string name="stages_typical">محدوده معمول</string>
     <string name="stages_typical_range">معمول %1$d–%2$d %%</string>
@@ -657,4 +663,6 @@
     <string name="finding_bedtime">ساعت خوابت تا %1$s تغییر کرد. نکته: هر روز تقریباً در یک ساعت بخواب، آخر هفته هم.</string>
     <string name="finding_jetlag">آخر هفته خوابت نسبت به روزهای کاری %1$s جابه‌جا شد. نکته: آخر هفته هم همان ساعت‌های خواب را نگه دار.</string>
     <string name="weekly_deep">خواب عمیق %1$s از خوابت</string>
+    <string name="settings_clear_old">پاک کردن قدیمی‌تر از ۹۰ روز</string>
+    <string name="settings_clear_old_text">شب‌های ثبت‌شدهٔ قدیمی‌تر از ۹۰ روز در گوشی‌ات، همراه با یادداشت‌ها، حس، تیک‌های روال شب و ضبط‌های شبانه‌شان پاک می‌شوند. شب‌های جدیدتر و زنگ‌های هشدارت می‌مانند. شب‌های برنامه‌های دیگر اینجا فقط پنهان می‌شوند و در همان برنامه‌ها می‌مانند.</string>
 </resources>

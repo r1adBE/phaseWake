@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d ч %2$d мин</string>
     <string name="health_title">Фази на сон од Health Connect</string>
     <string name="health_rationale">Phase Wake може да ги чита податоците за сон што ги зачувува твојата апликација за здравје (на пример Samsung Health). Се прикажуваат во твојата историја, и за споредба со ноќите во кои те разбудил Phase Wake. Phase Wake само чита, никогаш не запишува, и ништо не го напушта телефонот.</string>
+    <string name="health_rationale_history">Ако дозволиш и пристап до претходни податоци, Phase Wake ги чита и податоците за сон постари од 30 дена, па твојата историја може да оди до две години наназад. Без оваа дозвола, Phase Wake чита само податоци од 30 дена пред првиот пристап.</string>
     <string name="health_connect">Спореди со здравствени податоци</string>
     <string name="health_connect_hint">По будењето ги чита фазите на сон од Health Connect за да го провери и подобри препознавањето.</string>
     <string name="health_connected">Поврзано</string>
@@ -535,7 +536,12 @@
     <string name="night_open">Прикажи детали</string>
     <string name="night_latency">Заспивање</string>
     <string name="night_efficiency">Ефикасност на сонот</string>
-    <string name="night_awakenings">Будења</string>
+    <string name="night_wake_moments">Будења</string>
+    <string name="night_wake_brief">Кратки будења</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">од нив %1$d подолго од %2$d мин</item>
+        <item quantity="other">од нив %1$d подолги од %2$d мин</item>
+    </plurals>
     <string name="night_longest_deep">Најдолг длабок сон</string>
     <string name="stages_typical">Вообичаен опсег</string>
     <string name="stages_typical_range">Вообичаено %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">Времето кога легнуваш варираше до %1$s. Совет: легнувај секој ден приближно во исто време, и за викенд.</string>
     <string name="finding_jetlag">За викенд сонот ти беше поместен за %1$s во однос на работните денови. Совет: задржи ги истите времиња за спиење и за викенд.</string>
     <string name="weekly_deep">Длабок сон %1$s од твојот сон</string>
+    <string name="settings_clear_old">Избриши постари од 90 дена</string>
+    <string name="settings_clear_old_text">Ги брише снимените ноќи на телефонот постари од 90 дена, заедно со нивните белешки, чувството, ознаките од вечерната рутина и ноќните снимки. Поновите ноќи и алармите остануваат. Ноќите од други апликации тука само се скриваат и остануваат во тие апликации.</string>
 </resources>

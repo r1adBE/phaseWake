@@ -115,6 +115,7 @@
     <string name="duration_hours_minutes">%1$d घ. %2$d मि.</string>
     <string name="health_title">Health Connect बाट निद्राका चरण</string>
     <string name="health_rationale">तिम्रो स्वास्थ्य एप (जस्तै Samsung Health) ले राख्ने निद्राको डेटा Phase Wake ले पढ्न सक्छ। यो तिम्रो इतिहासमा देखाइन्छ, Phase Wake ले तिमीलाई ब्युँझाएका रातहरूसँग तुलना गर्न पनि। Phase Wake ले पढ्छ मात्र, कहिल्यै लेख्दैन, र केही पनि तिम्रो फोनबाट बाहिर जाँदैन।</string>
+    <string name="health_rationale_history">तिमीले अघिल्लो डेटाको पहुँच पनि दियौ भने, Phase Wake ले 30 दिनभन्दा पुरानो निद्राको डेटा पनि पढ्छ, जसले गर्दा तिम्रो इतिहास दुई वर्षसम्म पछाडि पुग्न सक्छ। यो अनुमति बिना Phase Wake ले पहिलो पहुँचभन्दा 30 दिन अघिदेखिको डेटा मात्र पढ्छ।</string>
     <string name="health_connect">स्वास्थ्य डेटासँग तुलना गर</string>
     <string name="health_connect_hint">पहिचान जाँच्न र सुधार्न, ब्युँझेपछि Health Connect बाट निद्राका चरण पढ्छ।</string>
     <string name="health_connected">जोडिएको</string>
@@ -535,7 +536,12 @@
     <string name="night_open">विवरण देखाऊ</string>
     <string name="night_latency">निदाउन लागेको समय</string>
     <string name="night_efficiency">निद्राको दक्षता</string>
-    <string name="night_awakenings">ब्युँझिएका पटक</string>
+    <string name="night_wake_moments">ब्युँझिएका पल</string>
+    <string name="night_wake_brief">छोटो ब्युँझाइ</string>
+    <plurals name="night_wake_long">
+        <item quantity="one">तीमध्ये %1$d, %2$d मि.भन्दा लामो</item>
+        <item quantity="other">तीमध्ये %1$d, %2$d मि.भन्दा लामो</item>
+    </plurals>
     <string name="night_longest_deep">सबैभन्दा लामो गहिरो निद्रा</string>
     <string name="stages_typical">सामान्य दायरा</string>
     <string name="stages_typical_range">सामान्यतया %1$d–%2$d %%</string>
@@ -660,4 +666,6 @@
     <string name="finding_bedtime">तिम्रो सुत्ने समय %1$s सम्म फरक पर्‍यो। सुझाव: हरेक दिन लगभग एउटै समयमा सुत, सप्ताहान्तमा पनि।</string>
     <string name="finding_jetlag">सप्ताहान्तमा तिम्रो निद्रा कामका दिनको तुलनामा %1$s सर्‍यो। सुझाव: सप्ताहान्तमा पनि उही सुत्ने समय कायम राख।</string>
     <string name="weekly_deep">गहिरो निद्रा तिम्रो निद्राको %1$s</string>
+    <string name="settings_clear_old">९० दिनभन्दा पुरानो मेटाऊ</string>
+    <string name="settings_clear_old_text">तिम्रो फोनमा ९० दिनभन्दा पुराना रेकर्ड भएका रातहरू तिनका टिपोट, अनुभूति, साँझको दिनचर्याका चिनो र रातका रेकर्डिङसँगै मेटाउँछ। नयाँ रात र तिम्रा अलार्म रहन्छन्। अन्य एपका रातहरू यहाँ लुकाइन्छन् मात्र र ती एपहरूमै रहन्छन्।</string>
 </resources>

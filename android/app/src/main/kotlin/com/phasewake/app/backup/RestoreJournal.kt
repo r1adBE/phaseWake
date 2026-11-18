@@ -1,6 +1,7 @@
 package com.phasewake.app.backup
 
 import android.util.AtomicFile
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.shared.NightRepository
 import java.io.File
@@ -21,7 +22,7 @@ import kotlinx.coroutines.withContext
 internal class RestoreJournal(dir: File) {
     private val marker = AtomicFile(File(dir, "restore.pending"))
     private val copyFile = File(dir, "restore-nights-before.v1")
-    private val copy = NightRepository(copyFile)
+    private val copy = NightRepository(copyFile, NightKeep.PHONE)
 
     /** Ergebnis von [recover]. */
     enum class Outcome {

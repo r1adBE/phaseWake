@@ -15,7 +15,8 @@ extension PhaseWakeStorage {
         return SleepNotes.decode(defaults.string(forKey: Self.notesKey) ?? "")
     }
 
-    /// Setzt die Notizen einer Nacht (leer = entfernen) und behält höchstens 90 Nachtdaten. - Returns: neuer Stand.
+    /// Setzt die Notizen einer Nacht (leer = entfernen) und behält höchstens `SleepNotes.maxNights` Nachtdaten.
+    /// - Returns: neuer Stand.
     @discardableResult
     public func setNotes(_ ids: [String], nightDate: String) -> [String: [String]] {
         lock.lock(); defer { lock.unlock() }

@@ -21,9 +21,10 @@ class NightHistoryTest {
     )
 
     @Test
-    fun keepsNewestNinety() {
+    fun watchKeepsNewestNinety() {
         val nights = (0L until 100L).reversed().map { night(it) }
-        val kept = NightHistory.trim(nights)
+        // Die Uhr behält wie bisher 90 Nächte, ohne Altersgrenze (auch Jahre später).
+        val kept = NightKeep.WATCH.trim(nights, start.plus(Duration.ofDays(5_000)))
         assertEquals(90, kept.size)
         assertEquals(start.plus(Duration.ofDays(10)), kept.first().windowStart)
         assertEquals(start.plus(Duration.ofDays(99)), kept.last().windowStart)

@@ -171,11 +171,8 @@ struct NoteEffectsCard: View {
         .card()
     }
 
-    /// «−0,8» / «+0,6» mit einer Nachkommastelle.
-    private func signed(_ value: Double) -> String {
-        let text = abs(value).formatted(.number.precision(.fractionLength(1)))
-        return (value < 0 ? "\u{2212}" : "+") + text
-    }
+    /// «−0,8» / «+0,6» mit einer Nachkommastelle (``decimalText(_:signed:locale:)``).
+    private func signed(_ value: Double) -> String { decimalText(value, signed: true) }
 }
 
 /// Einstellungen: eigene Notizen hinzufügen, umbenennen, löschen.

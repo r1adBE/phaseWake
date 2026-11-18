@@ -111,6 +111,7 @@
     <string name="duration_hours_minutes">%1$d j %2$d mnt</string>
     <string name="health_title">Fase tidur dari Health Connect</string>
     <string name="health_rationale">Phase Wake dapat membaca data tidur yang disimpan aplikasi kesehatanmu (misalnya Samsung Health). Data ini ditampilkan di riwayatmu, juga untuk dibandingkan dengan malam-malam saat Phase Wake membangunkanmu. Phase Wake hanya membaca, tidak pernah menulis, dan tidak ada yang keluar dari ponselmu.</string>
+    <string name="health_rationale_history">Jika kamu juga mengizinkan akses ke data sebelumnya, Phase Wake juga membaca data tidur yang lebih lama dari 30 hari, sehingga riwayatmu bisa mencapai hingga dua tahun ke belakang. Tanpa izin ini, Phase Wake hanya membaca data sejak 30 hari sebelum akses pertama.</string>
     <string name="health_connect">Cocokkan dengan data kesehatan</string>
     <string name="health_connect_hint">Membaca fase tidur dari Health Connect setelah bangun, untuk memeriksa dan meningkatkan deteksi.</string>
     <string name="health_connected">Terhubung</string>
@@ -517,7 +518,11 @@
     <string name="night_open">Tampilkan detail</string>
     <string name="night_latency">Waktu untuk tertidur</string>
     <string name="night_efficiency">Efisiensi tidur</string>
-    <string name="night_awakenings">Kali terjaga</string>
+    <string name="night_wake_moments">Saat terjaga</string>
+    <string name="night_wake_brief">Terjaga sebentar</string>
+    <plurals name="night_wake_long">
+        <item quantity="other">%1$d di antaranya lebih dari %2$d mnt</item>
+    </plurals>
     <string name="night_longest_deep">Tidur nyenyak terpanjang</string>
     <string name="stages_typical">Rentang biasa</string>
     <string name="stages_typical_range">Biasanya %1$d–%2$d %%</string>
@@ -642,4 +647,6 @@
     <string name="finding_bedtime">Jam tidurmu bergeser hingga %1$s. Tips: tidurlah sekitar jam yang sama setiap hari, termasuk akhir pekan.</string>
     <string name="finding_jetlag">Di akhir pekan tidurmu bergeser %1$s dibanding hari kerja. Tips: pertahankan jam tidur yang sama di akhir pekan juga.</string>
     <string name="weekly_deep">Tidur nyenyak %1$s dari tidurmu</string>
+    <string name="settings_clear_old">Hapus yang lebih dari 90 hari</string>
+    <string name="settings_clear_old_text">Menghapus malam tercatat yang lebih lama dari 90 hari di ponselmu, beserta catatan, perasaan, centang rutinitas malam, dan rekaman malamnya. Malam yang lebih baru dan alarmmu tetap ada. Malam dari aplikasi lain hanya disembunyikan di sini dan tetap ada di aplikasi tersebut.</string>
 </resources>

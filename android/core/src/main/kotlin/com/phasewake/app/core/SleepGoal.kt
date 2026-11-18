@@ -50,6 +50,22 @@ object SleepGoal {
 }
 
 /**
+ * Zeile der Startseite (Karte «Letzte Nacht»): Ø Schlaf der letzten 7 Tage ([asleepMinutes], [Trends.asleepThisWeek])
+ * und Schlafziel erreicht ([reached] von [nights], [SleepGoal.weekStatus]) – dieselben Werte wie die Trends im
+ * Verlauf, nichts neu gerechnet. Gleich in Swift.
+ */
+data class SleepWeek(val asleepMinutes: Long, val reached: Int, val nights: Int) {
+    companion object {
+        /**
+         * Aus den Trends und der Wochenbilanz (erreicht, gezählt); `null` ohne Ø, also unter
+         * [Trends.MIN_NIGHTS_PER_WEEK] Nächten mit Schlafdauer in den letzten 7 Tagen.
+         */
+        fun of(trends: Trends, goalWeek: Pair<Int, Int>): SleepWeek? =
+            trends.asleepThisWeek?.let { SleepWeek(it, goalWeek.first, goalWeek.second) }
+    }
+}
+
+/**
  * Bettzeit-Erinnerung: Bettzeit = Zielzeit des nächsten Weckers − Schlafziel − gelernte Einschlafdauer ([bedtime]);
  * erinnert [LEAD_MINUTES] Minuten davor. Beim Einschlaf-Modus gilt die eingestellte (späteste) Weckzeit.
  */

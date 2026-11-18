@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Looper
 import android.os.UserManager
 import com.phasewake.app.backup.RestoreJournal
+import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.WakeReason
 import com.phasewake.app.ring.BackupAlarm
@@ -53,10 +54,13 @@ class UnlockStartTest {
     private val nightsFile get() = File(dir, "nights.v1")
     private val exportDir get() = File(context.cacheDir, "export")
 
+    // Nächte von vor wenigen Tagen: Der Verlauf des Handys behält 2 Jahre ([NightKeep.PHONE]).
+    private val base = Instant.now().minusSeconds(10 * 86_400L).toEpochMilli()
+
     private fun night(id: String, start: Long) =
         NightRecord(
-            id, Instant.ofEpochMilli(start), Instant.ofEpochMilli(start + 1_800_000),
-            Instant.ofEpochMilli(start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
+            id, Instant.ofEpochMilli(base + start), Instant.ofEpochMilli(base + start + 1_800_000),
+            Instant.ofEpochMilli(base + start + 900_000), WakeReason.DEADLINE, 0, emptyList(),
         )
 
     private val old = listOf(night("alt", 1_000_000))
@@ -70,7 +74,7 @@ class UnlockStartTest {
 
     /** Wiederherstellen bis zum Tausch der Nächte, dann «Prozessende» (der DataStore hat die Kennung nicht). */
     private fun interruptedRestore() = runBlocking {
-        val nights = NightRepository(nightsFile)
+        val nights = NightRepository(nightsFile, NightKeep.PHONE)
         nights.replaceAll(old)
         RestoreJournal(dir).begin("t1", nights.load())
         nights.replaceAll(restored)
@@ -96,7 +100,7 @@ class UnlockStartTest {
             withTimeout(Duration.ofSeconds(10).toMillis()) {
                 while (RestoreJournal(dir).pendingToken() != null) delay(10)
             }
-            assertEquals(old, NightRepository(nightsFile).load())
+            assertEquals(old, NightRepository(nightsFile, NightKeep.PHONE).load())
         }
 
         // BOOT_COMPLETED danach (gleicher Prozess): kein zweiter Durchlauf.

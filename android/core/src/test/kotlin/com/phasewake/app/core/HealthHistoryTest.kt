@@ -309,7 +309,7 @@ class HealthHistoryTest {
         assertEquals(java.time.LocalTime.of(19, 0), HealthHistory.NAP_LATEST)
         assertEquals(java.time.Duration.ofMinutes(60), HealthHistory.CONTINUATION_GAP)
         assertEquals(java.time.Duration.ofMinutes(5), HealthHistory.OVERLAP_TOLERANCE)
-        assertEquals(90L, HealthHistory.DAYS)
+        assertEquals(730L, HealthHistory.DAYS)
         assertEquals(3, Trends.MIN_NIGHTS_PER_WEEK)
         assertEquals(5, Trends.MIN_NIGHTS_FOR_SPREAD)
         assertEquals(30, Regularity.TOLERANCE_MINUTES)

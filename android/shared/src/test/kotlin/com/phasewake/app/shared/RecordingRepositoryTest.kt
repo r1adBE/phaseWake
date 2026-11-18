@@ -75,6 +75,19 @@ class RecordingRepositoryTest {
         assertEquals(running, repo.active()?.start)
     }
 
+    /** «Älter als 90 Tage löschen»: Aufzeichnungen der offenen Lernphase (Beginn ab ihrem Beginn) bleiben. */
+    @Test
+    fun clearBeforeKeepsTheOpenLearningPhase() = runTest {
+        val repo = RecordingRepository(dir, Dispatchers.Unconfined)
+        repeat(10) { repo.put(finished(start.plusSeconds(it * 86_400L))) }
+        val cutoff = start.plusSeconds(8 * 86_400L + 30)
+        repo.clear(before = cutoff, learningSince = start.plusSeconds(5 * 86_400L))
+        assertEquals((5L..9L).map { start.plusSeconds(it * 86_400L) }, repo.load().map { it.start })
+        // Ohne offene Lernphase wie bisher.
+        repo.clear(before = cutoff)
+        assertEquals(listOf(start.plusSeconds(9 * 86_400L)), repo.load().map { it.start })
+    }
+
     @Test
     fun dataLayerStatusRecordingAndCommands() {
         // Früheres Aufzeichnungs-Paket: liest nur noch die einmalige Umstellung der Uhr.

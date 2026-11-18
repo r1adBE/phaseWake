@@ -42,11 +42,12 @@ final class HealthSleep: @unchecked Sendable {
         return samples.compactMap(Self.span).sorted { $0.start < $1.start }
     }
 
-    /// Schlafsitzungen der letzten `HealthHistory.days` Tage (einen Tag mehr, damit die älteste Nacht ganz drin ist);
-    /// leer ohne Daten oder Zugriff. Ohne Zugriff liefert HealthKit einfach nichts (Leserechte bleiben verborgen).
-    func sessions(now: Date = Date()) async -> HealthNights {
+    /// Schlafsitzungen der letzten `days` Tage (Standard: so weit wie der Verlauf, `HealthHistory.days`; einen Tag
+    /// mehr, damit die älteste Nacht ganz drin ist); leer ohne Daten oder Zugriff. Ohne Zugriff liefert HealthKit
+    /// einfach nichts (Leserechte bleiben verborgen).
+    func sessions(now: Date = Date(), days: Int = HealthHistory.days) async -> HealthNights {
         guard isAvailable else { return HealthNights() }
-        let samples = await query(from: now.addingTimeInterval(-Double(HealthHistory.days + 1) * 86_400), to: now)
+        let samples = await query(from: now.addingTimeInterval(-Double(days + 1) * 86_400), to: now)
         var bySource: [String: [HKCategorySample]] = [:]
         var names: [String: String] = [:]
         for sample in samples {

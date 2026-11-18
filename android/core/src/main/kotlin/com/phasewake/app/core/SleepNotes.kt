@@ -56,7 +56,7 @@ object SleepNotes {
     const val MAX_NAME_LENGTH = 30
 
     /** Höchstens so viele Nachtdaten bleiben gespeichert (wie der Verlauf). */
-    const val MAX_DATES = NightHistory.MAX_NIGHTS
+    const val MAX_DATES = NightHistory.MAX_DATES
 
     /** Ab dieser Uhrzeit fragt die Startseite nach den Notizen für die kommende Nacht. */
     val EVENING_START: LocalTime = LocalTime.of(17, 0)
@@ -170,7 +170,7 @@ object SleepNotes {
 }
 
 /**
- * Wie eine Notiz mit dem Befinden am Morgen zusammenhängt, über die letzten [NightHistory.MAX_NIGHTS]
+ * Wie eine Notiz mit dem Befinden am Morgen zusammenhängt, über die letzten [NightHistory.INSIGHT_NIGHTS]
  * Nächte mit Befinden. Kein Beweis, nur ein Hinweis – darum erst ab [MIN_NIGHTS] Nächten je Seite.
  */
 data class NoteEffect(
@@ -204,7 +204,7 @@ data class NoteEffect(
 
         /**
          * Wirkung jeder Notiz, die in den betrachteten Nächten vorkommt, nach |delta| absteigend
-         * (bei Gleichstand nach Kennung). Betrachtet werden die letzten [NightHistory.MAX_NIGHTS]
+         * (bei Gleichstand nach Kennung). Betrachtet werden die letzten [NightHistory.INSIGHT_NIGHTS]
          * Nächte mit Befinden; mehrere Nächte mit demselben Nachtdatum zählen einmal (die zuletzt
          * geweckte). «Ohne» = jede dieser Nächte, an der die Notiz nicht gesetzt ist.
          *
@@ -219,7 +219,7 @@ data class NoteEffect(
             asleep: Map<LocalDate, Long> = emptyMap(),
             health: List<HealthFeeling> = emptyList(),
         ): List<NoteEffect> {
-            val rated = HealthFeelings.byDate(NightHistory.trim(nights), health, zone)
+            val rated = HealthFeelings.byDate(NightHistory.latest(nights), health, zone)
             val ids = rated.keys.flatMap { notes[it].orEmpty() }.distinct()
             return ids.mapNotNull { id ->
                 val (with, without) = rated.entries.partition { id in notes[it.key].orEmpty() }

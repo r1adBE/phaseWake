@@ -54,14 +54,57 @@ data class NightRecord(
     }
 }
 
+/**
+ * Wie viele eigene Nächte ein Gerät behält: höchstens [maxNights], mit [maxAge] nur die, deren Wecken
+ * ([NightRecord.wokeAt]) höchstens so lange vor jetzt liegt (genau [maxAge]: bleibt). Gleich in Swift.
+ */
+class NightKeep(val maxNights: Int, val maxAge: Duration?) {
+    /** Die behaltenen Nächte nach Fensterbeginn sortiert (älteste zuerst); ältere fallen beim Speichern weg. */
+    fun trim(nights: List<NightRecord>, now: Instant): List<NightRecord> {
+        val from = maxAge?.let { now.minus(it) }
+        return nights.filter { from == null || !it.wokeAt.isBefore(from) }
+            .sortedBy { it.windowStart }.takeLast(maxNights)
+    }
+
+    companion object {
+        /**
+         * Handy: der Verlauf reicht [NightHistory.DAYS] Tage (2 Jahre) zurück. Höchstens [NightHistory.PHONE_NIGHTS]
+         * Nächte, damit Nächte mit zwei Weckern die Datei nicht unbegrenzt wachsen lassen.
+         */
+        val PHONE = NightKeep(NightHistory.PHONE_NIGHTS, Duration.ofDays(NightHistory.DAYS))
+
+        /** Uhr: wie bisher die jüngsten [NightHistory.WATCH_NIGHTS] Nächte, ohne Altersgrenze. */
+        val WATCH = NightKeep(NightHistory.WATCH_NIGHTS, null)
+    }
+}
+
 /** Aufbewahrung und CSV-Export des Verlaufs. */
 object NightHistory {
-    /** Höchstens so viele Nächte bleiben gespeichert (rund drei Monate); ältere fallen bei [trim] weg. */
-    const val MAX_NIGHTS: Int = 90
+    /** So viele Tage reicht der Verlauf auf dem Handy zurück (2 Jahre), eigene Nächte wie Gesundheitsdaten. */
+    const val DAYS: Long = 730
 
-    /** Behält die jüngsten [MAX_NIGHTS] Nächte, nach Fensterbeginn sortiert (älteste zuerst). */
-    fun trim(nights: List<NightRecord>): List<NightRecord> =
-        nights.sortedBy { it.windowStart }.takeLast(MAX_NIGHTS)
+    /**
+     * Höchstzahl eigener Nächte auf dem Handy ([NightKeep.PHONE]): [DAYS] plus rund 10 % für Nächte mit zwei Weckern
+     * oder Probeweckern. Begrenzt nur die Dateigrösse, im Alltag gilt die Grenze von [DAYS] Tagen.
+     */
+    const val PHONE_NIGHTS: Int = 800
+
+    /** So viele Nächte behält die Uhr ([NightKeep.WATCH]). */
+    const val WATCH_NIGHTS: Int = 90
+
+    /**
+     * Kennzahlen (Übersicht, Diagramme, Trends, Wirkung der Notizen, Wochenrückblick) rechnen über die jüngsten so
+     * vielen eigenen Nächte ([latest]) und die Gesundheitsdaten der letzten so vielen Tage
+     * ([HealthHistory.forInsights]), unabhängig davon, wie weit der Verlauf zurückreicht.
+     */
+    const val INSIGHT_NIGHTS: Int = 90
+
+    /** Höchstzahl Nachtdaten für Notizen, Befinden und Haken: so weit wie der Verlauf ([DAYS] und heute). */
+    const val MAX_DATES: Int = DAYS.toInt() + 1
+
+    /** Die jüngsten [count] Nächte nach Fensterbeginn, älteste zuerst. */
+    fun latest(nights: List<NightRecord>, count: Int = INSIGHT_NIGHTS): List<NightRecord> =
+        nights.sortedBy { it.windowStart }.takeLast(count)
 
     /**
      * Anteil der Nächte in Prozent (gerundet), in denen im leichten Schlaf geweckt wurde. Es zählen nur
@@ -74,14 +117,14 @@ object NightHistory {
         return Math.round(100.0 * counted.count { it.reason == WakeReason.LIGHT_SLEEP } / counted.size).toInt()
     }
 
-    /** Bewegungen je Nacht für [Calibration.calibrate], älteste zuerst. */
+    /** Bewegungen der jüngsten [WATCH_NIGHTS] Nächte für [Calibration.calibrate], älteste zuerst. */
     fun motionsForCalibration(nights: List<NightRecord>): List<List<Double?>> =
-        trim(nights).map { night -> night.epochs.map { it.motion } }
+        latest(nights, WATCH_NIGHTS).map { night -> night.epochs.map { it.motion } }
 
     /**
      * CSV-Export ohne Kennungen und ohne Datums- oder Uhrzeitangaben, nur relative Werte; mit Bewegungs- und Pulsreihen
      * je Nacht, darum nicht anonym im engeren Sinn.
-     * Nächte werden durchnummeriert (1 = älteste). Dezimalpunkt, Komma als Trenner.
+     * Alle übergebenen Nächte (der ganze Verlauf), durchnummeriert (1 = älteste). Dezimalpunkt, Komma als Trenner.
      * Letzte Spalte `notes`: Schlafnotizen der Nacht mit «;» getrennt, eigene nur als «custom»
      * (am Ende angefügt, damit ältere Leser weiter funktionieren).
      *
@@ -93,7 +136,7 @@ object NightHistory {
         zone: java.time.ZoneId = java.time.ZoneId.systemDefault(),
     ): String = buildString {
         append("night,window_minutes,reason,woke_minutes_before_target,snoozes,feeling,epoch,motion,hr,notes\n")
-        trim(nights).forEachIndexed { nightIndex, night ->
+        nights.sortedBy { it.windowStart }.forEachIndexed { nightIndex, night ->
             val windowMinutes = Duration.between(night.windowStart, night.target).toMinutes()
             val noteText =
                 notes[SleepNotes.nightDate(night, zone)].orEmpty().joinToString(";") { SleepNotes.exportId(it) }
