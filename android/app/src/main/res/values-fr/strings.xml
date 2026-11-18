@@ -78,6 +78,13 @@
     <string name="history_health_live_unknown">Via tes données santé. Phase Wake reprend automatiquement les modifications et suppressions faites là-bas.</string>
     <string name="history_average">Ø %1$d min plus tôt</string>
     <string name="history_light_share">%1$d %% réveillés plus tôt en cas d’agitation</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d nuit</item>
+        <item quantity="many">%1$d nuits</item>
+        <item quantity="other">%1$d nuits</item>
+    </plurals>
+    <string name="history_group_expanded">Développé</string>
+    <string name="history_group_collapsed">Réduit</string>
     <string name="history_export">Exporter sans nom</string>
     <string name="history_export_subject">Nuits Phase Wake (sans nom)</string>
 

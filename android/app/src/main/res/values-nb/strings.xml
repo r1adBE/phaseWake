@@ -77,6 +77,12 @@
     <string name="history_health_live_unknown">Fra helsedataene dine. Phase Wake tar automatisk med endringer og slettinger der.</string>
     <string name="history_average">Ø %1$d min tidligere</string>
     <string name="history_light_share">%1$d %% vekket tidligere ved uro</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d natt</item>
+        <item quantity="other">%1$d netter</item>
+    </plurals>
+    <string name="history_group_expanded">Utvidet</string>
+    <string name="history_group_collapsed">Skjult</string>
     <string name="history_export">Eksporter uten navn</string>
     <string name="history_export_subject">Phase Wake-netter (uten navn)</string>
 

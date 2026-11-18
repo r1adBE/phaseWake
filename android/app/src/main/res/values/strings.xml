@@ -81,6 +81,12 @@
     <string name="health_samsung" translatable="false">Samsung Health</string>
     <string name="history_average">Ø %1$d min early</string>
     <string name="history_light_share">%1$d %% woken early when restless</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d night</item>
+        <item quantity="other">%1$d nights</item>
+    </plurals>
+    <string name="history_group_expanded">Expanded</string>
+    <string name="history_group_collapsed">Collapsed</string>
     <string name="history_export">Export without name</string>
     <string name="history_export_subject">Phase Wake nights (without name)</string>
 

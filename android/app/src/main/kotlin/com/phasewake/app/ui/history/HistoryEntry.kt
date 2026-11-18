@@ -42,6 +42,17 @@ internal val HistoryEntry.at: Instant
         is HistoryEntry.Recording -> recording.end ?: recording.start
     }
 
+/**
+ * Nachtdatum, wenn der Eintrag eine Nacht ist (eigene oder aus Health Connect); `null` für Aufzeichnungen und
+ * Geräusche ohne Nacht. Nur Nächte zählen in den Wochen- und Jahreszeilen ([com.phasewake.app.core.HistoryGroups]).
+ */
+internal val HistoryEntry.nightDate: LocalDate?
+    get() = when (this) {
+        is HistoryEntry.Night -> item.date
+        is HistoryEntry.Health -> item.date
+        is HistoryEntry.Sounds, is HistoryEntry.Recording -> null
+    }
+
 /** Reiht [recordings] (älteste zuerst) nach ihrem Ende in [entries] (neueste zuerst) ein. */
 internal fun withRecordings(entries: List<HistoryEntry>, recordings: List<NightRecording>): List<HistoryEntry> {
     if (recordings.isEmpty()) return entries

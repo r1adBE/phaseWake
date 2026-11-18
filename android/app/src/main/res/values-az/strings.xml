@@ -71,6 +71,12 @@
     <string name="history_health_live_unknown">Mənbə: sağlamlıq məlumatların. Orada edilən dəyişiklikləri və silinmələri Phase Wake avtomatik tətbiq edir.</string>
     <string name="history_average">Ø %1$d dəq tez</string>
     <string name="history_light_share">%1$d %% narahat olanda tez oyadılıb</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d gecə</item>
+        <item quantity="other">%1$d gecə</item>
+    </plurals>
+    <string name="history_group_expanded">Açılıb</string>
+    <string name="history_group_collapsed">Yığılıb</string>
     <string name="history_export">Adsız ixrac et</string>
     <string name="history_export_subject">Phase Wake gecələri (adsız)</string>
     <string name="settings_title">Ayarlar</string>

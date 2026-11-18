@@ -76,6 +76,11 @@
     <string name="history_health_live_unknown">출처: 내 건강 데이터. 그곳에서 변경하거나 삭제한 내용은 Phase Wake에 자동으로 반영돼요.</string>
     <string name="history_average">평균 %1$d분 일찍</string>
     <string name="history_light_share">뒤척여서 일찍 깬 비율 %1$d %%</string>
+    <plurals name="history_group_nights">
+        <item quantity="other">%1$d박</item>
+    </plurals>
+    <string name="history_group_expanded">펼쳐짐</string>
+    <string name="history_group_collapsed">접힘</string>
     <string name="history_export">이름 없이 내보내기</string>
     <string name="history_export_subject">Phase Wake 수면 기록 (이름 없음)</string>
 

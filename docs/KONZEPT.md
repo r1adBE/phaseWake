@@ -104,7 +104,7 @@ Alles in v1, nichts auf später verschoben:
 
 - mehrere Wecker, je wiederholbar nach Wochentagen
 - Weckfenster, Vibrationsweckung mit Schlummern, Handy-Zweitwecker
-- Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung
+- Verlauf der letzten 90 Nächte mit Bewegungskurve, Kalibrierung; Liste gruppiert (18.11.2026, Android und Apple, Kern `HistoryGroups`): die 5 neusten Nächte einzeln, ältere bis ein Jahr vor heute je Woche, ältere je Kalenderjahr mit Wochen darin, je als aufklappbare Zeile mit Datumsbereich bzw. Jahr, Anzahl Nächte, Ø Schlaf und Ø Befinden (nur mit Daten); Wochenbeginn nach der Sprache des Geräts, alles anfangs zugeklappt
 - Weckfenster-Vorschlag aus dem Verlauf: +10 Min bis 30, auf Android danach 45 und 60 (Stufen des Editors)
 - Tile und Komplikation auf der Uhr
 - Nacht-Check auf der Startseite, sobald ein Wecker ansteht: Uhr erreichbar und eingerichtet (Sensoren, Mitteilungen, Weckbildschirm), Mitteilungen und Vollbild-Wecker erlaubt (iPhone: AlarmKit), «Nicht stören» lässt Wecker durch, Wecker-Lautstärke nicht auf 0, exakte Wecker erlaubt (Android 12), Handy-Akku über 20 % oder am Laden; wenn die Uhr die Messung vor dem Schlafen dieser Nacht nicht starten konnte, auf der Apple Watch rot (Akku zu schwach oder ohne Erlaubnis «Bewegung & Fitness»), auf der Galaxy Watch nur ein Hinweis (Akku zu schwach); auf Android schon vorab ein Hinweis bei Uhr-Akku unter 30 % (Einschlaf-Messung) bzw. in der Lernphase unter 40 %; Hinweis, wenn Handy und Uhr verschiedene Testversionen (Build-Nummern) haben, nicht zusätzlich zu «Uhr-App veraltet» (14.11.2026)

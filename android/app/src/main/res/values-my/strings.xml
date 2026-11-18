@@ -77,6 +77,11 @@
     <string name="history_health_live_unknown">သင့်ကျန်းမာရေးဒေတာမှ။ ထိုနေရာတွင် ပြင်ဆင်ခြင်းနှင့် ဖျက်ခြင်းများကို Phase Wake က အလိုအလျောက် လိုက်ပြင်ပေးသည်။</string>
     <string name="history_average">Ø %1$d မိနစ် စော</string>
     <string name="history_light_share">မငြိမ်မသက်ဖြစ်၍ စောနှိုးခံရမှု %1$d %%</string>
+    <plurals name="history_group_nights">
+        <item quantity="other">%1$d ည</item>
+    </plurals>
+    <string name="history_group_expanded">ချဲ့ထားသည်</string>
+    <string name="history_group_collapsed">ခေါက်ထားသည်</string>
     <string name="history_export">အမည်မပါဘဲ ထုတ်ယူရန်</string>
     <string name="history_export_subject">Phase Wake ညများ (အမည်မပါ)</string>
 

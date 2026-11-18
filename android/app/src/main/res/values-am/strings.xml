@@ -79,6 +79,12 @@
     <string name="history_health_live_unknown">ከጤና ውሂብዎ። እዚያ የሚደረጉ ለውጦችንና ስረዛዎችን Phase Wake በራስ-ሰር ይከተላል።</string>
     <string name="history_average">Ø %1$d ደቂቃ ቀደም ብሎ</string>
     <string name="history_light_share">%1$d %% እረፍት ሲያጡ ቀደም ብለው ተቀስቅሰዋል</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d ሌሊት</item>
+        <item quantity="other">%1$d ሌሊቶች</item>
+    </plurals>
+    <string name="history_group_expanded">ተዘርግቷል</string>
+    <string name="history_group_collapsed">ተሰብስቧል</string>
     <string name="history_export">ያለ ስም ወደ ውጭ ላክ</string>
     <string name="history_export_subject">የPhase Wake ሌሊቶች (ያለ ስም)</string>
 

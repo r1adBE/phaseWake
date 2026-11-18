@@ -79,6 +79,12 @@
     <string name="history_health_live_unknown">Mula sa health data mo. Awtomatikong sinusunod ng Phase Wake ang mga pagbabago at pagbura roon.</string>
     <string name="history_average">Ø %1$d min nang maaga</string>
     <string name="history_light_share">%1$d %% ginising nang mas maaga kapag di mapakali</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d gabi</item>
+        <item quantity="other">%1$d gabi</item>
+    </plurals>
+    <string name="history_group_expanded">Nakabukas</string>
+    <string name="history_group_collapsed">Nakasara</string>
     <string name="history_export">I-export nang walang pangalan</string>
     <string name="history_export_subject">Mga gabi sa Phase Wake (walang pangalan)</string>
 

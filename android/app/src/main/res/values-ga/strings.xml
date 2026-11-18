@@ -82,6 +82,15 @@
     <string name="history_health_live_unknown">Ó do shonraí sláinte. Glacann Phase Wake go huathoibríoch le hathruithe agus scriosadh a dhéantar ansin.</string>
     <string name="history_average">Ø %1$d nóim níos luaithe</string>
     <string name="history_light_share">%1$d %% dúisithe níos luaithe nuair a bhí tú corrthónach</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d oíche</item>
+        <item quantity="two">%1$d oíche</item>
+        <item quantity="few">%1$d oíche</item>
+        <item quantity="many">%1$d n-oíche</item>
+        <item quantity="other">%1$d oíche</item>
+    </plurals>
+    <string name="history_group_expanded">Leathnaithe</string>
+    <string name="history_group_collapsed">Laghdaithe</string>
     <string name="history_export">Easpórtáil gan ainm</string>
     <string name="history_export_subject">Oícheanta Phase Wake (gan ainm)</string>
 

@@ -76,6 +76,11 @@
     <string name="history_health_live_unknown">ヘルスデータから。そちらでの変更や削除は Phase Wake に自動で反映されます。</string>
     <string name="history_average">平均 %1$d分早く</string>
     <string name="history_light_share">落ち着かない眠りで早めに起床 %1$d %%</string>
+    <plurals name="history_group_nights">
+        <item quantity="other">%1$d晩</item>
+    </plurals>
+    <string name="history_group_expanded">展開</string>
+    <string name="history_group_collapsed">折りたたみ</string>
     <string name="history_export">名前なしでエクスポート</string>
     <string name="history_export_subject">Phase Wakeの睡眠記録(名前なし)</string>
 

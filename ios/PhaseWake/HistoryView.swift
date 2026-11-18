@@ -18,6 +18,8 @@ struct HistoryView: View {
     @State private var loaded = false
     /// Geöffnete Detailseite: Schlüssel der Nacht (``HistoryItem/key``).
     @State private var path: [String] = []
+    /// Aufgeklappte Wochen und Jahre der Liste: anfangs alle zu, nie gespeichert.
+    @State private var open: Set<String> = []
 
     /// Phasen für die Karte einer eigenen Nacht: so lange nach dem Wecken (Sekunden), samt Weiterschlafen – Beginn bis
     /// `HealthHistory.continuationGap` nach dem Wecken, kürzer als `HealthHistory.minNightMinutes`. Wie `STAGES_AFTER`
@@ -72,7 +74,13 @@ struct HistoryView: View {
                         NoteEffectsCard(effects: NoteEffect.compute(nights: model.nights, notes: model.notes,
                                                                     asleepByNight: asleepByNight,
                                                                     health: feelings, calendar: .gregorianLocal))
-                        ForEach(entries) { entry in
+                        // Die neusten Nächte einzeln, ältere je Woche bzw. Jahr (aufklappbar).
+                        let today = NightDate.today(Date(), calendar: .gregorianLocal)
+                        let asleep = asleepByNight
+                        HistoryGroupList(groups: HistoryEntry.groups(entries, today: today), open: $open,
+                                         summary: { HistoryEntry.summary($0, asleep: asleep,
+                                                                         healthFeelings: model.healthFeelings) },
+                                         today: today) { entry in
                             switch entry {
                             case .night(let night):
                                 NightCard(night: night,
@@ -250,43 +258,6 @@ struct HistoryView: View {
     }
 }
 
-/// Eintrag im Verlauf: eine aufgezeichnete Nacht, eine Nacht aus Apple Health oder nur Geräusche eines Nachtdatums.
-private enum HistoryEntry: Identifiable {
-    case night(NightRecord)
-    /// `date` = Nachtdatum der Sitzung (`HistoryItem.date`).
-    case health(HealthSession, date: String)
-    /// `last` = Beginn des jüngsten Ausschnitts.
-    case sounds(night: String, last: Date)
-    /// Aufzeichnung der Uhr («Nacht aufzeichnen», Lernphase).
-    case recording(NightRecording)
-
-    var id: String {
-        switch self {
-        case .night(let night): night.listId
-        case .health(_, let date): "health|\(date)"
-        case .sounds(let night, _): "sounds|\(night)"
-        case .recording(let recording): "recording@\(OnsetShift.millis(recording.start))"
-        }
-    }
-
-    /// Zeitpunkt für die Reihenfolge (neueste zuerst): Wecken, Ende der Sitzung, jüngster Ausschnitt, Ende der
-    /// Aufzeichnung.
-    var at: Date {
-        switch self {
-        case .night(let night): night.wokeAt
-        case .health(let session, _): session.end
-        case .sounds(_, let last): last
-        case .recording(let recording): recording.until
-        }
-    }
-
-    /// Nur Geräusche, keine Nacht.
-    var isSoundsOnly: Bool {
-        if case .sounds = self { return true }
-        return false
-    }
-}
-
 /// Geräusche einer Nacht ohne aufgezeichnete Nacht: Datum (des jüngsten Ausschnitts, wie bei den Nächten
 /// das Weckdatum) und die Bilanz, die die Ausschnitte öffnet.
 private struct SoundsOnlyCard: View {
@@ -301,11 +272,6 @@ private struct SoundsOnlyCard: View {
         }
         .card()
     }
-}
-
-private extension NightRecord {
-    /// Eine Nacht ist Wecker plus Fensterbeginn (zwei Wecker können gleich beginnen).
-    var listId: String { "\(alarmId)|\(windowStart.timeIntervalSince1970)" }
 }
 
 /// Nachtkarte einer Phase-Wake-Nacht: Datum und Weckzeit, kleines Schlafprofil (ohne Phasen die Bewegungskurve),

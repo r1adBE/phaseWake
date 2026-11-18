@@ -78,6 +78,12 @@
     <string name="history_health_live_unknown">От твоите здравни данни. Phase Wake прилага автоматично промените и изтриванията там.</string>
     <string name="history_average">Ø %1$d мин по-рано</string>
     <string name="history_light_share">%1$d %% събудени по-рано при неспокоен сън</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d нощ</item>
+        <item quantity="other">%1$d нощи</item>
+    </plurals>
+    <string name="history_group_expanded">Разгънато</string>
+    <string name="history_group_collapsed">Свито</string>
     <string name="history_export">Експорт без име</string>
     <string name="history_export_subject">Нощи в Phase Wake (без име)</string>
 

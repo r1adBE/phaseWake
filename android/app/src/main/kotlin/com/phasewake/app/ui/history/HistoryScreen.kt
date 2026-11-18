@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -117,6 +116,10 @@ fun HistoryScreen(
     val history = model.history
     // Eine Auswahl «Tage / Wochen / Monate» für Übersicht und Diagramme; gemerkt über Drehen und Zurückkehren.
     var unit by rememberSaveable { mutableStateOf(OverviewUnit.DAYS) }
+    // Aufgeklappte Wochen und Jahre: anfangs alle zu; wie die Auswahl oben über Drehen und Zurückkehren gemerkt, nie
+    // dauerhaft gespeichert.
+    var open by rememberSaveable { mutableStateOf(state.openGroups.toList()) }
+    val folding = GroupFolding(open.toSet()) { key -> open = if (key in open) open - key else open + key }
     // Himmel wie auf der Startseite; der Rand liegt im Innenabstand, damit der Kopf randlos sein kann.
     val direction = LocalLayoutDirection.current
     val padding = PaddingValues(
@@ -154,7 +157,7 @@ fun HistoryScreen(
             return@LazyColumn
         }
         summaryItems(state, actions)
-        items(model.entries, key = { it.key }) { entry ->
+        groupedItems(model.groups, folding, state, state.today ?: LocalDate.now()) { entry ->
             EntrySection(entry, state, actions, model, Modifier.animateItem())
         }
     }

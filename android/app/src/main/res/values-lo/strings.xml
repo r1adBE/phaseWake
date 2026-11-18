@@ -77,6 +77,11 @@
     <string name="history_health_live_unknown">ຈາກຂໍ້ມູນສຸຂະພາບຂອງເຈົ້າ. Phase Wake ປະຕິບັດຕາມການປ່ຽນແປງ ແລະ ການລຶບຢູ່ບ່ອນນັ້ນໂດຍອັດຕະໂນມັດ.</string>
     <string name="history_average">Ø ກ່ອນ %1$d ນາທີ</string>
     <string name="history_light_share">%1$d %% ຖືກປຸກກ່ອນເມື່ອນອນບໍ່ສະຫງົບ</string>
+    <plurals name="history_group_nights">
+        <item quantity="other">%1$d ຄືນ</item>
+    </plurals>
+    <string name="history_group_expanded">ຂະຫຍາຍແລ້ວ</string>
+    <string name="history_group_collapsed">ຫຍໍ້ແລ້ວ</string>
     <string name="history_export">ສົ່ງອອກໂດຍບໍ່ມີຊື່</string>
     <string name="history_export_subject">ຄືນ Phase Wake (ບໍ່ມີຊື່)</string>
 

@@ -78,6 +78,13 @@
     <string name="history_health_live_unknown">Din datele tale de sănătate. Phase Wake preia automat modificările și ștergerile făcute acolo.</string>
     <string name="history_average">Ø %1$d min mai devreme</string>
     <string name="history_light_share">%1$d %% treziți mai devreme la agitație</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d noapte</item>
+        <item quantity="few">%1$d nopți</item>
+        <item quantity="other">%1$d de nopți</item>
+    </plurals>
+    <string name="history_group_expanded">Extins</string>
+    <string name="history_group_collapsed">Restrâns</string>
     <string name="history_export">Exportă fără nume</string>
     <string name="history_export_subject">Nopți Phase Wake (fără nume)</string>
 

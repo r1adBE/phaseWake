@@ -79,6 +79,12 @@
     <string name="history_health_live_unknown">Iturria: zure osasun-datuak. Han egindako aldaketak eta ezabaketak automatikoki aplikatzen ditu Phase Wake-k.</string>
     <string name="history_average">Ø %1$d min lehenago</string>
     <string name="history_light_share">%%%1$d lehenago esnatuta ezinegonagatik</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">Gau %1$d</item>
+        <item quantity="other">%1$d gau</item>
+    </plurals>
+    <string name="history_group_expanded">Zabalduta</string>
+    <string name="history_group_collapsed">Tolestuta</string>
     <string name="history_export">Esportatu izenik gabe</string>
     <string name="history_export_subject">Phase Wake gauak (izenik gabe)</string>
 

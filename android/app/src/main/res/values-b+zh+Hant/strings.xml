@@ -76,6 +76,11 @@
     <string name="history_health_live_unknown">來自你的健康資料。你在那裡所做的變更和刪除，Phase Wake 會自動同步。</string>
     <string name="history_average">平均提早 %1$d 分鐘</string>
     <string name="history_light_share">%1$d %% 因睡得不安穩而提早叫醒</string>
+    <plurals name="history_group_nights">
+        <item quantity="other">%1$d 晚</item>
+    </plurals>
+    <string name="history_group_expanded">已展開</string>
+    <string name="history_group_collapsed">已收合</string>
     <string name="history_export">不含姓名匯出</string>
     <string name="history_export_subject">Phase Wake 睡眠紀錄（不含姓名）</string>
 

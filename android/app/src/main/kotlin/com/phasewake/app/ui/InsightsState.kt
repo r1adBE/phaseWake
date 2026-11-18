@@ -59,6 +59,8 @@ internal class Insights(
     val history: List<HistoryItem>,
     /** Gelesene Sitzungen aus Health Connect (nur im Speicher): Quelle der Phasen beim Schlafwert. */
     val sessions: List<HealthSession> = emptyList(),
+    /** Schlaf je Nachtdatum ([NoteEffect.asleepByNight]) für den Schnitt der Wochen und Jahre im Verlauf. */
+    val asleep: Map<LocalDate, Long> = emptyMap(),
 )
 
 /**
@@ -134,7 +136,7 @@ internal fun rememberInsights(app: PhaseWakeApp, data: AppData, healthCheck: Int
     }
     return Insights(
         health, derived.stages, derived.trends, derived.goalWeek, derived.noteEffects, derived.habits, derived.charts,
-        derived.weekly, derived.history, sessions,
+        derived.weekly, derived.history, sessions, remember(sleeps, zone) { NoteEffect.asleepByNight(sleeps, zone) },
     )
 }
 

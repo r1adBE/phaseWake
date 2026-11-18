@@ -79,6 +79,12 @@
     <string name="history_health_live_unknown">तुमच्या हेल्थ डेटामधून. तिथे केलेले बदल आणि हटवणे Phase Wake आपोआप स्वीकारते.</string>
     <string name="history_average">Ø %1$d मि. लवकर</string>
     <string name="history_light_share">%1$d %% अस्वस्थ झाल्यावर लवकर उठवले</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d रात्र</item>
+        <item quantity="other">%1$d रात्री</item>
+    </plurals>
+    <string name="history_group_expanded">विस्तारित</string>
+    <string name="history_group_collapsed">संकुचित</string>
     <string name="history_export">नावाशिवाय एक्सपोर्ट करा</string>
     <string name="history_export_subject">Phase Wake रात्री (नावाशिवाय)</string>
 

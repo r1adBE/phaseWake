@@ -2,9 +2,12 @@ package com.phasewake.app.ui.history
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
 import com.phasewake.app.core.CustomNote
 import com.phasewake.app.core.Finding
 import com.phasewake.app.core.HealthHistory
+import com.phasewake.app.core.HistoryGroup
+import com.phasewake.app.core.HistoryGroups
 import com.phasewake.app.core.HistoryItem
 import com.phasewake.app.core.HistoryKind
 import com.phasewake.app.core.NightRecord
@@ -21,6 +24,7 @@ import java.io.File
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.temporal.WeekFields
 
 /**
  * Was der Verlauf ([HistoryScreen]) zeigt.
@@ -40,6 +44,12 @@ import java.time.ZoneId
  * @property recordings Abgeschlossene Aufzeichnungen («Nacht aufzeichnen»), älteste zuerst; nach ihrem Ende zwischen
  *   die Nächte.
  * @property goalMinutes Schlafziel in Minuten für den Schlafwert der Nächte.
+ * @property asleep Schlaf je Nachtdatum aus Health Connect ([com.phasewake.app.core.NoteEffect.asleepByNight]) für
+ *   den Schnitt der Wochen- und Jahreszeilen.
+ * @property today Heute für die Jahresgrenze der Liste ([HistoryGroups]); `null`: Datum des Geräts (Bildschirmfotos
+ *   setzen es fest).
+ * @property openGroups Beim Öffnen aufgeklappte Wochen und Jahre ([groupKey]); nur für Bildschirmfotos, in der App
+ *   ist alles zugeklappt.
  */
 data class HistoryState(
     val nights: List<NightRecord>,
@@ -62,6 +72,9 @@ data class HistoryState(
     val healthFeelings: Map<LocalDate, Int> = emptyMap(),
     val recordings: List<NightRecording> = emptyList(),
     val goalMinutes: Int = SleepGoal.DEFAULT_MINUTES,
+    val asleep: Map<LocalDate, Long> = emptyMap(),
+    val today: LocalDate? = null,
+    val openGroups: Set<String> = emptySet(),
 )
 
 /**
@@ -87,13 +100,14 @@ internal data class NightCardNotes(
 
 /**
  * Verlauf für die Liste: alle Nächte ([history]), die zuletzt geweckte je Nachtdatum ([latestByDate]), Geräusche ohne
- * Nacht ([soundsOnly]) und alles zusammen in Listenfolge ([entries]).
+ * Nacht ([soundsOnly]), alles zusammen in Listenfolge ([entries]) und so gruppiert, wie die Liste es zeigt ([groups]).
  */
 internal data class HistoryModel(
     val history: List<HistoryItem>,
     val latestByDate: Map<LocalDate, NightRecord>,
     val soundsOnly: List<Pair<LocalDate, Instant>>,
     val entries: List<HistoryEntry>,
+    val groups: List<HistoryGroup<HistoryEntry>>,
 )
 
 /** Verlauf für die Liste ([HistoryModel]) aus [state]. */
@@ -124,5 +138,12 @@ internal fun rememberHistoryModel(state: HistoryState): HistoryModel {
         }
         withRecordings(nightly, state.recordings)
     }
-    return HistoryModel(history, latestByDate, soundsOnly, entries)
+    // Die neusten Nächte einzeln, ältere je Woche bzw. Jahr; Wochenbeginn nach der Sprache des Geräts.
+    val today = state.today ?: LocalDate.now()
+    val firstDay = WeekFields.of(LocalConfiguration.current.locales[0]).firstDayOfWeek
+    val groups = remember(entries, today, firstDay) {
+        val zone = ZoneId.systemDefault()
+        HistoryGroups.of(entries, { it.at.atZone(zone).toLocalDate() }, { it.nightDate != null }, today, firstDay)
+    }
+    return HistoryModel(history, latestByDate, soundsOnly, entries, groups)
 }

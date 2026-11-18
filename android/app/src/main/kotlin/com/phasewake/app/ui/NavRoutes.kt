@@ -230,7 +230,7 @@ private fun HistoryRoute(app: PhaseWakeApp, state: NavState, actions: NavActions
             canConnectHealth = insights.health == HealthState.AVAILABLE,
             healthFeelings = data.healthFeelings,
             recordings = recordings.orEmpty(),
-            goalMinutes = data.sleepGoal,
+            goalMinutes = data.sleepGoal, asleep = insights.asleep,
         ),
         contentPadding = content,
         actions = HistoryActions(

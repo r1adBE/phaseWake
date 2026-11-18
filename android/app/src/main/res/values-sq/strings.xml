@@ -79,6 +79,12 @@
     <string name="history_health_live_unknown">Nga të dhënat e tua të shëndetit. Phase Wake i zbaton automatikisht ndryshimet dhe fshirjet e bëra atje.</string>
     <string name="history_average">Ø %1$d min më herët</string>
     <string name="history_light_share">%1$d %% zgjuar më herët kur shqetësohesh</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d natë</item>
+        <item quantity="other">%1$d net</item>
+    </plurals>
+    <string name="history_group_expanded">Zgjeruar</string>
+    <string name="history_group_collapsed">Palosur</string>
     <string name="history_export">Eksporto pa emër</string>
     <string name="history_export_subject">Netët e Phase Wake (pa emër)</string>
 

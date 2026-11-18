@@ -80,6 +80,13 @@
     <string name="history_health_live_unknown">No taviem veselības datiem. Tur veiktās izmaiņas un dzēšanu Phase Wake pārņem automātiski.</string>
     <string name="history_average">Ø %1$d min agrāk</string>
     <string name="history_light_share">%1$d %% pamodināti agrāk nemierīgā miegā</string>
+    <plurals name="history_group_nights">
+        <item quantity="zero">%1$d naktis</item>
+        <item quantity="one">%1$d nakts</item>
+        <item quantity="other">%1$d naktis</item>
+    </plurals>
+    <string name="history_group_expanded">Izvērsts</string>
+    <string name="history_group_collapsed">Sakļauts</string>
     <string name="history_export">Eksportēt bez vārda</string>
     <string name="history_export_subject">Phase Wake naktis (bez vārda)</string>
 

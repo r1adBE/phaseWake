@@ -77,6 +77,12 @@
     <string name="history_health_live_unknown">Forrás: az egészségügyi adataid. Az ott végzett módosításokat és törléseket a Phase Wake automatikusan átveszi.</string>
     <string name="history_average">Ø %1$d p korábban</string>
     <string name="history_light_share">%1$d %% korábban ébresztve nyugtalanság miatt</string>
+    <plurals name="history_group_nights">
+        <item quantity="one">%1$d éjszaka</item>
+        <item quantity="other">%1$d éjszaka</item>
+    </plurals>
+    <string name="history_group_expanded">Kibontva</string>
+    <string name="history_group_collapsed">Összecsukva</string>
     <string name="history_export">Exportálás név nélkül</string>
     <string name="history_export_subject">Phase Wake éjszakák (név nélkül)</string>
 
