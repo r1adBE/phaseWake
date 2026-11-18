@@ -91,8 +91,15 @@ data class AlarmSpec(
         /** Kleinstes Weckfenster in Minuten (ausser [EXACT_WINDOW]). */
         const val MIN_WINDOW_MINUTES: Int = 10
 
-        /** Grenze von watchOS (Smart-Alarm-Sitzung höchstens 30 Min), auf beiden Plattformen gleich. */
-        const val MAX_WINDOW_MINUTES: Int = 30
+        /**
+         * Grösstes Weckfenster in Minuten auf Android (Handy und Galaxy Watch). Bewusste Ausnahme vom Gleichstand:
+         * Apple bleibt bei 30 (`AlarmSpec.maxWindowMinutes` in Swift), weil die Smart-Alarm-Sitzung von watchOS
+         * höchstens 30 Min läuft.
+         */
+        const val MAX_WINDOW_MINUTES: Int = 60
+
+        /** Wählbare Weckfenster im Editor (Handy und Uhr): «Genau», 10, 20, 30, 45 und 60 Minuten. */
+        val WINDOW_CHOICES: List<Int> = listOf(EXACT_WINDOW, 10, 20, 30, 45, MAX_WINDOW_MINUTES)
 
         /** Kürzeste Schlafdauer im Einschlaf-Modus in Minuten (1 h). */
         const val MIN_SLEEP_MINUTES: Int = 60
@@ -145,7 +152,8 @@ enum class Sunrise {
     RING,
 
     /**
-     * Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell; weckt die Uhr früher, in [CATCH_UP_SECONDS] Sekunden.
+     * Beginnt mit dem Weckfenster (höchstens [MAX_WINDOW_LIGHT_MINUTES] vor der Zielzeit, [lightStart]) und ist zur
+     * Zielzeit voll hell; weckt die Uhr früher, in [CATCH_UP_SECONDS] Sekunden.
      */
     WINDOW;
 
@@ -155,6 +163,16 @@ enum class Sunrise {
 
         /** Bei [WINDOW]: so schnell (Sekunden) wird nachgeholt, wenn die Uhr vor der Zielzeit weckt. */
         const val CATCH_UP_SECONDS: Int = 60
+
+        /** Bei [WINDOW] dauert das Licht höchstens so viele Minuten; ein längeres Fenster beginnt es später. */
+        const val MAX_WINDOW_LIGHT_MINUTES: Int = 30
+
+        /**
+         * Beginn des Lichts bei [WINDOW]: [windowStart], aber höchstens [MAX_WINDOW_LIGHT_MINUTES] vor [target]
+         * (z. B. 60-Min-Fenster bis 7:00: Licht ab 6:30). Auf Apple ist das Fenster nie länger als 30 Min.
+         */
+        fun lightStart(windowStart: java.time.Instant, target: java.time.Instant): java.time.Instant =
+            maxOf(windowStart, target.minus(java.time.Duration.ofMinutes(MAX_WINDOW_LIGHT_MINUTES.toLong())))
 
         /** Fortschritt 0–1 eines Lichts von [start] bis [end] zum Zeitpunkt [now]. */
         fun progress(start: java.time.Instant, end: java.time.Instant, now: java.time.Instant): Float {

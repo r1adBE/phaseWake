@@ -43,5 +43,8 @@ final class SharedNightsTests: XCTestCase {
         XCTAssertNotNil(byName["restless_start_learned_floor"])
         // Ohne Übergehen weckt der erste Moment.
         XCTAssertEqual(firstWake(byName["rearm_new_hits"]), 39)
+        // Ohne gelerntes Grundrauschen hebt das Fenster die Leicht-Schwelle wie früher: erst zur Zielzeit.
+        XCTAssertNil(firstWake(byName["real_window_7"]))
+        XCTAssertNotNil(byName["real_window_7"])
     }
 }

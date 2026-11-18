@@ -62,9 +62,14 @@ public enum Codec {
             guard let day = daysByCode[$0] else { throw CodecError(description: "Wochentag '\($0)'") }
             return day
         })
+        // Fenster über der Apple-Grenze bis zur Android-Grenze (z. B. 45 oder 60 Min aus einer Android-Sicherung):
+        // mit der Apple-Grenze lesen, statt den Wecker zu verwerfen.
+        let rawWindow = try int(f[4])
+        let window = (AlarmSpec.maxWindowMinutes + 1...AlarmSpec.androidMaxWindowMinutes).contains(rawWindow)
+            ? AlarmSpec.maxWindowMinutes : rawWindow
         do {
             return try AlarmSpec(
-                id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: int(f[4]),
+                id: unescape(f[0]), hour: int(f[1]), minute: int(f[2]), days: days, windowMinutes: window,
                 enabled: f[5] == "1", phone: phone, watchSound: f[7] == "1",
                 sleepDurationMinutes: f[8].isEmpty ? nil : int(f[8]), sound: unescape(f[9]), label: unescape(f[10]),
                 sunrise: sunrise,

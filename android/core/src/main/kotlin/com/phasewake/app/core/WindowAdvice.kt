@@ -11,16 +11,23 @@ object WindowAdvice {
     /** Mindestanzahl Nächte für einen Vorschlag. */
     const val MIN_NIGHTS = 3
 
-    /** Um so viele Minuten wird das Fenster vergrössert (höchstens bis [AlarmSpec.MAX_WINDOW_MINUTES]). */
+    /** Unter [STAGES_FROM] Minuten wird das Fenster um so viele Minuten vergrössert (höchstens bis [STAGES_FROM]). */
     const val STEP_MINUTES = 10
+
+    /**
+     * Ab so vielen Minuten schlägt Android die nächste Stufe des Editors vor ([AlarmSpec.WINDOW_CHOICES]: 45, dann 60),
+     * bis [AlarmSpec.MAX_WINDOW_MINUTES]. Apple endet hier (Grenze 30).
+     */
+    const val STAGES_FROM = 30
 
     /** Ergebnis: [deadlineNights] von [nights] Nächten endeten zur Zielzeit; vorgeschlagen [windowMinutes]. */
     data class Suggestion(val windowMinutes: Int, val deadlineNights: Int, val nights: Int)
 
     /**
      * Vorschlag für [spec], wenn von seinen letzten [NIGHTS] Nächten (mindestens [MIN_NIGHTS]) mehr als
-     * die Hälfte erst zur Zielzeit endete; `null`, wenn das Fenster schon am grössten ist, der Wecker «Genau» weckt
-     * ([AlarmSpec.isExact], bewusst ohne Fenster) oder zu wenig Nächte da sind.
+     * die Hälfte erst zur Zielzeit endete; `null`, wenn das Fenster schon am grössten ist
+     * ([AlarmSpec.MAX_WINDOW_MINUTES], dann gilt [MissHint]), der Wecker «Genau» weckt ([AlarmSpec.isExact],
+     * bewusst ohne Fenster) oder zu wenig Nächte da sind.
      */
     fun suggest(spec: AlarmSpec, history: List<NightRecord>): Suggestion? {
         if (spec.isExact || spec.windowMinutes >= AlarmSpec.MAX_WINDOW_MINUTES) return null
@@ -31,7 +38,11 @@ object WindowAdvice {
         val deadline = recent.count { it.reason == WakeReason.DEADLINE }
         // Mehr als die Hälfte der Nächte ohne passenden Moment.
         if (deadline * 2 <= recent.size) return null
-        val wider = (spec.windowMinutes + STEP_MINUTES).coerceAtMost(AlarmSpec.MAX_WINDOW_MINUTES)
+        val wider = if (spec.windowMinutes < STAGES_FROM) {
+            (spec.windowMinutes + STEP_MINUTES).coerceAtMost(STAGES_FROM)
+        } else {
+            AlarmSpec.WINDOW_CHOICES.first { it > spec.windowMinutes }
+        }
         return Suggestion(wider, deadline, recent.size)
     }
 }

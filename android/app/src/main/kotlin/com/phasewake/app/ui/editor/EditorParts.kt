@@ -96,15 +96,16 @@ internal const val CHECK_ICON_MAX_SEGMENTS = 2
 
 /**
  * Beschriftung eines Auswahl-Felds: bei Platzmangel (drei Felder, lange Sprachen) zuerst zweizeilig, dann
- * schrittweise kleiner, aber nicht unter 12 sp (10 sp war auf 360 dp in Französisch zu klein).
+ * schrittweise kleiner, aber nicht unter 12 sp (10 sp war auf 360 dp in Französisch zu klein). [maxLines] 1 für sehr
+ * schmale Felder mit einem einzelnen Wort: lieber kleiner als mitten im Wort umbrochen.
  */
 @Composable
-internal fun ChoiceLabel(text: String) {
+internal fun ChoiceLabel(text: String, maxLines: Int = 2) {
     val style = LocalTextStyle.current.copy(color = LocalContentColor.current, textAlign = TextAlign.Center)
     BasicText(
         text,
         style = style,
-        maxLines = 2,
+        maxLines = maxLines,
         autoSize = TextAutoSize.StepBased(
             minFontSize = 12.sp, maxFontSize = if (style.fontSize.isSpecified) style.fontSize else 14.sp,
             stepSize = 0.5.sp,

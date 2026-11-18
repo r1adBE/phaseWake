@@ -45,7 +45,7 @@ gemessen werden kann – vor dem ersten Entsperren nach einem Neustart oder ohne
 Weckbildschirm am Leben, bis du stoppst oder schlummerst. Als Wecker-App mit `USE_EXACT_ALARM` ist dieser Typ vorgesehen.
 Nur der Weckdienst (`WakeService`) nutzt ihn, nie die Aufzeichnung.
 
-**Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–30 Minuten vor der Zielzeit) und am Abend bis zum
+**Vordergrund-Dienst «health» (Uhr).** Läuft im Weckfenster (10–60 Minuten vor der Zielzeit) und am Abend bis zum
 Einschlafen: automatisch ab 1 Std. vor der Bettzeit (Einschlaf-Messung, ab Werk an, in den Einstellungen abschaltbar)
 und nach «Gute Nacht» (Wecker mit Schlafdauer, du tippst es selbst an). Dazu nur auf deinen Wunsch: «Nacht aufzeichnen»
 (auf der Uhr oder am Handy gestartet, höchstens 12 Std., in Stichproben von 60 Sekunden alle 5 Minuten, durchgehend
@@ -109,7 +109,7 @@ possible – before the first unlock after a restart or without sensor permissio
 vibration and the alarm screen alive until the user stops or snoozes. This type is intended for alarm clock apps
 holding `USE_EXACT_ALARM`. Only the alarm service (`WakeService`) uses it, never the recording.
 
-**Foreground service type “health” (watch).** Runs during the wake window (10–30 minutes before the target time) and in
+**Foreground service type “health” (watch).** Runs during the wake window (10–60 minutes before the target time) and in
 the evening until the user falls asleep: automatically from 1 hour before bedtime (falling-asleep measurement, on by
 default, can be switched off in the settings) and after “Good night” (alarms with a sleep duration, tapped by the user).
 In addition only at the user’s request: “Record night” (started on the watch or the phone, at most 12 hours, in samples

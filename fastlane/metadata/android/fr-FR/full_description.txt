@@ -1,7 +1,7 @@
 Phase Wake te réveille dans ta plage de réveil dès que ton sommeil devient agité – c’est alors sans doute un sommeil léger. Au plus tard, pile à l’heure cible. Pour cela, ta montre connectée mesure les mouvements et le pouls dans les dernières minutes avant l’alarme ; pendant la phase d’apprentissage facultative, aussi au fil de la nuit.
 
 Comment ça marche
-• Choisis ton heure cible et ta plage (jusqu’à 30 min), mets ta montre, dors.
+• Choisis ton heure cible et ta plage (jusqu’à 60 min), mets ta montre, dors.
 • La montre mesure pendant la plage de réveil et le soir, à partir d’environ 1 heure avant le coucher, jusqu’à ce que tu t’endormes (4 heures au maximum) – économe en batterie.
 • Facultatif : phase d’apprentissage – pendant 7 nuits, ta montre mesure mouvements et pouls au fil de la nuit (consomme un peu de batterie) et adapte le réveil à toi.
 • Vibration au poignet, avec son si tu veux – ton téléphone sonne en alarme de secours au cas où quelque chose tournerait mal.

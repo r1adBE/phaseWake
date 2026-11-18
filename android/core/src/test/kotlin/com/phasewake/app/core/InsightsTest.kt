@@ -145,7 +145,7 @@ class InsightsTest {
 }
 
 class MissHintTest {
-    private val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 30)
+    private val spec = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = AlarmSpec.MAX_WINDOW_MINUTES)
     private val start = Instant.parse("2026-10-20T05:30:00Z")
 
     private fun night(
@@ -171,6 +171,9 @@ class MissHintTest {
         assertEquals(MissHint.CALM, MissHint.of(spec, three))
         assertNull(MissHint.of(spec, three.take(2)))
         assertNull(MissHint.of(spec.copy(windowMinutes = 20), three))
+        // Android: erst beim grössten Fenster (60); bei 30 und 45 kommt noch ein Vorschlag (WindowAdviceTest).
+        assertNull(MissHint.of(spec.copy(windowMinutes = 45), three))
+        assertEquals(60, spec.windowMinutes)
         assertNull(MissHint.of(spec, three + night(3, WakeReason.LIGHT_SLEEP)))
         assertNull(MissHint.of(null, three))
         // Nächte anderer Wecker zählen nicht.

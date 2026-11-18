@@ -3,6 +3,7 @@ package com.phasewake.app.ui.editor
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -134,10 +135,16 @@ internal fun AdviceCard(state: EditorState, advice: WindowAdvice.Suggestion) {
     }
 }
 
-/** Wahl des Weckfensters: «Genau · 10 · 20 · 30»; ein älterer Wert (15, 25) bleibt als eigenes Feld wählbar. */
-internal val WINDOW_OPTIONS = listOf(AlarmSpec.EXACT_WINDOW, 10, 20, AlarmSpec.MAX_WINDOW_MINUTES)
+/** Innenabstand links und rechts in den Feldern der Fensterwahl (Standard 12 dp ist für sechs Felder zu breit). */
+private val WINDOW_SEGMENT_PADDING = 4.dp
 
-/** Weckfenster «Genau · 10 · 20 · 30»; bei fester Zielzeit mit «von – bis», bei «Genau» mit Erklärung. */
+/** Breite des Felds «Genau» im Verhältnis zu einem Zahlenfeld der Fensterwahl. */
+private const val EXACT_SEGMENT_WEIGHT = 1.6f
+
+/**
+ * Weckfenster «Genau · 10 · 20 · 30 · 45 · 60» ([AlarmSpec.WINDOW_CHOICES]); ein älterer Wert (15, 25) bleibt als
+ * eigenes Feld wählbar. Bei fester Zielzeit mit «von – bis», bei «Genau» mit Erklärung.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun WindowSection(state: EditorState, time: TimePickerState) {
@@ -149,18 +156,28 @@ internal fun WindowSection(state: EditorState, time: TimePickerState) {
             if (exact) exactLabel else stringResource(R.string.editor_window, minutes),
             style = MaterialTheme.typography.titleMedium,
         )
-        val options = (WINDOW_OPTIONS + minutes).distinct().sorted()
+        val options = (AlarmSpec.WINDOW_CHOICES + minutes).distinct().sorted()
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(top = 8.dp).height(IntrinsicSize.Max)) {
             options.forEachIndexed { index, value ->
                 SegmentedButton(
                     selected = value == minutes,
                     onClick = { state.window = value.toFloat() },
                     shape = SegmentedButtonDefaults.itemShape(index, options.size),
-                    modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
+                    // «Genau» breiter als die Zahlen (weight vor dem weight(1f) des Felds gilt), damit lange Wörter
+                    // wie «Dokładnie» ohne Umbruch mitten im Wort passen.
+                    modifier = Modifier
+                        .weight(if (value == AlarmSpec.EXACT_WINDOW) EXACT_SEGMENT_WEIGHT else 1f)
+                        .heightIn(min = 48.dp)
+                        .fillMaxHeight(),
                     icon = {
                         if (options.size <= CHECK_ICON_MAX_SEGMENTS) SegmentedButtonDefaults.Icon(value == minutes)
                     },
-                ) { ChoiceLabel(if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)) }
+                    // Sechs schmale Felder: wenig Innenabstand; ein einzelnes Wort nicht mitten im Wort umbrechen.
+                    contentPadding = PaddingValues(horizontal = WINDOW_SEGMENT_PADDING),
+                ) {
+                    val text = if (value == AlarmSpec.EXACT_WINDOW) exactLabel else Format.number(value)
+                    ChoiceLabel(text, maxLines = if (' ' in text.trim()) 2 else 1)
+                }
             }
         }
         val hint = when {

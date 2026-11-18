@@ -183,14 +183,26 @@ private fun WakeService.resumeMeasuring(current: Night, config: DetectorConfig, 
     }
     app.diag.log(DiagKind.MEASURE_START, detail)
     // Sonnenaufgang ab Fenster auf der Uhr; unabhängig von der Messung.
-    if (current.spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) {
-        WatchSunrise.start(
-            this,
-            WatchSunrise.Active(plan.alarmId, plan.windowStart, plan.target),
-            formatTime(plan.target),
-        )
-    }
+    if (current.spec?.watchSunrise == Sunrise.WINDOW && plan.target.isAfter(Instant.now())) scheduleSunrise(current)
 }
+
+/**
+ * Sonnenaufgang ab Fenster für [current]: ab [Sunrise.lightStart] (höchstens 30 Min vor der Zielzeit), bei einem
+ * längeren Fenster also erst später. Nur solange noch gemessen wird; Ende der Nacht und Klingeln räumen ab.
+ */
+private fun WakeService.scheduleSunrise(current: Night) {
+    val plan = current.plan
+    val start = Sunrise.lightStart(plan.windowStart, plan.target)
+    handler.removeCallbacksAndMessages(SUNRISE_TOKEN)
+    val show = Runnable {
+        if (night !== current || current.phase != Phase.MEASURING) return@Runnable
+        WatchSunrise.start(this, WatchSunrise.Active(plan.alarmId, start, plan.target), formatTime(plan.target))
+    }
+    handler.postDelayed(show, SUNRISE_TOKEN, Duration.between(Instant.now(), start).toMillis().coerceAtLeast(0))
+}
+
+/** Kennung des geplanten Sonnenaufgangs im Handler (ein erneutes Laden plant ihn nicht doppelt). */
+private val SUNRISE_TOKEN = Any()
 
 private fun WakeService.startSensors(n: Night) {
     val elapsedNow = SystemClock.elapsedRealtimeNanos()

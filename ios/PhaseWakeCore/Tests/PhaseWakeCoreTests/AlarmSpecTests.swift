@@ -22,6 +22,10 @@ final class AlarmSpecTests: XCTestCase {
         // Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
         XCTAssertEqual(AlarmSpec.maxAlarms, 8)
         XCTAssertEqual(AlarmSpec.exactWindow, 0)
+        // Apple: grösstes Fenster 30 Min (Smart-Alarm-Sitzung von watchOS); Android 60 (Kotlin `AlarmSpecTest`).
+        XCTAssertEqual(AlarmSpec.maxWindowMinutes, 30)
+        XCTAssertNoThrow(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 30))
+        XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 31))
         XCTAssertTrue(try AlarmSpec(id: "a", hour: 7, minute: 0, windowMinutes: 0).isExact)
         XCTAssertEqual(AlarmSpec.minSleepMinutes, 60)
         XCTAssertThrowsError(try AlarmSpec(id: "a", hour: 7, minute: 0, sleepDurationMinutes: 59))

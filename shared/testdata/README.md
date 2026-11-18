@@ -23,6 +23,11 @@ Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@fl
 `light_needs_floor`: Die Leicht-Regel wartet ohne Grundrauschen; `min_floor_epochs_before`/`_after` sind dafür neu
 gerechnet. `hr_rise_exact`: Puls genau Basispuls × 1.05 weckt («mindestens»).
 
+`real_window_7`: echtes, ohne Namen aufgezeichnetes Weckfenster (17.11.2026) mit gelerntem Grundrauschen 0.0197 (`@floor`):
+Eine andere Armlage hebt das Grundrauschen im Fenster auf 0.0296; die Leicht-Schwelle im Weckfenster bleibt bei 2.5 ×
+gelernt (PHASENERKENNUNG 3a) und weckt in Epoche 31 statt erst zur Zielzeit. Den Faktor 1.5 × Grundrauschen dieser
+Regel prüfen beide Kerne in `NoiseFloorTest`/`NoiseFloorTests`.
+
 Regel S5 (eine starke Bewegung ≥ wirksame Wach-Schwelle in den letzten 2 Epochen mit
 Pulsanstieg): `real_window_1` bis `_6` sind echte, ohne Namen aufgezeichnete Weckfenster (Nacht 6 = 15.11.2026, jetzt
 Epoche 49 statt Zielzeit; 1–5 unverändert), `strong_motion_at_wake_threshold`/`_below_wake_threshold` (genau an bzw. knapp

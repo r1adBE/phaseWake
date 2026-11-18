@@ -1,7 +1,7 @@
 Phase Wake vækker dig inden for dit vækkevindue, så snart du bliver urolig – så sover du sandsynligvis let. Senest præcis på dit ønskede tidspunkt. Til det måler dit smartwatch bevægelse og puls i de sidste minutter før alarmen; i den valgfri læringsfase også gennem natten.
 
 Sådan virker det
-• Vælg dit ønskede tidspunkt og vindue (op til 30 min), tag uret på, og sov.
+• Vælg dit ønskede tidspunkt og vindue (op til 60 min), tag uret på, og sov.
 • Uret måler i vækkevinduet og om aftenen fra cirka 1 time før sengetid, indtil du falder i søvn (højst 4 timer) – det skåner batteriet.
 • Valgfrit: læringsfase – i 7 nætter måler dit ur bevægelse og puls gennem natten (bruger lidt batteri) og tilpasser alarmen til dig.
 • Vibration på håndleddet, med lyd hvis du vil – telefonen ringer med som reservealarm, hvis noget går galt.

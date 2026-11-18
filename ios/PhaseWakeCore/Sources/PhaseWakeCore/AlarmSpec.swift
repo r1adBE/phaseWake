@@ -71,7 +71,8 @@ public enum WakeTask: String, CaseIterable, Sendable {
     case math = "MATH"
 }
 
-/// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`.
+/// Ein Wecker, wie ihn der Nutzer einstellt. Identisch zu `AlarmSpec` in `android/core`, ausser dem grössten
+/// Weckfenster (`maxWindowMinutes`).
 public struct AlarmSpec: Equatable, Sendable, Identifiable {
     /// Standard-Weckfenster neuer Wecker in Minuten. Gespeicherte Wecker tragen ihr Fenster immer selbst.
     public static let defaultWindowMinutes = 20
@@ -82,8 +83,12 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     /// Kürzestes Weckfenster in Minuten (ausser `exactWindow`); darunter bleibt nach der Aufwärmphase kaum Zeit zum
     /// Erkennen.
     public static let minWindowMinutes = 10
-    /// Grenze der Smart-Alarm-Sitzung von watchOS, auf beiden Plattformen gleich.
+    /// Grösstes Weckfenster auf Apple: Grenze der Smart-Alarm-Sitzung von watchOS (höchstens 30 Min). Bewusste
+    /// Ausnahme vom Gleichstand: Android erlaubt bis `androidMaxWindowMinutes`.
     public static let maxWindowMinutes = 30
+    /// Grösstes Weckfenster auf Android (`AlarmSpec.MAX_WINDOW_MINUTES` in Kotlin). Wecker aus einer Android-Sicherung
+    /// mit einem Fenster darüber bis hier liest `Codec.decodeAlarms` mit `maxWindowMinutes`.
+    public static let androidMaxWindowMinutes = 60
     /// Kürzeste Schlafdauer im Einschlaf-Modus in Minuten (1 Stunde).
     public static let minSleepMinutes = 60
     /// Längste Schlafdauer im Einschlaf-Modus in Minuten (12 Stunden).

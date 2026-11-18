@@ -54,6 +54,29 @@ class NoiseFloorTest {
     }
 
     @Test
+    fun windowLightOnlyLowersToTheLearned() {
+        val learned = DetectorConfig(personalFloor = 0.0197)
+        // Andere Armlage (Nacht 17.11.2026): Fenster 0.02955 -> 2.5 × gelernt statt 2.5 × Fenster.
+        assertEquals(0.04925, NoiseFloor.windowLight(learned, 0.02955), 1e-12)
+        assertEquals(0.073875, NoiseFloor.light(learned, 0.02955), 1e-12)
+        // Sehr unruhige Armlage: mindestens 1.5 × Fenster.
+        assertEquals(0.06, NoiseFloor.windowLight(learned, 0.04), 1e-12)
+        // Fenster ruhiger als gelernt: wie bisher.
+        assertEquals(0.025, NoiseFloor.windowLight(learned, 0.01), 1e-12)
+        // Ohne gelerntes, ohne Grundrauschen und mit unplausiblem gelerntem (< 0.25 × Fenster): wie bisher.
+        assertEquals(0.074, NoiseFloor.windowLight(DetectorConfig(), 0.0296), 1e-12)
+        assertEquals(0.002, NoiseFloor.windowLight(learned, null))
+        assertEquals(0.04975, NoiseFloor.windowLight(DetectorConfig(personalFloor = 0.0045), 0.0199), 1e-12)
+        // Genau 0.25 × Fenster gilt als plausibel, knapp darunter nicht.
+        assertEquals(0.03, NoiseFloor.windowLight(DetectorConfig(personalFloor = 0.005), 0.02), 1e-12)
+        assertEquals(0.05, NoiseFloor.windowLight(DetectorConfig(personalFloor = 0.0049), 0.02), 1e-12)
+        // Startwert bleibt Untergrenze, ebenso eine kalibrierte Schwelle.
+        assertEquals(0.002, NoiseFloor.windowLight(DetectorConfig(personalFloor = 0.0005), 0.0005))
+        val calibrated = DetectorConfig(lightThreshold = 0.06, personalFloor = 0.0197)
+        assertEquals(0.06, NoiseFloor.windowLight(calibrated, 0.02955), 1e-12)
+    }
+
+    @Test
     fun summaryForDiagnosis() {
         val config = DetectorConfig()
         assertEquals(
@@ -61,6 +84,11 @@ class NoiseFloorTest {
             NoiseFloor.summary(config, listOf(0.02, null, 0.02, 0.02, 0.4)),
         )
         assertEquals("floor=- light=0.0020 wake=0.1000", NoiseFloor.summary(config, listOf(0.02, null)))
+        // Wirksame Leicht-Schwelle im Fenster: Fenster 0.024 (1.5 × gelernt 0.016), Leicht 2.5 × gelernt.
+        assertEquals(
+            "floor=0.0240 light=0.0400 wake=0.1200",
+            NoiseFloor.summary(DetectorConfig(personalFloor = 0.016), List(5) { 0.03 }),
+        )
     }
 
     @Test

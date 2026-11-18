@@ -137,8 +137,8 @@ struct EditorView: View {
     @ViewBuilder
     private var windowSection: some View {
         Section {
-            // «Genau · 10 · 20 · 30» wie Android; ein älterer Wert (15, 25) bleibt als eigene Wahl
-            // erhalten.
+            // «Genau · 10 · 20 · 30» (Android dazu 45 und 60, Apple höchstens 30); ein älterer Wert (15, 25) bleibt
+            // als eigene Wahl erhalten.
             Picker(L("chart_window"), selection: $window) {
                 ForEach(windowChoices(keeping: Int(window)), id: \.self) { minutes in
                     Text(minutes == AlarmSpec.exactWindow

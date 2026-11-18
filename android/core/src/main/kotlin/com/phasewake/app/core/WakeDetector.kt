@@ -62,8 +62,9 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der
         // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
         // in den letzten [STRONG_WINDOW] Epochen, mit derselben Pulsbedingung und denselben Sperren.
+        // Die Leicht-Schwelle liegt nie über der des gelernten Grundrauschens ([NoiseFloor.windowLight]).
         val moved = hits(STRONG_WINDOW, wakeThreshold) >= 1 ||
-            hits(config.lightWindow, NoiseFloor.light(config, floor)) >= config.lightHits
+            hits(config.lightWindow, NoiseFloor.windowLight(config, floor)) >= config.lightHits
         if (floor != null && moved && heartRateRisen(baseline)) {
             return wake(WakeReason.LIGHT_SLEEP)
         }

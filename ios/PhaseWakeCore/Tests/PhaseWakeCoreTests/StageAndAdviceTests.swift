@@ -64,6 +64,7 @@ final class StageAndAdviceTests: XCTestCase {
         XCTAssertNil(WindowAdvice.suggest(spec(), history: (0..<5).map { night(Double($0), .deadline, "b") }))
         let deadlines = (0..<3).map { night(Double($0), .deadline) }
         XCTAssertEqual(WindowAdvice.suggest(spec(window: 25), history: deadlines)?.windowMinutes, 30)
+        // Apple endet bei 30; Android schlägt danach 45 und 60 vor (Kotlin `WindowAdviceTest`).
         XCTAssertNil(WindowAdvice.suggest(spec(window: 30), history: deadlines))
         // «Genau» hat bewusst kein Fenster: kein Vorschlag.
         XCTAssertNil(WindowAdvice.suggest(spec(window: AlarmSpec.exactWindow), history: deadlines))

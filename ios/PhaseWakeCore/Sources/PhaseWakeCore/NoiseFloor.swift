@@ -70,6 +70,23 @@ public enum NoiseFloor {
         light(threshold: config.lightThreshold, floor: floor)
     }
 
+    /// Im Weckfenster mindestens dieses Vielfache des Grundrauschens (``windowLight(config:floor:)``): Auch wenn das
+    /// gelernte die Leicht-Schwelle senkt, zählt das Rauschen einer sehr unruhigen Armlage nicht als Bewegung.
+    public static let windowNoiseFactor = 1.5
+
+    /// Wirksame Leicht-Schwelle im Weckfenster (``WakeDetector``) zum Grundrauschen `floor`
+    /// (``windowFloor(_:config:)``): Das Grundrauschen des Fensters senkt sie nur, hebt sie nie über die des gelernten
+    /// (``DetectorConfig/personalFloor``). Ist das gelernte plausibel (mindestens ``priorMinShare`` × `floor`):
+    /// max(Leicht-Schwelle, ``lightFactor`` × min(`floor`, gelernt), ``windowNoiseFactor`` × `floor`); sonst und ohne
+    /// gelerntes wie ``light(config:floor:)``. Die Einschlaf-Messung nutzt weiter ``light(threshold:floor:)``.
+    /// Identisch zu `NoiseFloor.windowLight` (Kotlin).
+    public static func windowLight(config: DetectorConfig, floor: Double?) -> Double {
+        guard let floor, let learned = config.personalFloor, learned >= priorMinShare * floor else {
+            return light(config: config, floor: floor)
+        }
+        return max(config.lightThreshold, lightFactor * min(floor, learned), windowNoiseFactor * floor)
+    }
+
     /// Wirksame Wach-Schwelle: die aus `config`, mindestens ``wakeFactor`` × `floor`.
     public static func wake(config: DetectorConfig, floor: Double?) -> Double {
         guard let floor else { return config.wakeThreshold }
@@ -78,10 +95,10 @@ public enum NoiseFloor {
 
     /// Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
     /// «-» ohne Grundrauschen), aus allen Bewegungen `motions` der Messung, wie im Weckfenster gerechnet
-    /// (``windowFloor(_:config:)``).
+    /// (``windowFloor(_:config:)``, ``windowLight(config:floor:)``).
     public static func summary(config: DetectorConfig, motions: [Double?]) -> String {
         let noise = windowFloor(motions, config: config)
-        return "floor=\(format(noise)) light=\(format(light(config: config, floor: noise))) "
+        return "floor=\(format(noise)) light=\(format(windowLight(config: config, floor: noise))) "
             + "wake=\(format(wake(config: config, floor: noise)))"
     }
 

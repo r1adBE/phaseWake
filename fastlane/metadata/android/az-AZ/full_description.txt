@@ -1,7 +1,7 @@
 Phase Wake narahat olmağa başlayan kimi səni oyanma pəncərəsi daxilində oyadır – o zaman çox güman ki, yüngül yatırsan. Ən gec düz hədəf vaxtında. Bunun üçün smart saatın siqnaldan əvvəlki son dəqiqələrdə hərəkəti və ürək döyüntüsünü ölçür; istəyə bağlı öyrənmə mərhələsində isə gecə boyu da.
 
 Necə işləyir
-• Hədəf vaxtını və pəncərəni (30 dəq-yə qədər) seç, saatını tax, yat.
+• Hədəf vaxtını və pəncərəni (60 dəq-yə qədər) seç, saatını tax, yat.
 • Saat oyanma pəncərəsində və axşam yatmaq vaxtından təxminən 1 saat əvvəldən yuxuya gedənə qədər (ən çoxu 4 saat) ölçür – bu, batareyaya qənaət edir.
 • İstəyə görə: öyrənmə mərhələsi – saatın 7 gecə boyunca gecə ərzində hərəkəti və nəbzi ölçür (bir az batareya sərf edir) və zəngli saatı sənə uyğunlaşdırır.
 • Biləyində vibrasiya, istəsən səslə – nəsə səhv getsə, telefonun ehtiyat siqnal kimi çalır.

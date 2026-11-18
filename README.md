@@ -24,7 +24,7 @@ Open Source · ohne Konto · ohne Server · ohne Abo<br>
 
 ## So funktioniert es
 
-Du stellst eine Zielzeit und ein Weckfenster (10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald du unruhig wirst, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Die Galaxy Watch weckt spätestens zur Zielzeit; die Apple Watch ohne laufende Messung spätestens etwa 1 Minute danach per Mitteilung. Vor iOS 26 ist der Zweitwecker am iPhone eine Mitteilung (der Stummschalter macht sie lautlos).
+Du stellst eine Zielzeit und ein Weckfenster (Galaxy Watch 10–60, Apple Watch 10–30 Minuten). Im Fenster misst die Uhr Bewegung und Puls in 30-Sekunden-Abschnitten. Sobald du unruhig wirst, weckt sie dich – sanft per Vibration, auf Wunsch mit Ton. Die Galaxy Watch weckt spätestens zur Zielzeit; die Apple Watch ohne laufende Messung spätestens etwa 1 Minute danach per Mitteilung. Vor iOS 26 ist der Zweitwecker am iPhone eine Mitteilung (der Stummschalter macht sie lautlos).
 
 - **Weckfenster** vor der Zielzeit, frei einstellbar
 - **Einschlaf-Modus**: «7½ Stunden schlafen» ab dem Einschlafen, nie später als die gewählte Zeit. Galaxy Watch: misst das Einschlafen; Apple Watch: «Gute Nacht» schätzt es aus deiner gelernten Einschlafdauer

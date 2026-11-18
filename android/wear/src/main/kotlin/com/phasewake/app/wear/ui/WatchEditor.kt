@@ -265,12 +265,14 @@ private fun ScalingLazyListScope.windowItems(draft: AlarmSpec, onChange: (AlarmS
         )
     }
     item {
-        // «Genau · 10 · 20 · 30»; ältere Werte (15, 25) bleiben stehen, bis der Nutzer schiebt.
+        // «Genau · 10 · 20 · 30 · 45 · 60» als Stufen des Schiebers; ältere Werte (15, 25) bleiben stehen, bis der
+        // Nutzer schiebt (der Schieber steht dann auf der Stufe darunter).
         val label = windowLabel(draft)
+        val choices = AlarmSpec.WINDOW_CHOICES
         Slider(
-            value = draft.windowMinutes,
-            onValueChange = { onChange(draft.copy(windowMinutes = it)) },
-            valueProgression = AlarmSpec.EXACT_WINDOW..AlarmSpec.MAX_WINDOW_MINUTES step WINDOW_STEP,
+            value = choices.indexOfLast { it <= draft.windowMinutes }.coerceAtLeast(0),
+            onValueChange = { onChange(draft.copy(windowMinutes = choices[it])) },
+            valueProgression = choices.indices,
             modifier = Modifier.fillMaxWidth().semantics { stateDescription = label },
         )
     }
@@ -322,9 +324,6 @@ private fun ScalingLazyListScope.dayItems(draft: AlarmSpec, locale: Locale, onCh
 internal fun EditorTime(draft: AlarmSpec, onPicked: (LocalTime) -> Unit) {
     TimePicker(initialTime = LocalTime.of(draft.hour, draft.minute), onTimePicked = onPicked)
 }
-
-/** Schritt der Fensterwahl: Genau (0), 10, 20, 30 Minuten. */
-private const val WINDOW_STEP = 10
 
 /** «Fenster: 20 Min» bzw. «Genau» bei [AlarmSpec.isExact]. */
 @Composable

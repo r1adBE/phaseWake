@@ -49,11 +49,40 @@ final class NoiseFloorTests: XCTestCase {
         XCTAssertEqual(NoiseFloor.light(threshold: 0.004, floor: 0.001), 0.004)
     }
 
-    func testSummaryForDiagnosis() {
+    func testWindowLightOnlyLowersToTheLearned() throws {
+        let learned = try DetectorConfig(personalFloor: 0.0197)
+        // Andere Armlage (Nacht 17.11.2026): Fenster 0.02955 -> 2.5 × gelernt statt 2.5 × Fenster.
+        XCTAssertEqual(NoiseFloor.windowLight(config: learned, floor: 0.02955), 0.04925, accuracy: 1e-12)
+        XCTAssertEqual(NoiseFloor.light(config: learned, floor: 0.02955), 0.073875, accuracy: 1e-12)
+        // Sehr unruhige Armlage: mindestens 1.5 × Fenster.
+        XCTAssertEqual(NoiseFloor.windowLight(config: learned, floor: 0.04), 0.06, accuracy: 1e-12)
+        // Fenster ruhiger als gelernt: wie bisher.
+        XCTAssertEqual(NoiseFloor.windowLight(config: learned, floor: 0.01), 0.025, accuracy: 1e-12)
+        // Ohne gelerntes, ohne Grundrauschen und mit unplausiblem gelerntem (< 0.25 × Fenster): wie bisher.
+        XCTAssertEqual(NoiseFloor.windowLight(config: .standard, floor: 0.0296), 0.074, accuracy: 1e-12)
+        XCTAssertEqual(NoiseFloor.windowLight(config: learned, floor: nil), 0.002)
+        XCTAssertEqual(NoiseFloor.windowLight(config: try DetectorConfig(personalFloor: 0.0045), floor: 0.0199),
+                       0.04975, accuracy: 1e-12)
+        // Genau 0.25 × Fenster gilt als plausibel, knapp darunter nicht.
+        XCTAssertEqual(NoiseFloor.windowLight(config: try DetectorConfig(personalFloor: 0.005), floor: 0.02), 0.03,
+                       accuracy: 1e-12)
+        XCTAssertEqual(NoiseFloor.windowLight(config: try DetectorConfig(personalFloor: 0.0049), floor: 0.02), 0.05,
+                       accuracy: 1e-12)
+        // Startwert bleibt Untergrenze, ebenso eine kalibrierte Schwelle.
+        XCTAssertEqual(NoiseFloor.windowLight(config: try DetectorConfig(personalFloor: 0.0005), floor: 0.0005), 0.002)
+        let calibrated = try DetectorConfig(lightThreshold: 0.06, personalFloor: 0.0197)
+        XCTAssertEqual(NoiseFloor.windowLight(config: calibrated, floor: 0.02955), 0.06, accuracy: 1e-12)
+    }
+
+    func testSummaryForDiagnosis() throws {
         let config = DetectorConfig.standard
         XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil, 0.02, 0.02, 0.4]),
                        "floor=0.0200 light=0.0500 wake=0.1000")
         XCTAssertEqual(NoiseFloor.summary(config: config, motions: [0.02, nil]), "floor=- light=0.0020 wake=0.1000")
+        // Wirksame Leicht-Schwelle im Fenster: Fenster 0.024 (1.5 × gelernt 0.016), Leicht 2.5 × gelernt.
+        XCTAssertEqual(NoiseFloor.summary(config: try DetectorConfig(personalFloor: 0.016),
+                                          motions: Array(repeating: 0.03, count: 5)),
+                       "floor=0.0240 light=0.0400 wake=0.1200")
     }
 
     func testPersonalFloorOnlyUntilTheMeasurementHasItsOwn() throws {

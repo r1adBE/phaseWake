@@ -20,7 +20,10 @@ import kotlinx.coroutines.flow.first
  */
 private val SUNRISE_LOGGED = stringPreferencesKey("sunrise_logged")
 
-/** Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn auf dem Handy will. */
+/**
+ * Sonnenaufgang ab Weckfenster: beginnt mit dem Fenster des nächsten Weckers, der ihn auf dem Handy will, höchstens
+ * [Sunrise.MAX_WINDOW_LIGHT_MINUTES] vor der Zielzeit ([Sunrise.lightStart]).
+ */
 internal suspend fun BackupAlarm.rescheduleSunrise() {
     alarmManager.cancel(sunrisePending())
     val wanted = alarms.current().alarms.filter { it.phoneSunrise == Sunrise.WINDOW }
@@ -28,15 +31,16 @@ internal suspend fun BackupAlarm.rescheduleSunrise() {
     val shown = Instant.ofEpochMilli(store.data.first()[SUNRISE_SHOWN_UNTIL] ?: 0L)
     val holidays = context.phoneApp.holidays.store.current()
     val plan = AlarmSchedule.earliestPlan(wanted, maxOf(now(), shown), zone, holidays) ?: return
-    val at = maxOf(plan.windowStart, now())
+    val start = Sunrise.lightStart(plan.windowStart, plan.target)
+    val at = maxOf(start, now())
     // Ins Diagnose-Protokoll nur ein neuer oder geänderter Plan (ohne Wecker-Kennung).
-    val line = "phone sunrise ${plan.windowStart} – ${plan.target}"
+    val line = "phone sunrise $start – ${plan.target}"
     if (store.data.first()[SUNRISE_LOGGED] != line) {
         store.edit { it[SUNRISE_LOGGED] = line }
         context.phoneApp.diag.log(DiagKind.SCHEDULED, line)
     }
     // Kein Wecker-Alarm: sonst zeigten Sperrbildschirm und andere Apps den Fensterbeginn als Weckzeit.
-    setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, plan.windowStart, plan.target))
+    setAlarm(at, show = null, operation = sunrisePending(plan.alarmId, start, plan.target))
 }
 
 private fun BackupAlarm.sunrisePending(

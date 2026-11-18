@@ -36,8 +36,11 @@ object DirectBoot {
     private const val KEY_NEXT_SOUND = "nextWatchSound"
     private const val KEY_NEXT_LABEL = "nextLabel"
 
-    /** Während des Neustarts verpasst: noch nachholen, aber nicht Stunden später (wie am Handy). */
-    val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
+    /**
+     * Während des Neustarts verpasst: bis so lange nach der Zielzeit noch nachholen, aber nicht Stunden später (wie am
+     * Handy, unabhängig vom Weckfenster).
+     */
+    val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(30)
     private val FORWARD_DELAY: Duration = Duration.ofSeconds(1)
 
     /** Ablage für vor dem Entsperren: Plan samt Uhr-Ton und Name (der Wecker selbst ist nicht lesbar). */

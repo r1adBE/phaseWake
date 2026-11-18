@@ -83,6 +83,25 @@ object NoiseFloor {
     /** Wirksame Leicht-Schwelle zu [config]. */
     fun light(config: DetectorConfig, floor: Double?): Double = light(config.lightThreshold, floor)
 
+    /**
+     * Im Weckfenster mindestens dieses Vielfache des Grundrauschens [floor] ([windowLight]): Auch wenn das gelernte die
+     * Leicht-Schwelle senkt, zählt das Rauschen einer sehr unruhigen Armlage nicht als Bewegung.
+     */
+    const val WINDOW_NOISE_FACTOR: Double = 1.5
+
+    /**
+     * Wirksame Leicht-Schwelle im Weckfenster ([WakeDetector]) zum Grundrauschen [floor] ([windowFloor]): Das
+     * Grundrauschen des Fensters senkt sie nur, hebt sie nie über die des gelernten ([DetectorConfig.personalFloor]).
+     * Ist das gelernte plausibel (mindestens [PRIOR_MIN_SHARE] × [floor]): max(Leicht-Schwelle,
+     * [LIGHT_FACTOR] × min([floor], gelernt), [WINDOW_NOISE_FACTOR] × [floor]); sonst und ohne gelerntes wie [light].
+     * Die Einschlaf-Messung nutzt weiter [light]. Identisch zu `NoiseFloor.windowLight` (Swift).
+     */
+    fun windowLight(config: DetectorConfig, floor: Double?): Double {
+        val learned = config.personalFloor
+        if (floor == null || learned == null || learned < PRIOR_MIN_SHARE * floor) return light(config, floor)
+        return maxOf(config.lightThreshold, LIGHT_FACTOR * minOf(floor, learned), WINDOW_NOISE_FACTOR * floor)
+    }
+
     /** Wirksame Wach-Schwelle: die aus [config], mindestens [WAKE_FACTOR] × [floor]. */
     fun wake(config: DetectorConfig, floor: Double?): Double =
         if (floor == null) config.wakeThreshold else maxOf(config.wakeThreshold, WAKE_FACTOR * floor)
@@ -90,11 +109,11 @@ object NoiseFloor {
     /**
      * Kennzahlen fürs Diagnose-Protokoll am Ende einer Messung: «floor=… light=… wake=…» (4 Nachkommastellen,
      * «-» ohne Grundrauschen), aus allen Bewegungen [motions] der Messung, wie im Weckfenster gerechnet
-     * ([windowFloor]).
+     * ([windowFloor], [windowLight]).
      */
     fun summary(config: DetectorConfig, motions: List<Double?>): String {
         val noise = windowFloor(motions, config)
-        return "floor=${format(noise)} light=${format(light(config, noise))} wake=${format(wake(config, noise))}"
+        return "floor=${format(noise)} light=${format(windowLight(config, noise))} wake=${format(wake(config, noise))}"
     }
 
     /** Zahl mit 4 Nachkommastellen fürs Diagnose-Protokoll, «-» für `null`. */

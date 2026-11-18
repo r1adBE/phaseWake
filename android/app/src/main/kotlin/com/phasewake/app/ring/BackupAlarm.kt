@@ -328,7 +328,11 @@ class BackupAlarm(
         private val LOOKBACK: Duration =
             Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES + Snooze.MAX_COUNT * Snooze.MINUTES + 10L)
 
-        internal val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(AlarmSpec.MAX_WINDOW_MINUTES.toLong())
+        /**
+         * Nach einem Neustart verpasst: bis so lange nach der Zielzeit nachholen (wie die Uhr, unabhängig vom
+         * Weckfenster).
+         */
+        internal val MISSED_DURING_BOOT: Duration = Duration.ofMinutes(30)
 
         /** Ob exakte Alarme erlaubt sind; entziehbar nur auf Android 12/12L (ab 13 gilt USE_EXACT_ALARM). */
         fun canScheduleExact(context: Context): Boolean =

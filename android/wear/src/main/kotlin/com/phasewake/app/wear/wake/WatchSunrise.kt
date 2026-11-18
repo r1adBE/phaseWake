@@ -15,12 +15,12 @@ import kotlinx.coroutines.flow.asStateFlow
 
 /**
  * Sonnenaufgang ab Weckfenster auf der Uhr ([com.phasewake.app.core.SunriseDevice.WATCH] oder BOTH):
- * Der [WakeService] startet ihn mit dem Fenster, [SunriseActivity] zeigt ihn. Endet mit dem Klingeln
- * (der Weckbildschirm übernimmt das Licht), mit der Nacht oder durch Tippen; die Messung läuft weiter.
- * Kein eigener Wake-Lock: Der Bildschirm bleibt nur über die Activity an.
+ * Der [WakeService] startet ihn mit dem Fenster (höchstens 30 Min vor der Zielzeit), [SunriseActivity] zeigt ihn.
+ * Endet mit dem Klingeln (der Weckbildschirm übernimmt das Licht), mit der Nacht oder durch Tippen; die Messung läuft
+ * weiter. Kein eigener Wake-Lock: Der Bildschirm bleibt nur über die Activity an.
  */
 object WatchSunrise {
-    /** Ein laufendes Licht von [start] (Fensterbeginn) bis [end] (Zielzeit). */
+    /** Ein laufendes Licht von [start] ([Sunrise.lightStart]) bis [end] (Zielzeit). */
     data class Active(val alarmId: String, val start: Instant, val end: Instant) {
         fun progress(now: Instant = Instant.now()): Float = Sunrise.progress(start, end, now)
     }

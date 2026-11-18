@@ -132,7 +132,8 @@ internal fun WakeService.publishRinging(n: Night) {
     val lightFrom = when {
         sunrise == Sunrise.OFF -> 0f
         n.snoozes > 0 -> 1f
-        sunrise == Sunrise.WINDOW -> Sunrise.progress(n.plan.windowStart, n.plan.target, since)
+        sunrise == Sunrise.WINDOW ->
+            Sunrise.progress(Sunrise.lightStart(n.plan.windowStart, n.plan.target), n.plan.target, since)
         else -> 0f
     }
     app.ringState.publish(

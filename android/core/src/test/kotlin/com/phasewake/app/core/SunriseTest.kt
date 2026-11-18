@@ -19,6 +19,21 @@ class SunriseTest {
     }
 
     @Test
+    fun windowLightLastsAtMostThirtyMinutes() {
+        val target = Instant.parse("2026-11-19T06:00:00Z")
+        fun light(window: Long) = Sunrise.lightStart(target.minusSeconds(window * 60), target)
+        assertEquals(30, Sunrise.MAX_WINDOW_LIGHT_MINUTES)
+        // Bis 30 Min mit dem Fenster, länger (Android 45, 60) erst 30 Min vor der Zielzeit.
+        assertEquals(target.minusSeconds(10 * 60), light(10))
+        assertEquals(target.minusSeconds(30 * 60), light(30))
+        assertEquals(target.minusSeconds(30 * 60), light(31))
+        assertEquals(target.minusSeconds(30 * 60), light(45))
+        assertEquals(target.minusSeconds(30 * 60), light(60))
+        // Weckt die Uhr vor dem Licht (z. B. 50 Min vorher), steht es noch bei 0 und wird nachgeholt.
+        assertEquals(0f, Sunrise.progress(light(60), target, target.minusSeconds(50 * 60)))
+    }
+
+    @Test
     fun brightnessStartsDimAndEndsFull() {
         assertEquals(0.01f, Sunrise.brightness(0f))
         assertEquals(1f, Sunrise.brightness(1f))

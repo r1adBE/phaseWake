@@ -41,7 +41,6 @@ import com.phasewake.app.ui.Format
 import com.phasewake.app.ui.editor.ChoiceLabel
 import com.phasewake.app.ui.editor.TIME_PICKER_SCALE
 import com.phasewake.app.ui.editor.CHECK_ICON_MAX_SEGMENTS
-import com.phasewake.app.ui.editor.WINDOW_OPTIONS
 import com.phasewake.app.ui.editor.scaled
 import com.phasewake.app.ui.editor.timePickerColors
 import com.phasewake.app.ui.theme.PhaseWakeTheme
@@ -51,6 +50,9 @@ import com.phasewake.app.ui.settings.HealthState
 import java.time.Instant
 
 // Schritte der Einrichtung: Inhalt der einzelnen Seiten.
+
+/** Weckfenster der Einrichtung: «Genau · 10 · 20 · 30»; längere (45, 60) gibt es nur im Editor. */
+private val ONBOARDING_WINDOW_OPTIONS = listOf(AlarmSpec.EXACT_WINDOW, 10, 20, 30)
 
 /** Seite mit Überschrift (für Bildschirmleser als Überschrift ausgezeichnet). */
 @Composable
@@ -148,7 +150,7 @@ internal fun AlarmStep(
                 .scaled(TIME_PICKER_SCALE)
                 .then(if (lockedText != null) Modifier.locked(lockedText) else Modifier),
         )
-        // Wie im Editor: «Genau · 10 · 20 · 30».
+        // «Genau · 10 · 20 · 30», Darstellung wie im Editor.
         val exact = window == AlarmSpec.EXACT_WINDOW
         val exactLabel = stringResource(R.string.editor_window_exact)
         Text(
@@ -156,16 +158,16 @@ internal fun AlarmStep(
             style = MaterialTheme.typography.titleSmall,
         )
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().height(IntrinsicSize.Max)) {
-            WINDOW_OPTIONS.forEachIndexed { index, value ->
+            ONBOARDING_WINDOW_OPTIONS.forEachIndexed { index, value ->
                 SegmentedButton(
                     selected = value == window,
                     onClick = { onWindow(value) },
                     enabled = !locked,
-                    shape = SegmentedButtonDefaults.itemShape(index, WINDOW_OPTIONS.size),
+                    shape = SegmentedButtonDefaults.itemShape(index, ONBOARDING_WINDOW_OPTIONS.size),
                     modifier = Modifier.heightIn(min = 48.dp).fillMaxHeight(),
                     // Wie im Editor: bei mehr als zwei Feldern ohne Haken.
                     icon = {
-                        if (WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) {
+                        if (ONBOARDING_WINDOW_OPTIONS.size <= CHECK_ICON_MAX_SEGMENTS) {
                             SegmentedButtonDefaults.Icon(value == window)
                         }
                     },

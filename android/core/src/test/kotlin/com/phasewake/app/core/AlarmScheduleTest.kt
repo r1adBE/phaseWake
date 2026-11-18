@@ -120,7 +120,7 @@ class AlarmScheduleTest {
     fun invalidSpecIsRejected() {
         assertFailsWith<IllegalArgumentException> { alarm(hour = 24) }
         assertFailsWith<IllegalArgumentException> { alarm(minute = 60) }
-        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 31) }
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 61) }
         assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 9) }
         assertFailsWith<IllegalArgumentException> { alarm().copy(sleepDurationMinutes = 30) }
         assertFailsWith<IllegalArgumentException> { alarm(id = " ") }

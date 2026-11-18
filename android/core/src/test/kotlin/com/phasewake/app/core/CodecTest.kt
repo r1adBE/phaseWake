@@ -90,6 +90,19 @@ class CodecTest {
     }
 
     @Test
+    fun androidWindowUpToSixty() {
+        // Android liest Fenster bis 60 Min unverändert; das iPhone liest 45 und 60 als 30 (Swift
+        // `CodecTests.testAndroidWindowIsLimitedToApple`). Über 60 ist die Zeile unlesbar.
+        fun window(minutes: Int) =
+            Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||$minutes|1|SOUND|0||||OFF\n").map { it.windowMinutes }
+        assertEquals(listOf(45), window(45))
+        assertEquals(listOf(60), window(60))
+        assertEquals(emptyList(), window(61))
+        val sixty = AlarmSpec(id = "a", hour = 7, minute = 0, windowMinutes = 60)
+        assertEquals(listOf(sixty), Codec.decodeAlarms(Codec.encodeAlarms(listOf(sixty))))
+    }
+
+    @Test
     fun olderFormatWithoutWakeTaskIsRead() {
         // 12 Felder (vor der Weckaufgabe): Halten.
         val old = Codec.decodeAlarms("phasewake-alarms 1\nc|7|0||30|1|SOUND|0||||OFF\n").single()

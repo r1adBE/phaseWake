@@ -137,6 +137,19 @@ class BackupWatchTest {
     }
 
     @Test
+    fun sunriseOfLongWindowStartsThirtyMinutesBeforeTarget() = runBlocking {
+        // 60-Min-Fenster zwei Stunden nach jetzt: Licht erst 30 Min vor der Zielzeit, nicht mit dem Fenster.
+        val long = spec.copy(id = "long", hour = spec.hour + 2, windowMinutes = 60, sunrise = Sunrise.WINDOW)
+        repository.upsert(long)
+        backup.reschedule()
+        val target = AlarmSchedule.nextTarget(long, now, zone)!!
+        val sunrise = scheduled(BackupAlarm.ACTION_SUNRISE).single()
+        assertEquals(target.minus(Duration.ofMinutes(30)).toEpochMilli(), sunrise.triggerAtMs)
+        assertEquals(sunrise.triggerAtMs, intentOf(sunrise).getLongExtra(SunriseLight.EXTRA_START, 0L))
+        assertEquals(target.toEpochMilli(), intentOf(sunrise).getLongExtra(SunriseLight.EXTRA_END, 0L))
+    }
+
+    @Test
     fun snoozeSafetyIsOnlyCancelledForItsAlarm() {
         SnoozeSafety.save(context, SnoozeSafety.Saved(now, "a", 1))
         backup.cancelSnoozeSafety("b")

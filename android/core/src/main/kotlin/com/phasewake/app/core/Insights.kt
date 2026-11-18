@@ -191,8 +191,9 @@ enum class MissHint {
         const val NIGHTS: Int = 3
 
         /**
-         * Hinweis für [spec], wenn dessen Fenster schon am grössten ist und die letzten [NIGHTS] Nächte
-         * alle zur Zielzeit endeten; Ursache nach der Mehrheit der Datenqualität. Sonst `null`.
+         * Hinweis für [spec], wenn dessen Fenster schon am grössten ist ([AlarmSpec.MAX_WINDOW_MINUTES], kein
+         * Vorschlag mehr) und die letzten [NIGHTS] Nächte alle zur Zielzeit endeten; Ursache nach der Mehrheit der
+         * Datenqualität. Sonst `null`.
          */
         fun of(spec: AlarmSpec?, nights: List<NightRecord>): MissHint? {
             if (spec == null || spec.windowMinutes < AlarmSpec.MAX_WINDOW_MINUTES) return null

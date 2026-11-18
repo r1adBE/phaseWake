@@ -69,6 +69,23 @@ final class CodecTests: XCTestCase {
         XCTAssertEqual(try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||\n"), [])
     }
 
+    func testAndroidWindowIsLimitedToApple() throws {
+        // Android erlaubt bis 60 Min (Kotlin `CodecTest.androidWindowUpToSixty`), Apple 30: 45 und 60 aus einer
+        // Android-Sicherung werden 30, alles andere bleibt; über 60 ist auch auf Android ungültig.
+        XCTAssertEqual(AlarmSpec.maxWindowMinutes, 30)
+        XCTAssertEqual(AlarmSpec.androidMaxWindowMinutes, 60)
+        func window(_ minutes: Int) throws -> [Int] {
+            try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||\(minutes)|1|SOUND|0||||OFF\n").map(\.windowMinutes)
+        }
+        XCTAssertEqual(try window(30), [30])
+        XCTAssertEqual(try window(31), [30])
+        XCTAssertEqual(try window(45), [30])
+        XCTAssertEqual(try window(60), [30])
+        XCTAssertEqual(try window(61), [])
+        XCTAssertEqual(try window(5), [])
+        XCTAssertEqual(try window(0), [0])
+    }
+
     func testOlderFormatWithoutSunrise() throws {
         let old = try Codec.decodeAlarms("phasewake-alarms 1\nb|9|30||30|0|OFF|0|450||\n")
         XCTAssertEqual(old.first?.sunrise, .off)

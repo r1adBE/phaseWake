@@ -39,7 +39,13 @@ class WindowAdviceTest {
         assertNull(WindowAdvice.suggest(spec, others))
         val deadlines = List(3) { night(it.toLong(), WakeReason.DEADLINE) }
         assertEquals(30, WindowAdvice.suggest(spec.copy(windowMinutes = 25), deadlines)?.windowMinutes)
-        assertNull(WindowAdvice.suggest(spec.copy(windowMinutes = 30), deadlines))
+        // Android: ab 30 die Stufen des Editors (45, 60), bis 60; Apple endet bei 30 (Swift `StageAndAdviceTests`).
+        assertEquals(45, WindowAdvice.suggest(spec.copy(windowMinutes = 30), deadlines)?.windowMinutes)
+        assertEquals(45, WindowAdvice.suggest(spec.copy(windowMinutes = 40), deadlines)?.windowMinutes)
+        assertEquals(60, WindowAdvice.suggest(spec.copy(windowMinutes = 45), deadlines)?.windowMinutes)
+        assertEquals(60, WindowAdvice.suggest(spec.copy(windowMinutes = 59), deadlines)?.windowMinutes)
+        assertNull(WindowAdvice.suggest(spec.copy(windowMinutes = 60), deadlines))
+        assertEquals(30, WindowAdvice.suggest(spec.copy(windowMinutes = 20), deadlines)?.windowMinutes)
         // «Genau» hat bewusst kein Fenster: kein Vorschlag.
         assertNull(WindowAdvice.suggest(spec.copy(windowMinutes = AlarmSpec.EXACT_WINDOW), deadlines))
     }

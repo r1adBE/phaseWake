@@ -29,6 +29,12 @@ class AlarmSpecTest {
         // Zahlen aus der Doku als Wert, nicht nur symbolisch (Wert − 1 / Wert / Wert + 1).
         assertEquals(8, AlarmSpec.MAX_ALARMS)
         assertEquals(0, AlarmSpec.EXACT_WINDOW)
+        // Android: grösstes Fenster 60 Min; Apple 30 (Swift `AlarmSpecTests`, Grenze der watchOS-Sitzung).
+        assertEquals(60, AlarmSpec.MAX_WINDOW_MINUTES)
+        assertEquals(59, alarm().copy(windowMinutes = 59).windowMinutes)
+        assertEquals(60, alarm().copy(windowMinutes = 60).windowMinutes)
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 61) }
+        assertEquals(listOf(0, 10, 20, 30, 45, 60), AlarmSpec.WINDOW_CHOICES)
         assertTrue(alarm().copy(windowMinutes = 0).isExact)
         assertEquals(60, AlarmSpec.MIN_SLEEP_MINUTES)
         assertFailsWith<IllegalArgumentException> { alarm().copy(sleepDurationMinutes = 59) }
@@ -49,7 +55,7 @@ class AlarmSpecTest {
         // Zwischen 0 und 10 gibt es nichts.
         assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 5) }
         assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = -1) }
-        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 31) }
+        assertFailsWith<IllegalArgumentException> { alarm().copy(windowMinutes = 61) }
         // Der Codec schreibt 0 wie jede andere Zahl.
         assertEquals(listOf(exact), Codec.decodeAlarms(Codec.encodeAlarms(listOf(exact))))
     }
