@@ -158,7 +158,7 @@
         <item quantity="one">ሲቀሰቀሱ ይጀምርና ከ%1$d ደቂቃ በኋላ ሙሉ በሙሉ ይደምቃል።</item>
         <item quantity="other">ሲቀሰቀሱ ይጀምርና ከ%1$d ደቂቃዎች በኋላ ሙሉ በሙሉ ይደምቃል።</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ከመቀስቀሻ ክልሉ ጋር ይጀምርና በታለመው ሰዓት ሙሉ በሙሉ ይደምቃል።</string>
+    <string name="editor_sunrise_window_hint">ከመቀስቀሻ ክልሉ ጋር፣ ከታለመው ሰዓት ቢበዛ 30 ደቂቃ በፊት፣ ይጀምርና በታለመው ሰዓት ሙሉ በሙሉ ይደምቃል።</string>
     <string name="sunrise_device_title">የት</string>
     <string name="sunrise_device_phone">ስልክ</string>
     <string name="sunrise_device_watch">ሰዓት</string>

@@ -153,7 +153,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">Bắt đầu khi bạn được đánh thức và sáng hoàn toàn sau %1$d phút.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Bắt đầu cùng khoảng thời gian và sáng hoàn toàn vào giờ mục tiêu.</string>
+    <string name="editor_sunrise_window_hint">Bắt đầu cùng khoảng thời gian, sớm nhất 30 phút trước giờ mục tiêu, và sáng hoàn toàn vào giờ mục tiêu.</string>
     <string name="sunrise_device_title">Ở đâu</string>
     <string name="sunrise_device_phone">Điện thoại</string>
     <string name="sunrise_device_watch">Đồng hồ</string>

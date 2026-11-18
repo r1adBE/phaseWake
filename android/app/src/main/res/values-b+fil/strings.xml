@@ -158,7 +158,7 @@
         <item quantity="one">Nagsisimula kapag ginising ka at buong liwanag na pagkalipas ng %1$d minuto.</item>
         <item quantity="other">Nagsisimula kapag ginising ka at buong liwanag na pagkalipas ng %1$d minuto.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Nagsisimula kasabay ng window ng paggising at buong liwanag na sa target na oras.</string>
+    <string name="editor_sunrise_window_hint">Nagsisimula kasabay ng window ng paggising, hindi hihigit sa 30 min bago ang target na oras, at buong liwanag na sa target na oras.</string>
     <string name="sunrise_device_title">Saan</string>
     <string name="sunrise_device_phone">Telepono</string>
     <string name="sunrise_device_watch">Relo</string>

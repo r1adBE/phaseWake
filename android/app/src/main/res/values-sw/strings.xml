@@ -157,7 +157,7 @@
         <item quantity="one">Inaanza unapoamshwa na inang’aa kikamilifu baada ya dakika %1$d.</item>
         <item quantity="other">Inaanza unapoamshwa na inang’aa kikamilifu baada ya dakika %1$d.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Inaanza na kipindi cha kuamka na inang’aa kikamilifu kwa muda lengwa.</string>
+    <string name="editor_sunrise_window_hint">Inaanza na kipindi cha kuamka, si zaidi ya dak 30 kabla ya muda lengwa, na inang’aa kikamilifu kwa muda lengwa.</string>
     <string name="sunrise_device_title">Wapi</string>
     <string name="sunrise_device_phone">Simu</string>
     <string name="sunrise_device_watch">Saa</string>

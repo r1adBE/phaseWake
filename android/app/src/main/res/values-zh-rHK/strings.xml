@@ -155,7 +155,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">叫醒你時開始，%1$d 分鐘後達到最亮。</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">喚醒時段開始時亮起，到目標時間達到最亮。</string>
+    <string name="editor_sunrise_window_hint">喚醒時段開始時亮起，最早在目標時間前 30 分鐘，到目標時間達到最亮。</string>
     <string name="sunrise_device_title">顯示位置</string>
     <string name="sunrise_device_phone">手機</string>
     <string name="sunrise_device_watch">手錶</string>

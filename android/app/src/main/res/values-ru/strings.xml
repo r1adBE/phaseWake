@@ -162,7 +162,7 @@
         <item quantity="many">Начинается, когда тебя будят, и через %1$d минут светит на полную яркость.</item>
         <item quantity="other">Начинается, когда тебя будят, и через %1$d минуты светит на полную яркость.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Начинается вместе с окном и к целевому времени светит на полную яркость.</string>
+    <string name="editor_sunrise_window_hint">Начинается вместе с окном, но не раньше чем за 30 мин до целевого времени, и к целевому времени светит на полную яркость.</string>
     <string name="sunrise_device_title">Где</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Часы</string>

@@ -164,7 +164,7 @@
         <item quantity="many">Prasideda tave žadinant ir po %1$d minutės būna visiškai ryškus.</item>
         <item quantity="other">Prasideda tave žadinant ir po %1$d minučių būna visiškai ryškus.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Prasideda kartu su žadinimo langu ir tiksliniu laiku būna visiškai ryškus.</string>
+    <string name="editor_sunrise_window_hint">Prasideda kartu su žadinimo langu, ne anksčiau kaip 30 min prieš tikslinį laiką, ir tiksliniu laiku būna visiškai ryškus.</string>
     <string name="sunrise_device_title">Kur</string>
     <string name="sunrise_device_phone">Telefonas</string>
     <string name="sunrise_device_watch">Laikrodis</string>

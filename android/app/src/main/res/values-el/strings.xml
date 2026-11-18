@@ -156,7 +156,7 @@
         <item quantity="one">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτό.</item>
         <item quantity="other">Ξεκινά όταν σε ξυπνήσει και φτάνει στη μέγιστη φωτεινότητα μετά από %1$d λεπτά.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Ξεκινά με το παράθυρο και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο.</string>
+    <string name="editor_sunrise_window_hint">Ξεκινά με το παράθυρο, το πολύ 30 λεπτά πριν την ώρα-στόχο, και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο.</string>
     <string name="sunrise_device_title">Πού</string>
     <string name="sunrise_device_phone">Κινητό</string>
     <string name="sunrise_device_watch">Ρολόι</string>

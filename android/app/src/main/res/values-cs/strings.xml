@@ -162,7 +162,7 @@
         <item quantity="many">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
         <item quantity="other">Začne, když tě probudí, a po %1$d minutách naplno září.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Začne s oknem buzení a v cílový čas naplno září.</string>
+    <string name="editor_sunrise_window_hint">Začne s oknem buzení, nejvýš 30 min před cílovým časem, a v cílový čas naplno září.</string>
     <string name="sunrise_device_title">Kde</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Hodinky</string>

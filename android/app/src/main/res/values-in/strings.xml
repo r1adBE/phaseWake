@@ -153,7 +153,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">Mulai saat kamu dibangunkan dan terang penuh setelah %1$d menit.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Mulai bersama rentang dan terang penuh pada waktu target.</string>
+    <string name="editor_sunrise_window_hint">Mulai bersama rentang, paling cepat 30 mnt sebelum waktu target, dan terang penuh pada waktu target.</string>
     <string name="sunrise_device_title">Di mana</string>
     <string name="sunrise_device_phone">Ponsel</string>
     <string name="sunrise_device_watch">Jam tangan</string>

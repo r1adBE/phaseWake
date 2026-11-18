@@ -154,7 +154,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">ចាប់ផ្ដើមពេលអ្នកត្រូវបានដាស់ ហើយភ្លឺពេញក្រោយ %1$d នាទី។</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ចាប់ផ្ដើមជាមួយចន្លោះពេលដាស់ ហើយភ្លឺពេញនៅម៉ោងគោលដៅ។</string>
+    <string name="editor_sunrise_window_hint">ចាប់ផ្ដើមជាមួយចន្លោះពេលដាស់ យ៉ាងច្រើន 30 នាទីមុនម៉ោងគោលដៅ ហើយភ្លឺពេញនៅម៉ោងគោលដៅ។</string>
     <string name="sunrise_device_title">នៅឯណា</string>
     <string name="sunrise_device_phone">ទូរសព្ទ</string>
     <string name="sunrise_device_watch">នាឡិកា</string>

@@ -161,7 +161,7 @@
         <item quantity="few">Почиње када те пробуди и потпуно је светло после %1$d минута.</item>
         <item quantity="other">Почиње када те пробуди и потпуно је светло после %1$d минута.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Почиње са интервалом буђења и потпуно је светло у циљно време.</string>
+    <string name="editor_sunrise_window_hint">Почиње са интервалом буђења, највише 30 мин пре циљног времена, и потпуно је светло у циљно време.</string>
     <string name="sunrise_device_title">Где</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Сат</string>

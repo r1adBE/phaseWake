@@ -160,7 +160,7 @@
         <item quantity="one">Starts when you’re woken and is fully bright after %1$d minute.</item>
         <item quantity="other">Starts when you’re woken and is fully bright after %1$d minutes.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Starts with the wake window and is fully bright at the target time.</string>
+    <string name="editor_sunrise_window_hint">Starts with the wake window, at most 30 min before the target time, and is fully bright at the target time.</string>
     <string name="sunrise_device_title">Where</string>
     <string name="sunrise_device_phone">Phone</string>
     <string name="sunrise_device_watch">Watch</string>

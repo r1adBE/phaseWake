@@ -156,7 +156,7 @@
         <item quantity="one">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</item>
         <item quantity="other">Az ébresztéskor indul, és %1$d perc múlva teljes fényerővel világít.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Az időablakkal indul, és a célidőpontra teljes fényerővel világít.</string>
+    <string name="editor_sunrise_window_hint">Az időablakkal indul, legfeljebb 30 perccel a célidőpont előtt, és a célidőpontra teljes fényerővel világít.</string>
     <string name="sunrise_device_title">Hol</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Óra</string>

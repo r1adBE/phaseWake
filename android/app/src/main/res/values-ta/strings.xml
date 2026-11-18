@@ -157,7 +157,7 @@
         <item quantity="one">எழுப்பும்போது தொடங்கி, %1$d நிமிடத்தில் முழுப் பிரகாசமாகும்.</item>
         <item quantity="other">எழுப்பும்போது தொடங்கி, %1$d நிமிடங்களில் முழுப் பிரகாசமாகும்.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">எழுப்பும் வரம்புடன் தொடங்கி, இலக்கு நேரத்தில் முழுப் பிரகாசமாகும்.</string>
+    <string name="editor_sunrise_window_hint">எழுப்பும் வரம்புடன், இலக்கு நேரத்துக்கு அதிகபட்சம் 30 நிமி. முன், தொடங்கி இலக்கு நேரத்தில் முழுப் பிரகாசமாகும்.</string>
     <string name="sunrise_device_title">எங்கே</string>
     <string name="sunrise_device_phone">ஃபோன்</string>
     <string name="sunrise_device_watch">வாட்ச்</string>

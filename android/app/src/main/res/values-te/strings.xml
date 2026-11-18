@@ -158,7 +158,7 @@
         <item quantity="one">మిమ్మల్ని లేపినప్పుడు మొదలై, %1$d నిమిషం తర్వాత పూర్తిగా ప్రకాశిస్తుంది.</item>
         <item quantity="other">మిమ్మల్ని లేపినప్పుడు మొదలై, %1$d నిమిషాల తర్వాత పూర్తిగా ప్రకాశిస్తుంది.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">నిద్రలేపే వ్యవధితో మొదలై, లక్ష్య సమయానికి పూర్తిగా ప్రకాశిస్తుంది.</string>
+    <string name="editor_sunrise_window_hint">నిద్రలేపే వ్యవధితో, లక్ష్య సమయానికి గరిష్ఠంగా 30 ని. ముందు, మొదలై లక్ష్య సమయానికి పూర్తిగా ప్రకాశిస్తుంది.</string>
     <string name="sunrise_device_title">ఎక్కడ</string>
     <string name="sunrise_device_phone">ఫోన్</string>
     <string name="sunrise_device_watch">వాచ్</string>

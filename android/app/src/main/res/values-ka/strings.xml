@@ -148,7 +148,7 @@
         <item quantity="one">იწყება, როცა გაგაღვიძებს, და %1$d წუთში სრულად ნათდება.</item>
         <item quantity="other">იწყება, როცა გაგაღვიძებს, და %1$d წუთში სრულად ნათდება.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">იწყება გაღვიძების ფანჯარასთან ერთად და სამიზნე დროს სრულად ნათდება.</string>
+    <string name="editor_sunrise_window_hint">იწყება გაღვიძების ფანჯარასთან ერთად, სამიზნე დრომდე არაუმეტეს 30 წთ-ით ადრე, და სამიზნე დროს სრულად ნათდება.</string>
     <string name="sunrise_device_title">სად</string>
     <string name="sunrise_device_phone">ტელეფონი</string>
     <string name="sunrise_device_watch">საათი</string>

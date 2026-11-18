@@ -158,7 +158,7 @@
         <item quantity="one">Чамайг сэрээхэд эхэлж, %1$d минутын дараа бүрэн гэрэлтэнэ.</item>
         <item quantity="other">Чамайг сэрээхэд эхэлж, %1$d минутын дараа бүрэн гэрэлтэнэ.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Сэрээх хугацаатай хамт эхэлж, зорилтот цагт бүрэн гэрэлтэнэ.</string>
+    <string name="editor_sunrise_window_hint">Сэрээх хугацаатай хамт, зорилтот цагаас дээд тал нь 30 мин өмнө эхэлж, зорилтот цагт бүрэн гэрэлтэнэ.</string>
     <string name="sunrise_device_title">Хаана</string>
     <string name="sunrise_device_phone">Утас</string>
     <string name="sunrise_device_watch">Цаг</string>

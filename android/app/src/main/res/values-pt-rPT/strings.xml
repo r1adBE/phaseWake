@@ -159,7 +159,7 @@
         <item quantity="many">Começa quando és acordado e fica totalmente claro após %1$d minutos.</item>
         <item quantity="other">Começa quando és acordado e fica totalmente claro após %1$d minutos.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Começa com a janela e fica totalmente claro à hora-alvo.</string>
+    <string name="editor_sunrise_window_hint">Começa com a janela, no máximo 30 min antes da hora-alvo, e fica totalmente claro à hora-alvo.</string>
     <string name="sunrise_device_title">Onde</string>
     <string name="sunrise_device_phone">Telemóvel</string>
     <string name="sunrise_device_watch">Relógio</string>

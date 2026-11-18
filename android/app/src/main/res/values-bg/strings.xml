@@ -157,7 +157,7 @@
         <item quantity="one">Започва при събуждането и след %1$d минута е напълно ярко.</item>
         <item quantity="other">Започва при събуждането и след %1$d минути е напълно ярко.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Започва с прозореца за събуждане и е напълно ярко в целевия час.</string>
+    <string name="editor_sunrise_window_hint">Започва с прозореца за събуждане, най-много 30 мин преди целевия час, и е напълно ярко в целевия час.</string>
     <string name="sunrise_device_title">Къде</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Часовник</string>

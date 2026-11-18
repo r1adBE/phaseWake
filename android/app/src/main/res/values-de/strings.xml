@@ -156,7 +156,7 @@
         <item quantity="one">Beginnt beim Wecken und ist nach %1$d Minute voll hell.</item>
         <item quantity="other">Beginnt beim Wecken und ist nach %1$d Minuten voll hell.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell.</string>
+    <string name="editor_sunrise_window_hint">Beginnt mit dem Weckfenster, höchstens 30 Min vor der Zielzeit, und ist zur Zielzeit voll hell.</string>
     <string name="sunrise_device_title">Wo</string>
     <string name="sunrise_device_phone">Handy</string>
     <string name="sunrise_device_watch">Uhr</string>

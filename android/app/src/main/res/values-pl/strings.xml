@@ -162,7 +162,7 @@
         <item quantity="many">Zaczyna się, gdy cię obudzimy, a po %1$d minutach świeci pełną jasnością.</item>
         <item quantity="other">Zaczyna się, gdy cię obudzimy, a po %1$d minuty świeci pełną jasnością.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Zaczyna się wraz z oknem, a o czasie docelowym świeci pełną jasnością.</string>
+    <string name="editor_sunrise_window_hint">Zaczyna się wraz z oknem, najwyżej 30 min przed czasem docelowym, a o czasie docelowym świeci pełną jasnością.</string>
     <string name="sunrise_device_title">Gdzie</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Zegarek</string>

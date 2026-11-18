@@ -161,7 +161,7 @@
         <item quantity="one">Sākas, kad tevi modina, un pēc %1$d minūtes ir pilnā spilgtumā.</item>
         <item quantity="other">Sākas, kad tevi modina, un pēc %1$d minūtēm ir pilnā spilgtumā.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Sākas ar modināšanas logu un mērķa laikā ir pilnā spilgtumā.</string>
+    <string name="editor_sunrise_window_hint">Sākas ar modināšanas logu, ne agrāk kā 30 min pirms mērķa laika, un mērķa laikā ir pilnā spilgtumā.</string>
     <string name="sunrise_device_title">Kur</string>
     <string name="sunrise_device_phone">Tālrunis</string>
     <string name="sunrise_device_watch">Pulkstenis</string>

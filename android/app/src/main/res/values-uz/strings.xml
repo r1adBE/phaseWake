@@ -158,7 +158,7 @@
         <item quantity="one">Seni uygʻotganda boshlanadi va %1$d daqiqadan keyin toʻliq yorishadi.</item>
         <item quantity="other">Seni uygʻotganda boshlanadi va %1$d daqiqadan keyin toʻliq yorishadi.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Uygʻotish oraligʻi bilan boshlanadi va belgilangan vaqtda toʻliq yorishadi.</string>
+    <string name="editor_sunrise_window_hint">Uygʻotish oraligʻi bilan, belgilangan vaqtdan koʻpi bilan 30 daq oldin boshlanadi va belgilangan vaqtda toʻliq yorishadi.</string>
     <string name="sunrise_device_title">Qayerda</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Soat</string>

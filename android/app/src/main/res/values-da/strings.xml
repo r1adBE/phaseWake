@@ -156,7 +156,7 @@
         <item quantity="one">Starter, når du bliver vækket, og er fuldt lys efter %1$d minut.</item>
         <item quantity="other">Starter, når du bliver vækket, og er fuldt lys efter %1$d minutter.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Starter med vinduet og er fuldt lys på det ønskede tidspunkt.</string>
+    <string name="editor_sunrise_window_hint">Starter med vinduet, højst 30 min før det ønskede tidspunkt, og er fuldt lys på det ønskede tidspunkt.</string>
     <string name="sunrise_device_title">Hvor</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Ur</string>

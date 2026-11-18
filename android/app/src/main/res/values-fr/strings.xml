@@ -159,7 +159,7 @@
         <item quantity="many">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minutes.</item>
         <item quantity="other">Démarre quand tu es réveillé(e) et atteint sa pleine luminosité après %1$d minutes.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Démarre avec la plage et atteint sa pleine luminosité à l’heure cible.</string>
+    <string name="editor_sunrise_window_hint">Démarre avec la plage, au plus tôt 30 min avant l’heure cible, et atteint sa pleine luminosité à l’heure cible.</string>
     <string name="sunrise_device_title">Où</string>
     <string name="sunrise_device_phone">Téléphone</string>
     <string name="sunrise_device_watch">Montre</string>

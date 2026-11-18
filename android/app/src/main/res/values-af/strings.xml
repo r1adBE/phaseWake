@@ -158,7 +158,7 @@
         <item quantity="one">Begin wanneer jy wakker gemaak word en is ná %1$d minuut ten volle helder.</item>
         <item quantity="other">Begin wanneer jy wakker gemaak word en is ná %1$d minute ten volle helder.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Begin met die wekvenster en is op teikentyd ten volle helder.</string>
+    <string name="editor_sunrise_window_hint">Begin met die wekvenster, hoogstens 30 min voor teikentyd, en is op teikentyd ten volle helder.</string>
     <string name="sunrise_device_title">Waar</string>
     <string name="sunrise_device_phone">Foon</string>
     <string name="sunrise_device_watch">Horlosie</string>

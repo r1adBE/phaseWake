@@ -157,7 +157,7 @@
         <item quantity="one">ಎಬ್ಬಿಸಿದಾಗ ಶುರುವಾಗಿ %1$d ನಿಮಿಷದ ನಂತರ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ.</item>
         <item quantity="other">ಎಬ್ಬಿಸಿದಾಗ ಶುರುವಾಗಿ %1$d ನಿಮಿಷಗಳ ನಂತರ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ಎಚ್ಚರಿಸುವ ಅವಧಿಯೊಂದಿಗೆ ಶುರುವಾಗಿ ಗುರಿ ಸಮಯಕ್ಕೆ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ.</string>
+    <string name="editor_sunrise_window_hint">ಎಚ್ಚರಿಸುವ ಅವಧಿಯೊಂದಿಗೆ, ಗುರಿ ಸಮಯಕ್ಕೆ ಗರಿಷ್ಠ 30 ನಿಮಿ. ಮೊದಲು, ಶುರುವಾಗಿ ಗುರಿ ಸಮಯಕ್ಕೆ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ.</string>
     <string name="sunrise_device_title">ಎಲ್ಲಿ</string>
     <string name="sunrise_device_phone">ಫೋನ್</string>
     <string name="sunrise_device_watch">ವಾಚ್</string>

@@ -156,7 +156,7 @@
         <item quantity="one">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</item>
         <item quantity="other">Uyandırıldığında başlar ve %1$d dakika sonra tam parlaklığa ulaşır.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Aralıkla birlikte başlar ve hedef saatte tam parlaklığa ulaşır.</string>
+    <string name="editor_sunrise_window_hint">Aralıkla birlikte, hedef saatten en fazla 30 dk önce başlar ve hedef saatte tam parlaklığa ulaşır.</string>
     <string name="sunrise_device_title">Nerede</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Saat</string>

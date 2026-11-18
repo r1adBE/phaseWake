@@ -158,7 +158,7 @@
         <item quantity="one">ਤੁਹਾਨੂੰ ਜਗਾਉਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ %1$d ਮਿੰਟ ਬਾਅਦ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।</item>
         <item quantity="other">ਤੁਹਾਨੂੰ ਜਗਾਉਣ ’ਤੇ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ %1$d ਮਿੰਟਾਂ ਬਾਅਦ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।</string>
+    <string name="editor_sunrise_window_hint">ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਨਾਲ, ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੋਂ ਵੱਧ ਤੋਂ ਵੱਧ 30 ਮਿੰ. ਪਹਿਲਾਂ, ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।</string>
     <string name="sunrise_device_title">ਕਿੱਥੇ</string>
     <string name="sunrise_device_phone">ਫ਼ੋਨ</string>
     <string name="sunrise_device_watch">ਘੜੀ</string>

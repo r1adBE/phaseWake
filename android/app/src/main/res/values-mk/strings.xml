@@ -158,7 +158,7 @@
         <item quantity="one">Почнува кога ќе те разбуди и е целосно светло по %1$d минута.</item>
         <item quantity="other">Почнува кога ќе те разбуди и е целосно светло по %1$d минути.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Почнува со прозорецот за будење и е целосно светло во целното време.</string>
+    <string name="editor_sunrise_window_hint">Почнува со прозорецот за будење, најмногу 30 мин пред целното време, и е целосно светло во целното време.</string>
     <string name="sunrise_device_title">Каде</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Часовник</string>

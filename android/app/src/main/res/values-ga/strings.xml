@@ -167,7 +167,7 @@
         <item quantity="many">Tosaíonn sé nuair a dhúisítear thú agus bíonn sé lán-gheal tar éis %1$d nóiméad.</item>
         <item quantity="other">Tosaíonn sé nuair a dhúisítear thú agus bíonn sé lán-gheal tar éis %1$d nóiméad.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Tosaíonn sé leis an bhfuinneog dhúisithe agus bíonn sé lán-gheal ag an spriocam.</string>
+    <string name="editor_sunrise_window_hint">Tosaíonn sé leis an bhfuinneog dhúisithe, 30 nóim ar a mhéad roimh an spriocam, agus bíonn sé lán-gheal ag an spriocam.</string>
     <string name="sunrise_device_title">Cá háit</string>
     <string name="sunrise_device_phone">Fón</string>
     <string name="sunrise_device_watch">Uaireadóir</string>

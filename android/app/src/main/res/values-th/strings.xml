@@ -153,7 +153,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">เริ่มเมื่อคุณถูกปลุก และสว่างเต็มที่หลังผ่านไป %1$d นาที</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">เริ่มพร้อมช่วงเวลา และสว่างเต็มที่ตามเวลาเป้าหมาย</string>
+    <string name="editor_sunrise_window_hint">เริ่มพร้อมช่วงเวลา ไม่เกิน 30 นาทีก่อนเวลาเป้าหมาย และสว่างเต็มที่ตามเวลาเป้าหมาย</string>
     <string name="sunrise_device_title">ที่ไหน</string>
     <string name="sunrise_device_phone">โทรศัพท์</string>
     <string name="sunrise_device_watch">นาฬิกา</string>

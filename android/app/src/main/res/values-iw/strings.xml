@@ -159,7 +159,7 @@
         <item quantity="two">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</item>
         <item quantity="other">מתחיל כשמעירים אתכם ובהיר לגמרי אחרי %1$d דקות.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">מתחיל עם החלון ובהיר לגמרי בזמן היעד.</string>
+    <string name="editor_sunrise_window_hint">מתחיל עם החלון, לכל היותר 30 דק׳ לפני זמן היעד, ובהיר לגמרי בזמן היעד.</string>
     <string name="sunrise_device_title">איפה</string>
     <string name="sunrise_device_phone">טלפון</string>
     <string name="sunrise_device_watch">שעון</string>

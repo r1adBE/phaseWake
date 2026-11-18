@@ -158,7 +158,7 @@
         <item quantity="one">Nis kur të zgjon dhe ndriçon plotësisht pas %1$d minute.</item>
         <item quantity="other">Nis kur të zgjon dhe ndriçon plotësisht pas %1$d minutash.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Nis me intervalin e zgjimit dhe ndriçon plotësisht në orën e synuar.</string>
+    <string name="editor_sunrise_window_hint">Nis me intervalin e zgjimit, jo më shumë se 30 min para orës së synuar, dhe ndriçon plotësisht në orën e synuar.</string>
     <string name="sunrise_device_title">Ku</string>
     <string name="sunrise_device_phone">Telefoni</string>
     <string name="sunrise_device_watch">Ora</string>

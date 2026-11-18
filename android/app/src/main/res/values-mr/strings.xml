@@ -158,7 +158,7 @@
         <item quantity="one">तुम्हाला उठवल्यावर सुरू होते आणि %1$d मिनिटानंतर पूर्ण उजळते.</item>
         <item quantity="other">तुम्हाला उठवल्यावर सुरू होते आणि %1$d मिनिटांनंतर पूर्ण उजळते.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">उठवण्याच्या कालावधीसोबत सुरू होते आणि लक्ष्य वेळेला पूर्ण उजळते.</string>
+    <string name="editor_sunrise_window_hint">उठवण्याच्या कालावधीसोबत, लक्ष्य वेळेच्या जास्तीत जास्त ३० मि. आधी, सुरू होते आणि लक्ष्य वेळेला पूर्ण उजळते.</string>
     <string name="sunrise_device_title">कुठे</string>
     <string name="sunrise_device_phone">फोन</string>
     <string name="sunrise_device_watch">घड्याळ</string>

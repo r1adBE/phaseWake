@@ -157,7 +157,7 @@
         <item quantity="one">জাগানোর সময় শুরু হয় আর %1$d মিনিট পরে পুরো উজ্জ্বল হয়।</item>
         <item quantity="other">জাগানোর সময় শুরু হয় আর %1$d মিনিট পরে পুরো উজ্জ্বল হয়।</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">জাগানোর সময়সীমার সঙ্গে শুরু হয় আর লক্ষ্য সময়ে পুরো উজ্জ্বল হয়।</string>
+    <string name="editor_sunrise_window_hint">জাগানোর সময়সীমার সঙ্গে শুরু হয়, লক্ষ্য সময়ের সর্বোচ্চ ৩০ মি. আগে, আর লক্ষ্য সময়ে পুরো উজ্জ্বল হয়।</string>
     <string name="sunrise_device_title">কোথায়</string>
     <string name="sunrise_device_phone">ফোন</string>
     <string name="sunrise_device_watch">ঘড়ি</string>

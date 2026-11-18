@@ -156,7 +156,7 @@
         <item quantity="one">Börjar när du väcks och är helt ljus efter %1$d minut.</item>
         <item quantity="other">Börjar när du väcks och är helt ljus efter %1$d minuter.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Börjar med fönstret och är helt ljus vid önskad tid.</string>
+    <string name="editor_sunrise_window_hint">Börjar med fönstret, högst 30 min före önskad tid, och är helt ljus vid önskad tid.</string>
     <string name="sunrise_device_title">Var</string>
     <string name="sunrise_device_phone">Mobil</string>
     <string name="sunrise_device_watch">Klocka</string>

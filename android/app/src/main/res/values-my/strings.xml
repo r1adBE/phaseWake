@@ -154,7 +154,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">နှိုးချိန်တွင် စပြီး %1$d မိနစ်အကြာတွင် အပြည့်လင်းသည်။</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">နှိုးချိန်အပိုင်းနှင့်အတူ စပြီး ပစ်မှတ်အချိန်တွင် အပြည့်လင်းသည်။</string>
+    <string name="editor_sunrise_window_hint">နှိုးချိန်အပိုင်းနှင့်အတူ (ပစ်မှတ်အချိန်မတိုင်မီ အများဆုံး 30 မိနစ်) စပြီး ပစ်မှတ်အချိန်တွင် အပြည့်လင်းသည်။</string>
     <string name="sunrise_device_title">ဘယ်မှာ</string>
     <string name="sunrise_device_phone">ဖုန်း</string>
     <string name="sunrise_device_watch">နာရီ</string>

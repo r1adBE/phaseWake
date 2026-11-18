@@ -156,7 +156,7 @@
         <item quantity="one">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</item>
         <item quantity="other">وقتی بیدارت کنند شروع می‌شود و پس از %1$d دقیقه کاملاً روشن است.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">با شروع بازه آغاز می‌شود و در زمان هدف کاملاً روشن است.</string>
+    <string name="editor_sunrise_window_hint">با شروع بازه آغاز می‌شود، حداکثر ۳۰ دقیقه پیش از زمان هدف، و در زمان هدف کاملاً روشن است.</string>
     <string name="sunrise_device_title">کجا</string>
     <string name="sunrise_device_phone">گوشی</string>
     <string name="sunrise_device_watch">ساعت</string>

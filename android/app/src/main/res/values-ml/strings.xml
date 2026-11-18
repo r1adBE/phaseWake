@@ -157,7 +157,7 @@
         <item quantity="one">ഉണർത്തുമ്പോൾ തുടങ്ങി %1$d മിനിറ്റിനു ശേഷം പൂർണ തെളിച്ചത്തിലെത്തും.</item>
         <item quantity="other">ഉണർത്തുമ്പോൾ തുടങ്ങി %1$d മിനിറ്റിനു ശേഷം പൂർണ തെളിച്ചത്തിലെത്തും.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ഉണർത്തൽ സമയപരിധിയോടെ തുടങ്ങി ലക്ഷ്യസമയത്ത് പൂർണ തെളിച്ചത്തിലെത്തും.</string>
+    <string name="editor_sunrise_window_hint">ഉണർത്തൽ സമയപരിധിയോടെ, ലക്ഷ്യസമയത്തിന് പരമാവധി 30 മി. മുമ്പ്, തുടങ്ങി ലക്ഷ്യസമയത്ത് പൂർണ തെളിച്ചത്തിലെത്തും.</string>
     <string name="sunrise_device_title">എവിടെ</string>
     <string name="sunrise_device_phone">ഫോൺ</string>
     <string name="sunrise_device_watch">വാച്ച്</string>

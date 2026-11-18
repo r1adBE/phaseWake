@@ -157,7 +157,7 @@
         <item quantity="one">جگاتے وقت شروع ہوتی ہے اور %1$d منٹ بعد پوری روشن ہو جاتی ہے۔</item>
         <item quantity="other">جگاتے وقت شروع ہوتی ہے اور %1$d منٹ بعد پوری روشن ہو جاتی ہے۔</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">جاگنے کی ونڈو کے ساتھ شروع ہوتی ہے اور ہدف کے وقت پوری روشن ہوتی ہے۔</string>
+    <string name="editor_sunrise_window_hint">جاگنے کی ونڈو کے ساتھ، ہدف کے وقت سے زیادہ سے زیادہ 30 منٹ پہلے، شروع ہوتی ہے اور ہدف کے وقت پوری روشن ہوتی ہے۔</string>
     <string name="sunrise_device_title">کہاں</string>
     <string name="sunrise_device_phone">فون</string>
     <string name="sunrise_device_watch">گھڑی</string>

@@ -148,7 +148,7 @@
         <item quantity="one">Сені оятқанда басталып, %1$d минуттан кейін толық жарқырайды.</item>
         <item quantity="other">Сені оятқанда басталып, %1$d минуттан кейін толық жарқырайды.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Ояту терезесімен басталып, мақсатты уақытта толық жарқырайды.</string>
+    <string name="editor_sunrise_window_hint">Ояту терезесімен басталып (мақсатты уақыттан ең көбі 30 мин бұрын), мақсатты уақытта толық жарқырайды.</string>
     <string name="sunrise_device_title">Қайда</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Сағат</string>

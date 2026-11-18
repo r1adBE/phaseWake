@@ -156,7 +156,7 @@
         <item quantity="one">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</item>
         <item quantity="other">Alkaa, kun sinut herätetään, ja on täysin kirkas %1$d minuutin kuluttua.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Alkaa aikaikkunan mukana ja on täysin kirkas tavoiteajankohtana.</string>
+    <string name="editor_sunrise_window_hint">Alkaa aikaikkunan mukana, enintään 30 min ennen tavoiteaikaa, ja on täysin kirkas tavoiteajankohtana.</string>
     <string name="sunrise_device_title">Missä</string>
     <string name="sunrise_device_phone">Puhelin</string>
     <string name="sunrise_device_watch">Kello</string>

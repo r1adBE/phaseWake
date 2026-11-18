@@ -158,7 +158,7 @@
         <item quantity="one">Byrjar þegar þú ert vakin(n) og er fullbjart eftir %1$d mínútu.</item>
         <item quantity="other">Byrjar þegar þú ert vakin(n) og er fullbjart eftir %1$d mínútur.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Byrjar með vakningarglugganum og er fullbjart á markmiðstíma.</string>
+    <string name="editor_sunrise_window_hint">Byrjar með vakningarglugganum, í mesta lagi 30 mín fyrir markmiðstíma, og er fullbjart á markmiðstíma.</string>
     <string name="sunrise_device_title">Hvar</string>
     <string name="sunrise_device_phone">Sími</string>
     <string name="sunrise_device_watch">Úr</string>

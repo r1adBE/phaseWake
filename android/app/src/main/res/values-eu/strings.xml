@@ -158,7 +158,7 @@
         <item quantity="one">Esnatzen zaituenean hasten da, eta minutu %1$d igarota guztiz argi dago.</item>
         <item quantity="other">Esnatzen zaituenean hasten da, eta %1$d minutu igarota guztiz argi dago.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Esnatze-leihoarekin hasten da, eta helburuko orduan guztiz argi dago.</string>
+    <string name="editor_sunrise_window_hint">Esnatze-leihoarekin hasten da, helburuko ordua baino gehienez 30 min lehenago, eta helburuko orduan guztiz argi dago.</string>
     <string name="sunrise_device_title">Non</string>
     <string name="sunrise_device_phone">Telefonoa</string>
     <string name="sunrise_device_watch">Erlojua</string>

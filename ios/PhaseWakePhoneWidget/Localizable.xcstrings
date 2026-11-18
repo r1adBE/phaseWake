@@ -88240,445 +88240,445 @@
         "af": {
           "stringUnit": {
             "state": "translated",
-            "value": "Begin met die wekvenster en is op teikentyd ten volle helder."
+            "value": "Begin met die wekvenster, hoogstens 30 min voor teikentyd, en is op teikentyd ten volle helder."
           }
         },
         "am": {
           "stringUnit": {
             "state": "translated",
-            "value": "ከመቀስቀሻ ክልሉ ጋር ይጀምርና በታለመው ሰዓት ሙሉ በሙሉ ይደምቃል።"
+            "value": "ከመቀስቀሻ ክልሉ ጋር፣ ከታለመው ሰዓት ቢበዛ 30 ደቂቃ በፊት፣ ይጀምርና በታለመው ሰዓት ሙሉ በሙሉ ይደምቃል።"
           }
         },
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "يبدأ مع بداية النافذة ويصبح ساطعًا تمامًا في الوقت المستهدف."
+            "value": "يبدأ مع بداية النافذة، قبل الوقت المستهدف بـ ٣٠ دقيقة على الأكثر، ويصبح ساطعًا تمامًا في الوقت المستهدف."
           }
         },
         "az": {
           "stringUnit": {
             "state": "translated",
-            "value": "Oyanma pəncərəsi ilə başlayır və hədəf vaxtında tam parlaq olur."
+            "value": "Oyanma pəncərəsi ilə, hədəf vaxtından ən çox 30 dəq əvvəl başlayır və hədəf vaxtında tam parlaq olur."
           }
         },
         "bg": {
           "stringUnit": {
             "state": "translated",
-            "value": "Започва с прозореца за събуждане и е напълно ярко в целевия час."
+            "value": "Започва с прозореца за събуждане, най-много 30 мин преди целевия час, и е напълно ярко в целевия час."
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "জাগানোর সময়সীমার সঙ্গে শুরু হয় আর লক্ষ্য সময়ে পুরো উজ্জ্বল হয়।"
+            "value": "জাগানোর সময়সীমার সঙ্গে শুরু হয়, লক্ষ্য সময়ের সর্বোচ্চ ৩০ মি. আগে, আর লক্ষ্য সময়ে পুরো উজ্জ্বল হয়।"
           }
         },
         "bs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Počinje s intervalom buđenja i potpuno je svijetlo u ciljno vrijeme."
+            "value": "Počinje s intervalom buđenja, najviše 30 min prije ciljnog vremena, i potpuno je svijetlo u ciljno vrijeme."
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comença amb la finestra de despertar i és del tot clara a l’hora objectiu."
+            "value": "Comença amb la finestra de despertar, com a màxim 30 min abans de l’hora objectiu, i és del tot clara a l’hora objectiu."
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Začne s oknem buzení a v cílový čas naplno září."
+            "value": "Začne s oknem buzení, nejvýš 30 min před cílovým časem, a v cílový čas naplno září."
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter med vinduet og er fuldt lys på det ønskede tidspunkt."
+            "value": "Starter med vinduet, højst 30 min før det ønskede tidspunkt, og er fuldt lys på det ønskede tidspunkt."
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Beginnt mit dem Weckfenster und ist zur Zielzeit voll hell."
+            "value": "Beginnt mit dem Weckfenster, höchstens 30 Min vor der Zielzeit, und ist zur Zielzeit voll hell."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ξεκινά με το παράθυρο και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο."
+            "value": "Ξεκινά με το παράθυρο, το πολύ 30 λεπτά πριν την ώρα-στόχο, και φτάνει στη μέγιστη φωτεινότητα την ώρα-στόχο."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starts with the wake window and is fully bright at the target time."
+            "value": "Starts with the wake window, at most 30 min before the target time, and is fully bright at the target time."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Empieza con la ventana y alcanza el brillo máximo a la hora objetivo."
+            "value": "Empieza con la ventana, como mucho 30 min antes de la hora objetivo, y alcanza el brillo máximo a la hora objetivo."
           }
         },
         "et": {
           "stringUnit": {
             "state": "translated",
-            "value": "Algab koos äratusaknaga ja on sihtajaks täiesti hele."
+            "value": "Algab koos äratusaknaga, kõige varem 30 min enne sihtaega, ja on sihtajaks täiesti hele."
           }
         },
         "eu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Esnatze-leihoarekin hasten da, eta helburuko orduan guztiz argi dago."
+            "value": "Esnatze-leihoarekin hasten da, helburuko ordua baino gehienez 30 min lehenago, eta helburuko orduan guztiz argi dago."
           }
         },
         "fa": {
           "stringUnit": {
             "state": "translated",
-            "value": "با شروع بازه آغاز می‌شود و در زمان هدف کاملاً روشن است."
+            "value": "با شروع بازه آغاز می‌شود، حداکثر ۳۰ دقیقه پیش از زمان هدف، و در زمان هدف کاملاً روشن است."
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Alkaa aikaikkunan mukana ja on täysin kirkas tavoiteajankohtana."
+            "value": "Alkaa aikaikkunan mukana, enintään 30 min ennen tavoiteaikaa, ja on täysin kirkas tavoiteajankohtana."
           }
         },
         "fil": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nagsisimula kasabay ng window ng paggising at buong liwanag na sa target na oras."
+            "value": "Nagsisimula kasabay ng window ng paggising, hindi hihigit sa 30 min bago ang target na oras, at buong liwanag na sa target na oras."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Démarre avec la plage et atteint sa pleine luminosité à l’heure cible."
+            "value": "Démarre avec la plage, au plus tôt 30 min avant l’heure cible, et atteint sa pleine luminosité à l’heure cible."
           }
         },
         "ga": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tosaíonn sé leis an bhfuinneog dhúisithe agus bíonn sé lán-gheal ag an spriocam."
+            "value": "Tosaíonn sé leis an bhfuinneog dhúisithe, 30 nóim ar a mhéad roimh an spriocam, agus bíonn sé lán-gheal ag an spriocam."
           }
         },
         "gl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Comeza coa xanela de espertar e acada todo o brillo á hora prevista."
+            "value": "Comeza coa xanela de espertar, como moito 30 min antes da hora prevista, e acada todo o brillo á hora prevista."
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "જગાડવાના સમયગાળા સાથે શરૂ થાય છે અને લક્ષ્ય સમયે પૂરું તેજ થાય છે."
+            "value": "જગાડવાના સમયગાળા સાથે, લક્ષ્ય સમયથી વધુમાં વધુ 30 મિ. પહેલાં, શરૂ થાય છે અને લક્ષ્ય સમયે પૂરું તેજ થાય છે."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "מתחיל עם החלון ובהיר לגמרי בזמן היעד."
+            "value": "מתחיל עם החלון, לכל היותר 30 דק׳ לפני זמן היעד, ובהיר לגמרי בזמן היעד."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "विंडो के साथ शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।"
+            "value": "विंडो के साथ, लक्ष्य समय से अधिकतम 30 मिनट पहले, शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Počinje s intervalom buđenja i potpuno je svijetlo u ciljno vrijeme."
+            "value": "Počinje s intervalom buđenja, najviše 30 min prije ciljnog vremena, i potpuno je svijetlo u ciljno vrijeme."
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Az időablakkal indul, és a célidőpontra teljes fényerővel világít."
+            "value": "Az időablakkal indul, legfeljebb 30 perccel a célidőpont előtt, és a célidőpontra teljes fényerővel világít."
           }
         },
         "hy": {
           "stringUnit": {
             "state": "translated",
-            "value": "Սկսվում է արթնացման պատուհանի հետ և նպատակային ժամին լրիվ պայծառ է։"
+            "value": "Սկսվում է արթնացման պատուհանի հետ՝ նպատակային ժամից առավելագույնը 30 ր առաջ, և նպատակային ժամին լրիվ պայծառ է։"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Mulai bersama rentang dan terang penuh pada waktu target."
+            "value": "Mulai bersama rentang, paling cepat 30 mnt sebelum waktu target, dan terang penuh pada waktu target."
           }
         },
         "is": {
           "stringUnit": {
             "state": "translated",
-            "value": "Byrjar með vakningarglugganum og er fullbjart á markmiðstíma."
+            "value": "Byrjar með vakningarglugganum, í mesta lagi 30 mín fyrir markmiðstíma, og er fullbjart á markmiðstíma."
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Parte con la finestra e raggiunge la piena luminosità all’ora impostata."
+            "value": "Parte con la finestra, al massimo 30 min prima dell’ora impostata, e raggiunge la piena luminosità all’ora impostata."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "時間幅の開始とともに始まり、目標時刻に最も明るくなります。"
+            "value": "時間幅の開始とともに始まり（目標時刻の最大30分前）、目標時刻に最も明るくなります。"
           }
         },
         "ka": {
           "stringUnit": {
             "state": "translated",
-            "value": "იწყება გაღვიძების ფანჯარასთან ერთად და სამიზნე დროს სრულად ნათდება."
+            "value": "იწყება გაღვიძების ფანჯარასთან ერთად, სამიზნე დრომდე არაუმეტეს 30 წთ-ით ადრე, და სამიზნე დროს სრულად ნათდება."
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ояту терезесімен басталып, мақсатты уақытта толық жарқырайды."
+            "value": "Ояту терезесімен басталып (мақсатты уақыттан ең көбі 30 мин бұрын), мақсатты уақытта толық жарқырайды."
           }
         },
         "km": {
           "stringUnit": {
             "state": "translated",
-            "value": "ចាប់ផ្ដើមជាមួយចន្លោះពេលដាស់ ហើយភ្លឺពេញនៅម៉ោងគោលដៅ។"
+            "value": "ចាប់ផ្ដើមជាមួយចន្លោះពេលដាស់ យ៉ាងច្រើន 30 នាទីមុនម៉ោងគោលដៅ ហើយភ្លឺពេញនៅម៉ោងគោលដៅ។"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಎಚ್ಚರಿಸುವ ಅವಧಿಯೊಂದಿಗೆ ಶುರುವಾಗಿ ಗುರಿ ಸಮಯಕ್ಕೆ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ."
+            "value": "ಎಚ್ಚರಿಸುವ ಅವಧಿಯೊಂದಿಗೆ, ಗುರಿ ಸಮಯಕ್ಕೆ ಗರಿಷ್ಠ 30 ನಿಮಿ. ಮೊದಲು, ಶುರುವಾಗಿ ಗುರಿ ಸಮಯಕ್ಕೆ ಪೂರ್ಣ ಪ್ರಕಾಶಮಾನವಾಗುತ್ತದೆ."
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "범위 시작과 함께 켜지고 목표 시각에 가장 밝아져요."
+            "value": "범위 시작과 함께, 목표 시각 최대 30분 전부터 켜지고 목표 시각에 가장 밝아져요."
           }
         },
         "lo": {
           "stringUnit": {
             "state": "translated",
-            "value": "ເລີ່ມພ້ອມຊ່ວງເວລາປຸກ ແລະ ສະຫວ່າງເຕັມທີ່ຕອນເວລາເປົ້າໝາຍ"
+            "value": "ເລີ່ມພ້ອມຊ່ວງເວລາປຸກ ບໍ່ເກີນ 30 ນາທີກ່ອນເວລາເປົ້າໝາຍ ແລະ ສະຫວ່າງເຕັມທີ່ຕອນເວລາເປົ້າໝາຍ"
           }
         },
         "lt": {
           "stringUnit": {
             "state": "translated",
-            "value": "Prasideda kartu su žadinimo langu ir tiksliniu laiku būna visiškai ryškus."
+            "value": "Prasideda kartu su žadinimo langu, ne anksčiau kaip 30 min prieš tikslinį laiką, ir tiksliniu laiku būna visiškai ryškus."
           }
         },
         "lv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sākas ar modināšanas logu un mērķa laikā ir pilnā spilgtumā."
+            "value": "Sākas ar modināšanas logu, ne agrāk kā 30 min pirms mērķa laika, un mērķa laikā ir pilnā spilgtumā."
           }
         },
         "mk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Почнува со прозорецот за будење и е целосно светло во целното време."
+            "value": "Почнува со прозорецот за будење, најмногу 30 мин пред целното време, и е целосно светло во целното време."
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "ഉണർത്തൽ സമയപരിധിയോടെ തുടങ്ങി ലക്ഷ്യസമയത്ത് പൂർണ തെളിച്ചത്തിലെത്തും."
+            "value": "ഉണർത്തൽ സമയപരിധിയോടെ, ലക്ഷ്യസമയത്തിന് പരമാവധി 30 മി. മുമ്പ്, തുടങ്ങി ലക്ഷ്യസമയത്ത് പൂർണ തെളിച്ചത്തിലെത്തും."
           }
         },
         "mn": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сэрээх хугацаатай хамт эхэлж, зорилтот цагт бүрэн гэрэлтэнэ."
+            "value": "Сэрээх хугацаатай хамт, зорилтот цагаас дээд тал нь 30 мин өмнө эхэлж, зорилтот цагт бүрэн гэрэлтэнэ."
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "उठवण्याच्या कालावधीसोबत सुरू होते आणि लक्ष्य वेळेला पूर्ण उजळते."
+            "value": "उठवण्याच्या कालावधीसोबत, लक्ष्य वेळेच्या जास्तीत जास्त ३० मि. आधी, सुरू होते आणि लक्ष्य वेळेला पूर्ण उजळते."
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bermula bersama tetingkap dan cerah sepenuhnya pada masa sasaran."
+            "value": "Bermula bersama tetingkap, paling awal 30 min sebelum masa sasaran, dan cerah sepenuhnya pada masa sasaran."
           }
         },
         "my": {
           "stringUnit": {
             "state": "translated",
-            "value": "နှိုးချိန်အပိုင်းနှင့်အတူ စပြီး ပစ်မှတ်အချိန်တွင် အပြည့်လင်းသည်။"
+            "value": "နှိုးချိန်အပိုင်းနှင့်အတူ (ပစ်မှတ်အချိန်မတိုင်မီ အများဆုံး 30 မိနစ်) စပြီး ပစ်မှတ်အချိန်တွင် အပြည့်လင်းသည်။"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Starter med vinduet og er fullt lys på ønsket tid."
+            "value": "Starter med vinduet, høyst 30 min før ønsket tid, og er fullt lys på ønsket tid."
           }
         },
         "ne": {
           "stringUnit": {
             "state": "translated",
-            "value": "ब्युँझाउने अवधिसँगै सुरु हुन्छ र लक्षित समयमा पूरा उज्यालो हुन्छ।"
+            "value": "ब्युँझाउने अवधिसँगै, लक्षित समयभन्दा बढीमा ३० मि. अघि, सुरु हुन्छ र लक्षित समयमा पूरा उज्यालो हुन्छ।"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Begint met het venster en is op de doeltijd volledig helder."
+            "value": "Begint met het venster, hoogstens 30 min voor de doeltijd, en is op de doeltijd volledig helder."
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਨਾਲ ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।"
+            "value": "ਜਗਾਉਣ ਦੀ ਮਿਆਦ ਨਾਲ, ਟੀਚੇ ਦੇ ਸਮੇਂ ਤੋਂ ਵੱਧ ਤੋਂ ਵੱਧ 30 ਮਿੰ. ਪਹਿਲਾਂ, ਸ਼ੁਰੂ ਹੁੰਦਾ ਹੈ ਅਤੇ ਟੀਚੇ ਦੇ ਸਮੇਂ ’ਤੇ ਪੂਰਾ ਚਮਕਦਾਰ ਹੁੰਦਾ ਹੈ।"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Zaczyna się wraz z oknem, a o czasie docelowym świeci pełną jasnością."
+            "value": "Zaczyna się wraz z oknem, najwyżej 30 min przed czasem docelowym, a o czasie docelowym świeci pełną jasnością."
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começa com a janela e fica totalmente clara no horário-alvo."
+            "value": "Começa com a janela, no máximo 30 min antes do horário-alvo, e fica totalmente clara no horário-alvo."
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Começa com a janela e fica totalmente claro à hora-alvo."
+            "value": "Começa com a janela, no máximo 30 min antes da hora-alvo, e fica totalmente claro à hora-alvo."
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Pornește odată cu intervalul și este complet luminos la ora țintă."
+            "value": "Pornește odată cu intervalul, cel mult cu 30 min înainte de ora țintă, și este complet luminos la ora țintă."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Начинается вместе с окном и к целевому времени светит на полную яркость."
+            "value": "Начинается вместе с окном, но не раньше чем за 30 мин до целевого времени, и к целевому времени светит на полную яркость."
           }
         },
         "si": {
           "stringUnit": {
             "state": "translated",
-            "value": "අවදි පරාසය සමඟ ආරම්භ වී ඉලක්ක වේලාවේදී පූර්ණ දීප්තියට පැමිණේ."
+            "value": "අවදි පරාසය සමඟ, ඉලක්ක වේලාවට උපරිම මිනි. 30 කට පෙර, ආරම්භ වී ඉලක්ක වේලාවේදී පූර්ණ දීප්තියට පැමිණේ."
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Začne s oknom budenia a v cieľový čas svieti naplno."
+            "value": "Začne s oknom budenia, najviac 30 min pred cieľovým časom, a v cieľový čas svieti naplno."
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Začne se z oknom bujenja in je ob ciljnem času povsem svetel."
+            "value": "Začne se z oknom bujenja, največ 30 min pred ciljnim časom, in je ob ciljnem času povsem svetel."
           }
         },
         "sq": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nis me intervalin e zgjimit dhe ndriçon plotësisht në orën e synuar."
+            "value": "Nis me intervalin e zgjimit, jo më shumë se 30 min para orës së synuar, dhe ndriçon plotësisht në orën e synuar."
           }
         },
         "sr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Почиње са интервалом буђења и потпуно је светло у циљно време."
+            "value": "Почиње са интервалом буђења, највише 30 мин пре циљног времена, и потпуно је светло у циљно време."
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Börjar med fönstret och är helt ljus vid önskad tid."
+            "value": "Börjar med fönstret, högst 30 min före önskad tid, och är helt ljus vid önskad tid."
           }
         },
         "sw": {
           "stringUnit": {
             "state": "translated",
-            "value": "Inaanza na kipindi cha kuamka na inang’aa kikamilifu kwa muda lengwa."
+            "value": "Inaanza na kipindi cha kuamka, si zaidi ya dak 30 kabla ya muda lengwa, na inang’aa kikamilifu kwa muda lengwa."
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "எழுப்பும் வரம்புடன் தொடங்கி, இலக்கு நேரத்தில் முழுப் பிரகாசமாகும்."
+            "value": "எழுப்பும் வரம்புடன், இலக்கு நேரத்துக்கு அதிகபட்சம் 30 நிமி. முன், தொடங்கி இலக்கு நேரத்தில் முழுப் பிரகாசமாகும்."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "నిద్రలేపే వ్యవధితో మొదలై, లక్ష్య సమయానికి పూర్తిగా ప్రకాశిస్తుంది."
+            "value": "నిద్రలేపే వ్యవధితో, లక్ష్య సమయానికి గరిష్ఠంగా 30 ని. ముందు, మొదలై లక్ష్య సమయానికి పూర్తిగా ప్రకాశిస్తుంది."
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เริ่มพร้อมช่วงเวลา และสว่างเต็มที่ตามเวลาเป้าหมาย"
+            "value": "เริ่มพร้อมช่วงเวลา ไม่เกิน 30 นาทีก่อนเวลาเป้าหมาย และสว่างเต็มที่ตามเวลาเป้าหมาย"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aralıkla birlikte başlar ve hedef saatte tam parlaklığa ulaşır."
+            "value": "Aralıkla birlikte, hedef saatten en fazla 30 dk önce başlar ve hedef saatte tam parlaklığa ulaşır."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Починається разом із вікном і до цільового часу світить на повну яскравість."
+            "value": "Починається разом із вікном, але не раніше ніж за 30 хв до цільового часу, і до цільового часу світить на повну яскравість."
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "جاگنے کی ونڈو کے ساتھ شروع ہوتی ہے اور ہدف کے وقت پوری روشن ہوتی ہے۔"
+            "value": "جاگنے کی ونڈو کے ساتھ، ہدف کے وقت سے زیادہ سے زیادہ 30 منٹ پہلے، شروع ہوتی ہے اور ہدف کے وقت پوری روشن ہوتی ہے۔"
           }
         },
         "uz": {
           "stringUnit": {
             "state": "translated",
-            "value": "Uygʻotish oraligʻi bilan boshlanadi va belgilangan vaqtda toʻliq yorishadi."
+            "value": "Uygʻotish oraligʻi bilan, belgilangan vaqtdan koʻpi bilan 30 daq oldin boshlanadi va belgilangan vaqtda toʻliq yorishadi."
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bắt đầu cùng khoảng thời gian và sáng hoàn toàn vào giờ mục tiêu."
+            "value": "Bắt đầu cùng khoảng thời gian, sớm nhất 30 phút trước giờ mục tiêu, và sáng hoàn toàn vào giờ mục tiêu."
           }
         },
         "zh-HK": {
           "stringUnit": {
             "state": "translated",
-            "value": "喚醒時段開始時亮起，到目標時間達到最亮。"
+            "value": "喚醒時段開始時亮起，最早在目標時間前 30 分鐘，到目標時間達到最亮。"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "随时间窗开始，到目标时间达到最亮。"
+            "value": "随时间窗开始，最早在目标时间前 30 分钟，到目标时间达到最亮。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "隨喚醒時段開始，到目標時間達到最亮。"
+            "value": "隨喚醒時段開始，最早在目標時間前 30 分鐘，到目標時間達到最亮。"
           }
         },
         "zu": {
           "stringUnit": {
             "state": "translated",
-            "value": "Iqala nesikhala sokuvuka futhi ikhanya ngokugcwele ngesikhathi esihlosiwe."
+            "value": "Iqala nesikhala sokuvuka, kodwa hhayi ngaphezu kuka-30 min ngaphambi kwesikhathi esihlosiwe, futhi ikhanya ngokugcwele ngesikhathi esihlosiwe."
           }
         }
       }

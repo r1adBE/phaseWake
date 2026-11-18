@@ -153,7 +153,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">깨울 때 시작해 %1$d분 후 가장 밝아져요.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">범위 시작과 함께 켜지고 목표 시각에 가장 밝아져요.</string>
+    <string name="editor_sunrise_window_hint">범위 시작과 함께, 목표 시각 최대 30분 전부터 켜지고 목표 시각에 가장 밝아져요.</string>
     <string name="sunrise_device_title">표시 위치</string>
     <string name="sunrise_device_phone">휴대폰</string>
     <string name="sunrise_device_watch">워치</string>

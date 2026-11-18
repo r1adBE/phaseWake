@@ -158,7 +158,7 @@
         <item quantity="one">Iqala lapho uvuswa futhi ikhanya ngokugcwele ngemva komzuzu ongu-%1$d.</item>
         <item quantity="other">Iqala lapho uvuswa futhi ikhanya ngokugcwele ngemva kwemizuzu engu-%1$d.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Iqala nesikhala sokuvuka futhi ikhanya ngokugcwele ngesikhathi esihlosiwe.</string>
+    <string name="editor_sunrise_window_hint">Iqala nesikhala sokuvuka, kodwa hhayi ngaphezu kuka-30 min ngaphambi kwesikhathi esihlosiwe, futhi ikhanya ngokugcwele ngesikhathi esihlosiwe.</string>
     <string name="sunrise_device_title">Kuphi</string>
     <string name="sunrise_device_phone">Ifoni</string>
     <string name="sunrise_device_watch">Iwashi</string>

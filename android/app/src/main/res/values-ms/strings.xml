@@ -153,7 +153,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">Bermula apabila awak dikejutkan dan cerah sepenuhnya selepas %1$d minit.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Bermula bersama tetingkap dan cerah sepenuhnya pada masa sasaran.</string>
+    <string name="editor_sunrise_window_hint">Bermula bersama tetingkap, paling awal 30 min sebelum masa sasaran, dan cerah sepenuhnya pada masa sasaran.</string>
     <string name="sunrise_device_title">Di mana</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Jam tangan</string>

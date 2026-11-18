@@ -148,7 +148,7 @@
         <item quantity="one">Սկսվում է, երբ քեզ արթնացնում են, և %1$d րոպեից լրիվ պայծառ է։</item>
         <item quantity="other">Սկսվում է, երբ քեզ արթնացնում են, և %1$d րոպեից լրիվ պայծառ է։</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Սկսվում է արթնացման պատուհանի հետ և նպատակային ժամին լրիվ պայծառ է։</string>
+    <string name="editor_sunrise_window_hint">Սկսվում է արթնացման պատուհանի հետ՝ նպատակային ժամից առավելագույնը 30 ր առաջ, և նպատակային ժամին լրիվ պայծառ է։</string>
     <string name="sunrise_device_title">Որտեղ</string>
     <string name="sunrise_device_phone">Հեռախոս</string>
     <string name="sunrise_device_watch">Ժամացույց</string>

@@ -168,7 +168,7 @@
         <item quantity="many">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
         <item quantity="other">يبدأ عند إيقاظك ويصبح ساطعًا تمامًا بعد %1$d دقيقة.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">يبدأ مع بداية النافذة ويصبح ساطعًا تمامًا في الوقت المستهدف.</string>
+    <string name="editor_sunrise_window_hint">يبدأ مع بداية النافذة، قبل الوقت المستهدف بـ ٣٠ دقيقة على الأكثر، ويصبح ساطعًا تمامًا في الوقت المستهدف.</string>
     <string name="sunrise_device_title">أين</string>
     <string name="sunrise_device_phone">الهاتف</string>
     <string name="sunrise_device_watch">الساعة</string>

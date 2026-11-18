@@ -160,7 +160,7 @@
         <item quantity="many">Comença quan et desperta i és del tot clara al cap de %1$d minuts.</item>
         <item quantity="other">Comença quan et desperta i és del tot clara al cap de %1$d minuts.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Comença amb la finestra de despertar i és del tot clara a l’hora objectiu.</string>
+    <string name="editor_sunrise_window_hint">Comença amb la finestra de despertar, com a màxim 30 min abans de l’hora objectiu, i és del tot clara a l’hora objectiu.</string>
     <string name="sunrise_device_title">On</string>
     <string name="sunrise_device_phone">Telèfon</string>
     <string name="sunrise_device_watch">Rellotge</string>

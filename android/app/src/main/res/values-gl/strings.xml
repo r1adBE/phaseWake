@@ -158,7 +158,7 @@
         <item quantity="one">Comeza cando te esperta e acada todo o brillo despois de %1$d minuto.</item>
         <item quantity="other">Comeza cando te esperta e acada todo o brillo despois de %1$d minutos.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Comeza coa xanela de espertar e acada todo o brillo á hora prevista.</string>
+    <string name="editor_sunrise_window_hint">Comeza coa xanela de espertar, como moito 30 min antes da hora prevista, e acada todo o brillo á hora prevista.</string>
     <string name="sunrise_device_title">Onde</string>
     <string name="sunrise_device_phone">Teléfono</string>
     <string name="sunrise_device_watch">Reloxo</string>

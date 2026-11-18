@@ -158,7 +158,7 @@
         <item quantity="one">ඔබව අවදි කරන විට ආරම්භ වී මිනිත්තු %1$d කට පසු පූර්ණ දීප්තියට පැමිණේ.</item>
         <item quantity="other">ඔබව අවදි කරන විට ආරම්භ වී මිනිත්තු %1$d කට පසු පූර්ණ දීප්තියට පැමිණේ.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">අවදි පරාසය සමඟ ආරම්භ වී ඉලක්ක වේලාවේදී පූර්ණ දීප්තියට පැමිණේ.</string>
+    <string name="editor_sunrise_window_hint">අවදි පරාසය සමඟ, ඉලක්ක වේලාවට උපරිම මිනි. 30 කට පෙර, ආරම්භ වී ඉලක්ක වේලාවේදී පූර්ණ දීප්තියට පැමිණේ.</string>
     <string name="sunrise_device_title">කොහේද</string>
     <string name="sunrise_device_phone">දුරකථනය</string>
     <string name="sunrise_device_watch">ඔරලෝසුව</string>

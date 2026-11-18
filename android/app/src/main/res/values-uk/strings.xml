@@ -162,7 +162,7 @@
         <item quantity="many">Починається, коли тебе будять, і через %1$d хвилин світить на повну яскравість.</item>
         <item quantity="other">Починається, коли тебе будять, і через %1$d хвилини світить на повну яскравість.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Починається разом із вікном і до цільового часу світить на повну яскравість.</string>
+    <string name="editor_sunrise_window_hint">Починається разом із вікном, але не раніше ніж за 30 хв до цільового часу, і до цільового часу світить на повну яскравість.</string>
     <string name="sunrise_device_title">Де</string>
     <string name="sunrise_device_phone">Телефон</string>
     <string name="sunrise_device_watch">Годинник</string>

@@ -148,7 +148,7 @@
         <item quantity="one">Səni oyadanda başlayır və %1$d dəqiqədən sonra tam parlaq olur.</item>
         <item quantity="other">Səni oyadanda başlayır və %1$d dəqiqədən sonra tam parlaq olur.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Oyanma pəncərəsi ilə başlayır və hədəf vaxtında tam parlaq olur.</string>
+    <string name="editor_sunrise_window_hint">Oyanma pəncərəsi ilə, hədəf vaxtından ən çox 30 dəq əvvəl başlayır və hədəf vaxtında tam parlaq olur.</string>
     <string name="sunrise_device_title">Harada</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Saat</string>

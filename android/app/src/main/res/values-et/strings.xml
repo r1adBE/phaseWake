@@ -158,7 +158,7 @@
         <item quantity="one">Algab, kui sind äratatakse, ja on %1$d minuti pärast täiesti hele.</item>
         <item quantity="other">Algab, kui sind äratatakse, ja on %1$d minuti pärast täiesti hele.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Algab koos äratusaknaga ja on sihtajaks täiesti hele.</string>
+    <string name="editor_sunrise_window_hint">Algab koos äratusaknaga, kõige varem 30 min enne sihtaega, ja on sihtajaks täiesti hele.</string>
     <string name="sunrise_device_title">Kus</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Kell</string>

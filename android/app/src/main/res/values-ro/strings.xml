@@ -159,7 +159,7 @@
         <item quantity="few">Pornește când ești trezit și este complet luminos după %1$d minute.</item>
         <item quantity="other">Pornește când ești trezit și este complet luminos după %1$d de minute.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Pornește odată cu intervalul și este complet luminos la ora țintă.</string>
+    <string name="editor_sunrise_window_hint">Pornește odată cu intervalul, cel mult cu 30 min înainte de ora țintă, și este complet luminos la ora țintă.</string>
     <string name="sunrise_device_title">Unde</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Ceas</string>

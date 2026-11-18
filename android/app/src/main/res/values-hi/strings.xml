@@ -156,7 +156,7 @@
         <item quantity="one">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</item>
         <item quantity="other">आपको जगाने पर शुरू होता है और %1$d मिनट बाद पूरी तरह तेज़ हो जाता है।</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">विंडो के साथ शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।</string>
+    <string name="editor_sunrise_window_hint">विंडो के साथ, लक्ष्य समय से अधिकतम 30 मिनट पहले, शुरू होता है और लक्ष्य समय पर पूरी तरह तेज़ हो जाता है।</string>
     <string name="sunrise_device_title">कहाँ</string>
     <string name="sunrise_device_phone">फ़ोन</string>
     <string name="sunrise_device_watch">घड़ी</string>

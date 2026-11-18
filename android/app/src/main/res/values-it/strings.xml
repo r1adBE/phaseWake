@@ -159,7 +159,7 @@
         <item quantity="many">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
         <item quantity="other">Parte quando vieni svegliato e raggiunge la piena luminosità dopo %1$d minuti.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Parte con la finestra e raggiunge la piena luminosità all’ora impostata.</string>
+    <string name="editor_sunrise_window_hint">Parte con la finestra, al massimo 30 min prima dell’ora impostata, e raggiunge la piena luminosità all’ora impostata.</string>
     <string name="sunrise_device_title">Dove</string>
     <string name="sunrise_device_phone">Telefono</string>
     <string name="sunrise_device_watch">Smartwatch</string>

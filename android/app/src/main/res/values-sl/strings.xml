@@ -163,7 +163,7 @@
         <item quantity="few">Začne se, ko te zbudi, in je po %1$d minutah povsem svetel.</item>
         <item quantity="other">Začne se, ko te zbudi, in je po %1$d minutah povsem svetel.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">Začne se z oknom bujenja in je ob ciljnem času povsem svetel.</string>
+    <string name="editor_sunrise_window_hint">Začne se z oknom bujenja, največ 30 min pred ciljnim časom, in je ob ciljnem času povsem svetel.</string>
     <string name="sunrise_device_title">Kje</string>
     <string name="sunrise_device_phone">Telefon</string>
     <string name="sunrise_device_watch">Ura</string>

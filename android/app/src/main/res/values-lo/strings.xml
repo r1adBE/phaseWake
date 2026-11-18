@@ -154,7 +154,7 @@
     <plurals name="editor_sunrise_ring_hint">
         <item quantity="other">ເລີ່ມເມື່ອເຈົ້າຖືກປຸກ ແລະ ສະຫວ່າງເຕັມທີ່ຫຼັງ %1$d ນາທີ</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">ເລີ່ມພ້ອມຊ່ວງເວລາປຸກ ແລະ ສະຫວ່າງເຕັມທີ່ຕອນເວລາເປົ້າໝາຍ</string>
+    <string name="editor_sunrise_window_hint">ເລີ່ມພ້ອມຊ່ວງເວລາປຸກ ບໍ່ເກີນ 30 ນາທີກ່ອນເວລາເປົ້າໝາຍ ແລະ ສະຫວ່າງເຕັມທີ່ຕອນເວລາເປົ້າໝາຍ</string>
     <string name="sunrise_device_title">ຢູ່ໃສ</string>
     <string name="sunrise_device_phone">ໂທລະສັບ</string>
     <string name="sunrise_device_watch">ໂມງ</string>

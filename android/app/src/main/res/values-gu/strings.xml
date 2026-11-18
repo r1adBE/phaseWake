@@ -158,7 +158,7 @@
         <item quantity="one">તમને જગાડવામાં આવે ત્યારે શરૂ થાય છે અને %1$d મિનિટ પછી પૂરું તેજ થાય છે.</item>
         <item quantity="other">તમને જગાડવામાં આવે ત્યારે શરૂ થાય છે અને %1$d મિનિટ પછી પૂરું તેજ થાય છે.</item>
     </plurals>
-    <string name="editor_sunrise_window_hint">જગાડવાના સમયગાળા સાથે શરૂ થાય છે અને લક્ષ્ય સમયે પૂરું તેજ થાય છે.</string>
+    <string name="editor_sunrise_window_hint">જગાડવાના સમયગાળા સાથે, લક્ષ્ય સમયથી વધુમાં વધુ 30 મિ. પહેલાં, શરૂ થાય છે અને લક્ષ્ય સમયે પૂરું તેજ થાય છે.</string>
     <string name="sunrise_device_title">ક્યાં</string>
     <string name="sunrise_device_phone">ફોન</string>
     <string name="sunrise_device_watch">ઘડિયાળ</string>
