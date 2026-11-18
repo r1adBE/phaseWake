@@ -1,6 +1,8 @@
-# Regel S5 und Wach-Regel in derselben Epoche: Epoche 15 starke Bewegung ohne Pulsanstieg (wartet),
-# Epoche 16 zweite starke Bewegung mit Puls 60 (Mittel 56 >= 54.6): beide greifen, Wach hat Vorrang.
-@expect 16 AWAKE
+# Epoche 15 starke Bewegung ohne Pulsanstieg, Epoche 16 zweite starke Bewegung mit Puls 60.
+# Bis 18.11.2026 wartete Epoche 15 (S5 brauchte den Puls), in Epoche 16 griffen beide Regeln, Wach hatte Vorrang
+# (16 AWAKE). Seit «Bewegung zählt» weckt schon Epoche 15 (S5 ohne Puls); den Vorrang der Wach-Regel in derselben
+# Epoche prüft hier keine Nacht mehr, sondern WakeDetectorTest.awakeTakesPrecedenceOverLightSleep.
+@expect 15 LIGHT_SLEEP
 motion,hr
 0.025,52
 0.025,52

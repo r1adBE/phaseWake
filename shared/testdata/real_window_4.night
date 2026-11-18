@@ -1,7 +1,7 @@
 # Echtes Weckfenster (30 Min), ohne Namen aufgezeichnet, Export «phasewake-nights.csv» Nacht 4 (Regel S5, 15.11.2026).
 # Die 4 leeren Epochen vor dem Start der Sensoren fehlen (gehen nicht an die Regel, Abschnitt 3).
-# Ergebnis mit S5 unverändert.
-@expect 9 AWAKE
+# Mit S5 unverändert; seit «Bewegung zählt» (18.11.2026) Epoche 8 ohne Pulsanstieg (bis dahin 9 AWAKE).
+@expect 8 LIGHT_SLEEP
 motion,hr
 0.021815,60.4
 0.021654,60.2

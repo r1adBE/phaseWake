@@ -1,5 +1,7 @@
-# Regel S5: Epoche 20 starke Bewegung 0.3 (>= Wach-Schwelle 0.125), Puls bleibt 52 -> kein Wecken.
-@expect none
+# Regel S5 (Bewegung zählt, 18.11.2026): Epoche 20 starke Bewegung 0.3 (>= Wach-Schwelle 0.125), Puls bleibt 52
+# -> sanft wecken ohne Pulsanstieg (bis dahin: kein Wecken). Zwei leichte Bewegungen ohne Puls wecken weiterhin
+# nicht: light_motion_no_hr_rise, motion_only_no_hr.
+@expect 20 LIGHT_SLEEP
 motion,hr
 0.025,52
 0.025,52

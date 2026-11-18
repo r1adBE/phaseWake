@@ -1,6 +1,6 @@
-# Deutliche Bewegung in Epoche 10 und 11: Die Person ist wach.
-# Puls unverändert, trotzdem wecken (Wach-Regel braucht keinen Puls).
-@expect 11 AWAKE
+# Deutliche Bewegung in Epoche 10 und 11, Puls unverändert. Regel S5 (Bewegung zählt): Die starke Bewegung in
+# Epoche 10 weckt ohne Pulsanstieg sanft, eine Epoche vor der Wach-Regel (bis 18.11.2026: 11 AWAKE).
+@expect 10 LIGHT_SLEEP
 motion,hr
 0.000,60
 0.000,60

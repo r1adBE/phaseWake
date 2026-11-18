@@ -27,19 +27,43 @@ class WakeDetectorTest {
         assertEquals(Decision.Wait, detector.onEpoch(still))
     }
 
+    /** Epoche ohne Bewegungswert: zählt nicht fürs Grundrauschen, Regel S5 wartet, und die Wach-Regel zeigt sich. */
+    private val gap = Epoch(null, 52.0)
+
     @Test
     fun awakeNeedsTwoOfThree() {
         val detector = WakeDetector()
-        detector.feed(still, still, Epoch(0.2, 52.0), still)
+        detector.feed(gap, gap, Epoch(0.2, 52.0), gap)
         assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.2, 52.0)))
     }
 
     @Test
     fun awakeHitsOutsideWindowDoNotCount() {
         val detector = WakeDetector()
-        // Treffer in Epoche 2 und 5: zwischen ihnen liegen zwei ruhige Epochen, Fenster 3 erfasst nur eine.
-        val decisions = detector.feed(still, still, Epoch(0.2, 52.0), still, still, Epoch(0.2, 52.0))
+        // Treffer in Epoche 2 und 5: zwischen ihnen liegen zwei Epochen, Fenster 3 erfasst nur eine.
+        val decisions = detector.feed(gap, gap, Epoch(0.2, 52.0), gap, gap, Epoch(0.2, 52.0))
         assertEquals(Decision.Wait, decisions.last())
+    }
+
+    @Test
+    fun strongMotionWakesWithoutHeartRateRise() {
+        // Regel S5 («Bewegung zählt»): eine starke Bewegung genügt, der Puls bleibt 52.
+        val detector = WakeDetector()
+        detector.feed(still, still, still, still)
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.2, 52.0)))
+        // Zwei leichte Bewegungen ohne Pulsanstieg wecken weiterhin nicht.
+        val light = WakeDetector()
+        light.feed(still, still, still, still)
+        assertEquals(listOf<Decision>(Decision.Wait, Decision.Wait), light.feed(Epoch(0.003, 52.0), Epoch(0.003, 52.0)))
+    }
+
+    @Test
+    fun strongMotionCountsOnceTheFloorIsKnown() {
+        // Epoche 2: starke Bewegung, aber erst 3 Werte (kein Grundrauschen) → warten. Epoche 3: Grundrauschen bekannt,
+        // die Bewegung liegt noch in den letzten 2 Epochen (Regel S5) → sanft wecken.
+        val detector = WakeDetector()
+        assertEquals(Decision.Wait, detector.feed(still, still, Epoch(0.2, 52.0)).last())
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(still))
     }
 
     @Test
@@ -55,11 +79,10 @@ class WakeDetectorTest {
     fun missingCurrentHeartRateBlocksLightSleep() {
         val detector = WakeDetector()
         detector.feed(still, still, Epoch(0.003, null))
-        // Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
+        // Leichte Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
         assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, null)))
-        // Die Wach-Regel braucht keinen Puls.
-        detector.onEpoch(Epoch(0.5, null))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, null)))
+        // Eine starke Bewegung braucht keinen Puls (Regel S5).
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.5, null)))
     }
 
     @Test
@@ -96,8 +119,9 @@ class WakeDetectorTest {
         // weckt erst neue Bewegung.
         detector.feed(still, still, still)
         detector.rearm()
-        assertEquals(listOf<Decision>(Decision.Wait, Decision.Wait), detector.feed(still, Epoch(0.5, 52.0)))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, 52.0)))
+        // Neue starke Bewegung weckt sanft (Regel S5), eine Epoche vor der Wach-Regel.
+        assertEquals(Decision.Wait, detector.onEpoch(still))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.5, 52.0)))
     }
 
     @Test
@@ -136,13 +160,13 @@ class WakeDetectorTest {
         val detector = WakeDetector()
         val quiet = Epoch(0.03, 52.0)
         detector.feed(quiet, quiet, quiet, quiet, quiet)
-        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
+        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: geweckt).
         assertEquals(
             listOf<Decision>(Decision.Wait, Decision.Wait),
             detector.feed(Epoch(0.12, 52.0), Epoch(0.12, 52.0)),
         )
-        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.2, 52.0)))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.2, 52.0)))
+        // 0.2 liegt darüber: Regel S5 mit derselben Schwelle weckt.
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.2, 52.0)))
     }
 
     @Test
@@ -220,11 +244,11 @@ class WakeDetectorTest {
     @Test
     fun restlessStartIsCappedByTheLearnedFloor() {
         // Gelernt 0.018. Das Fenster beginnt unruhig (0.07–0.09): Ohne Obergrenze Rauschen 0.04 → Wach 0.2,
-        // zweimal 0.14 bliebe still. Mit 1.5 × 0.018 = 0.027 → Wach 0.135: wach.
+        // zweimal 0.14 bliebe still. Mit 1.5 × 0.018 = 0.027 → Wach 0.135: 0.14 weckt (Regel S5).
         val restless = listOf(0.07, 0.09, 0.08, 0.075, 0.085, 0.07, 0.09, 0.08).map { Epoch(it, 60.0) }
         val learned = WakeDetector(DetectorConfig(personalFloor = 0.018))
-        learned.feed(*restless.toTypedArray(), Epoch(0.14, 60.0))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), learned.onEpoch(Epoch(0.14, 60.0)))
+        learned.feed(*restless.toTypedArray())
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), learned.onEpoch(Epoch(0.14, 60.0)))
         // Ohne gelernten Wert wie bisher (Obergrenze 0.04).
         val plain = WakeDetector()
         plain.feed(*restless.toTypedArray(), Epoch(0.14, 60.0))
@@ -238,12 +262,12 @@ class WakeDetectorTest {
         val config = DetectorConfig(personalFloor = 0.03).withOnsetFloor(0.012)
         assertEquals(0.03, NoiseFloor.priorFloor(config))
         assertEquals(0.04, NoiseFloor.windowFloor(restless.map { it.motion }, config)!!, 1e-12)
-        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, zweimal 0.14 weckt.
+        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, 0.14 weckt (S5).
         val higher = DetectorConfig(personalFloor = 0.012).withOnsetFloor(0.018)
         assertEquals(0.027, NoiseFloor.windowFloor(restless.map { it.motion }, higher)!!, 1e-12)
         val detector = WakeDetector(higher)
-        detector.feed(*restless, Epoch(0.14, 60.0))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.14, 60.0)))
+        detector.feed(*restless)
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.14, 60.0)))
         // Zu wenige Werte: das der Einschlaf-Messung gilt vor dem gelernten, auch wenn es tiefer ist.
         assertEquals(0.012, NoiseFloor.windowFloor(listOf(null, 0.5), config)!!, 1e-12)
         // Ruhiger als das bekannte: das eigene des Fensters gilt.
@@ -310,8 +334,8 @@ class WakeDetectorTest {
         assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, 52.0)))
         detector.rearm()
         assertEquals(Decision.Wait, detector.onEpoch(still))
-        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.5, 52.0)))
-        assertEquals(Decision.Wake(WakeReason.AWAKE), detector.onEpoch(Epoch(0.5, 52.0)))
+        // Erst eine neue starke Bewegung weckt (Regel S5).
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.5, 52.0)))
     }
 
     @Test
@@ -340,7 +364,6 @@ class WakeDetectorTest {
     fun personalFloorAppliesBeforeTheWindowHasItsOwn() {
         // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (früher
         // galt 0.002, und 0.03 war leichte Bewegung).
-        val gap = Epoch(null, 52.0)
         val plain = WakeDetector()
         plain.feed(gap, gap, gap, Epoch(0.03, 57.0))
         assertEquals(Decision.Wait, plain.onEpoch(Epoch(0.03, 57.0)))

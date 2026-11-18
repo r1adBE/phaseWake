@@ -61,15 +61,17 @@ public final class WakeDetector {
         if hits(window: config.awakeWindow, threshold: wakeThreshold) >= config.awakeHits {
             return wake(.awake)
         }
-        // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
+        // Leichter Schlaf erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der
-        // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
-        // in den letzten `strongWindow` Epochen, mit derselben Pulsbedingung und denselben Sperren. Die Leicht-Schwelle
-        // liegt nie über der des gelernten Grundrauschens (``NoiseFloor/windowLight(config:floor:)``).
-        let moved = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
-            || hits(window: config.lightWindow,
-                    threshold: NoiseFloor.windowLight(config: config, floor: floor)) >= config.lightHits
-        if floor != nil, moved, heartRateRisen(baseline) {
+        // Puls. Regel S5 («Bewegung zählt»): Eine starke Bewegung (≥ wirksame Wach-Schwelle) in den letzten
+        // `strongWindow` Epochen weckt ohne Pulsbedingung. Die Leicht-Regel (2 leichte Bewegungen) braucht den
+        // Pulsanstieg, sonst weckte sie schon auf Rauschen. Die Leicht-Schwelle liegt nie über der des gelernten
+        // Grundrauschens (``NoiseFloor/windowLight(config:floor:)``).
+        guard floor != nil else { return .wait }
+        let strong = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
+        let light = hits(window: config.lightWindow,
+                         threshold: NoiseFloor.windowLight(config: config, floor: floor)) >= config.lightHits
+        if strong || (light && heartRateRisen(baseline)) {
             return wake(.lightSleep)
         }
         return .wait
@@ -110,7 +112,7 @@ public final class WakeDetector {
 
     /// Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
     /// `heartRateRise` über dem Basispuls `baseline` (``baselineHeartRate()``). Fehlt einer der beiden Werte, ist sie
-    /// nicht erfüllt: Bewegung allein reicht für ``WakeReason/lightSleep`` nicht («Phase nicht behaupten»).
+    /// nicht erfüllt: Leichte Bewegung allein reicht für ``WakeReason/lightSleep`` nicht («Phase nicht behaupten»).
     private func heartRateRisen(_ baseline: Double?) -> Bool {
         guard let baseline else { return false }
         var sum = 0.0

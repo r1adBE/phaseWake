@@ -1,8 +1,9 @@
 # Uhr mit Grundrauschen (Galaxy Watch, Befund 07.11.2026): ruhig liegend 0.019-0.029 m/s², Grundrauschen rund 0.02.
 # Wirksame Schwellen: leicht 2.5 × 0.02 = 0.05, wach max(0.1, 5 × 0.02) ≈ 0.1.
 # Puls steigt in Epoche 18-21 (56 → 60), aber das Rauschen ist keine leichte Bewegung: kein LIGHT_SLEEP
-# (mit der festen Schwelle 0.002 hätte Epoche 19 geweckt). Unruhe in Epoche 40-43 (0.09-0.41): Epoche 41 wach.
-@expect 41 AWAKE
+# (mit der festen Schwelle 0.002 hätte Epoche 19 geweckt). Unruhe in Epoche 40-43 (0.09-0.41): Epoche 40 weckt
+# (Regel S5, ohne Pulsanstieg; bis 18.11.2026: 41 AWAKE).
+@expect 40 LIGHT_SLEEP
 motion,hr
 0.0194,56
 0.0217,56

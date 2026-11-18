@@ -64,8 +64,8 @@ strong_awake_same_epoch.night
 strong_motion_at_wake_threshold.night
 strong_motion_below_wake_threshold.night
 strong_motion_needs_floor.night
-strong_motion_no_hr_rise.night
 strong_motion_window_two.night
+strong_motion_without_hr_rise.night
 validation.vectors
 warmup_ignored.night
 warmup_two.night

@@ -1,9 +1,9 @@
 # Einschlaf-Messung dieser Nacht 0.012, gelernt 0.03: Vorwissen ist das grössere (0.03), Obergrenze
 # 0.045 -> 0.04 (MAX_FLOOR), Wach-Schwelle 0.2. Epoche 10/11 zweimal 0.12: still (früher galt die Einschlaf-Messung
-# zuerst: 0.018 -> Schwelle 0.1, wach). Epoche 18/19 zweimal 0.21: wach.
+# zuerst: 0.018 -> Schwelle 0.1, geweckt). Epoche 18 0.21: Regel S5 weckt ohne Pulsanstieg (bis 18.11.2026: 19 AWAKE).
 @floor 0.03
 @onset-floor 0.012
-@expect 19 AWAKE
+@expect 18 LIGHT_SLEEP
 motion,hr
 0.07,60
 0.09,60

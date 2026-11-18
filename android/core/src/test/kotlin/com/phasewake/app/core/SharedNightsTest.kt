@@ -44,8 +44,8 @@ class SharedNightsTest {
         assertEquals(null, firstWake(byName.getValue("learned_resting_hr")))
         // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still.
         assertEquals(null, firstWake(byName.getValue("restless_start_learned_floor")))
-        // Ohne Übergehen weckt der erste Moment.
-        assertEquals(39, firstWake(byName.getValue("rearm_new_hits")))
+        // Ohne Übergehen weckt der erste Moment (Regel S5: die erste starke Bewegung).
+        assertEquals(38, firstWake(byName.getValue("rearm_new_hits")))
         // Ohne gelerntes Grundrauschen hebt das Fenster die Leicht-Schwelle wie früher: erst zur Zielzeit.
         assertEquals(null, firstWake(byName.getValue("real_window_7")))
     }

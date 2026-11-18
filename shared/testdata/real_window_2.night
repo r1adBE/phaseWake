@@ -1,6 +1,7 @@
 # Echtes Weckfenster (30 Min), ohne Namen aufgezeichnet, Export «phasewake-nights.csv» Nacht 2 (Regel S5, 15.11.2026).
-# Ergebnis mit S5 unverändert.
-@expect 14 AWAKE
+# Mit S5 unverändert; seit «Bewegung zählt» (18.11.2026) weckt die starke Bewegung in Epoche 7 ohne Pulsanstieg
+# (bis dahin 14 AWAKE).
+@expect 7 LIGHT_SLEEP
 motion,hr
 0.025165,58.2
 0.023715,59.3

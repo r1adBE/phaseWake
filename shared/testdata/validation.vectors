@@ -27,18 +27,19 @@ ref	unknown	3661	600-1200:LIGHT,1200-1800:UNKNOWN,1860-2400:DEEP,2400-3000:REM,3
 ref	unknown	100	-
 ref	light	400	0-600:DEEP,300-900:LIGHT
 ref	deep	400	300-900:LIGHT,0-600:DEEP
-# Schatten: Leicht im 1. Fenster, ohne Moment im 2. (Zielzeit, Gleichstand ±60 s: die frühere Phase), Wach im 3.; echter
-# Entscheid 60 s nach dem Ende der Phase (zählt noch)
+# Schatten: Leicht im 1. Fenster, ohne Moment im 2. (Zielzeit, Gleichstand ±60 s: die frühere Phase), im 3. starke
+# Bewegung ohne Pulsanstieg (Regel S5, eine Epoche vor der Wach-Regel); echter Entscheid 60 s nach dem Ende der Phase
+# (zählt noch)
 case	shadows_and_tolerance	Europe/Zurich
 record	60	10*0.02/55 1*0.3/62 89*0.02/55 2*0.3/55 18*0.02/55
 night	450 480 470 LIGHT_SLEEP
 session	30 475 -	30-70:LIGHT,70-104:DEEP,106-130:REM,130-469:LIGHT
 row	1,00:05,shadow,LIGHT_SLEEP,light
 row	1,00:45,shadow,DEADLINE,deep
-row	1,00:51,shadow,AWAKE,rem
+row	1,00:50,shadow,LIGHT_SLEEP,rem
 row	1,06:50,real,LIGHT_SLEEP,light
-sum	night 1: LIGHT_SLEEP real 1/1 shadow 1/1 · target real - shadow deep 1 · hits real 1/1
-sum	all: 1 nights, 1 with reference · LIGHT_SLEEP real 1/1 shadow 1/1 · target real - shadow deep 1 · hits real 1/1
+sum	night 1: LIGHT_SLEEP real 1/1 shadow 2/2 · target real - shadow deep 1 · hits real 1/1
+sum	all: 1 nights, 1 with reference · LIGHT_SLEEP real 1/1 shadow 2/2 · target real - shadow deep 1 · hits real 1/1
 # Nacht ohne Referenz: aufgeführt, zählt nicht
 case	no_reference	Europe/Zurich
 night	450 480 480 DEADLINE
@@ -67,19 +68,20 @@ row	2,07:00,real,EXACT,rem
 sum	night 1: LIGHT_SLEEP real 0/1 shadow - · target real - shadow - · hits real 0/1
 sum	night 2: LIGHT_SLEEP real - shadow - · target real rem 1 shadow rem 1 · hits real 1/1
 sum	all: 2 nights, 2 with reference · LIGHT_SLEEP real 0/1 shadow - · target real rem 1 shadow rem 1 · hits real 1/2
-# Gelernter Ruhepuls wie im echten Fenster: ohne kein Basispuls (Zielzeit), mit Ersatz-Basispuls leichter Schlaf
+# Gelernter Ruhepuls wie im echten Fenster: ohne kein Basispuls (Zielzeit), mit Ersatz-Basispuls leichter Schlaf. Zwei
+# leichte Bewegungen (0.06), weil eine starke seit «Bewegung zählt» auch ohne Puls weckt
 case	without_learned	Europe/Zurich
-record	60	10*0.02/- 1*0.3/70 49*0.02/-
+record	60	10*0.02/- 2*0.06/70 48*0.02/-
 row	1,00:30,shadow,DEADLINE,none
 sum	night 1: no reference
 sum	all: 1 nights, 0 with reference
 case	with_learned	Europe/Zurich
 learned	- 55
-record	60	10*0.02/- 1*0.3/70 49*0.02/-
-row	1,00:05,shadow,LIGHT_SLEEP,none
+record	60	10*0.02/- 2*0.06/70 48*0.02/-
+row	1,00:06,shadow,LIGHT_SLEEP,none
 sum	night 1: no reference
 sum	all: 1 nights, 0 with reference
-# Kalibrierung aus 3 eigenen Nächten vor der Aufzeichnung (Wach-Schwelle 0.05): Wach
+# Kalibrierung aus 3 eigenen Nächten vor der Aufzeichnung (Wach-Schwelle 0.05): starke Bewegung (Regel S5)
 case	calibrated_before	Europe/Zurich
 night	-3870 -3840 -3840 DEADLINE	40*0.008/-
 night	-2430 -2400 -2400 DEADLINE	40*0.008/-
@@ -88,7 +90,7 @@ record	60	20*0.008/55 2*0.07/55 38*0.008/55
 row	1,07:00,real,DEADLINE,none
 row	2,07:00,real,DEADLINE,none
 row	3,07:00,real,DEADLINE,none
-row	4,00:11,shadow,AWAKE,none
+row	4,00:10,shadow,LIGHT_SLEEP,none
 sum	night 1: no reference
 sum	night 2: no reference
 sum	night 3: no reference

@@ -22,9 +22,12 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.onEpoch(still), .wait)
     }
 
+    /// Epoche ohne Bewegungswert: zählt nicht fürs Grundrauschen, Regel S5 wartet, und die Wach-Regel zeigt sich.
+    private let gap = Epoch(motion: nil, heartRate: 52.0)
+
     func testAwakeNeedsTwoOfThree() {
         let detector = WakeDetector()
-        _ = feed(detector, still, still, Epoch(motion: 0.2, heartRate: 52.0), still)
+        _ = feed(detector, gap, gap, Epoch(motion: 0.2, heartRate: 52.0), gap)
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.awake))
     }
 
@@ -32,8 +35,28 @@ final class WakeDetectorTests: XCTestCase {
         let detector = WakeDetector()
         let hit = Epoch(motion: 0.2, heartRate: 52.0)
         // Treffer in Epoche 2 und 5: Fenster 3 erfasst nur einen davon.
-        let decisions = feed(detector, still, still, hit, still, still, hit)
+        let decisions = feed(detector, gap, gap, hit, gap, gap, hit)
         XCTAssertEqual(decisions.last, .wait)
+    }
+
+    func testStrongMotionWakesWithoutHeartRateRise() {
+        // Regel S5 («Bewegung zählt»): eine starke Bewegung genügt, der Puls bleibt 52.
+        let detector = WakeDetector()
+        _ = feed(detector, still, still, still, still)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.lightSleep))
+        // Zwei leichte Bewegungen ohne Pulsanstieg wecken weiterhin nicht.
+        let light = WakeDetector()
+        _ = feed(light, still, still, still, still)
+        XCTAssertEqual(feed(light, Epoch(motion: 0.003, heartRate: 52.0), Epoch(motion: 0.003, heartRate: 52.0)),
+                       [.wait, .wait])
+    }
+
+    func testStrongMotionCountsOnceTheFloorIsKnown() {
+        // Epoche 2: starke Bewegung, aber erst 3 Werte (kein Grundrauschen) → warten. Epoche 3: Grundrauschen bekannt,
+        // die Bewegung liegt noch in den letzten 2 Epochen (Regel S5) → sanft wecken.
+        let detector = WakeDetector()
+        XCTAssertEqual(feed(detector, still, still, Epoch(motion: 0.2, heartRate: 52.0)).last, .wait)
+        XCTAssertEqual(detector.onEpoch(still), .wake(.lightSleep))
     }
 
     func testLightSleepWaitsForHeartRateRise() {
@@ -47,11 +70,10 @@ final class WakeDetectorTests: XCTestCase {
     func testMissingCurrentHeartRateBlocksLightSleep() {
         let detector = WakeDetector()
         _ = feed(detector, still, still, Epoch(motion: 0.003, heartRate: nil))
-        // Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
+        // Leichte Bewegung allein behauptet keinen leichten Schlaf: ohne aktuellen Puls weiter warten.
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.003, heartRate: nil)), .wait)
-        // Die Wach-Regel braucht keinen Puls.
-        _ = detector.onEpoch(Epoch(motion: 0.5, heartRate: nil))
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: nil)), .wake(.awake))
+        // Eine starke Bewegung braucht keinen Puls (Regel S5).
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: nil)), .wake(.lightSleep))
     }
 
     func testAwakeTakesPrecedenceOverLightSleep() {
@@ -83,8 +105,9 @@ final class WakeDetectorTests: XCTestCase {
         // weckt erst neue Bewegung.
         _ = feed(detector, still, still, still)
         detector.rearm()
-        XCTAssertEqual(feed(detector, still, Epoch(motion: 0.5, heartRate: 52.0)), [.wait, .wait])
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.awake))
+        // Neue starke Bewegung weckt sanft (Regel S5), eine Epoche vor der Wach-Regel.
+        XCTAssertEqual(detector.onEpoch(still), .wait)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.lightSleep))
     }
 
     func testFinishWithoutWakeIsDeadline() {
@@ -119,11 +142,11 @@ final class WakeDetectorTests: XCTestCase {
         let detector = WakeDetector()
         let quiet = Epoch(motion: 0.03, heartRate: 52.0)
         _ = feed(detector, quiet, quiet, quiet, quiet, quiet)
-        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: wach).
+        // Rauschen 0.03 → Wach-Schwelle 0.15: zweimal 0.12 reicht nicht mehr (ohne Rauschen: geweckt).
         XCTAssertEqual(feed(detector, Epoch(motion: 0.12, heartRate: 52.0), Epoch(motion: 0.12, heartRate: 52.0)),
                        [.wait, .wait])
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wait)
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.awake))
+        // 0.2 liegt darüber: Regel S5 mit derselben Schwelle weckt.
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.2, heartRate: 52.0)), .wake(.lightSleep))
     }
 
     func testRestlessStartStillWakesWithCappedFloor() {
@@ -205,11 +228,11 @@ final class WakeDetectorTests: XCTestCase {
 
     func testRestlessStartIsCappedByTheLearnedFloor() throws {
         // Gelernt 0.018, das Fenster beginnt unruhig (0.07–0.09). Ohne Obergrenze Wach-Schwelle 0.2; mit
-        // 1.5 × 0.018 = 0.027 → 0.135: zweimal 0.14 weckt.
+        // 1.5 × 0.018 = 0.027 → 0.135: 0.14 weckt (Regel S5), zweimal 0.14 ohne Obergrenze nicht.
         let restless = [0.07, 0.09, 0.08, 0.075, 0.085, 0.07, 0.09, 0.08].map { Epoch(motion: $0, heartRate: 60.0) }
         let learned = WakeDetector(config: try DetectorConfig(personalFloor: 0.018))
-        _ = run(learned, restless + [Epoch(motion: 0.14, heartRate: 60.0)])
-        XCTAssertEqual(learned.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.awake))
+        _ = run(learned, restless)
+        XCTAssertEqual(learned.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.lightSleep))
         // Ohne gelernten Wert wie bisher (Obergrenze 0.04).
         let plain = WakeDetector()
         _ = run(plain, restless + [Epoch(motion: 0.14, heartRate: 60.0)])
@@ -223,13 +246,13 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(NoiseFloor.priorFloor(config), 0.03)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: config)), 0.04,
                        accuracy: 1e-12)
-        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, zweimal 0.14 weckt.
+        // Einschlaf-Messung 0.018 über gelernt 0.012: Obergrenze 1.5 × 0.018 = 0.027 → Wach 0.135, 0.14 weckt (S5).
         let higher = try DetectorConfig(personalFloor: 0.012).withOnsetFloor(0.018)
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor(restless.map(\.motion), config: higher)), 0.027,
                        accuracy: 1e-12)
         let detector = WakeDetector(config: higher)
-        _ = run(detector, restless + [Epoch(motion: 0.14, heartRate: 60.0)])
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.awake))
+        _ = run(detector, restless)
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.14, heartRate: 60.0)), .wake(.lightSleep))
         // Zu wenige Werte: das der Einschlaf-Messung gilt vor dem gelernten, auch wenn es tiefer ist; ruhiger als das
         // bekannte: das eigene des Fensters.
         XCTAssertEqual(try XCTUnwrap(NoiseFloor.windowFloor([nil, 0.5], config: config)), 0.012, accuracy: 1e-12)
@@ -294,8 +317,8 @@ final class WakeDetectorTests: XCTestCase {
         XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.awake))
         detector.rearm()
         XCTAssertEqual(detector.onEpoch(still), .wait)
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wait)
-        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.awake))
+        // Erst eine neue starke Bewegung weckt (Regel S5).
+        XCTAssertEqual(detector.onEpoch(Epoch(motion: 0.5, heartRate: 52.0)), .wake(.lightSleep))
     }
 
     func testInvalidLearnedValuesCountAsNone() {
@@ -328,7 +351,6 @@ final class WakeDetectorTests: XCTestCase {
     func testPersonalFloorAppliesBeforeTheWindowHasItsOwn() throws {
         // Sensor liefert anfangs keine Bewegung: Ohne Grundrauschen wartet die Leicht-Regel (früher
         // galt 0.002, und 0.03 war leichte Bewegung).
-        let gap = Epoch(motion: nil, heartRate: 52.0)
         let plain = WakeDetector()
         _ = feed(plain, gap, gap, gap, Epoch(motion: 0.03, heartRate: 57.0))
         XCTAssertEqual(plain.onEpoch(Epoch(motion: 0.03, heartRate: 57.0)), .wait)

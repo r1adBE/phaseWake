@@ -1,8 +1,9 @@
 # Kurze Nacht, Wecken bis Epoche 40 gesperrt (`@rearm-until 40`: jeder frühere Moment wird übergangen,
 # der Detektor läuft nach rearm() weiter). Unruhe in Epoche 38 und 39 -> übergangen. Früher lag sie in Epoche 40 noch im
-# Fenster der Wach-Regel und weckte genau an der Grenze (Zielzeit − 10 Min). Jetzt braucht es neue Treffer: Epoche 51.
+# Fenster der Regeln und weckte genau an der Grenze (Zielzeit − 10 Min). Jetzt braucht es neue Treffer: Epoche 50
+# (Regel S5 ohne Pulsanstieg; bis 18.11.2026: 51 AWAKE).
 @rearm-until 40
-@expect 51 AWAKE
+@expect 50 LIGHT_SLEEP
 motion,hr
 0.000,52
 0.000,52

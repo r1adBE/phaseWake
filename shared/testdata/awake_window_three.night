@@ -1,6 +1,7 @@
-# Wach-Regel 2 Treffer in 3 Epochen. 0.5 in Epoche 10 und 13 (Abstand 3): kein Wecken (in 4 Epochen schon).
-# Epoche 20/21: wach.
-@expect 21 AWAKE
+# Wach-Regel 2 Treffer in 3 Epochen. 0.5 in Epoche 10 und 13 (Abstand 3), Epoche 20/21 wach.
+# Seit «Bewegung zählt» (18.11.2026) weckt schon die erste starke Bewegung (Epoche 10, Regel S5 ohne Puls); das Fenster
+# der Wach-Regel entscheidet hier nicht mehr (bis dahin: 21 AWAKE).
+@expect 10 LIGHT_SLEEP
 motion,hr
 0,52
 0,52

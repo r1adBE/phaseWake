@@ -8,10 +8,11 @@ Je Regelwert mindestens eine Nacht, die bei einer Änderung kippt – Ruhepuls-B
 (`resting_clamp`), Median der ersten 6 Epochen (`baseline_median_six`), mindestens 2 Pulse (`min_baseline_two`),
 Ersatz-Basispuls × 1.10 (`resting_fallback_factor`), Obergrenze 0.04 und Wach-Faktor 5 (`max_floor_restless`),
 Leicht-Faktor 2.5 (`light_factor`), Grundrauschen ab 4 Werten (`min_floor_epochs_before`/`_after`), Aufwärmphase und
-Fenster der Regeln (`warmup_two`, `awake_window_three`, `light_window_four`), Faktor 1.5 des Vorwissens (`prior_factor`),
+Fenster der Regeln (`warmup_two`, `light_window_four`), Faktor 1.5 des Vorwissens (`prior_factor`),
 Grundrauschen der Einschlaf-Messung (`onset_floor_*`) und Plausibilität des Vorwissens (`low_prior_ignored`,
 `plausible_prior_caps`, `noisy_watch_*_low_prior`). Die Mutationsprüfung dazu (jede geänderte Regel lässt mindestens
-eine Nacht scheitern) liegt nicht im Repo.
+eine Nacht scheitern) liegt nicht im Repo. Seit «Bewegung zählt» (18.11.2026) weckt schon die erste starke Bewegung
+(Regel S5); das Fenster der Wach-Regel prüft `awake_window_three` darum nicht mehr.
 
 Zusätzlich zum Format: `@onset-floor <wert>` (optional, vor der Kopfzeile) – Grundrauschen der Einschlaf-Messung dieser
 Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@floor`. `@rearm-until <index>` (optional, vor der Kopfzeile) – jeder Moment vor dieser Epoche wird übergangen wie bei einer kurzen Nacht (`WakeDetector.rearm`), die Erkennung läuft weiter; `@expect` nennt den ersten Moment danach.
@@ -28,11 +29,16 @@ Eine andere Armlage hebt das Grundrauschen im Fenster auf 0.0296; die Leicht-Sch
 gelernt (PHASENERKENNUNG 3a) und weckt in Epoche 31 statt erst zur Zielzeit. Den Faktor 1.5 × Grundrauschen dieser
 Regel prüfen beide Kerne in `NoiseFloorTest`/`NoiseFloorTests`.
 
-Regel S5 (eine starke Bewegung ≥ wirksame Wach-Schwelle in den letzten 2 Epochen mit
-Pulsanstieg): `real_window_1` bis `_6` sind echte, ohne Namen aufgezeichnete Weckfenster (Nacht 6 = 15.11.2026, jetzt
-Epoche 49 statt Zielzeit; 1–5 unverändert), `strong_motion_at_wake_threshold`/`_below_wake_threshold` (genau an bzw. knapp
-unter der Schwelle), `strong_motion_no_hr_rise`, `strong_motion_window_two`, `strong_motion_needs_floor` und
-`strong_awake_same_epoch` (Wach hat in derselben Epoche Vorrang). `awake_precedes_light` weckt seither in Epoche 15 sanft.
+Regel S5 (eine starke Bewegung ≥ wirksame Wach-Schwelle in den letzten 2 Epochen, seit 18.11.2026 «Bewegung zählt»
+ohne Pulsbedingung): `real_window_1` bis `_6` sind echte, ohne Namen aufgezeichnete Weckfenster (Nacht 6 = 15.11.2026,
+Epoche 49 statt Zielzeit; seit «Bewegung zählt» Nacht 2 Epoche 7 statt 14 AWAKE, Nacht 3 Epoche 3 statt Zielzeit,
+Nacht 4 Epoche 8 statt 9 AWAKE), `strong_motion_at_wake_threshold`/`_below_wake_threshold` (genau an bzw. knapp unter
+der Schwelle), `strong_motion_without_hr_rise` (weckt ohne Pulsanstieg), `strong_motion_window_two`,
+`strong_motion_needs_floor` und `strong_awake_same_epoch`. `awake_precedes_light` weckt seither in Epoche 15 sanft.
+Zwei leichte Bewegungen ohne Pulsanstieg wecken weiterhin nicht (`light_motion_no_hr_rise`, `motion_only_no_hr`).
+Die meisten Nächte, die bis dahin mit der Wach-Regel weckten (`awake`, `max_floor_restless`, `noisy_watch_restless`,
+`onset_floor_*`, `prior_factor`, `rearm_new_hits`, `restless_start_learned_floor` u. a.), wecken eine Epoche früher mit
+`LIGHT_SLEEP`; die Schwellen, die sie prüfen, gelten für S5 gleich.
 
 ## Kalibrierung
 
@@ -66,7 +72,7 @@ neue mit und ohne Akku, nur Beginn, unlesbar, ausserhalb 1970–2100, weiteres F
 `validation.vectors`: Validierungs-Modus (`Validation`, PHASENERKENNUNG 12). Zeilen `ref`:
 Referenzphase an den Grenzen ±60 s (abgedeckt, Beginn, Ende, 59/60/61 s, Gleichstand, «unbekannt» übergangen,
 Überlappung). Fälle `case`: Nächte, Aufzeichnungen, Sitzungen und gelernte Werte mit den erwarteten Zeilen des Exports und
-den Summen – Schattenfenster (leicht, ohne Moment, wach), Nacht ohne Referenz, Stichproben, Zeitzone der Sitzung, 45/44
+den Summen – Schattenfenster (leicht, ohne Moment, starke Bewegung ohne Puls), Nacht ohne Referenz, Stichproben, Zeitzone der Sitzung, 45/44
 von 60 Epochen gemessen, gelernter Ruhepuls und Kalibrierung nur aus Nächten vor der Aufzeichnung. Beide Kerne prüfen alle
 Zeilen.
 

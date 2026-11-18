@@ -41,8 +41,8 @@ final class SharedNightsTests: XCTestCase {
         // Ohne Obergrenze aus dem gelernten Grundrauschen bleibt der unruhige Beginn still.
         XCTAssertNil(firstWake(byName["restless_start_learned_floor"]))
         XCTAssertNotNil(byName["restless_start_learned_floor"])
-        // Ohne Übergehen weckt der erste Moment.
-        XCTAssertEqual(firstWake(byName["rearm_new_hits"]), 39)
+        // Ohne Übergehen weckt der erste Moment (Regel S5: die erste starke Bewegung).
+        XCTAssertEqual(firstWake(byName["rearm_new_hits"]), 38)
         // Ohne gelerntes Grundrauschen hebt das Fenster die Leicht-Schwelle wie früher: erst zur Zielzeit.
         XCTAssertNil(firstWake(byName["real_window_7"]))
         XCTAssertNotNil(byName["real_window_7"])

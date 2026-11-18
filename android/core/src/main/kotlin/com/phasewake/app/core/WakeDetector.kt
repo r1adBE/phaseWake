@@ -58,14 +58,16 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
         if (hits(config.awakeWindow, wakeThreshold) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
-        // Leicht-Regel erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
+        // Leichter Schlaf erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
         // Uhr wie der Galaxy Watch (ruhig 0.02) gegen die Startschwelle 0.002 als Bewegung, und es entschied allein der
-        // Puls. Regel S5: Statt 2 leichter Bewegungen genügt eine starke (≥ wirksame Wach-Schwelle)
-        // in den letzten [STRONG_WINDOW] Epochen, mit derselben Pulsbedingung und denselben Sperren.
-        // Die Leicht-Schwelle liegt nie über der des gelernten Grundrauschens ([NoiseFloor.windowLight]).
-        val moved = hits(STRONG_WINDOW, wakeThreshold) >= 1 ||
-            hits(config.lightWindow, NoiseFloor.windowLight(config, floor)) >= config.lightHits
-        if (floor != null && moved && heartRateRisen(baseline)) {
+        // Puls. Regel S5 («Bewegung zählt»): Eine starke Bewegung (≥ wirksame Wach-Schwelle) in den letzten
+        // [STRONG_WINDOW] Epochen weckt ohne Pulsbedingung. Die Leicht-Regel (2 leichte Bewegungen) braucht den
+        // Pulsanstieg, sonst weckte sie schon auf Rauschen. Die Leicht-Schwelle liegt nie über der des gelernten
+        // Grundrauschens ([NoiseFloor.windowLight]).
+        if (floor == null) return Decision.Wait
+        val strong = hits(STRONG_WINDOW, wakeThreshold) >= 1
+        val light = hits(config.lightWindow, NoiseFloor.windowLight(config, floor)) >= config.lightHits
+        if (strong || (light && heartRateRisen(baseline))) {
             return wake(WakeReason.LIGHT_SLEEP)
         }
         return Decision.Wait
@@ -107,7 +109,8 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
     /**
      * Pulsbedingung: aktueller Puls (Mittel der letzten zwei Epochen) liegt mindestens um
      * [DetectorConfig.heartRateRise] über dem Basispuls [baseline] ([baselineHeartRate]). Fehlt einer der beiden Werte,
-     * ist sie nicht erfüllt: Bewegung allein reicht für [WakeReason.LIGHT_SLEEP] nicht («Phase nicht behaupten»).
+     * ist sie nicht erfüllt: Leichte Bewegung allein reicht für [WakeReason.LIGHT_SLEEP] nicht («Phase nicht
+     * behaupten»).
      */
     private fun heartRateRisen(baseline: Double?): Boolean {
         if (baseline == null) return false
