@@ -90,12 +90,15 @@ final class SleepNotesTests: XCTestCase {
         XCTAssertEqual(SleepNotes.decode(text), ["2026-10-26": ["custom:x"], "2026-10-27": ["CAFFEINE", "STRESS"]])
         XCTAssertEqual(SleepNotes.decode("kaputt\n2026-10-27|SICK\n|x"), ["2026-10-27": ["SICK"]])
         var many: [String: [String]] = [:]
-        for day in 0..<100 { many[SleepNotes.dateString(at("2026-01-01T12:00").addingTimeInterval(Double(day) * 86_400),
+        // So weit wie der Verlauf: 2 Jahre und heute (731 Nachtdaten).
+        for day in 0..<800 { many[SleepNotes.dateString(at("2026-01-01T12:00").addingTimeInterval(Double(day) * 86_400),
                                                         calendar: zurich)] = ["NAP"] }
         let trimmed = SleepNotes.decode(SleepNotes.encode(many))
-        XCTAssertEqual(trimmed.count, 90)
+        XCTAssertEqual(trimmed.count, SleepNotes.maxNights)
+        XCTAssertEqual(SleepNotes.maxNights, 731)
         XCTAssertNil(trimmed["2026-01-01"])
-        XCTAssertNotNil(trimmed["2026-04-10"])
+        XCTAssertNotNil(trimmed[SleepNotes.dateString(at("2026-01-01T12:00").addingTimeInterval(799 * 86_400),
+                                                      calendar: zurich)])
     }
 
     func testCustomNotes() {
