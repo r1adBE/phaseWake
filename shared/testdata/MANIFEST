@@ -40,6 +40,7 @@ noisy_watch_hr_rise_low_prior.night
 noisy_watch_light_sleep.night
 noisy_watch_restless.night
 noisy_watch_restless_low_prior.night
+onset-settling.vectors
 onset_floor_before_learned.night
 onset_floor_caps_window.night
 onset_floor_larger_prior.night
@@ -53,6 +54,7 @@ real_window_4.night
 real_window_5.night
 real_window_6.night
 real_window_7.night
+real_window_8.night
 rearm_new_hits.night
 resting_clamp.night
 resting_fallback_factor.night
@@ -60,6 +62,8 @@ resting_fallback_plateau.night
 restless_start_learned_floor.night
 schedule.vectors
 sensor_gaps.night
+short_night_awake.night
+short_night_turn_ignored.night
 strong_awake_same_epoch.night
 strong_motion_at_wake_threshold.night
 strong_motion_below_wake_threshold.night

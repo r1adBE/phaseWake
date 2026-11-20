@@ -25,6 +25,15 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
     /** Die letzten entscheidbaren Epochen, höchstens [DetectorConfig.maxWindow]. */
     private val recent = ArrayDeque<Epoch>(config.maxWindow)
 
+    /**
+     * Die letzten [AWAKE_BLOCK_WINDOW] entscheidbaren Epochen, auch über übergangene Momente ([rearm]) hinweg, für
+     * [awakeDuringBlock].
+     */
+    private val blockRecent = ArrayDeque<Epoch>(AWAKE_BLOCK_WINDOW)
+
+    /** Wirksame Wach-Schwelle der letzten entscheidbaren Epoche, für [awakeDuringBlock]. */
+    private var lastWakeThreshold = config.wakeThreshold
+
     private var epochIndex = 0
 
     /** Pulse der ersten [DetectorConfig.BASELINE_EPOCHS] Epochen (mindestens der Aufwärmphase), für den Basispuls. */
@@ -49,12 +58,15 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
         if (recent.size == config.maxWindow) recent.removeFirst()
         recent.addLast(epoch)
+        if (blockRecent.size == AWAKE_BLOCK_WINDOW) blockRecent.removeFirst()
+        blockRecent.addLast(epoch)
 
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
         // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt
         // auch das des Fensters ([NoiseFloor.windowFloor]).
         val floor = NoiseFloor.windowFloor(motions, config)
         val wakeThreshold = NoiseFloor.wake(config, floor)
+        lastWakeThreshold = wakeThreshold
         if (hits(config.awakeWindow, wakeThreshold) >= config.awakeHits) {
             return wake(WakeReason.AWAKE)
         }
@@ -138,6 +150,36 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
     }
 
     /**
+     * «Wach geht vor» während der Sperre der kurzen Nacht (`docs/PHASENERKENNUNG.md` Abschnitt 8): mindestens
+     * [AWAKE_BLOCK_EPISODES] getrennte starke Bewegungen (≥ wirksame Wach-Schwelle der letzten Epoche) in den letzten
+     * [AWAKE_BLOCK_WINDOW] Epochen, auch über übergangene Momente hinweg. Getrennt heisst: mindestens eine Epoche
+     * darunter dazwischen; eine leere Epoche trennt nicht. Mehrere starke Epochen nacheinander (eine Drehung über eine
+     * Epochengrenze) zählen einmal; die Wach-Regel (2 von 3) allein genügt während der Sperre darum nicht.
+     */
+    fun awakeDuringBlock(): Boolean {
+        var episodes = 0
+        var strong = false
+        for (epoch in blockRecent) {
+            val motion = epoch.motion ?: continue
+            val now = motion >= lastWakeThreshold
+            if (now && !strong) episodes++
+            strong = now
+        }
+        return episodes >= AWAKE_BLOCK_EPISODES
+    }
+
+    /**
+     * Moment während der Sperre der kurzen Nacht ([ShortNight.blocksEarly]): Ist die Person wach ([awakeDuringBlock]),
+     * gilt er mit [WakeReason.AWAKE]; sonst wird er übergangen ([rearm]) und das Ergebnis ist `null`. Identisch zu
+     * `WakeDetector.onBlocked` (Swift).
+     */
+    fun onBlocked(): Decision.Wake? {
+        if (awakeDuringBlock()) return wake(WakeReason.AWAKE)
+        rearm()
+        return null
+    }
+
+    /**
      * Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (Apple Watch rechnet
      * es zu Beginn der Sitzung nach): gilt ab der nächsten Epoche wie [DetectorConfig.withOnsetFloor]. Identisch zu
      * Swift.
@@ -153,5 +195,11 @@ class WakeDetector(config: DetectorConfig = DetectorConfig()) {
 
         /** Regel S5: Fenster (letzte Epochen inkl. aktueller), in dem eine Bewegung ≥ wirksame Wach-Schwelle genügt. */
         const val STRONG_WINDOW = 2
+
+        /** «Wach geht vor» ([awakeDuringBlock]): Fenster in Epochen (5 Min). */
+        const val AWAKE_BLOCK_WINDOW = 10
+
+        /** «Wach geht vor»: nötige getrennte starke Bewegungen im [AWAKE_BLOCK_WINDOW]. */
+        const val AWAKE_BLOCK_EPISODES = 3
     }
 }

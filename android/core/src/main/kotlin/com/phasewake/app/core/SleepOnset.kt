@@ -68,4 +68,33 @@ object SleepOnset {
         }
         return null
     }
+
+    /**
+     * Ruhe hat begonnen, die Strecke ist aber noch nicht vollständig (Verlängerung der Einschlaf-Messung an der
+     * Zeitgrenze, `docs/PHASENERKENNUNG.md` Abschnitt 6): Beginn der frühesten Strecke, die bis zur letzten Epoche
+     * reicht und nach den Regeln von [find] weiterlaufen kann (erste und letzte Epoche ruhig, dazwischen höchstens
+     * [MAX_TWITCHES] einzelne Zucker, keine leere Epoche, keine zwei bewegten nacheinander), sofern sie kürzer als
+     * [STILL_EPOCHS] ist. Der Puls zählt hier nicht (er entscheidet erst [find]). Sonst `null`; auch, wenn diese
+     * Strecke schon lang genug ist: Dann wartet nichts mehr auf sie. Identisch zu `SleepOnset.settling` (Swift).
+     */
+    fun settling(motions: List<Double?>, threshold: Double = DetectorConfig.DEFAULT_LIGHT_THRESHOLD): Int? {
+        val last = motions.size - 1
+        fun quiet(index: Int): Boolean = motions[index].let { it != null && it < threshold }
+        if (last < 0 || !quiet(last)) return null
+        for (start in 0..last) {
+            if (!quiet(start)) continue
+            var twitches = 0
+            var still = true
+            for (index in start + 1 until last) {
+                if (quiet(index)) continue
+                twitches++
+                if (motions[index] == null || !quiet(index - 1) || !quiet(index + 1) || twitches > MAX_TWITCHES) {
+                    still = false
+                    break
+                }
+            }
+            if (still) return start.takeIf { last - it + 1 < STILL_EPOCHS }
+        }
+        return null
+    }
 }

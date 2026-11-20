@@ -14,7 +14,7 @@ internal data class NightFixture(
      */
     val config: DetectorConfig = DetectorConfig(),
     /**
-     * `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen ([WakeDetector.rearm], kurze Nacht); `null` =
+     * `@rearm-until`: Jeder Moment vor dieser Epoche wird übergangen ([WakeDetector.onBlocked], kurze Nacht); `null` =
      * keiner.
      */
     val rearmUntil: Int? = null,
@@ -25,8 +25,9 @@ internal data class NightFixture(
             val decision = detector.onEpoch(epoch)
             if (decision !is Decision.Wake) continue
             if (rearmUntil != null && index < rearmUntil) {
-                detector.rearm()
-                continue
+                // Kurze Nacht: übergangen, ausser die Person ist wach («Wach geht vor»).
+                val awake = detector.onBlocked() ?: continue
+                return index to awake.reason
             }
             return index to decision.reason
         }

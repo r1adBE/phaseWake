@@ -74,4 +74,33 @@ public enum SleepOnset {
         }
         return nil
     }
+
+    /// Ruhe hat begonnen, die Strecke ist aber noch nicht vollständig (Verlängerung der Einschlaf-Messung an der
+    /// Zeitgrenze, `docs/PHASENERKENNUNG.md` Abschnitt 6): Beginn der frühesten Strecke, die bis zur letzten Epoche
+    /// reicht und nach den Regeln von ``find(_:threshold:heartRates:heartLead:)`` weiterlaufen kann (erste und letzte
+    /// Epoche ruhig, dazwischen höchstens `maxTwitches` einzelne Zucker, keine leere Epoche, keine zwei bewegten
+    /// nacheinander), sofern sie kürzer als `stillEpochs` ist. Der Puls zählt hier nicht. Sonst `nil`; auch, wenn diese
+    /// Strecke schon lang genug ist. Identisch zu `SleepOnset.settling` (Kotlin).
+    public static func settling(_ motions: [Double?],
+                                threshold: Double = DetectorConfig.defaultLightThreshold) -> Int? {
+        func quiet(_ index: Int) -> Bool {
+            if let motion = motions[index] { return motion < threshold }
+            return false
+        }
+        let last = motions.count - 1
+        guard last >= 0, quiet(last) else { return nil }
+        for start in 0...last where quiet(start) {
+            var twitches = 0
+            var still = true
+            for index in (start + 1)..<max(start + 1, last) where !quiet(index) {
+                twitches += 1
+                if motions[index] == nil || !quiet(index - 1) || !quiet(index + 1) || twitches > maxTwitches {
+                    still = false
+                    break
+                }
+            }
+            if still { return last - start + 1 < stillEpochs ? start : nil }
+        }
+        return nil
+    }
 }

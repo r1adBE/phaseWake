@@ -47,4 +47,24 @@ final class SharedNightsTests: XCTestCase {
         XCTAssertNil(firstWake(byName["real_window_7"]))
         XCTAssertNotNil(byName["real_window_7"])
     }
+
+    /// Echte Nacht 19.11.2026: Nur übergehen (ohne «Wach geht vor») weckte erst Epoche 40; mit ihr Epoche 38 `awake`.
+    func testAwakeDuringBlockDecidesTheRealNight() throws {
+        let night = try XCTUnwrap(try NightFixtures.all().first { $0.name == "real_window_8" })
+        let detector = WakeDetector(config: night.config)
+        var first: Int?
+        for (index, epoch) in night.epochs.enumerated() {
+            guard case .wake = detector.onEpoch(epoch) else { continue }
+            if index < 40 {
+                XCTAssertTrue(index == 38 || !detector.awakeDuringBlock(), "Epoche \(index)")
+                detector.rearm()
+                continue
+            }
+            first = index
+            break
+        }
+        XCTAssertEqual(first, 40)
+        XCTAssertEqual(night.firstWake()?.index, 38)
+        XCTAssertEqual(night.firstWake()?.reason, .awake)
+    }
 }

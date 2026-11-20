@@ -38,28 +38,35 @@ internal object OnsetRules {
      * @return Index der ersten Epoche der Strecke, oder `null`.
      */
     fun find(motions: List<Double?>, measured: List<Boolean>, threshold: Double): Int? {
-        fun isMeasured(index: Int): Boolean = index in motions.indices && measured.getOrElse(index) { false }
-        fun quiet(index: Int): Boolean = motions[index].let { it != null && it < threshold }
-        val indices = motions.indices.filter(::isMeasured)
-        for ((position, start) in indices.withIndex()) {
-            if (!quiet(start)) continue
-            var last = start
-            var twitches = 0
-            for (index in indices.subList(position + 1, indices.size)) {
-                if (index - last - 1 > MAX_GAP_EPOCHS) break
-                last = index
-                if (quiet(index)) {
-                    if (index - start + 1 >= SleepOnset.STILL_EPOCHS + SAMPLED_CONFIRM_EPOCHS) return start
-                    continue
-                }
-                twitches++
-                val neighbourMoved = (index - 1 >= start && isMeasured(index - 1) && !quiet(index - 1)) ||
-                    (isMeasured(index + 1) && !quiet(index + 1))
-                if (motions[index] == null || neighbourMoved || twitches > SAMPLED_MAX_TWITCHES) break
-            }
+        val s = SampledStretch(motions, measured, threshold)
+        for (position in s.indices.indices) {
+            val start = s.indices[position]
+            val end = s.stretchEnd(position) ?: continue
+            if (s.confirmed(start, end)) return start
         }
         return null
     }
+
+    /**
+     * Begonnene Ruhe in Stichproben (wie [SleepOnset.settling]): Beginn der frühesten Strecke nach den Regeln von
+     * [find], die ohne Bruch bis zur letzten gemessenen Epoche reicht; diese ist ruhig und höchstens [MAX_GAP_EPOCHS]
+     * vor dem Ende. Ist eine Strecke schon bestätigt oder die bis zum Ende schon lang genug, `null`.
+     */
+    fun settlingSampled(motions: List<Double?>, measured: List<Boolean>, threshold: Double): Int? {
+        val s = SampledStretch(motions, measured, threshold)
+        val last = s.indices.lastOrNull() ?: return null
+        if (!s.quiet(last) || motions.size - 1 - last > MAX_GAP_EPOCHS) return null
+        for (position in s.indices.indices) {
+            val start = s.indices[position]
+            val end = s.stretchEnd(position) ?: continue
+            if (s.confirmed(start, end)) return null
+            if (end == last) return start.takeIf { last - start + 1 < SAMPLED_REQUIRED_EPOCHS }
+        }
+        return null
+    }
+
+    /** Länge einer Strecke in Stichproben von der ersten bis zur letzten Epoche (25 Min). */
+    const val SAMPLED_REQUIRED_EPOCHS = SleepOnset.STILL_EPOCHS + SAMPLED_CONFIRM_EPOCHS
 
     /**
      * Wertet die neuen Epochen ab Index [from] einzeln aus, als kämen sie eine nach der anderen (wie
@@ -157,9 +164,11 @@ internal object OnsetRules {
 
     /**
      * Neues Ende der Einschlaf-Messung bei spätem Einschlafen, oder `null` (aufgeben): nur, wenn bei [at] die
-     * Höchstdauer [maxEnd] erreicht ist (nicht die Grenze [latestGiveUp] vor der Weckzeit), die letzten 15 Min unruhig
-     * waren ([restless]) und der Akku nicht unter [AutoOnset.MIN_BATTERY_PERCENT] liegt (unbekannt hindert nicht). Dann
-     * [at] + [OnsetMonitor.EXTEND_STEP], höchstens [cap] und [latestGiveUp].
+     * Höchstdauer [maxEnd] erreicht ist (nicht die Grenze [latestGiveUp] vor der Weckzeit), die Person noch nicht
+     * entschieden ist und der Akku nicht unter [AutoOnset.MIN_BATTERY_PERCENT] liegt (unbekannt hindert nicht). Noch
+     * nicht entschieden: Die letzten 15 Min waren unruhig ([restless]), dann [at] + [OnsetMonitor.EXTEND_STEP]; oder
+     * es ist ruhig geworden und die Strecke ist noch nicht lang genug ([settleBy], [settleUntil]), dann bis [settleBy],
+     * höchstens [SETTLE_MAX] nach [at]. Beides höchstens [cap] und [latestGiveUp].
      */
     fun extendUntil(
         at: Instant,
@@ -168,12 +177,45 @@ internal object OnsetRules {
         cap: Instant,
         restless: Boolean,
         battery: Int?,
+        settleBy: Instant? = null,
     ): Instant? {
-        if (at.isBefore(maxEnd) || maxEnd.isAfter(latestGiveUp) || !restless) return null
+        if (at.isBefore(maxEnd) || maxEnd.isAfter(latestGiveUp)) return null
+        val wanted = when {
+            restless -> at.plus(OnsetMonitor.EXTEND_STEP)
+            settleBy != null -> minOf(settleBy, at.plus(SETTLE_MAX))
+            else -> return null
+        }
         if (AutoOnset.skipForBattery(battery)) return null
-        val until = minOf(at.plus(OnsetMonitor.EXTEND_STEP), cap, latestGiveUp)
+        val until = minOf(wanted, cap, latestGiveUp)
         return until.takeIf { it.isAfter(at) }
     }
+
+    /**
+     * Ruhig geworden an der Zeitgrenze: höchstens so lange über sie hinaus, bis die begonnene Strecke lang genug ist
+     * ([extendUntil]). Eine Strecke braucht höchstens 25 Min (Stichproben), plus ein Takt: Die Grenze greift nur als
+     * Sicherung.
+     */
+    val SETTLE_MAX: Duration = Duration.ofMinutes(30)
+
+    /**
+     * Begonnene Ruhe an der Zeitgrenze: Beginn der Strecke (Epoche ab dem Beginn der Messung) bei durchgehender Messung
+     * ([continuous], [SleepOnset.settling]) bzw. in Stichproben ([settlingSampled]); `null` ohne.
+     */
+    fun settling(motions: List<Double?>, measured: List<Boolean>, threshold: Double, continuous: Boolean): Int? =
+        if (continuous) SleepOnset.settling(motions, threshold) else settlingSampled(motions, measured, threshold)
+
+    /**
+     * Bis wann die ab Epoche [start] begonnene Strecke ([settling]) lang genug sein kann: ihr Beginn ab [started] plus
+     * [SleepOnset.STILL_EPOCHS] (durchgehend) bzw. [SAMPLED_REQUIRED_EPOCHS] Epochen, dazu ein Takt
+     * ([OnsetMonitor.TICK_INTERVAL]) für die nächste Stichprobe bzw. die nächsten Werte.
+     */
+    fun settleUntil(started: Instant, start: Int, continuous: Boolean): Instant =
+        epochAt(started, start + if (continuous) SleepOnset.STILL_EPOCHS else SAMPLED_REQUIRED_EPOCHS)
+            .plus(OnsetMonitor.TICK_INTERVAL)
+
+    /** Beginn der Epoche [index] einer Messung ab [started]. */
+    fun epochAt(started: Instant, index: Int): Instant =
+        started.plusSeconds(index.toLong() * DetectorConfig.EPOCH_SECONDS)
 
     /**
      * Lernphase: Beginn der Einschlafdauer. Nach «Gute Nacht» ([automatic] `false`) der Beginn [since] (die Person

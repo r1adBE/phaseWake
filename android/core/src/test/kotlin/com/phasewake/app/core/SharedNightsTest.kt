@@ -2,6 +2,7 @@ package com.phasewake.app.core
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /** Prüft alle gemeinsamen Testnächte; dieselben Nächte prüft die Swift-Umsetzung. */
 class SharedNightsTest {
@@ -48,5 +49,26 @@ class SharedNightsTest {
         assertEquals(38, firstWake(byName.getValue("rearm_new_hits")))
         // Ohne gelerntes Grundrauschen hebt das Fenster die Leicht-Schwelle wie früher: erst zur Zielzeit.
         assertEquals(null, firstWake(byName.getValue("real_window_7")))
+    }
+
+    @Test
+    fun awakeDuringBlockDecidesTheRealNight() {
+        // Echte Nacht 19.11.2026: Nur übergehen (ohne «Wach geht vor») weckte erst Epoche 40 mit LIGHT_SLEEP.
+        val night = NightFixtures.all().first { it.name == "real_window_8" }
+        val detector = WakeDetector(night.config)
+        var first: Pair<Int, WakeReason>? = null
+        for ((index, epoch) in night.epochs.withIndex()) {
+            val decision = detector.onEpoch(epoch) as? Decision.Wake ?: continue
+            if (index < 40) {
+                // Bei 29 und 34 erst eine bzw. zwei getrennte Bewegungen: nicht wach.
+                assertTrue(index == 38 || !detector.awakeDuringBlock(), "Epoche $index")
+                detector.rearm()
+                continue
+            }
+            first = index to decision.reason
+            break
+        }
+        assertEquals(40 to WakeReason.LIGHT_SLEEP, first)
+        assertEquals(38 to WakeReason.AWAKE, night.firstWake())
     }
 }

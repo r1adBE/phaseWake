@@ -73,6 +73,23 @@ class SnoozeAndOnsetTest {
         assertEquals(15, SleepOnset.find(motions, 0.002, rates.drop(10)))
     }
 
+    /** Begonnene Ruhe ([SleepOnset.settling]); dieselben Fälle prüft Swift (`AppleOnsetTests`). */
+    @Test
+    fun settlingSharedVectors() {
+        val lines = NightFixtures.directory().resolve("onset-settling.vectors").readLines(Charsets.UTF_8)
+            .filter { it.isNotBlank() && !it.startsWith("#") }
+        for (line in lines) {
+            val p = line.split('\t')
+            assertEquals(3, p.size, line)
+            val motions = if (p[2] == "-") emptyList() else p[2].split(',').flatMap { field ->
+                val parts = field.split('*')
+                List(parts.getOrNull(1)?.toInt() ?: 1) { parts[0].ifEmpty { null }?.toDouble() }
+            }
+            assertEquals(p[0].takeIf { it != "none" }?.toInt(), SleepOnset.settling(motions, p[1].toDouble()), line)
+        }
+        assertEquals(17, lines.size)
+    }
+
     @Test
     fun noOnsetWhileRestless() {
         assertNull(SleepOnset.find(List(29) { 0.0 }))

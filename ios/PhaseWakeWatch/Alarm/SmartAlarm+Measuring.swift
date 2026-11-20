@@ -80,6 +80,7 @@ extension SmartAlarm {
         onsetBedAt = nil
         onsetMeasured = false
         heldWake = nil
+        heldAwake = false
         earlyBlocked = false
         goalMinutes = spec?.sleepDurationMinutes ?? model.sleepGoal
     }
@@ -230,19 +231,29 @@ extension SmartAlarm {
             if case .wake(let reason) = detector.onEpoch(epoch) {
                 // Einschlafzeit noch in Rechnung: Moment merken und entscheiden, sobald sie da ist (`onsetDone`).
                 if onsetPending {
+                    // Wach geht vor: gilt auch für einen gemerkten Moment, falls dann die Sperre gilt.
+                    let awake = detector.awakeDuringBlock()
                     detector.rearm()
-                    if heldWake == nil {
+                    if heldWake == nil || (awake && !heldAwake) {
+                        if heldWake == nil {
+                            DiagStore.shared.log(.phase, "\(reason.rawValue) held, onset pending")
+                        }
                         heldWake = reason
-                        DiagStore.shared.log(.phase, "\(reason.rawValue) held, onset pending")
+                        heldAwake = awake
                     }
                     continue
                 }
                 // Kurze Nacht (wie Android): Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
-                // `ShortNight.lateMinutes` vor der Zielzeit weckt ein neuer Moment.
+                // `ShortNight.lateMinutes` vor der Zielzeit weckt ein neuer Moment. Wach geht vor
+                // (`WakeDetector.onBlocked`): Ist die Person wach, weckt die Uhr trotzdem.
                 if blocksEarly() {
-                    detector.rearm()
-                    noteBlocked(reason)
-                    continue
+                    guard let awake = detector.onBlocked() else {
+                        noteBlocked(reason)
+                        continue
+                    }
+                    DiagStore.shared.log(.phase, "\(awake.rawValue) during \(blockedWhy)")
+                    ring(awake)
+                    return
                 }
                 DiagStore.shared.log(.phase, reason.rawValue)
                 ring(reason)
@@ -263,11 +274,13 @@ extension SmartAlarm {
     /// Früher Moment `reason` übergangen: einmal je Nacht ins Protokoll; zur Zielzeit weckt es mit `shortNight`.
     func noteBlocked(_ reason: WakeReason) {
         if !earlyBlocked {
-            let why = asleepAt == nil ? "short night unknown" : "short night"
-            DiagStore.shared.log(.phase, "\(reason.rawValue) ignored, \(why)")
+            DiagStore.shared.log(.phase, "\(reason.rawValue) ignored, \(blockedWhy)")
         }
         earlyBlocked = true
     }
+
+    /// Grund der Sperre fürs Diagnose-Protokoll (wie Android).
+    var blockedWhy: String { asleepAt == nil ? "short night unknown" : "short night" }
 
     /// Rechnung der Einschlafzeit fertig (oder abgelaufen, `WatchOnset.timeout`): Stand übernehmen und einen
     /// gemerkten frühen Moment jetzt entscheiden. Ein überholtes Ergebnis (`run`) oder eine andere Nacht gilt nicht.
@@ -287,10 +300,17 @@ extension SmartAlarm {
         case .failed: onsetMeasured = true
         }
         guard let held = heldWake else { return }
+        let awake = heldAwake
         heldWake = nil
+        heldAwake = false
         if exactNight { return }
         if blocksEarly() {
-            noteBlocked(held)
+            guard awake else {
+                noteBlocked(held)
+                return
+            }
+            DiagStore.shared.log(.phase, "\(WakeReason.awake.rawValue) during \(blockedWhy)")
+            ring(.awake)
             return
         }
         DiagStore.shared.log(.phase, held.rawValue)

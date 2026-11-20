@@ -270,16 +270,21 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
         val decision = n.detector.onEpoch(epoch)
         if (decision is Decision.Wake) {
             // Kurze Nacht: Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
-            // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment.
+            // [ShortNight.LATE_MINUTES] vor der Zielzeit weckt ein neuer Moment. Wach geht vor
+            // ([WakeDetector.onBlocked]): Ist die Person wach, weckt die Uhr trotzdem.
+            var line = decision.reason.name
             if (ShortNight.blocksEarly(n.asleepAt, Instant.now(), n.goalMinutes, n.plan.target, n.onsetMeasured)) {
-                n.detector.rearm()
                 val why = if (n.asleepAt == null) "short night unknown" else "short night"
-                if (!n.earlyBlocked) app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, $why")
-                n.earlyBlocked = true
-                continue
+                val awake = n.detector.onBlocked()
+                if (awake == null) {
+                    if (!n.earlyBlocked) app.diag.log(DiagKind.PHASE, "${decision.reason.name} ignored, $why")
+                    n.earlyBlocked = true
+                    continue
+                }
+                line = "${awake.reason.name} during $why"
             }
-            n.reason = decision.reason
-            app.diag.log(DiagKind.PHASE, decision.reason.name)
+            n.reason = n.detector.result?.reason ?: decision.reason
+            app.diag.log(DiagKind.PHASE, line)
             ring()
             return
         }

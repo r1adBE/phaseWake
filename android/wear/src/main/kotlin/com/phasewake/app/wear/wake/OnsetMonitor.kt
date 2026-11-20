@@ -38,11 +38,12 @@ import java.time.Instant
  * Epochen ([NoiseFloor]; solange es zu wenige sind, das gelernte [personalFloor]); bei jeder neuen Epoche neu berechnet
  * und auf die ganze Strecke angewendet.
  *
- * Spätes Einschlafen: Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche
- * unruhig ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP] statt aufzugeben, bis höchstens
+ * Spätes Einschlafen: Ist [maxEnd] erreicht und war in den letzten 15 Min eine gemessene Epoche unruhig
+ * ([OnsetRules.restless]), verlängert sich die Messung um je [EXTEND_STEP]; ist es ruhig geworden, die Strecke aber
+ * noch zu kurz ([OnsetRules.settling]), bis sie lang genug sein kann («… (quiet since …)»). Beides bis höchstens
  * [extendCap], nicht unter [com.phasewake.app.wear.schedule.AutoOnset.MIN_BATTERY_PERCENT] Akku
- * ([OnsetRules.extendUntil]); Zeile «… extended until …». Zuvor verschiebt die Zeit ohne Tragen (Ladegerät, Off-Body)
- * die Grenze um ihre Dauer, ebenso höchstens bis [extendCap] ([OnsetRules.awayUntil]; «… (not worn)»).
+ * ([OnsetRules.extendUntil]); Zeile «… extended until …». Zuvor verschiebt die Zeit ohne Tragen die Grenze um ihre
+ * Dauer, ebenso höchstens bis [extendCap] ([OnsetRules.awayUntil]; «… (not worn)»).
  *
  * @param threshold Leicht-Schwelle (Startwert oder kalibriert).
  * @param latestGiveUp 15 Min vor der eingestellten Weckzeit.
@@ -246,7 +247,7 @@ class OnsetMonitor(
         if (!now().isBefore(giveUpAt)) extendOrGiveUp()
     }
 
-    /** An der Zeitgrenze: bei Unruhe in den letzten 15 Min verlängern, sonst ([onGiveUp]) aufgeben. */
+    /** An der Zeitgrenze: bei Unruhe in den letzten 15 Min oder begonnener Ruhe verlängern, sonst aufgeben. */
     private fun extendOrGiveUp() {
         if (reported) return
         val cap = extendCap
@@ -263,19 +264,23 @@ class OnsetMonitor(
             log(DiagKind.MEASURE_START, "$label extended until $awayEnd (not worn)")
             return
         }
-        val restless = OnsetRules.restless(motions, measured, NoiseFloor.light(threshold, floor))
+        val light = NoiseFloor.light(threshold, floor)
+        val restless = OnsetRules.restless(motions, measured, light)
+        val quiet = OnsetRules.settling(motions, measured, light, continuous)
+        val settleBy = quiet?.let { OnsetRules.settleUntil(started, it, continuous) }
         val battery = battery()
-        val until = cap?.let { OnsetRules.extendUntil(at, maxEnd, latestGiveUp, it, restless, battery) }
+        val until = cap?.let { OnsetRules.extendUntil(at, maxEnd, latestGiveUp, it, restless, battery, settleBy) }
         if (until == null) {
             // Nur die Akku-Wache verhindert die Verlängerung: eigene Zeile, die Zeile zum Ende behält ihren Grund.
-            if (cap != null && OnsetRules.extendUntil(at, maxEnd, latestGiveUp, cap, restless, null) != null) {
+            if (cap?.let { OnsetRules.extendUntil(at, maxEnd, latestGiveUp, it, restless, null, settleBy) } != null) {
                 log(DiagKind.BATTERY, "$label not extended: battery $battery")
             }
             giveUp()
             return
         }
         maxEnd = until
-        log(DiagKind.MEASURE_START, "$label extended until $until")
+        val since = quiet?.takeIf { !restless }?.let { " (quiet since ${OnsetRules.epochAt(started, it)})" }
+        log(DiagKind.MEASURE_START, "$label extended until $until${since.orEmpty()}")
     }
 
     /** Alle 5 Minuten (Alarm, weckt die Uhr): Zeitgrenze, Protokollzeile, Stichprobe, nächster Alarm. */

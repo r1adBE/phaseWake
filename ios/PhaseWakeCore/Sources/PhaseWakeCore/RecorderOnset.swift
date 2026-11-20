@@ -11,9 +11,10 @@ import Foundation
 /// - Zeitgrenze: ``maxDuration`` nach dem Beginn bzw. ``giveUpLead`` vor der eingestellten Weckzeit. An der Höchstdauer
 ///   verlängert sich die Messung um die Zeit, in der die Uhr nicht getragen wurde
 /// (``awayUntil(baseEnd:awayEpochs:latestGiveUp:cap:)``),
-///   und bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep``, beides
-///   höchstens bis ``extendCap(since:windowStart:)``. Den Akku dieser Zeit kennt die Uhr nicht: Er hindert hier nicht
-///   (wie ein unbekannter Akku auf der Galaxy Watch).
+///   bei Unruhe in den letzten 15 Min (``restless(_:threshold:)``) um je ``extendStep`` und, wenn es ruhig geworden
+///   ist, die Strecke aber noch zu kurz (``SleepOnset/settling(_:threshold:)``), bis sie lang genug sein kann
+///   (``settleUntil(since:start:)``), alles höchstens bis ``extendCap(since:windowStart:)``. Den Akku dieser Zeit
+///   kennt die Uhr nicht: Er hindert hier nicht (wie ein unbekannter Akku auf der Galaxy Watch).
 ///
 /// Identisch zu `OnsetMonitor` mit durchgehender Messung und `OnsetRules` (Kotlin, Uhr).
 public enum RecorderOnset {
@@ -27,6 +28,10 @@ public enum RecorderOnset {
     public static let giveUpLead: TimeInterval = 15 * 60
     /// Epochen der letzten 15 Min für die Unruhe (wie `OnsetRules.RECENT_EPOCHS`).
     public static let recentEpochs = 30
+    /// Ruhig geworden an der Zeitgrenze: höchstens so lange über sie hinaus (wie `OnsetRules.SETTLE_MAX`).
+    public static let settleMax: TimeInterval = 30 * 60
+    /// Spielraum nach der nötigen Länge der begonnenen Strecke (wie `OnsetMonitor.TICK_INTERVAL`).
+    public static let settleMargin: TimeInterval = 5 * 60
 
     /// Ergebnis der Nachrechnung.
     public enum Result: Equatable, Sendable {
@@ -111,10 +116,13 @@ public enum RecorderOnset {
                    now < until {
                     maxEnd = max(maxEnd, until)
                 } else {
-                    let busy = restless(seen, threshold: NoiseFloor.light(threshold: threshold, floor: floor))
+                    let light = NoiseFloor.light(threshold: threshold, floor: floor)
+                    let busy = restless(seen, threshold: light)
+                    let settleBy = SleepOnset.settling(seen, threshold: light)
+                        .map { settleUntil(since: since, start: $0) }
                     guard let cap = extendCap,
                           let until = extendUntil(at: now, maxEnd: maxEnd, latestGiveUp: latestGiveUp, cap: cap,
-                                                  restless: busy) else {
+                                                  restless: busy, settleBy: settleBy) else {
                         return (.gaveUp(at: now,
                                         reason: giveUpReason(at: now, latestGiveUp: latestGiveUp,
                                                              maxEnd: maxEnd) ?? "give up"), floor)
@@ -143,12 +151,30 @@ public enum RecorderOnset {
     }
 
     /// Neues Ende bei spätem Einschlafen oder `nil` (aufgeben): nur an der Höchstdauer `maxEnd` (nicht an der Grenze
-    /// vor der Weckzeit) und bei Unruhe; dann `at` + ``extendStep``, höchstens `cap` und `latestGiveUp` (wie
-    /// `OnsetRules.extendUntil` mit unbekanntem Akku).
-    public static func extendUntil(at: Date, maxEnd: Date, latestGiveUp: Date, cap: Date, restless: Bool) -> Date? {
-        if at < maxEnd || maxEnd > latestGiveUp || !restless { return nil }
-        let until = min(at.addingTimeInterval(extendStep), cap, latestGiveUp)
+    /// vor der Weckzeit). Bei Unruhe `at` + ``extendStep``; sonst, wenn es ruhig geworden ist und die Strecke noch zu
+    /// kurz (`settleBy`, ``settleUntil(since:start:)``), bis `settleBy`, höchstens ``settleMax`` nach `at`. Beides
+    /// höchstens `cap` und `latestGiveUp` (wie `OnsetRules.extendUntil` mit unbekanntem Akku).
+    public static func extendUntil(at: Date, maxEnd: Date, latestGiveUp: Date, cap: Date, restless: Bool,
+                                   settleBy: Date? = nil) -> Date? {
+        if at < maxEnd || maxEnd > latestGiveUp { return nil }
+        let wanted: Date
+        if restless {
+            wanted = at.addingTimeInterval(extendStep)
+        } else if let settleBy {
+            wanted = min(settleBy, at.addingTimeInterval(settleMax))
+        } else {
+            return nil
+        }
+        let until = min(wanted, cap, latestGiveUp)
         return until > at ? until : nil
+    }
+
+    /// Bis wann die ab Epoche `start` (ab `since`) begonnene Strecke (``SleepOnset/settling(_:threshold:)``) lang genug
+    /// sein kann: ihr Beginn plus ``SleepOnset/stillEpochs`` Epochen plus ``settleMargin`` (wie
+    /// `OnsetRules.settleUntil` bei durchgehender Messung).
+    public static func settleUntil(since: Date, start: Int) -> Date {
+        since.addingTimeInterval(TimeInterval((start + SleepOnset.stillEpochs) * DetectorConfig.epochSeconds)
+                                 + settleMargin)
     }
 
     /// Zeitgrenze, verschoben um die Zeit ohne Tragen (wie `OnsetRules.awayUntil`): `baseEnd` (Beginn

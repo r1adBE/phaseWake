@@ -109,6 +109,9 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     @ObservationIgnored var onsetPending = false
     /// Früher Moment, der kam, während die Einschlafzeit noch gerechnet wurde; entschieden, sobald sie da ist.
     @ObservationIgnored var heldWake: WakeReason?
+    /// Beim gemerkten Moment war die Person wach (`WakeDetector.awakeDuringBlock`): Gilt dann die Sperre der kurzen
+    /// Nacht, weckt er trotzdem mit `awake`.
+    @ObservationIgnored var heldAwake = false
     /// Zählt die Rechnungen der Einschlafzeit; ein überholtes oder zu spätes Ergebnis gilt nicht.
     @ObservationIgnored var onsetRun = 0
     /// Schlafziel der Nacht in Minuten (Schlafdauer des Weckers, sonst das Schlafziel vom iPhone).

@@ -91,6 +91,55 @@ final class AppleOnsetTests: XCTestCase {
         XCTAssertEqual(RecorderOnset.extendCap(since: since, windowStart: minutes(150)), minutes(150))
     }
 
+    /// Begonnene Ruhe (``SleepOnset/settling(_:threshold:)``); dieselben Fälle prüft Kotlin (`SnoozeAndOnsetTest`).
+    func testSettlingSharedVectors() throws {
+        let text = try String(contentsOf: NightFixtures.directory.appendingPathComponent("onset-settling.vectors"),
+                              encoding: .utf8)
+        let lines = text.components(separatedBy: "\n").filter { !$0.isEmpty && !$0.hasPrefix("#") }
+        for line in lines {
+            let p = line.components(separatedBy: "\t")
+            XCTAssertEqual(p.count, 3, line)
+            guard p.count == 3, let threshold = Double(p[1]) else { continue }
+            func expand(_ field: String) -> [Double?] {
+                let parts = field.components(separatedBy: "*")
+                let count = parts.count > 1 ? Int(parts[1]) ?? 1 : 1
+                return [Double?](repeating: parts[0].isEmpty ? nil : Double(parts[0]), count: count)
+            }
+            let motions: [Double?] = p[2] == "-" ? [] : p[2].components(separatedBy: ",").flatMap(expand)
+            XCTAssertEqual(SleepOnset.settling(motions, threshold: threshold), p[0] == "none" ? nil : Int(p[0]), line)
+        }
+        XCTAssertEqual(lines.count, 17)
+    }
+
+    /// An der Höchstdauer ruhig, die Strecke aber noch zu kurz (hier nach einer Lücke im Rekorder, sonst wäre die
+    /// Unruhe noch in den letzten 15 Min): Die Messung wartet, bis sie lang genug sein kann, und findet das Einschlafen
+    /// (wie der Fall 20.11.2026 auf der Galaxy Watch). Unruhig bis zum Ende oder ohne Werte: wie bisher.
+    func testQuietAtTheMaxDurationIsFoundAfterTheExtension() {
+        let cap = RecorderOnset.extendCap(since: since, windowStart: since.addingTimeInterval(9 * 3600))
+        let late: [Double?] = Array(repeating: busy, count: 200) + Array(repeating: nil, count: 15)
+            + Array(repeating: quiet, count: 40)
+        XCTAssertEqual(find(late, cap: cap), .asleep(at: minutes(107.5), index: 215))
+        // Ohne Grenze für Verlängerungen: aufgegeben wie bisher.
+        XCTAssertEqual(find(late), .gaveUp(at: minutes(120), reason: "give up (max duration)"))
+        // Bis zur nötigen Länge (30 Epochen ab dem Beginn der Ruhe) plus 5 Min; höchstens 30 Min nach der Höchstdauer
+        // und nie über die Grenze der Verlängerungen hinaus.
+        XCTAssertEqual(RecorderOnset.settleUntil(since: since, start: 215), minutes(127.5))
+        XCTAssertEqual(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(400),
+                                                 cap: cap, restless: false, settleBy: minutes(127.5)),
+                       minutes(127.5))
+        XCTAssertEqual(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(400),
+                                                 cap: cap, restless: false, settleBy: minutes(170)),
+                       minutes(150))
+        XCTAssertEqual(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(400),
+                                                 cap: minutes(125), restless: false, settleBy: minutes(127.5)),
+                       minutes(125))
+        XCTAssertNil(RecorderOnset.extendUntil(at: minutes(120), maxEnd: minutes(120), latestGiveUp: minutes(400),
+                                               cap: cap, restless: false, settleBy: minutes(120)))
+        // Unruhig bis zum Ende: Schritte von 15 Min bis zur Grenze, dann aufgeben (wie bisher).
+        XCTAssertEqual(find(Array(repeating: busy, count: 600), cap: cap),
+                       .gaveUp(at: minutes(240), reason: "give up (max duration)"))
+    }
+
     /// Grundrauschen der Einschlaf-Messung nur aus den Epochen bis zum erkannten Einschlafen bzw. bis zum
     /// Aufgeben (wie `OnsetMonitor`); lief die Messung ins Weckfenster, keines.
     func testOnsetFloorUpToDetectionOnly() throws {

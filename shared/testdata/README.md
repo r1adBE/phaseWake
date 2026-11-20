@@ -17,6 +17,11 @@ eine Nacht scheitern) liegt nicht im Repo. Seit «Bewegung zählt» (18.11.2026)
 Zusätzlich zum Format: `@onset-floor <wert>` (optional, vor der Kopfzeile) – Grundrauschen der Einschlaf-Messung dieser
 Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@floor`. `@rearm-until <index>` (optional, vor der Kopfzeile) – jeder Moment vor dieser Epoche wird übergangen wie bei einer kurzen Nacht (`WakeDetector.rearm`), die Erkennung läuft weiter; `@expect` nennt den ersten Moment danach.
 
+«Wach geht vor» (kurze Nacht, PHASENERKENNUNG 8): `real_window_8` ist das echte Weckfenster vom 19.11.2026 (Export
+Nacht 10, drei getrennte starke Bewegungen, Epoche 38 `AWAKE` statt 40), `short_night_awake` drei getrennte starke
+Bewegungen in 10 Epochen, `short_night_turn_ignored` die Gegenprobe (Drehung über zwei Epochen und einzelne Bewegungen:
+übergangen). `real_window_1` und `rearm_new_hits` bleiben unverändert.
+
 ## Vollständigkeit
 
 `MANIFEST` listet jede Datei dieses Ordners (ausser `README.md` und `MANIFEST`). Beide Kerne prüfen, dass genau diese Dateien da sind und so viele Nächte bewertet werden: Eine neue Datei gehört in `MANIFEST`, eine fehlende fällt auf.
@@ -66,6 +71,13 @@ der Aufzeichnung. Beide Kerne prüfen alle Zeilen.
 `night-onset.vectors`: je Zeile Grund, Akku und Einschlafen der Uhr (Felder 11 und 12 von `Codec.encodeNight`),
 wie sie gelesen werden, und ob Schreiben genau die Zeile ergibt: alte Stände (6 und 7 Felder, mit Akku),
 neue mit und ohne Akku, nur Beginn, unlesbar, ausserhalb 1970–2100, weiteres Feld einer neueren Version. Beide Kerne prüfen alle Zeilen.
+
+## Begonnene Ruhe der Einschlaf-Messung
+
+`onset-settling.vectors`: je Zeile der erwartete Beginn der begonnenen, noch zu kurzen ruhigen Strecke
+(`SleepOnset.settling`, PHASENERKENNUNG 6, «Ruhe an der Zeitgrenze») oder `none`, die Schwelle und die Bewegung je
+Epoche (Format im Kopf der Datei): leer, zuletzt bewegt, kürzer und genau so lang wie 15 Min, leere Epoche, Zucker,
+zwei bewegte nacheinander, drei Zucker, Rauschen einer Uhr, schon lang genug. Beide Kerne prüfen alle Zeilen.
 
 ## Validierung
 

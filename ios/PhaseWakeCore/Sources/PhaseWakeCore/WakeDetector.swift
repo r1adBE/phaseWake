@@ -12,6 +12,12 @@ public final class WakeDetector {
     /// Regel S5: Fenster (letzte Epochen inkl. aktueller), in dem eine Bewegung ≥ wirksame Wach-Schwelle genügt.
     private static let strongWindow = 2
 
+    /// «Wach geht vor» (``awakeDuringBlock()``): Fenster in Epochen (5 Min), wie `AWAKE_BLOCK_WINDOW` (Kotlin).
+    public static let awakeBlockWindow = 10
+
+    /// «Wach geht vor»: nötige getrennte starke Bewegungen im ``awakeBlockWindow``.
+    public static let awakeBlockEpisodes = 3
+
     /// Startwerte oder kalibrierte Schwellen; das Grundrauschen (``NoiseFloor``) hebt sie je Epoche höchstens an.
     /// Ändert sich nur über ``useOnsetFloor(_:)``.
     public private(set) var config: DetectorConfig
@@ -21,6 +27,12 @@ public final class WakeDetector {
 
     /// Die letzten entscheidbaren Epochen, höchstens `config.maxWindow`.
     private var recent: [Epoch] = []
+
+    /// Die letzten ``awakeBlockWindow`` entscheidbaren Epochen, auch über übergangene Momente (``rearm()``) hinweg.
+    private var blockRecent: [Epoch] = []
+
+    /// Wirksame Wach-Schwelle der letzten entscheidbaren Epoche, für ``awakeDuringBlock()``.
+    private var lastWakeThreshold: Double
 
     private var epochIndex = 0
 
@@ -33,6 +45,7 @@ public final class WakeDetector {
     /// Erzeugt einen Detektor für genau ein Weckfenster.
     public init(config: DetectorConfig = .standard) {
         self.config = config
+        lastWakeThreshold = config.wakeThreshold
         recent.reserveCapacity(config.maxWindow)
     }
 
@@ -52,12 +65,15 @@ public final class WakeDetector {
 
         if recent.count == config.maxWindow { recent.removeFirst() }
         recent.append(epoch)
+        if blockRecent.count == Self.awakeBlockWindow { blockRecent.removeFirst() }
+        blockRecent.append(epoch)
 
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
         // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt
         // auch das des Fensters (``NoiseFloor/windowFloor(_:config:)``).
         let floor = NoiseFloor.windowFloor(motions, config: config)
         let wakeThreshold = NoiseFloor.wake(config: config, floor: floor)
+        lastWakeThreshold = wakeThreshold
         if hits(window: config.awakeWindow, threshold: wakeThreshold) >= config.awakeHits {
             return wake(.awake)
         }
@@ -135,6 +151,33 @@ public final class WakeDetector {
     public func rearm() {
         result = nil
         recent.removeAll(keepingCapacity: true)
+    }
+
+    /// «Wach geht vor» während der Sperre der kurzen Nacht (`docs/PHASENERKENNUNG.md` Abschnitt 8): mindestens
+    /// ``awakeBlockEpisodes`` getrennte starke Bewegungen (≥ wirksame Wach-Schwelle der letzten Epoche) in den letzten
+    /// ``awakeBlockWindow`` Epochen, auch über übergangene Momente hinweg. Getrennt heisst: mindestens eine Epoche
+    /// darunter dazwischen; eine leere Epoche trennt nicht. Identisch zu `WakeDetector.awakeDuringBlock` (Kotlin).
+    public func awakeDuringBlock() -> Bool {
+        var episodes = 0
+        var strong = false
+        for epoch in blockRecent {
+            guard let motion = epoch.motion else { continue }
+            let now = motion >= lastWakeThreshold
+            if now && !strong { episodes += 1 }
+            strong = now
+        }
+        return episodes >= Self.awakeBlockEpisodes
+    }
+
+    /// Moment während der Sperre der kurzen Nacht: Ist die Person wach (``awakeDuringBlock()``), gilt er mit
+    /// ``WakeReason/awake``; sonst wird er übergangen (``rearm()``) und das Ergebnis ist `nil`. Identisch zu Kotlin.
+    public func onBlocked() -> WakeReason? {
+        if awakeDuringBlock() {
+            result = .awake
+            return .awake
+        }
+        rearm()
+        return nil
     }
 
     /// Grundrauschen der Einschlaf-Messung dieser Nacht, das erst nach Fensterbeginn bekannt wird (die Apple Watch

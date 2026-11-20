@@ -1,0 +1,66 @@
+# Gegenprobe zu `short_night_awake`: eine Drehung über zwei Epochen (20, 21) und einzelne starke Bewegungen (30, 39)
+# zählen in keinem Fenster von 10 Epochen dreimal getrennt: alle übergangen. Die Bewegung in Epoche 39 weckt auch nach
+# der Sperre nicht (neue Treffer nötig); ohne Pulsanstieg kommt danach kein Moment.
+@rearm-until 40
+@expect none
+motion,hr
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.500,55
+0.500,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.500,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.500,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
