@@ -203,10 +203,11 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
   `feiertage`, `klaenge` und `screenshots` füllen Workflows. Workflows, die schreiben, haben zwei Jobs:
   Der erste baut mit Leserecht und `persist-credentials: false` und legt das Ergebnis als Artefakt
   ab, der zweite schreibt mit `contents: write` und führt keinen Code aus dem Repo oder aus Paketen aus.
-- **Aufräumen:** Der Workflow «Aufräumen» (montags und von Hand) löscht Arbeitszweige, die vollständig in `main`
-  stecken, abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, und nicht grüne Läufe (rot, abgebrochen,
-  übersprungen) schon nach 7 Tagen; von Hand lassen sich weitere Zweige angeben (gelöscht nur, wenn sie in `main`
-  stecken oder seit über 7 Tagen ruhen).
+- **Aufräumen:** Der Workflow «Aufräumen» (montags und von Hand) löscht Workflow-Läufe samt Artefakten und
+  Protokollen, die älter als 1 Tag sind (es bleiben der neuste abgeschlossene Lauf je Workflow, alle Läufe für den
+  Stand von `main` und «test» und laufende Läufe), Artefakte ohne behaltenen Lauf, Caches, die 7 Tage unbenutzt sind,
+  Releases und Tags ausser «test» und Arbeitszweige, die vollständig in `main` stecken; von Hand lassen sich weitere
+  Zweige angeben (gelöscht nur, wenn sie in `main` stecken oder seit über 7 Tagen ruhen).
 - **CI robust:** Jeder Job hat eine Frist (`timeout-minutes`). Bekommt ein Apple-Job keinen macOS-Runner («not
   acquired by Runner»), startet der Workflow «CI wiederholen» (`ci-retry.yml`, ohne Checkout) nur die gescheiterten
   Jobs neu, bis zum 3. Versuch; scheitert daneben ein anderer Job, bleibt der Lauf rot. Die Watch-Tests installieren

@@ -1,12 +1,14 @@
 name: Aufräumen
 
-# Hält das Repo sauber: löscht abgeschlossene Workflow-Läufe, die älter als 30 Tage sind, nicht grüne Läufe (rot,
-# abgebrochen, übersprungen) schon nach 7 Tagen, und Arbeitszweige, die vollständig in main stecken. Grüne Läufe für
-# den aktuellen Stand von main und für den Stand der Testversion (Tag «test») bleiben immer: Der Store-Build verlangt
-# einen grünen CI-Lauf genau dieses Commits.
-# Datenzweige der Workflows (feiertage, klaenge, screenshots) und main bleiben immer.
-# Von Hand zusätzlich: weitere Zweige zum Löschen angeben – nur, wenn sie in main stecken oder ihr letzter Commit älter als
-# 7 Tage ist (z. B. alte Zwischenstände); andere bleiben und werden gemeldet.
+# Hält GitHub sauber (montags und von Hand):
+# - Workflow-Läufe samt Artefakten und Protokollen: es bleiben der neuste Lauf je Workflow, alle Läufe für den aktuellen
+#   Stand von main und der Testversion (Tag «test»; Testversion und Store-Build verlangen einen grünen CI-Lauf genau
+#   dieses Commits) und laufende Läufe. Alles andere, das älter als 1 Tag ist, geht.
+# - Artefakte, die zu keinem behaltenen Lauf gehören; CI-Caches, die 7 Tage nicht benutzt wurden.
+# - Releases und Tags ausser «test».
+# - Arbeitszweige, die vollständig in main stecken. Datenzweige der Workflows (feiertage, klaenge, screenshots) und main
+#   bleiben immer. Von Hand zusätzlich: weitere Zweige zum Löschen angeben – nur, wenn sie in main stecken oder ihr
+#   letzter Commit älter als 7 Tage ist (z. B. alte Zwischenstände); andere bleiben und werden gemeldet.
 on:
   schedule:
     - cron: "17 3 * * 1"
@@ -41,39 +43,73 @@ jobs:
           # Leer, wenn es den Tag nicht gibt; dann schützt der Vergleich nichts zusätzlich.
           echo "KEEP_MAIN=$(git rev-parse --verify origin/main)" >> "$GITHUB_ENV"
           echo "KEEP_TEST=$(git rev-parse --verify -q 'refs/tags/test^{commit}' || true)" >> "$GITHUB_ENV"
-      - name: Alte Läufe löschen (älter als 30 Tage)
+      - name: Alte Läufe löschen (samt Artefakten und Protokollen)
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
+          SELF: ${{ github.run_id }}
         run: |
           set -euo pipefail
-          cutoff=$(date -u -d '30 days ago' +%Y-%m-%dT%H:%M:%SZ)
-          # Grüne Läufe von main und der Testversion bleiben (KEEP_MAIN, KEEP_TEST).
-          ids=$(gh api --paginate "repos/$REPO/actions/runs?per_page=100&created=<$cutoff" \
-            -q '.workflow_runs[] | select(.status == "completed")
-              | select((.conclusion == "success" and (.head_sha == $ENV.KEEP_MAIN or .head_sha == $ENV.KEEP_TEST)) | not) | .id')
+          cutoff=$(date -u -d '1 day ago' +%Y-%m-%dT%H:%M:%SZ)
+          # Neuste zuerst: der erste Lauf je Workflow bleibt, ebenso Läufe für main/«test», laufende und dieser hier.
+          gh api --paginate "repos/$REPO/actions/runs?per_page=100" \
+            -q '.workflow_runs[] | [.id, .workflow_id, .head_sha, .status, .created_at] | @tsv' > runs.tsv
+          : > keep.txt; : > gone.txt; seen=" "
+          while IFS=$'\t' read -r id wf sha status created; do
+            if [ "$id" = "$SELF" ] || [ "$status" != completed ] || [ "$sha" = "$KEEP_MAIN" ] || [ "$sha" = "$KEEP_TEST" ]; then
+              echo "$id" >> keep.txt
+            elif [ "${seen#* "$wf" }" = "$seen" ]; then
+              echo "$id" >> keep.txt
+            elif [[ "$created" < "$cutoff" ]]; then
+              echo "$id" >> gone.txt
+            else
+              echo "$id" >> keep.txt
+            fi
+            # Nur abgeschlossene Läufe zählen als «neuster je Workflow».
+            [ "$status" = completed ] && case "$seen" in *" $wf "*) ;; *) seen="$seen$wf " ;; esac || true
+          done < runs.tsv
           n=0
-          for id in $ids; do
-            gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))
-          done
-          echo "::notice title=Aufräumen::$n Läufe vor $cutoff gelöscht"
-      - name: Nicht grüne Läufe löschen (älter als 7 Tage)
+          while read -r id; do
+            gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null 2>&1 && n=$((n + 1)) || true
+          done < gone.txt
+          echo "::notice title=Aufräumen::$n Läufe gelöscht, $(wc -l < keep.txt) bleiben"
+      - name: Verwaiste Artefakte und alte Caches löschen
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
+          n=0
+          while IFS=$'\t' read -r id run; do
+            grep -qx "$run" keep.txt && continue
+            gh api -X DELETE "repos/$REPO/actions/artifacts/$id" >/dev/null 2>&1 && n=$((n + 1)) || true
+          done < <(gh api --paginate "repos/$REPO/actions/artifacts?per_page=100" -q '.artifacts[] | [.id, .workflow_run.id] | @tsv')
           cutoff=$(date -u -d '7 days ago' +%Y-%m-%dT%H:%M:%SZ)
-          # Nach 7 Tagen hilft ein roter oder abgebrochener Lauf nicht mehr bei der Fehlersuche; grüne bleiben 30 Tage.
-          ids=$(gh api --paginate "repos/$REPO/actions/runs?per_page=100&status=completed&created=<$cutoff" \
-            -q '.workflow_runs[] | select(.conclusion != "success" and .conclusion != "neutral") | .id')
+          c=0
+          while IFS=$'\t' read -r id used; do
+            [[ "$used" < "$cutoff" ]] || continue
+            gh api -X DELETE "repos/$REPO/actions/caches/$id" >/dev/null 2>&1 && c=$((c + 1)) || true
+          done < <(gh api --paginate "repos/$REPO/actions/caches?per_page=100" -q '.actions_caches[] | [.id, .last_accessed_at] | @tsv')
+          echo "::notice title=Aufräumen::$n Artefakte ohne behaltenen Lauf und $c Caches (7 Tage unbenutzt) gelöscht"
+      - name: Releases und Tags ausser «test» löschen
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
           n=0
-          for id in $ids; do
-            gh api -X DELETE "repos/$REPO/actions/runs/$id" >/dev/null && n=$((n + 1))
+          while IFS=$'\t' read -r id tag; do
+            [ "$tag" = test ] && continue
+            gh api -X DELETE "repos/$REPO/releases/$id" >/dev/null && n=$((n + 1))
+          done < <(gh api --paginate "repos/$REPO/releases" -q '.[] | [.id, .tag_name] | @tsv')
+          for tag in $(gh api --paginate "repos/$REPO/tags" -q '.[].name'); do
+            [ "$tag" = test ] && continue
+            gh api -X DELETE "repos/$REPO/git/refs/tags/$tag" >/dev/null && n=$((n + 1))
           done
-          echo "::notice title=Aufräumen::$n nicht grüne Läufe vor $cutoff gelöscht"
+          echo "::notice title=Aufräumen::$n Releases/Tags gelöscht (nur «test» bleibt)"
       - name: Erledigte Arbeitszweige löschen
         shell: bash
         env:
