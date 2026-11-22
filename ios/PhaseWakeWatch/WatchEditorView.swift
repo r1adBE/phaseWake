@@ -5,24 +5,32 @@ extension AlarmSpec {
     /// Neuer Wecker mit denselben Vorgaben wie im iPhone-Editor: jetzige Uhrzeit, Werktage, Fenster 20 Min.
     static func newOnWatch(now: Date = Date()) -> AlarmSpec {
         let c = Calendar.current.dateComponents([.hour, .minute], from: now)
-        // Werte im gültigen Bereich; die Prüfung kann nicht scheitern.
-        return try! AlarmSpec(
+        // Ungültige Werte werden begrenzt statt abzustürzen (Diagnose-Zeile).
+        return ClampedSpec(
             id: UUID().uuidString, hour: c.hour ?? 7, minute: c.minute ?? 0,
             days: [.monday, .tuesday, .wednesday, .thursday, .friday]
-        )
+        ).loggedSpec
     }
 
     /// Kopie mit Zeit, Fenster, Tagen, Ein/Aus und «Nächstes Mal überspringen» aus `draft`; alles andere
     /// (Sonnenaufgang, Töne, iPhone-Wecker, Aufgabe, Schlafdauer, Name, Feiertage) bleibt, wie es am iPhone eingestellt
     /// ist.
     func editedOnWatch(from draft: AlarmSpec) -> AlarmSpec {
-        // Werte stammen aus gültigen Weckern; die Prüfung kann nicht scheitern.
-        try! AlarmSpec(
+        // Ungültige Werte werden begrenzt statt abzustürzen (Diagnose-Zeile), wie `mergeEdit` auf der Galaxy Watch.
+        ClampedSpec(
             id: id, hour: draft.hour, minute: draft.minute, days: draft.days, windowMinutes: draft.windowMinutes,
             enabled: draft.enabled, phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes,
             sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice,
             skipUntil: draft.skipUntil, skipHolidays: skipHolidays
-        )
+        ).loggedSpec
+    }
+}
+
+extension ClampedSpec {
+    /// Der gültige Wecker; wurde etwas begrenzt, steht `diagLine` im Diagnose-Protokoll der Uhr.
+    var loggedSpec: AlarmSpec {
+        if let line = diagLine { DiagStore.shared.log(.error, line) }
+        return spec
     }
 }
 
@@ -162,8 +170,11 @@ struct WatchEditorView: View {
     }
 
     /// Stand des Editors; Überspringen wie beim Öffnen (das Modell wendet `skipRequest` über `editedSkip` an).
-    private var draft: AlarmSpec? {
-        try? AlarmSpec(
+    private var draft: AlarmSpec? { clampedDraft.spec }
+
+    /// Stand des Editors auf gültige Werte begrenzt (``ClampedSpec``, wie `mergeFields` auf der Galaxy Watch).
+    private var clampedDraft: ClampedSpec {
+        ClampedSpec(
             id: start.id, hour: hour, minute: minute, days: days, windowMinutes: window, enabled: enabled,
             phone: start.phone, watchSound: start.watchSound, sleepDurationMinutes: start.sleepDurationMinutes,
             sound: start.sound, label: start.label, sunrise: start.sunrise, wakeTask: start.wakeTask,
@@ -193,7 +204,9 @@ struct WatchEditorView: View {
         case .full: full = true; return
         case .save: break
         }
-        if let draft { model.save(draft, skip: skipRequest) }
+        let checked = clampedDraft
+        if let line = checked.diagLine { DiagStore.shared.log(.error, line) }
+        model.save(checked.spec, skip: skipRequest)
         dismiss()
     }
 

@@ -229,9 +229,12 @@ struct OnboardingView: View {
 
     private func createAlarm() {
         let c = Calendar.current.dateComponents([.hour, .minute], from: time)
-        guard let spec = try? AlarmSpec(id: UUID().uuidString, hour: c.hour ?? 7, minute: c.minute ?? 0,
-                                        days: [.monday, .tuesday, .wednesday, .thursday, .friday],
-                                        windowMinutes: Int(window)) else { return }
+        // Ungültige Werte werden begrenzt statt verworfen (``ClampedSpec``), mit Diagnose-Zeile.
+        let checked = ClampedSpec(id: UUID().uuidString, hour: c.hour ?? 7, minute: c.minute ?? 0,
+                                  days: [.monday, .tuesday, .wednesday, .thursday, .friday],
+                                  windowMinutes: Int(window))
+        if let line = checked.diagLine { DiagStore.shared.log(.error, line) }
+        let spec = checked.spec
         model.upsert(spec)
         created = spec
     }

@@ -207,7 +207,9 @@ object Transient {
     /** Wecker zum Plan: Weckart aus [base], Zielzeit als Uhrzeit, einmalig, ohne Aufgabe, Licht und Namen. */
     private fun specFor(plan: WakePlan, base: AlarmSpec?, zone: ZoneId): AlarmSpec {
         val local = plan.target.atZone(zone)
-        return AlarmSpec(
+        // Stunde und Minute aus der Zeitzone, Mindestfenster, Kennung mit Präfix: `changes` ist immer leer. Der Kern
+        // hat keine Diagnose; begrenzt würde trotzdem statt abzustürzen (wie Swift).
+        return ClampedSpec(
             id = plan.alarmId,
             hour = local.hour,
             minute = local.minute,
@@ -215,7 +217,7 @@ object Transient {
             phone = base?.phone ?: PhoneAlert.SOUND,
             watchSound = base?.watchSound ?: false,
             sound = base?.sound.orEmpty(),
-        )
+        ).spec
     }
 }
 

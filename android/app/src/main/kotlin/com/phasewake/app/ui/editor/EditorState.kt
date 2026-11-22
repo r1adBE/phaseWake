@@ -11,6 +11,7 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.setValue
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.ClampedSpec
 import com.phasewake.app.core.PhoneAlert
 import com.phasewake.app.core.Sunrise
 import com.phasewake.app.core.SunriseDevice
@@ -51,25 +52,35 @@ internal class EditorState(val base: AlarmSpec) {
 
     /**
      * Der Wecker mit den Eingaben; eingeschaltet, Name ohne Leerraum am Rand. Ein übersprungener Termin bleibt nur
-     * bei gleicher Zeit und gleichen Tagen ([AlarmSchedule.keepSkip]).
+     * bei gleicher Zeit und gleichen Tagen ([AlarmSchedule.keepSkip]). Ungültige Werte begrenzt [clamped].
      */
     @OptIn(ExperimentalMaterial3Api::class)
-    fun result(time: TimePickerState): AlarmSpec = base.copy(
+    fun result(time: TimePickerState): AlarmSpec =
+        clamped(time).spec.let { edited -> edited.copy(skipUntil = AlarmSchedule.keepSkip(base, edited)) }
+
+    /**
+     * Die Eingaben auf gültige Werte begrenzt statt abzustürzen ([ClampedSpec]); «Überspringen» noch wie in [base].
+     * Die Diagnose-Zeile ([ClampedSpec.diagLine]) schreibt das Speichern.
+     */
+    @OptIn(ExperimentalMaterial3Api::class)
+    fun clamped(time: TimePickerState): ClampedSpec = ClampedSpec(
+        id = base.id,
         hour = time.hour,
         minute = time.minute,
-        skipHolidays = skipHolidays,
         days = days,
         windowMinutes = window.roundToInt(),
-        sleepDurationMinutes = if (sleepMode) sleepMinutes.roundToInt() else null,
+        enabled = true,
         phone = phone,
         watchSound = watchSound,
         sound = sound,
+        sleepDurationMinutes = if (sleepMode) sleepMinutes.roundToInt() else null,
         label = label.trim(),
         sunrise = sunrise,
         sunriseDevice = sunriseDevice,
         wakeTask = wakeTask,
-        enabled = true,
-    ).let { edited -> edited.copy(skipUntil = AlarmSchedule.keepSkip(base, edited)) }
+        skipUntil = base.skipUntil,
+        skipHolidays = skipHolidays,
+    )
 
     companion object {
         /** Vorschlag der Schlafdauer im Einschlaf-Modus in Minuten (7 h 30 min). */

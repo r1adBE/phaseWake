@@ -351,8 +351,9 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
+          # Mit Abdeckung: Schwellen für das Wecken der Apple Watch nach den Tests.
           xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
-            -derivedDataPath build/DerivedData \
+            -derivedDataPath build/DerivedData -enableCodeCoverage YES \
             CODE_SIGNING_ALLOWED=NO build-for-testing >> build.log 2>&1
       # Unit-Tests der Apps, in der App als Testwirt: Lernphase, Export, Nacht-Check, Widget-Stand (iPhone);
       # Aufzeichnung, Erinnerung am Abend, Smart Alarm, Einschlafzeit (Uhr).
@@ -405,7 +406,7 @@ jobs:
             local rc=0
             rm -rf build/watch.xcresult
             xcodebuild -project ios/PhaseWake.xcodeproj -scheme PhaseWakeWatch -destination "id=$WATCH_SIM" \
-              -derivedDataPath build/DerivedData -resultBundlePath build/watch.xcresult \
+              -derivedDataPath build/DerivedData -resultBundlePath build/watch.xcresult -enableCodeCoverage YES \
               -test-timeouts-enabled YES -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
               CODE_SIGNING_ALLOWED=NO test-without-building > build/watch-test.log 2>&1 || rc=$?
             cat build/watch-test.log >> build.log
@@ -419,6 +420,17 @@ jobs:
             run_watch_tests
           fi
           grep -E "Executed [0-9]+ tests?" build.log | tail -1 | sed 's/^/::notice title=Tests Watch-App::/'
+      - name: Abdeckung Wecken der Apple Watch
+        shell: bash
+        run: |
+          set -o pipefail
+          # Je Datei eine Schwelle, 5 Punkte unter dem ersten gemessenen Stand (docs/ENTWICKLUNG.md, Abschnitt 4).
+          # Sitzung, Messen und Klingeln (SmartAlarm+Session, +Measuring, +Ringing) erreichen die Unit-Tests heute nicht
+          # (0–2 %); sie brauchen eine laufende Sitzung von watchOS und haben noch keine Schwelle (docs/OFFEN.md 11zb).
+          xcrun xccov view --report --json build/watch.xcresult > build/watch-coverage.json
+          python3 .github/scripts/xccov_check.py "Watch-Wecken" build/watch-coverage.json \
+            ios/PhaseWakeWatch/Alarm/NightRules.swift=95 ios/PhaseWakeWatch/Alarm/SessionRules.swift=95 \
+            ios/PhaseWakeWatch/Alarm/SmartAlarm+Upcoming.swift=75 ios/PhaseWakeWatch/Alarm/SmartAlarm.swift=29
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash

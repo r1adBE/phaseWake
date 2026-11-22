@@ -325,9 +325,13 @@ struct EditorView: View {
             || existing.skipHolidays
     }
 
-    private func current() -> AlarmSpec? {
+    private func current() -> AlarmSpec? { clamped().spec }
+
+    /// Die Eingaben auf gültige Werte begrenzt statt verworfen (``ClampedSpec``, wie der Editor auf Android); die
+    /// Diagnose-Zeile schreibt das Speichern.
+    private func clamped() -> ClampedSpec {
         let c = Calendar.current.dateComponents([.hour, .minute], from: time)
-        return try? AlarmSpec(
+        return ClampedSpec(
             id: existing?.id ?? newId,
             hour: c.hour ?? 7,
             minute: c.minute ?? 0,
@@ -364,9 +368,10 @@ struct EditorView: View {
         case .save: break
         }
         // Geänderte Zeit oder Tage heben das Überspringen auf (wie Android und die Uhren).
-        if let spec = current() {
-            model.upsert(existing.map { spec.with(skipUntil: AlarmSchedule.keepSkip(old: $0, edited: spec)) } ?? spec)
-        }
+        let checked = clamped()
+        if let line = checked.diagLine { DiagStore.shared.log(.error, line) }
+        let spec = checked.spec
+        model.upsert(existing.map { spec.with(skipUntil: AlarmSchedule.keepSkip(old: $0, edited: spec)) } ?? spec)
         dismiss()
     }
 }

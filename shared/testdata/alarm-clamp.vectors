@@ -1,0 +1,36 @@
+# Wecker auf gültig begrenzen (ClampedSpec): je Zeile Eingabe, Erwartung Android, Erwartung Apple, mit Tabulator
+# getrennt. Android erlaubt Fenster bis 60 Min, Apple bis 30; jeder Kern prüft seine Spalte.
+# Eingabe «id|hour|minute|windowMinutes|sleepDurationMinutes»: Schlafdauer «-» = keine, Kennung leer oder nur
+# Leerzeichen = ungültig. Erwartung «hour|minute|windowMinutes|sleepDurationMinutes|Diagnose»: Diagnose ist
+# ClampedSpec.diagLine oder «-» (nichts begrenzt). Eine gültige Kennung bleibt, eine ungültige wird eine neue UUID.
+# Gültige Werte bleiben, ohne Diagnose
+a|7|0|20|-	7|0|20|-|-	7|0|20|-|-
+a|0|0|0|-	0|0|0|-|-	0|0|0|-|-
+a|23|59|10|60	23|59|10|60|-	23|59|10|60|-
+a|6|30|30|720	6|30|30|720|-	6|30|30|720|-
+a|6|30|20|450	6|30|20|450|-	6|30|20|450|-
+# Fenster: Android bis 60, Apple bis 30; «Genau» (0) bleibt, sonst mindestens 10 (auch negativ)
+a|7|0|45|-	7|0|45|-|-	7|0|30|-|SPEC clamped windowMinutes 45->30
+a|7|0|60|-	7|0|60|-|-	7|0|30|-|SPEC clamped windowMinutes 60->30
+a|7|0|31|-	7|0|31|-|-	7|0|30|-|SPEC clamped windowMinutes 31->30
+a|7|0|61|-	7|0|60|-|SPEC clamped windowMinutes 61->60	7|0|30|-|SPEC clamped windowMinutes 61->30
+a|7|0|90|-	7|0|60|-|SPEC clamped windowMinutes 90->60	7|0|30|-|SPEC clamped windowMinutes 90->30
+a|7|0|5|-	7|0|10|-|SPEC clamped windowMinutes 5->10	7|0|10|-|SPEC clamped windowMinutes 5->10
+a|7|0|9|-	7|0|10|-|SPEC clamped windowMinutes 9->10	7|0|10|-|SPEC clamped windowMinutes 9->10
+a|7|0|1|-	7|0|10|-|SPEC clamped windowMinutes 1->10	7|0|10|-|SPEC clamped windowMinutes 1->10
+a|7|0|-5|-	7|0|10|-|SPEC clamped windowMinutes -5->10	7|0|10|-|SPEC clamped windowMinutes -5->10
+# Stunde 0–23, Minute 0–59
+a|24|0|20|-	23|0|20|-|SPEC clamped hour 24->23	23|0|20|-|SPEC clamped hour 24->23
+a|-1|0|20|-	0|0|20|-|SPEC clamped hour -1->0	0|0|20|-|SPEC clamped hour -1->0
+a|7|-1|20|-	7|0|20|-|SPEC clamped minute -1->0	7|0|20|-|SPEC clamped minute -1->0
+a|7|60|20|-	7|59|20|-|SPEC clamped minute 60->59	7|59|20|-|SPEC clamped minute 60->59
+# Schlafdauer 60–720 Minuten; keine bleibt keine
+a|7|0|20|30	7|0|20|60|SPEC clamped sleepDurationMinutes 30->60	7|0|20|60|SPEC clamped sleepDurationMinutes 30->60
+a|7|0|20|59	7|0|20|60|SPEC clamped sleepDurationMinutes 59->60	7|0|20|60|SPEC clamped sleepDurationMinutes 59->60
+a|7|0|20|721	7|0|20|720|SPEC clamped sleepDurationMinutes 721->720	7|0|20|720|SPEC clamped sleepDurationMinutes 721->720
+a|7|0|20|0	7|0|20|60|SPEC clamped sleepDurationMinutes 0->60	7|0|20|60|SPEC clamped sleepDurationMinutes 0->60
+# Leere Kennung: neue UUID (nicht in der Diagnose)
+|7|0|20|-	7|0|20|-|SPEC clamped id empty->new	7|0|20|-|SPEC clamped id empty->new
+ |7|0|20|-	7|0|20|-|SPEC clamped id empty->new	7|0|20|-|SPEC clamped id empty->new
+# Mehrere Felder: Reihenfolge id, hour, minute, windowMinutes, sleepDurationMinutes, mit «, » getrennt
+|24|61|45|900	23|59|45|720|SPEC clamped id empty->new, hour 24->23, minute 61->59, sleepDurationMinutes 900->720	23|59|30|720|SPEC clamped id empty->new, hour 24->23, minute 61->59, windowMinutes 45->30, sleepDurationMinutes 900->720

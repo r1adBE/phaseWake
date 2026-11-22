@@ -180,12 +180,13 @@ public enum Transient {
     private static func specFor(_ plan: WakePlan, base: AlarmSpec?, calendar: Calendar, sunrise: Sunrise,
                                 sunriseDevice: SunriseDevice) -> AlarmSpec {
         let local = calendar.dateComponents([.hour, .minute], from: plan.target)
-        // Stunde 0–23 und Minute 0–59 aus dem Kalender, Mindestfenster: Die Prüfung kann nicht scheitern.
-        return try! AlarmSpec(
+        // Stunde 0–23 und Minute 0–59 aus dem Kalender, Mindestfenster, Kennung mit Präfix: `changes` ist immer leer.
+        // Der Kern hat keine Diagnose; begrenzt würde trotzdem statt abzustürzen (wie Kotlin).
+        return ClampedSpec(
             id: plan.alarmId, hour: local.hour ?? 0, minute: local.minute ?? 0,
             windowMinutes: AlarmSpec.minWindowMinutes,
             phone: base?.phone ?? .sound, watchSound: base?.watchSound ?? false, sound: base?.sound ?? "",
             sunrise: sunrise, sunriseDevice: sunriseDevice
-        )
+        ).spec
     }
 }

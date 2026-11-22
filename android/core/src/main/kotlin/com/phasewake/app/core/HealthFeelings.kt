@@ -69,9 +69,9 @@ object HealthFeelings {
      * geweckte mit Befinden), dazu [health] für Nachtdaten ohne eigenes Befinden.
      */
     fun byDate(nights: List<NightRecord>, health: List<HealthFeeling>, zone: ZoneId): Map<LocalDate, Int> {
-        val own = nights.filter { it.feeling != null }
-            .groupBy { SleepNotes.nightDate(it, zone) }
-            .mapValues { (_, list) -> list.maxBy { it.wokeAt }.feeling!! }
+        val own = nights.mapNotNull { night -> night.feeling?.let { night to it } }
+            .groupBy { SleepNotes.nightDate(it.first, zone) }
+            .mapValues { (_, list) -> list.maxBy { it.first.wokeAt }.second }
         // Mehrere Einträge am selben Nachtdatum: der erste zählt (wie in Swift).
         return health.filter { it.date !in own }.distinctBy { it.date }.associate { it.date to it.feeling } + own
     }

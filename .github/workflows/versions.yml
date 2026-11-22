@@ -9,6 +9,11 @@ on:
 permissions:
   contents: read
 
+# Ein Lauf genügt: Startet ein zweiter (z. B. von Hand während des monatlichen), bricht der laufende ab.
+concurrency:
+  group: versions
+  cancel-in-progress: true
+
 jobs:
   versions:
     runs-on: ubuntu-latest

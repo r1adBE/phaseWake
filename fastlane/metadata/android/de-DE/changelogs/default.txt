@@ -1,0 +1,7 @@
+Erste Version von Phase Wake.
+• Weckt dich im Weckfenster, sobald du unruhig wirst – spätestens pünktlich zur Zielzeit (Galaxy Watch bis 60 Min)
+• Lernphase: passt den Wecker in 7 Nächten an dich an
+• Kurze Nacht: weckt nicht zu früh, wenn du wenig geschlafen hast
+• Sonnenaufgang, sanfte Wecktöne, Schlummern
+• Verlauf, Trends und Morgenbericht
+• Ohne Konto, ohne Internet, ohne Abo

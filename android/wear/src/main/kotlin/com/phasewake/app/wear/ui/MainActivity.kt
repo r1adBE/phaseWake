@@ -20,6 +20,7 @@ import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.TransientConflict
 import com.phasewake.app.wear.PhaseWakeWear
@@ -216,8 +217,10 @@ private fun saveDraft(app: PhaseWakeWear, current: AlarmSpec, request: Boolean?,
             val zone = ZoneId.systemDefault()
             val doneAt = app.scheduler.doneUntil()[current.id]
             val holidays = app.holidays.current()
+            val stored = list.firstOrNull { it.id == current.id }
+            stored?.let { mergeFields(it, current).diagLine }?.let { app.diag.log(DiagKind.ERROR, it) }
             val merged = savedEdit(
-                list.firstOrNull { it.id == current.id },
+                stored,
                 current,
                 request,
                 Instant.now(),

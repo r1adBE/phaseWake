@@ -38,10 +38,10 @@ import kotlinx.coroutines.launch
  * Startzeit und Wecker liegen in [GoodNightState]. Endet der Prozess, nimmt der Prüf-Alarm
  * (alle 15 Minuten) den Modus mit [requestedAlarmId] `null` wieder auf. Die Einschlaf-Erkennung beginnt nur dann von
  * vorn, wenn das vor dem Beginn der Einschlafdauer geschieht (automatisch: vor der Bettzeit). Sonst gilt die Regel des
- * späten Starts ([OnsetRules.lateStart], `docs/PHASENERKENNUNG.md` Abschnitt 8): im Hintergrund ist die Einschlafzeit
- * unbekannt, die Messung endet gleich (nicht gemessen) und die eingestellte Weckzeit gilt; nur bei sichtbarer App misst
- * sie ab jetzt. Nach «Gute Nacht» von Hand ist eine Wiederaufnahme immer spät, denn die Einschlafdauer beginnt mit dem
- * Tippen.
+ * späten Starts ([OnsetRules.lateStart], `docs/PHASENERKENNUNG.md` Abschnitt 6, «Später Beginn»): im Hintergrund ist
+ * die Einschlafzeit unbekannt, die Messung endet gleich (nicht gemessen) und die eingestellte Weckzeit gilt; nur bei
+ * sichtbarer App misst sie ab jetzt. Nach «Gute Nacht» von Hand ist eine Wiederaufnahme immer spät, denn die
+ * Einschlafdauer beginnt mit dem Tippen.
  *
  * Die Messung endet spätestens [OnsetMonitor.MAX_DURATION] nach ihrem ersten Beginn ([GoodNightState]) und
  * 15 Min vor der eingestellten Weckzeit; dann gilt diese, und für die Nacht startet keine automatische Messung mehr.

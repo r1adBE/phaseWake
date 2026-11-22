@@ -163,6 +163,21 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
         if let sleep = sleepDurationMinutes, !(Self.minSleepMinutes...Self.maxSleepMinutes).contains(sleep) {
             throw DetectorConfigError(message: "sleepDurationMinutes ausserhalb 60–720")
         }
+        self.init(
+            valid: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes, enabled: enabled,
+            phone: phone, watchSound: watchSound, sleepDurationMinutes: sleepDurationMinutes, sound: sound,
+            label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice, skipUntil: skipUntil,
+            skipHolidays: skipHolidays
+        )
+    }
+
+    /// Ohne Prüfung: nur für Werte, die die Regeln des öffentlichen `init` schon erfüllen (geprüft dort oder auf
+    /// gültig begrenzt von ``ClampedSpec``).
+    init(
+        valid id: String, hour: Int, minute: Int, days: Set<Weekday>, windowMinutes: Int, enabled: Bool,
+        phone: PhoneAlert, watchSound: Bool, sleepDurationMinutes: Int?, sound: String, label: String,
+        sunrise: Sunrise, wakeTask: WakeTask, sunriseDevice: SunriseDevice, skipUntil: Int64, skipHolidays: Bool
+    ) {
         self.id = id
         self.hour = hour
         self.minute = minute
@@ -209,13 +224,14 @@ public struct AlarmSpec: Equatable, Sendable, Identifiable {
     public func with(skipHolidays: Bool) -> AlarmSpec { copy(skipHolidays: skipHolidays) }
 
     private func copy(enabled: Bool? = nil, skipUntil: Int64? = nil, skipHolidays: Bool? = nil) -> AlarmSpec {
-        // Werte stammen aus einem gültigen Wecker; die Prüfung kann nicht scheitern.
-        try! AlarmSpec(
+        // Geändert werden nur Felder ohne Regel, alle anderen stammen aus diesem gültigen Wecker: `changes` ist
+        // immer leer. Der Kern hat keine Diagnose; begrenzt würde trotzdem statt abzustürzen.
+        ClampedSpec(
             id: id, hour: hour, minute: minute, days: days, windowMinutes: windowMinutes,
             enabled: enabled ?? self.enabled, phone: phone, watchSound: watchSound,
             sleepDurationMinutes: sleepDurationMinutes,
             sound: sound, label: label, sunrise: sunrise, wakeTask: wakeTask, sunriseDevice: sunriseDevice,
             skipUntil: skipUntil ?? self.skipUntil, skipHolidays: skipHolidays ?? self.skipHolidays
-        )
+        ).spec
     }
 }

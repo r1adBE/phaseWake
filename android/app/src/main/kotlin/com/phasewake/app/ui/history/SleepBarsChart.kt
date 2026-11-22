@@ -36,21 +36,21 @@ private fun sleepBarsDescription(context: Context, bars: SleepBars): String = bu
     sleepBarsTakeaway(context, bars)?.let(::add)
     bars.bedtimeMinute?.let { add(context.getString(R.string.chart_bedtime, clock(it))) }
     bars.bars.forEach { bar ->
-        val value = if (bar.hasData) clock(bar.startMinute!!) +
-            " – " + clock(bar.endMinute!!) else context.getString(R.string.chart_no_data)
+        val value = timeRange(bar) ?: context.getString(R.string.chart_no_data)
         add(morning(bar.date) + ": " + value)
     }
 }.joinToString(". ")
 
+/** «23:10 – 06:50»; `null` ohne Einschlafen oder Aufwachen ([SleepBar.hasData] `false`). */
+private fun timeRange(bar: SleepBar): String? {
+    val start = bar.startMinute ?: return null
+    val end = bar.endMinute ?: return null
+    return clock(start) + " – " + clock(end)
+}
+
 /** «28. Okt. · 23:10 – 06:50» bzw. «28. Okt. · keine Daten». */
 private fun barLine(context: Context, bar: SleepBar): String =
-    morning(bar.date) + " · " + (
-        if (bar.hasData) {
-            clock(bar.startMinute!!) + " – " + clock(bar.endMinute!!)
-        } else {
-            context.getString(R.string.chart_no_data)
-        }
-    )
+    morning(bar.date) + " · " + (timeRange(bar) ?: context.getString(R.string.chart_no_data))
 
 /**
  * Schlafzeiten je Abend über den gewählten Zeitraum (`null`: «Keine Daten»), eine Zeile je Nacht, Bettzeit gestrichelt.
@@ -83,8 +83,10 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
             },
             anchor = { i, width ->
                 val bar = bars.bars[i]
-                if (bar.hasData) {
-                    width * ((bar.startMinute!! + bar.endMinute!!) / 2f - bars.axisStart) / span
+                val start = bar.startMinute
+                val end = bar.endMinute
+                if (start != null && end != null) {
+                    width * ((start + end) / 2f - bars.axisStart) / span
                 } else {
                     width / 2
                 }
@@ -118,9 +120,11 @@ internal fun SleepBarsCard(chart: SleepBars?, opener: (LocalDate) -> (() -> Unit
             }
             bars.bars.forEachIndexed { i, bar ->
                 val cy = rowHeight * (i + 0.5f)
-                if (bar.hasData) {
-                    val x0 = x(bar.startMinute!!).coerceAtLeast(0f)
-                    val x1 = x(bar.endMinute!!).coerceAtMost(size.width)
+                val start = bar.startMinute
+                val end = bar.endMinute
+                if (start != null && end != null) {
+                    val x0 = x(start).coerceAtLeast(0f)
+                    val x1 = x(end).coerceAtMost(size.width)
                     // Von der Nacht (tief) zum Morgen (hell); wächst beim Erscheinen Zeile für Zeile vom Einschlafen
                     // her.
                     val grow = ((reveal * (1f + STAGGER)) - STAGGER * i / rows).coerceIn(0f, 1f)

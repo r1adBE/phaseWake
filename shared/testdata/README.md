@@ -99,6 +99,11 @@ unplausible gelöschte Wecker, Gleichstand nach der Codec-Zeile, doppelte Kennun
 beiden Richtungen. Die Erwartungen stammen aus dem Kotlin-Kern (Stand
 17.11.2026) und sind von Hand geprüft. Beide Kerne prüfen alle Zeilen (Kotlin für `merge` in `android/shared`).
 
+`alarm-clamp.vectors`: `ClampedSpec` – ungültige Werte eines Weckers auf den nächsten gültigen begrenzen statt
+abzustürzen, mit der Diagnose-Zeile «SPEC clamped …» (Format im Kopf der Datei): gültige Werte unverändert, Fenster
+über dem Maximum (Android 60, Apple 30, darum je eine Spalte), unter 10, «Genau» (0), Stunde, Minute, Schlafdauer, leere
+Kennung und mehrere Felder zugleich. Beide Kerne prüfen alle Zeilen, jeder mit seiner Spalte.
+
 ## Passwort-Regel
 
 `backup-password.vectors`: je Zeile erwartetes Ergebnis (`OK`, `TOO_SHORT`, `TRIVIAL`), Tabulator, Passwort (UTF-8, teils in NFD). Beide Kerne prüfen alle Zeilen (`BackupPassword`), Kotlin zusätzlich mit Türkisch als Gerätesprache.

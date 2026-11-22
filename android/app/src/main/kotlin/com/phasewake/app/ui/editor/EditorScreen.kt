@@ -60,7 +60,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import com.phasewake.app.R
+import com.phasewake.app.phoneApp
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.WindowAdvice
 import com.phasewake.app.ring.WakeTonePreview
 import com.phasewake.app.ring.WakeTones
@@ -142,7 +144,11 @@ fun EditorScreen(
         )
         // Im Himmel-Kopf immer der helle Knopf der Nacht (dunkel ohnehin die Hauptfarbe).
         Button(
-            onClick = { onSave(state.result(time)) }, colors = skyButtonColors(),
+            onClick = {
+                state.clamped(time).diagLine?.let { context.phoneApp.diag.log(DiagKind.ERROR, it) }
+                onSave(state.result(time))
+            },
+            colors = skyButtonColors(),
             modifier = Modifier.padding(end = 12.dp),
         ) {
             Text(stringResource(R.string.editor_save))

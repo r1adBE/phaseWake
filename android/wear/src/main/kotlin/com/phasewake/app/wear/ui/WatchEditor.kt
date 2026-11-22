@@ -36,6 +36,7 @@ import androidx.wear.compose.material3.Text
 import androidx.wear.compose.material3.TimePicker
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.ClampedSpec
 import com.phasewake.app.core.Codec
 import com.phasewake.app.core.DayFormat
 import com.phasewake.app.wear.R
@@ -99,15 +100,33 @@ internal fun mergeEdit(
     skip: (old: AlarmSpec, edited: AlarmSpec) -> Long = AlarmSchedule::keepSkip,
 ): AlarmSpec {
     stored ?: return draft
-    val edited = stored.copy(
-        hour = draft.hour,
-        minute = draft.minute,
-        windowMinutes = draft.windowMinutes,
-        days = draft.days,
-        enabled = draft.enabled,
-    )
+    val edited = mergeFields(stored, draft).spec
     return edited.copy(skipUntil = skip(stored, edited))
 }
+
+/**
+ * [stored] mit Zeit, Fenster, Tagen und Ein/Aus aus [draft] (ohne Überspringen). Ungültige Werte werden begrenzt statt
+ * abzustürzen; die Diagnose-Zeile ([ClampedSpec.diagLine]) schreibt das Speichern. Gegenstück: `editedOnWatch` der
+ * Apple Watch (schreibt sie selbst).
+ */
+internal fun mergeFields(stored: AlarmSpec, draft: AlarmSpec): ClampedSpec = ClampedSpec(
+    id = stored.id,
+    hour = draft.hour,
+    minute = draft.minute,
+    days = draft.days,
+    windowMinutes = draft.windowMinutes,
+    enabled = draft.enabled,
+    phone = stored.phone,
+    watchSound = stored.watchSound,
+    sound = stored.sound,
+    sleepDurationMinutes = stored.sleepDurationMinutes,
+    label = stored.label,
+    sunrise = stored.sunrise,
+    sunriseDevice = stored.sunriseDevice,
+    wakeTask = stored.wakeTask,
+    skipUntil = stored.skipUntil,
+    skipHolidays = stored.skipHolidays,
+)
 
 /**
  * Der Wecker, wie das Speichern ihn aus [draft] macht: [mergeEdit] mit [AlarmSchedule.editedSkip]. [requested] ist der

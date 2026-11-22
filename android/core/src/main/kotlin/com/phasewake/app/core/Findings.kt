@@ -196,7 +196,7 @@ object Findings {
         if (nights.size >= MIN_NIGHTS && short >= SHORT_NIGHTS) out += Finding(FindingKind.SHORT_NIGHTS, short)
         if (staged.size >= MIN_NIGHTS) {
             deepShare(staged)?.takeIf { it < DEEP_PERCENT }?.let { out += lowDeep(it, staged, nights, zone) }
-            val awake = staged.sumOf { it.awakeMinutes!! }
+            val awake = staged.mapNotNull { it.awakeMinutes }.sum()
             percent(awake, staged.sumOf { it.asleepMinutes } + awake)?.takeIf { it > AWAKE_PERCENT }?.let {
                 out += Finding(FindingKind.MUCH_AWAKE, it)
             }
@@ -288,7 +288,7 @@ object Findings {
         )
         // Der grössere Unterschied; gleich: kurze Nächte (Reihenfolge von [DeepLink]).
         val best = links.maxWithOrNull(
-            compareBy<Finding> { it.withoutPercent - it.withPercent }.thenByDescending { it.link!!.ordinal },
+            compareBy<Finding> { it.withoutPercent - it.withPercent }.thenByDescending { it.link?.ordinal },
         )
         return best?.copy(value = share) ?: Finding(FindingKind.LOW_DEEP, share)
     }

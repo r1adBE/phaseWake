@@ -88,7 +88,8 @@ Was die CI prüft, steht jeweils dabei. Eine Regel, die die CI nicht prüfen kan
 | Zweitwecker am Handy (`android/app`, Paket `ring`), Wecken und Planen der Uhr (`android/wear`, Pakete `wake` und `schedule`) | **70 %** je Paket | JaCoCo + `.github/scripts/coverage_check.py --package`, CI |
 | übrige Handy-App `android/app`, Uhr-App `android/wear` | keine (nur Information) | JaCoCo + `.github/scripts/coverage_check.py`, CI |
 | Zweitwecker am iPhone (`ios/PhaseWake/BackupAlarm.swift`, `+Reschedule`, `+Plan`, `+Snooze` ohne die Karte, `+Transient`) | je Datei **65 / 65 / 50 / 80 / 80 %** | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
-| übrige iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
+| Wecken der Apple Watch (`ios/PhaseWakeWatch/Alarm/`: `NightRules`, `SessionRules`, `SmartAlarm+Upcoming`, `SmartAlarm`) | je Datei **95 / 95 / 75 / 29 %** (erste Messung 23.11.2026 minus 5 Punkte) | `-enableCodeCoverage YES`, `xccov` + `.github/scripts/xccov_check.py`, Job «Apple-Apps», CI |
+| übrige iPhone- und Watch-App (`ios/PhaseWakeTests`, `ios/PhaseWakeWatchTests`, App als Testwirt), auch `SmartAlarm+Measuring`, `+Ringing`, `+Session` (brauchen eine laufende Sitzung von watchOS, heute 0–2 %; OFFEN 11zb) | keine (nur Tests) | `xcodebuild test` im Simulator, Job «Apple-Apps», CI |
 | Bildschirme | jeder Bildschirm mit Vorschau im Screenshot-Test (hell/dunkel, Uhr rund); jede Abweichung über 0,1 % der Bildpunkte ist ein Fehler (darunter nur Rauschen der Kantenglättung, Entscheid 18.11.2026) | `validateDebugScreenshotTest`, Job «Android», CI; Referenzen rendert der Workflow «Bildschirmfotos» von Hand gestartet (Artefakt `referenzbilder`) |
 
 - **Referenzbilder erneuern:** Workflow «Bildschirmfotos» auf dem Arbeitszweig von Hand starten (nur dann wird

@@ -1,0 +1,7 @@
+First release of Phase Wake.
+• Wakes you within your wake window as soon as you get restless – at the latest right on time (Galaxy Watch up to 60 min)
+• Learning phase: adapts the alarm to you over 7 nights
+• Short night: won't wake you early when you slept little
+• Sunrise, gentle alarm tones, snooze
+• History, trends and morning report
+• No account, no internet, no subscription
