@@ -28,11 +28,15 @@ public final class WakeDetector {
     /// Die letzten entscheidbaren Epochen, höchstens `config.maxWindow`.
     private var recent: [Epoch] = []
 
-    /// Die letzten ``awakeBlockWindow`` entscheidbaren Epochen, auch über übergangene Momente (``rearm()``) hinweg.
-    private var blockRecent: [Epoch] = []
+    /// Je Epoche in `recent` (gleiche Stelle): ob ihre Bewegung «Auf und Ab» zeigt
+    /// (``MotionVariation/varies(previous:motion:floor:)``, mit dem Grundrauschen ihrer Epoche; ohne Grundrauschen
+    /// `true`). Zählt nur für Regel S5 und die Leicht-Regel.
+    private var recentVaries: [Bool] = []
 
-    /// Wirksame Wach-Schwelle der letzten entscheidbaren Epoche, für ``awakeDuringBlock()``.
-    private var lastWakeThreshold: Double
+    /// Die letzten ``awakeBlockWindow`` entscheidbaren Epochen, auch über übergangene Momente (``rearm()``) hinweg, für
+    /// ``awakeDuringBlock()``: je Epoche, ob ihre Bewegung stark war (≥ die wirksame Wach-Schwelle, die für diese
+    /// Epoche galt); `nil` = leere Bewegung.
+    private var blockStrong: [Bool?] = []
 
     private var epochIndex = 0
 
@@ -45,7 +49,6 @@ public final class WakeDetector {
     /// Erzeugt einen Detektor für genau ein Weckfenster.
     public init(config: DetectorConfig = .standard) {
         self.config = config
-        lastWakeThreshold = config.wakeThreshold
         recent.reserveCapacity(config.maxWindow)
     }
 
@@ -63,18 +66,27 @@ public final class WakeDetector {
         }
         if index < config.warmupEpochs { return .wait }
 
-        if recent.count == config.maxWindow { recent.removeFirst() }
-        recent.append(epoch)
-        if blockRecent.count == Self.awakeBlockWindow { blockRecent.removeFirst() }
-        blockRecent.append(epoch)
-
         // Schwellen nach dem Grundrauschen bis und mit dieser Epoche; sie gelten für alle Epochen im Fenster der Regel.
         // Solange die Messung zu wenige Werte hat, gilt das bekannte (Einschlaf-Messung, sonst gelernt); es begrenzt
         // auch das des Fensters (``NoiseFloor/windowFloor(_:config:)``).
         let floor = NoiseFloor.windowFloor(motions, config: config)
         let wakeThreshold = NoiseFloor.wake(config: config, floor: floor)
-        lastWakeThreshold = wakeThreshold
-        if hits(window: config.awakeWindow, threshold: wakeThreshold) >= config.awakeHits {
+        // «Auf und Ab» gegen die Bewegungen der laufenden Messung vor dieser Epoche (bleiben über ``rearm()`` hinweg).
+        var varies = true
+        if let floor, let motion = epoch.motion {
+            varies = MotionVariation.varies(previous: Array(motions.dropLast()), motion: motion, floor: floor)
+        }
+        if recent.count == config.maxWindow {
+            recent.removeFirst()
+            recentVaries.removeFirst()
+        }
+        recent.append(epoch)
+        recentVaries.append(varies)
+        // «Wach geht vor» bewertet jede Epoche mit der Wach-Schwelle ihrer Zeit (Audit 23.11.2026).
+        if blockStrong.count == Self.awakeBlockWindow { blockStrong.removeFirst() }
+        blockStrong.append(epoch.motion.map { $0 >= wakeThreshold })
+        // Die Wach-Regel zählt jede Bewegung, auch ohne «Auf und Ab».
+        if hits(window: config.awakeWindow, threshold: wakeThreshold, needsVariation: false) >= config.awakeHits {
             return wake(.awake)
         }
         // Leichter Schlaf erst mit Grundrauschen (4 Werte oder Vorwert): Ohne zählte das Rauschen einer
@@ -82,11 +94,13 @@ public final class WakeDetector {
         // Puls. Regel S5 («Bewegung zählt»): Eine starke Bewegung (≥ wirksame Wach-Schwelle) in den letzten
         // `strongWindow` Epochen weckt ohne Pulsbedingung. Die Leicht-Regel (2 leichte Bewegungen) braucht den
         // Pulsanstieg, sonst weckte sie schon auf Rauschen. Die Leicht-Schwelle liegt nie über der des gelernten
-        // Grundrauschens (``NoiseFloor/windowLight(config:floor:)``).
+        // Grundrauschens (``NoiseFloor/windowLight(config:floor:)``). Beide zählen nur Bewegungen mit «Auf und Ab»
+        // (``MotionVariation``).
         guard floor != nil else { return .wait }
-        let strong = hits(window: Self.strongWindow, threshold: wakeThreshold) >= 1
-        let light = hits(window: config.lightWindow,
-                         threshold: NoiseFloor.windowLight(config: config, floor: floor)) >= config.lightHits
+        let strong = hits(window: Self.strongWindow, threshold: wakeThreshold, needsVariation: true) >= 1
+        let lightThreshold = NoiseFloor.windowLight(config: config, floor: floor)
+        let lightHits = hits(window: config.lightWindow, threshold: lightThreshold, needsVariation: true)
+        let light = lightHits >= config.lightHits
         if strong || (light && heartRateRisen(baseline)) {
             return wake(.lightSleep)
         }
@@ -101,11 +115,12 @@ public final class WakeDetector {
         return .deadline
     }
 
-    /// Zählt unter den letzten `window` Epochen jene mit Bewegung ≥ `threshold`. Leere Bewegung zählt nie.
-    private func hits(window: Int, threshold: Double) -> Int {
+    /// Zählt unter den letzten `window` Epochen jene mit Bewegung ≥ `threshold`, mit `needsVariation` nur solche mit
+    /// «Auf und Ab» (`recentVaries`). Leere Bewegung zählt nie.
+    private func hits(window: Int, threshold: Double, needsVariation: Bool) -> Int {
         var count = 0
-        for epoch in recent.suffix(window) {
-            if let motion = epoch.motion, motion >= threshold { count += 1 }
+        for i in max(0, recent.count - window)..<recent.count {
+            if let motion = recent[i].motion, motion >= threshold, !needsVariation || recentVaries[i] { count += 1 }
         }
         return count
     }
@@ -146,23 +161,25 @@ public final class WakeDetector {
     /// Übergangener Moment (kurze Nacht, ``ShortNight/blocksEarly(onset:now:sleepGoalMinutes:target:measured:)``): Die
     /// Entscheidung wird verworfen, die Erkennung läuft weiter und kann einen neuen Moment melden. Die Treffer des
     /// übergangenen Moments zählen nicht mehr: Die Regeln sehen nur Epochen nach dieser Grenze, ein neuer Moment
-    /// braucht neue Treffer (sonst weckte der alte, sobald die Sperre endet). Grundrauschen und Basispuls bleiben.
-    /// Identisch zu `WakeDetector.rearm` (Kotlin).
+    /// braucht neue Treffer (sonst weckte der alte, sobald die Sperre endet). Grundrauschen, Basispuls und die
+    /// Bewegungen für «Auf und Ab» (``MotionVariation``) bleiben. Identisch zu `WakeDetector.rearm` (Kotlin).
     public func rearm() {
         result = nil
         recent.removeAll(keepingCapacity: true)
+        recentVaries.removeAll(keepingCapacity: true)
     }
 
     /// «Wach geht vor» während der Sperre der kurzen Nacht (`docs/PHASENERKENNUNG.md` Abschnitt 8): mindestens
-    /// ``awakeBlockEpisodes`` getrennte starke Bewegungen (≥ wirksame Wach-Schwelle der letzten Epoche) in den letzten
-    /// ``awakeBlockWindow`` Epochen, auch über übergangene Momente hinweg. Getrennt heisst: mindestens eine Epoche
-    /// darunter dazwischen; eine leere Epoche trennt nicht. Identisch zu `WakeDetector.awakeDuringBlock` (Kotlin).
+    /// ``awakeBlockEpisodes`` getrennte starke Bewegungen (≥ wirksame Wach-Schwelle, die für diese Epoche galt) in den
+    /// letzten ``awakeBlockWindow`` Epochen, auch über übergangene Momente hinweg. Getrennt heisst: mindestens eine
+    /// Epoche darunter dazwischen; eine leere Epoche trennt nicht. Sinkt die Schwelle im Fenster, zählen frühere
+    /// Bewegungen nicht nachträglich als stark (Audit 23.11.2026). Identisch zu `WakeDetector.awakeDuringBlock`
+    /// (Kotlin).
     public func awakeDuringBlock() -> Bool {
         var episodes = 0
         var strong = false
-        for epoch in blockRecent {
-            guard let motion = epoch.motion else { continue }
-            let now = motion >= lastWakeThreshold
+        for flag in blockStrong {
+            guard let now = flag else { continue }
             if now && !strong { episodes += 1 }
             strong = now
         }

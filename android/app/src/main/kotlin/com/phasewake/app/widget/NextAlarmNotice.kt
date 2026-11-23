@@ -8,14 +8,17 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.phasewake.app.R
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.Bedtime
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.WakePlan
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.BackupAlarm
 import com.phasewake.app.ui.MainActivity
+import com.phasewake.app.ui.exactAlarmSettings
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalTime
@@ -38,11 +41,16 @@ import kotlinx.coroutines.sync.withLock
  *
  * Privat ([NotificationCompat.VISIBILITY_PRIVATE]): Auf dem gesperrten Bildschirm steht nur «Nächster Wecker», ohne
  * Fenster und ohne Text (öffentliche Fassung); Weckzeit und Nacht-Check erst nach dem Entsperren.
+ *
+ * Fehlt auf Android 12/12L das Recht für exakte Wecker, warnt sie stattdessen und bietet «Erlauben» an ([content]).
  */
 class NextAlarmNotice(private val context: Context, private val now: () -> Instant = Instant::now) {
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
     private val manager = context.getSystemService(NotificationManager::class.java)
     private val mutex = Mutex()
+
+    /** Ob die zuletzt gezeigte Mitteilung warnte (Diagnose nur beim Wechsel). */
+    private var warned = false
 
     /** Zeigt, entfernt oder plant die Mitteilung für den aktuellen Stand. */
     suspend fun reschedule() = mutex.withLock {
@@ -79,15 +87,37 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
 
     private fun show(plan: WakePlan, zone: ZoneId, current: Instant) {
         if (!manager.areNotificationsEnabled()) return
-        val text = NextAlarmWidget.checkText(context) ?: NextAlarmWidget.day(context, plan.target, zone)
+        val content = content(context, plan, zone)
+        // Nur beim Wechsel zur Warnung, nicht bei jedem Neuplanen.
+        if (content.exactMissing && !warned) {
+            context.phoneApp.diag.log(DiagKind.SCHEDULED, "evening notice exact alarms missing")
+        }
+        warned = content.exactMissing
+        manager.notify(NOTIFICATION_ID, build(plan, current, content))
+    }
+
+    /** Die Mitteilung mit [content]; ohne Recht für exakte Wecker mit dem Knopf «Erlauben». */
+    internal fun build(plan: WakePlan, current: Instant, content: Content): Notification {
         val open = PendingIntent.getActivity(
             context, 0, Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )
-        val notification = NotificationCompat.Builder(context, CHANNEL)
+        val builder = NotificationCompat.Builder(context, CHANNEL)
+        if (content.exactMissing && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val allow = PendingIntent.getActivity(
+                context, REQUEST_ALLOW, exactAlarmSettings(context),
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
+            )
+            builder.addAction(0, context.getString(R.string.check_allow), allow)
+                .setStyle(
+                    NotificationCompat.BigTextStyle()
+                        .bigText(content.text + "\n" + context.getString(R.string.check_exact_alarms_problem)),
+                )
+        }
+        return builder
             .setSmallIcon(R.drawable.ic_stat_moon)
-            .setContentTitle(NextAlarmWidget.windowText(context, plan, zone))
-            .setContentText(text)
+            .setContentTitle(content.title)
+            .setContentText(content.text)
             .setCategory(NotificationCompat.CATEGORY_STATUS)
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
@@ -101,8 +131,10 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             .setContentIntent(open)
             .setTimeoutAfter(Duration.between(current, plan.target.plus(KEEP_AFTER)).toMillis().coerceAtLeast(1L))
             .build()
-        manager.notify(NOTIFICATION_ID, notification)
     }
+
+    /** Titel und Text der Mitteilung; [exactMissing]: Warnung, weil das Recht für exakte Wecker fehlt. */
+    internal data class Content(val title: String, val text: String, val exactMissing: Boolean)
 
     /** Fassung für den gesperrten Bildschirm: nur der Titel «Nächster Wecker», keine Weckzeit, kein Text. */
     private fun publicVersion(): Notification = NotificationCompat.Builder(context, CHANNEL)
@@ -144,6 +176,7 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
         private val OLD_CHANNELS = listOf("next_alarm", "next_alarm_lock")
         private const val NOTIFICATION_ID = 8
         private const val REQUEST_CODE = 9
+        private const val REQUEST_ALLOW = 10
         private const val ACTION = "com.phasewake.app.action.NEXT_ALARM_NOTICE"
 
         /** Ohne Bettzeit-Erinnerung: spätestens ab dieser Uhrzeit am Vorabend der Zielzeit. */
@@ -171,6 +204,22 @@ class NextAlarmNotice(private val context: Context, private val now: () -> Insta
             val evening = target.atZone(zone).toLocalDate().minusDays(1).atTime(EVENING).atZone(zone).toInstant()
             val start = if (bedtimeReminder) reminder else minOf(reminder, evening)
             return maxOf(start, target.minus(MAX_AHEAD))
+        }
+
+        /**
+         * Inhalt für [plan]: Fehlt das Recht für exakte Wecker (nur Android 12/12L entziehbar, ab 13 gilt
+         * USE_EXACT_ALARM), warnt der Titel und der Text nennt das Weckfenster; sonst Weckfenster als Titel und
+         * Nacht-Check (ersatzweise der Tag) als Text. Die Abend-Mitteilung selbst plant ungenau und kommt auch ohne
+         * das Recht; wird es erteilt, plant [BackupAlarm.SystemReceiver] neu und die Warnung verschwindet.
+         */
+        internal fun content(context: Context, plan: WakePlan, zone: ZoneId): Content {
+            val window = NextAlarmWidget.windowText(context, plan, zone)
+            return if (BackupAlarm.canScheduleExact(context)) {
+                val text = NextAlarmWidget.checkText(context) ?: NextAlarmWidget.day(context, plan.target, zone)
+                Content(window, text, exactMissing = false)
+            } else {
+                Content(context.getString(R.string.notice_exact_alarms_missing), window, exactMissing = true)
+            }
         }
 
         /** Neu zeigen oder planen (im Hintergrund); vor dem ersten Entsperren nichts. */

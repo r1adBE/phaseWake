@@ -199,6 +199,7 @@
     <string name="companion_failed">No s’ha trobat cap rellotge. Comprova que estigui connectat i que el Bluetooth estigui activat, i torna-ho a provar.</string>
     <string name="check_exact_alarms">Alarmes exactes permeses</string>
     <string name="check_exact_alarms_problem">Permet «Alarmes i recordatoris»: sense aquest permís, potser l’alarma de reserva no sonarà gens.</string>
+    <string name="notice_exact_alarms_missing">Alarma imprecisa – alarmes exactes no permeses</string>
     <string name="check_dnd">«No molestis» deixa passar les alarmes</string>
     <string name="check_battery">Bateria del telèfon</string>
     <string name="check_battery_problem">Menys del %1$d %% – carrega el telèfon perquè pugui sonar l’alarma de reserva.</string>

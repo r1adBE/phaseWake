@@ -44,17 +44,17 @@ extension SmartAlarm {
     /// Jede Mitteilung der Kette (`NotificationChain`) gilt wie die erste.
     func fallbackArrived(_ notificationId: String) {
         // Rückfall einer späteren Nacht (`UpcomingFallbacks`, App lief seither nicht): gilt wie der des echten Weckers.
-        let id = UpcomingFallbacks.isUpcoming(notificationId)
-            ? Self.fallbackId
-            : NotificationChain.baseId(notificationId)
+        let id = RingingRules.arrivedId(notificationId)
         let now = Date()
         // Zielzeit da, aber höchstens `ringLimit` zurück (ein alter Rückfall, spät angetippt, weckt nicht mehr).
         func due(_ night: WakePlan) -> Bool {
-            Self.fallbackKey(for: night.alarmId) == id && night.target <= now
-                && now < night.target.addingTimeInterval(Self.ringLimit)
+            RingingRules.fallbackDue(night, key: Self.fallbackKey(for: night.alarmId), id: id, now: now,
+                                     limit: Self.ringLimit)
         }
         switch phase {
-        case .snoozed(let until, _) where Self.fallbackKey(for: nightPlan?.alarmId) == id && until <= now:
+        case .snoozed(let until, _)
+            where RingingRules.endsSnooze(until: until, key: Self.fallbackKey(for: nightPlan?.alarmId), id: id,
+                                          now: now):
             ring(reason)
         case .measuring(let night) where Self.fallbackKey(for: night.alarmId) == id:
             ring(targetReason())
@@ -72,9 +72,14 @@ extension SmartAlarm {
         default:
             break
         }
-        guard phase.isRinging, session?.state != .running else {
-            if !phase.isRinging { WKInterfaceDevice.current().play(.notification) }
+        switch RingingRules.fallbackHaptic(ringing: phase.isRinging, session: session?.state) {
+        case .silent:
             return
+        case .once:
+            WKInterfaceDevice.current().play(.notification)
+            return
+        case .repeating:
+            break
         }
         // Ohne laufende Sitzung vibriert `notifyUser` nicht: solange die App offen ist und es klingelt, selbst
         // vibrieren.
@@ -102,39 +107,43 @@ extension SmartAlarm {
 
     /// Verbleibende Schlummer-Runden; der Probewecker prüft genau einen Weckvorgang und schlummert nie.
     var snoozesLeft: Int {
-        Transient.allowsSnooze(nightPlan?.alarmId ?? plan?.alarmId) ? Snooze.maxCount - snoozes : 0
+        RingingRules.snoozesLeft(alarmId: nightPlan?.alarmId ?? plan?.alarmId, snoozes: snoozes)
     }
 
     /// Ob «stop» bzw. «schlummern» vom iPhone zu der Nacht gehört, die hier klingelt oder schlummert: gleiche Kennung
     /// und Zielzeit (auf 1 s genau; Millisekunden werden unterwegs gekürzt). Fehlende Angaben (ältere iPhone-Version)
     /// widersprechen nicht. So beendet der Zweitwecker einer anderen Nacht diese hier nicht.
     func isThisNight(alarmId: String?, target: Date?) -> Bool {
-        if let alarmId, let own = nightPlan?.alarmId ?? plan?.alarmId, alarmId != own { return false }
-        if let target, let own = nightPlan?.target, abs(target.timeIntervalSince(own)) >= 1 { return false }
-        return true
+        RingingRules.isThisNight(alarmId: alarmId, target: target, ownAlarmId: nightPlan?.alarmId ?? plan?.alarmId,
+                                 ownTarget: nightPlan?.target)
     }
 
     /// Schlummern am iPhone gewählt: wie auf der Uhr. Geht es nicht mehr, klingelt das iPhone weiter.
     func snoozeFromPhone() {
-        guard phase.isRinging else { return }
-        if snoozesLeft > 0 { snooze() } else { sendRing() }
+        switch RingingRules.snoozeChoice(ringing: phase.isRinging, snoozesLeft: snoozesLeft) {
+        case .ignore: return
+        case .snooze: snooze()
+        case .keepRinging: sendRing()
+        }
     }
 
     /// Schlummern: Sitzung beenden und neu für in 5 Minuten planen (App ist dabei aktiv).
     func snooze() {
-        guard phase.isRinging, snoozesLeft > 0, let plan else { return }
+        guard RingingRules.snoozeChoice(ringing: phase.isRinging, snoozesLeft: snoozesLeft) == .snooze,
+              let plan else { return }
         snoozes += 1
         DiagStore.shared.log(.snooze, "\(snoozes)")
         invalidateSession()
-        let until = Snooze.nextRing(Date())
+        let round = RingingRules.snoozeRound(alarmId: plan.alarmId, now: Date(), delay: Self.fallbackDelay)
+        let until = round.until
         phase = .snoozed(until: until, snoozesLeft: snoozesLeft)
         let next = WKExtendedRuntimeSession()
         next.delegate = self
         next.start(at: until)
         session = next
-        self.plan = WakePlan(alarmId: plan.alarmId, windowStart: until, target: until)
+        self.plan = round.plan
         // Rückfall auch fürs Schlummern (unter der Kennung dieser Nacht): falls die neue Sitzung nicht startet.
-        scheduleFallback(at: until.addingTimeInterval(Self.fallbackDelay), id: Self.fallbackKey(for: plan.alarmId))
+        scheduleFallback(at: round.fallbackAt, id: Self.fallbackKey(for: plan.alarmId))
         save()
         // Mit Schlummer-Ende: Das iPhone hört auf zu klingeln, behält die Nacht aber und stellt 90 s nach dem
         // Schlummer-Ende eine eigene Sicherung (falls die neue Sitzung nicht startet).
@@ -145,7 +154,10 @@ extension SmartAlarm {
 
     /// Wecker beenden, Nacht speichern, nächste Nacht planen.
     func dismiss(notifyPhone: Bool = true) {
-        guard phase.isRinging || phase.isSnoozed else {
+        let alarmId = nightPlan?.alarmId ?? plan?.alarmId
+        guard case .night(let clearsUpcoming) = RingingRules.dismissal(
+            ringing: phase.isRinging, snoozed: phase.isSnoozed, alarmId: alarmId
+        ) else {
             // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp (vom iPhone) beendet die
             // Kette.
             removeInterrupted()
@@ -154,11 +166,11 @@ extension SmartAlarm {
         DiagStore.shared.log(.stop, notifyPhone ? "watch" : "phone")
         // Nur den Rückfall dieser Nacht: Beim Probewecker oder Powernap bleibt der des echten Weckers stehen. Mit der
         // ganzen Kette, wartend und schon zugestellt.
-        let ids = [Self.fallbackKey(for: nightPlan?.alarmId ?? plan?.alarmId), Self.interruptedId]
+        let ids = [Self.fallbackKey(for: alarmId), Self.interruptedId]
         removeFallback(ids)
         removeDeliveredFallback(ids)
         // Schon zugestellte Rückfälle späterer Nächte (die wartenden stellt das Neuplanen danach neu).
-        if Transient.kindOf(nightPlan?.alarmId ?? plan?.alarmId) == nil {
+        if clearsUpcoming {
             UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: UpcomingFallbacks.allIds)
         }
         finish(notifyPhone: notifyPhone)
@@ -177,9 +189,10 @@ extension SmartAlarm {
     func finishInterrupted() {
         guard phase.isRinging || phase.isSnoozed else { return }
         DiagStore.shared.log(.error, "session ended while ringing")
-        if !ringExpired {
-            var at = Date()
-            if case .snoozed(let until, _) = phase, until > at { at = until.addingTimeInterval(Self.fallbackDelay) }
+        var snoozedUntil: Date?
+        if case .snoozed(let until, _) = phase { snoozedUntil = until }
+        if let at = RingingRules.interruptedRingWake(expired: ringExpired, snoozedUntil: snoozedUntil, now: Date(),
+                                                     delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.interruptedId)
         }
         finish(notifyPhone: false)
@@ -192,11 +205,12 @@ extension SmartAlarm {
         stopSensors()
         let model = WatchModel.shared
         // Probewecker und Powernap: kein Verlauf, kein «erledigt», kein Ausschalten (`Transient`).
-        let transient = Transient.kindOf(nightPlan?.alarmId) != nil
+        let end = RingingRules.finish(night: nightPlan, firstRing: firstRing)
         // «Gute Nacht» hat diese Nacht vorverlegt (vor `markNightDone` gelesen, das sie verfallen lässt): für das
         // Auto-Aus.
-        let shifted = shiftedByGoodNight(model)
-        if let nightPlan, let firstRing, !transient {
+        let shifted = RingingRules.shiftedByGoodNight(nightPlan, goodNightAlarmId: model.goodNight?.alarmId,
+                                                      goodNightTarget: model.goodNight?.target)
+        if end.records, let nightPlan, let firstRing {
             let night = NightRecord(
                 alarmId: nightPlan.alarmId,
                 windowStart: nightPlan.windowStart,
@@ -222,7 +236,9 @@ extension SmartAlarm {
         }
         // Ohne Nacht im Verlauf (nicht geweckt) gehört der Akku zu nichts; Probewecker und Powernap haben keinen
         // begonnen.
-        if firstRing == nil, !transient { WatchBattery.drop("night ended without ring") }
+        if RingingRules.dropsBattery(firstRing: firstRing, transient: end.transient) {
+            WatchBattery.drop("night ended without ring")
+        }
         if notifyPhone {
             WatchConnectivityBridge.shared.send(
                 command: SyncKeys.stop, alarmId: nightPlan?.alarmId ?? "", target: nightPlan?.target
@@ -230,11 +246,11 @@ extension SmartAlarm {
         }
         // Aus dem Speicher statt aus der Nacht: nach einem Neustart der App fehlt `spec`. Nur die Fassung, die
         // geklingelt hat: Im Schlummern verschoben, oder eine neuere Änderung vom iPhone, bleibt eingeschaltet.
-        if let nightPlan, !transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }),
-           alarm.isOneShot, alarm.enabled {
+        if let nightPlan, !end.transient, let alarm = model.alarms.first(where: { $0.id == nightPlan.alarmId }),
+           RingingRules.disablesAfterRing(alarm, transient: end.transient) {
             model.disableAfterRing(alarm.id, rung: spec, target: nightPlan.target, shifted: shifted)
         }
-        if transient { model.endTransient(nightPlan?.alarmId) }
+        if end.transient { model.endTransient(nightPlan?.alarmId) }
         phase = .idle
         plan = nil
         nightPlan = nil
@@ -243,14 +259,5 @@ extension SmartAlarm {
         // Nächste Nacht planen; bei geschlossener App (z. B. am iPhone gestoppt) die Bitte, sie zu öffnen – nach einer
         // echten Nacht wie nach Probewecker und Powernap.
         model.transientEnded()
-    }
-
-    /// Ob «Gute Nacht» (`WatchModel.goodNight`) die laufende Nacht vorverlegt hat (gleicher Wecker, gleiche Zielzeit).
-    private func shiftedByGoodNight(_ model: WatchModel) -> Bool {
-        nightPlan.map { night in
-            model.goodNight.map {
-                $0.alarmId == night.alarmId && TimeBounds.millis($0.target) == TimeBounds.millis(night.target)
-            } ?? false
-        } ?? false
     }
 }

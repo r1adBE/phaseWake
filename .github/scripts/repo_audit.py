@@ -40,11 +40,57 @@ class Audit:
         self.run_scripts = run_scripts
         self.results = defaultdict(list)   # Dimension -> [(status, titel, detail)]
         self.facts = {}
-        self.files = self.git("ls-files").splitlines()
+        self.has_git = bool(self.git("rev-parse", "--is-inside-work-tree").strip())
+        # Mit Git zählen genau die eingecheckten Dateien; ohne Git (z. B. ein ZIP des Repos) alle Dateien des Ordners
+        # ausser denen, die .gitignore ausschliesst – sonst fehlte jede Datei und jede Existenzprüfung schlüge fehl.
+        self.files = self.git("ls-files").splitlines() if self.has_git else self.walk()
+        self.facts["source"] = "git ls-files" if self.has_git else "Dateisystem (kein Git, .gitignore beachtet)"
 
     # ---------- Hilfen ----------
     def git(self, *args):
-        return subprocess.run(["git", "-C", self.repo, *args], capture_output=True, text=True).stdout
+        try:
+            r = subprocess.run(["git", "-C", self.repo, *args], capture_output=True, text=True)
+        except OSError:
+            return ""
+        return r.stdout if r.returncode == 0 else ""
+
+    def ignore_rules(self):
+        """Einfache Regeln aus .gitignore: (Muster, nur Ordner, verankert, Ausnahme mit «!»)."""
+        rules = [(".git", True, False, False)]
+        for line in self.read(".gitignore").splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            neg = line.startswith("!")
+            line = line.lstrip("!")
+            directory = line.endswith("/")
+            line = line.strip("/")
+            rules.append((line, directory, "/" in line, neg))
+        return rules
+
+    @staticmethod
+    def ignored(rel, is_dir, rules):
+        """Ob der Pfad ausgeschlossen ist; spätere Regeln gehen vor (wie bei Git), «!» nimmt wieder auf."""
+        import fnmatch
+        result = False
+        parts = rel.split("/")
+        for pattern, directory, anchored, neg in rules:
+            if directory and not is_dir:
+                continue
+            hit = fnmatch.fnmatch(rel, pattern) if anchored else fnmatch.fnmatch(parts[-1], pattern)
+            if hit:
+                result = not neg
+        return result
+
+    def walk(self):
+        """Alle Dateien des Ordners ohne die von .gitignore ausgeschlossenen, sortiert wie `git ls-files`."""
+        rules, out = self.ignore_rules(), []
+        for root, dirs, files in os.walk(self.repo):
+            rel_root = os.path.relpath(root, self.repo).replace(os.sep, "/")
+            rel_root = "" if rel_root == "." else rel_root + "/"
+            dirs[:] = [x for x in dirs if not self.ignored(rel_root + x, True, rules)]
+            out += [rel_root + f for f in files if not self.ignored(rel_root + f, False, rules)]
+        return sorted(out)
 
     notes = {}
 
@@ -303,6 +349,18 @@ class Audit:
                  ("\nPrüfen, ob jede davon öffentlich sein soll." if mails else ""))
         self.add(d, FIND if phones else OK, f"Telefonnummern im Repo: {len(phones)}" if phones else "Keine Telefonnummern im Repo",
                  "\n".join(phones[:10]))
+        if not self.has_git:
+            self.add(d, HINT, "Commit-Adressen und Zuschreibungen nicht prüfbar (kein Git)",
+                     "Im Repo-Ordner mit .git ausführen, damit diese Prüfung zählt.")
+        else:
+            self.commits(d)
+        if any(f.endswith("DATENSCHUTZ.md") or "privacy" in f.lower() for f in self.files):
+            self.add(d, OK, "Datenschutzerklärung vorhanden")
+        else:
+            self.add(d, FIND, "Keine Datenschutzerklärung")
+
+    def commits(self, d):
+        """Commit-Adressen ohne noreply und fremde Zuschreibungen (nur mit Git)."""
         authors = Counter(self.git("log", "--format=%ae").split())
         committers = Counter(self.git("log", "--format=%ce").split())
         allm = set(authors) | set(committers)
@@ -314,10 +372,6 @@ class Audit:
                         if "dependabot" not in x.lower()])
         self.add(d, HINT if trailers else OK, f"Fremde Zuschreibungen in Commits: {trailers}" if trailers else
                  "Keine Co-Authored-By/Session-Zeilen in Commits")
-        if any(f.endswith("DATENSCHUTZ.md") or "privacy" in f.lower() for f in self.files):
-            self.add(d, OK, "Datenschutzerklärung vorhanden")
-        else:
-            self.add(d, FIND, "Keine Datenschutzerklärung")
 
     def docs(self):
         d = "Dokumentation"
@@ -601,6 +655,12 @@ class Audit:
             sect = re.search(r"\[versions\]\n(.*?)\n\[", toml, re.S)
             vers = re.findall(r"^(\S+)\s*=\s*\"([^\"]+)\"", sect.group(1), re.M) if sect else []
             pre = [f"{k} {v}" for k, v in vers if re.search(r"(?i)(alpha|beta|rc|snapshot|dev)", v)]
+            decided = self.read("docs/ENTSCHEIDE.md")
+            known_pre = [x for x in pre if x.split()[1] in decided]
+            pre = [x for x in pre if x not in known_pre]
+            if known_pre:
+                self.add(d, OK, f"Vorab-Versionen mit Entscheid: {len(known_pre)}",
+                         "\n".join(known_pre) + "\nIn docs/ENTSCHEIDE.md begründet.")
             libs = len(re.findall(r"^\S+\s*=\s*\{", toml.split("[libraries]")[-1].split("[plugins]")[0], re.M))
             self.add(d, OK, f"Gradle-Versionskatalog: {len(vers)} Versionen, {libs} Bibliotheken")
             self.add(d, HINT if pre else OK, f"Vorab-Versionen (alpha/beta/rc): {len(pre)}" if pre else "Keine Vorab-Versionen",
@@ -670,7 +730,7 @@ class Audit:
         self.add(d, HINT if crlf else OK, f"Dateien mit Windows-Zeilenenden: {len(crlf)}" if crlf else "Einheitliche Zeilenenden (LF)", "\n".join(crlf[:10]))
         last = self.git("log", "-1", "--format=%h %cd", "--date=format:%d.%m.%Y %H:%M").strip()
         n = self.git("rev-list", "--count", "HEAD").strip()
-        self.facts["head"], self.facts["commits"] = last, n
+        self.facts["head"], self.facts["commits"] = (last, n) if self.has_git else ("ohne Git", "?")
 
     def workflows(self):
         return [f for f in self.files if f.startswith(".github/workflows/") and f.endswith((".yml", ".yaml"))]
@@ -696,7 +756,8 @@ class Audit:
         sc = self.scores()
         total = sum(v[0] for v in sc.values()) // max(1, len(sc))
         L = [f"# Audit {os.path.basename(self.repo)}", "",
-             f"Stand `{self.facts.get('head', '?')}` · {self.facts.get('commits', '?')} Commits · erstellt {now} · Werkzeug `repo_audit.py`", "",
+             f"Stand `{self.facts.get('head', '?')}` · {self.facts.get('commits', '?')} Commits · erstellt {now} · Werkzeug `repo_audit.py`",
+             f"Dateiliste: {self.facts.get('source', '?')} ({len(self.files)} Dateien)", "",
              f"**Gesamtnote: {total} / 100**", "",
              "| Dimension | Note | OK | Hinweise | Befunde |", "|---|---:|---:|---:|---:|"]
         for dim, (s, o, h, f) in sc.items():
@@ -747,7 +808,8 @@ class Audit:
         sc = self.scores()
         total = sum(v[0] for v in sc.values()) // max(1, len(sc))
         L = [f"AUDIT {os.path.basename(self.repo).upper()}", "=" * 72,
-             f"Stand {self.facts.get('head', '?')} | {self.facts.get('commits', '?')} Commits | erstellt {now}", "",
+             f"Stand {self.facts.get('head', '?')} | {self.facts.get('commits', '?')} Commits | erstellt {now}",
+             f"Dateiliste: {self.facts.get('source', '?')} ({len(self.files)} Dateien)", "",
              f"GESAMTNOTE: {total} / 100", "",
              f"{'Dimension':<20}{'Note':>6}{'OK':>6}{'Hinw.':>7}{'Bef.':>6}", "-" * 45]
         for dim, (s, o, h, f) in sc.items():

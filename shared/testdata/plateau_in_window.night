@@ -1,0 +1,48 @@
+# «Auf und Ab» (Variante B, 23.11.2026, OFFEN 11g): Die Armlage mit Bewegung ~0.07 (Werte aus `plateau_arm_position`)
+# hat schon vor dem Fenster begonnen und bleibt gleich, gelerntes Grundrauschen 0.02 (F 0.03, Leicht 0.05, Wach 0.15),
+# Puls ab Epoche 6 höher. Das Plateau weicht nie um 1 × F ab und zählt nicht (vorher Epoche 7 LIGHT_SLEEP); die echte
+# Bewegung 0.3 in Epoche 30 weckt über Regel S5. Ein Plateau über der Wach-Schwelle weckte schon mit der Wach-Regel
+# (2 von 3, ohne «Auf und Ab»).
+@floor 0.02
+@expect 30 LIGHT_SLEEP
+motion,hr
+0.070259,55
+0.074063,55
+0.071760,55
+0.076608,55
+0.072020,55
+0.075207,55
+0.072281,60
+0.071582,60
+0.072301,60
+0.075089,60
+0.071564,60
+0.071558,60
+0.066875,60
+0.065558,60
+0.072732,60
+0.070259,60
+0.074063,60
+0.071760,60
+0.076608,60
+0.072020,60
+0.075207,60
+0.072281,60
+0.071582,60
+0.072301,60
+0.075089,60
+0.071564,60
+0.071558,60
+0.066875,60
+0.065558,60
+0.072732,60
+0.300000,60
+0.074063,60
+0.071760,60
+0.076608,60
+0.072020,60
+0.075207,60
+0.072281,60
+0.071582,60
+0.072301,60
+0.075089,60

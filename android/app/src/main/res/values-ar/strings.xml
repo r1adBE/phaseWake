@@ -210,6 +210,7 @@
     <string name="companion_failed">لم يتم العثور على ساعة. تأكد من أنها متصلة وأن البلوتوث مفعّل، ثم حاول مرة أخرى.</string>
     <string name="check_exact_alarms">المنبهات الدقيقة مسموحة</string>
     <string name="check_exact_alarms_problem">اسمح بالمنبهات والتذكيرات – بدون هذا الإذن قد لا يرنّ المنبه الاحتياطي إطلاقًا.</string>
+    <string name="notice_exact_alarms_missing">المنبه غير دقيق – المنبهات الدقيقة غير مسموحة</string>
     <string name="check_dnd">عدم الإزعاج يسمح بالمنبهات</string>
     <string name="check_battery">بطارية الهاتف</string>
     <string name="check_battery_problem">أقل من %1$d %% – اشحن هاتفك ليتمكن المنبه الاحتياطي من الرنين.</string>

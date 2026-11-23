@@ -15,11 +15,9 @@ extension SmartAlarm {
     func scheduleFallback(at date: Date, id: String = SmartAlarm.fallbackId, fixed: Bool = false) {
         Task { await WatchConnectivityBridge.shared.publishNotificationStateIfNeeded() }
         let content = Self.fallbackContent()
-        let chained = id == Self.fallbackId || id == Self.interruptedId
-        let ids = chained ? NotificationChain.ids(id) : [id]
-        let dates = chained ? NotificationChain.dates(date) : [date]
+        let chain = RingingRules.fallbackChain(id, at: date)
         let now = Date()
-        for (member, at) in zip(ids, dates) {
+        for (member, at) in zip(chain.ids, chain.dates) {
             let trigger = fixed ? LocalTrigger.fixed(at, now: now) : LocalTrigger.at(at, now: now)
             let request = UNNotificationRequest(identifier: member, content: content, trigger: trigger)
             // Scheitert das Stellen (z. B. Mitteilungen aus), fehlt der Rückfall: im Protokoll sichtbar machen.

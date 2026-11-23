@@ -4,18 +4,20 @@
 Android ist die Quelle (android/app und android/wear, values-*/strings.xml), dazu ios/Strings
 für Texte, die es nur auf Apple gibt. iPhone: App- vor Uhr-Texten. Apple Watch: Uhr- vor App-Texten.
 
-Widgets (PhaseWakeWidget, PhaseWakePhoneWidget) bekommen nur die Schlüssel, die ihr Code braucht. Ermittelt wird
-das aus den Quellen des Ziels, so wie Xcode sie kompiliert (ios/PhaseWake.xcodeproj: Ordner des Ziels, dazu das
-Paket PhaseWakeCore):
+Widgets (PhaseWakeWidget, PhaseWakePhoneWidget) und die Watch-App (PhaseWakeWatch) bekommen nur die Schlüssel, die
+ihr Code braucht (KUERZEN). Ermittelt wird das aus den Quellen des Ziels, so wie Xcode sie kompiliert
+(ios/PhaseWake.xcodeproj: Ordner des Ziels, dazu das Paket PhaseWakeCore und Test-Ziele mit TEST_HOST im Ziel):
 - Jedes String-Literal im Code des Ziels, das ein Schlüssel ist (bei Pluralformen der Name vor «|»), kommt
   hinein – auch ohne `L(…)`, z. B. als Argument für `todayKey:` oder als `Text("…")`.
 - Texte lädt der Code nur über `L("schlüssel", …)` und `LP("name", n, …)` (Shared/Theme.swift,
   Shared/Plural.swift).
-  Jeder Aufruf braucht ein Literal ohne Interpolation, das im Katalog des Ziels steht; sonst bricht das Skript ab.
-  Ausnahme: Parameter in `DURCHREICHEN` (z. B. `L(todayKey)`), wenn jeder Aufrufer dort ein Literal übergibt.
+  Jeder Aufruf braucht als Schlüssel ein Literal ohne Interpolation, das im Katalog des Ziels steht; sonst bricht
+  das Skript ab. Ebenfalls sicher: `L(bedingung ? "a" : "b")` mit zwei Literalen, `L(f(…))` mit einer eindeutig
+  benannten `func f(…) -> String`, deren Rumpf nur ein `switch` mit einem Literal je Zweig ist, und Parameter in
+  `DURCHREICHEN` (z. B. `L(todayKey)`), wenn jeder Aufrufer dort ein Literal übergibt.
 - Andere Wege zum Katalog (NSLocalizedString, String(localized:), LocalizedStringKey, Bundle.localizedString
-  ausserhalb der beiden Helfer, `L` als Funktionswert) brechen ab, ebenso im Paket. So zeigt ein Widget nie einen
-  Schlüssel statt des Textes. Ziele mit Dateien, die das Skript nicht sicher zuordnen kann, brechen ebenfalls ab.
+  ausserhalb der beiden Helfer, `L` als Funktionswert) brechen ab, ebenso im Paket. So zeigt ein gekürztes Ziel
+  nie einen Schlüssel statt des Textes; jede Sprache des vollen Katalogs muss erhalten bleiben. Ziele mit Dateien, die das Skript nicht sicher zuordnen kann, brechen ebenfalls ab.
 Aufruf: python3 .github/scripts/gen-xcstrings.py [--check]. Selbsttest: test_gen_xcstrings.py.
 """
 import html, json, pathlib, re, sys
@@ -32,10 +34,11 @@ TARGETS = {
     "PhaseWakeWidget": ("wear", "app", "apple"),
     "PhaseWakePhoneWidget": ("app", "apple"),
 }
-# Ziele, deren Katalog auf die im Code verwendeten Schlüssel gekürzt wird.
-WIDGETS = ("PhaseWakeWidget", "PhaseWakePhoneWidget")
+# Ziele, deren Katalog auf die im Code verwendeten Schlüssel gekürzt wird. Die iPhone-App (PhaseWake) nicht:
+# Ihr Code wählt viele Schlüssel zur Laufzeit (Eigenschaften `textKey`, Arrays, Interpolation, AlarmKit).
+KUERZEN = ("PhaseWakeWidget", "PhaseWakePhoneWidget", "PhaseWakeWatch")
 PBXPROJ = ROOT / "ios/PhaseWake.xcodeproj/project.pbxproj"
-# Lokale Swift-Pakete, die ein Widget einbinden darf (Name → Quellordner); sie dürfen selbst keine Texte laden.
+# Lokale Swift-Pakete, die ein gekürztes Ziel einbinden darf (Name → Quellordner); sie dürfen selbst keine Texte laden.
 PACKAGES = {"PhaseWakeCore": "ios/PhaseWakeCore/Sources"}
 # Schlüssel-Parameter, die an `L(…)` durchgereicht werden; jeder Aufrufer muss ein Literal übergeben.
 DURCHREICHEN = ("todayKey", "tomorrowKey")
@@ -117,7 +120,7 @@ def catalog(*modules: str, keep: set[str] | None = None) -> str:
 
 
 class ScanError(Exception):
-    """Die Schlüssel eines Widgets lassen sich nicht sicher bestimmen; `args[0]` ist die Liste der Gründe."""
+    """Die Schlüssel eines gekürzten Ziels lassen sich nicht sicher bestimmen; `args[0]` ist die Liste der Gründe."""
 
 
 _OPEN = re.compile(r'(#*)("""|")')
@@ -186,6 +189,72 @@ def lex(src: str) -> tuple[str, list[tuple[str, bool]]]:
     return code(0, False)[0], lits
 
 
+def argument(code: str, i: int) -> str | None:
+    """Erstes Argument ab Position `i` (direkt hinter «(»): Text bis zum «,» oder «)» auf oberster Ebene."""
+    depth, start, pairs = 0, i, {"(": ")", "[": "]", "{": "}"}
+    stack = []
+    while i < len(code):
+        c = code[i]
+        if c in pairs:
+            stack.append(pairs[c])
+        elif c in ")]}":
+            if not stack:
+                return code[start:i].strip() if c == ")" else None
+            if stack.pop() != c:
+                return None
+        elif c == "," and not stack:
+            return code[start:i].strip()
+        i += 1
+    return None
+
+
+def closes_at_end(text: str, i: int) -> bool:
+    """Schliesst die Klammer an Position `i` erst mit dem letzten Zeichen von `text`?"""
+    depth = 0
+    for j in range(i, len(text)):
+        depth += (text[j] == "(") - (text[j] == ")")
+        if depth == 0:
+            return j == len(text) - 1
+    return False
+
+
+# Ternärer Ausdruck mit zwei festen Literalen: «bedingung ? "a" : "b"». Die Bedingung darf weder «?» (optionale
+# Verkettung, «??», verschachtelter Ausdruck) noch Literale enthalten; Swift verlangt Leerzeichen um «?».
+_TERNARY = re.compile(r"[^?§]+?\s\?\s+(§\d+§)\s*:\s*(§\d+§)")
+# Rumpf einer Schlüssel-Funktion: nur «switch wert { case …: "a" … }», jeder Zweig ein festes Literal.
+_SWITCH = re.compile(r"\s*(?:return\s+)?switch\s+[\w.]+\s*\{((?:\s*(?:case\s+[^:{}§?]+|default)\s*:"
+                     r"\s*(?:return\s+)?§\d+§)+)\s*\}\s*")
+
+
+def key_functions(lexed: dict[str, tuple[str, list[tuple[str, bool]]]], other: list[str]) -> dict[str, set[str] | None]:
+    """Funktionen `func name(…) -> String`, deren Rumpf nur ein `switch` mit einem festen Literal je Zweig ist
+    (Swift prüft, dass der `switch` vollständig ist): Name → mögliche Rückgabewerte. `None`, wenn der Name
+    mehrfach definiert ist (Überladung, gleicher Name im Paket) – dann gilt er nicht als sicher."""
+    found: dict[str, set[str] | None] = {}
+    for code, lits in lexed.values():
+        for m in re.finditer(r"\bfunc\s+(\w+)\b", code):
+            name = m.group(1)
+            sig = re.compile(r"\s*\([^{}]*?\)\s*->\s*String\s*\{").match(code, m.end())
+            values = None
+            if sig:
+                depth, j = 1, sig.end()
+                while j < len(code) and depth:
+                    depth += (code[j] == "{") - (code[j] == "}")
+                    j += 1
+                body = _SWITCH.fullmatch(code, sig.end(), j - 1)
+                if body:
+                    tokens = [lits[int(t)] for t in re.findall(r"§(\d+)§", body.group(1))]
+                    values = None if any(interp for _, interp in tokens) else {t for t, _ in tokens}
+            found[name] = None if name in found else values
+    # Gleicher Name im Paket oder als Eigenschaft/Fall (könnte die Funktion im Aufruf verdecken): nicht sicher.
+    codes = [c for c, _ in lexed.values()] + other
+    for name in [n for n, v in found.items() if v]:
+        if any(re.search(rf"\b(?:let|var|case)\s+{name}\b", c) for c in codes) or \
+                any(re.search(rf"\bfunc\s+{name}\b", c) for c in other):
+            found[name] = None
+    return found
+
+
 def scan(files: dict[str, str], known: set[str], packages: dict[str, str] | None = None) -> set[str]:
     """Benötigte Schlüssel (Pluralformen als Name vor «|») für Swift-Dateien eines Ziels (Pfad → Text).
     `known`: Schlüssel des Katalogs. `packages`: eingebundene Paketdateien, die keine Texte laden dürfen.
@@ -193,14 +262,16 @@ def scan(files: dict[str, str], known: set[str], packages: dict[str, str] | None
     names = {k.split("|")[0] for k in known}
     plurals = {k.split("|")[0] for k in known if "|" in k}
     singles = {k for k in known if "|" not in k}
-    needed, errors = set(), []
+    needed, errors, package_code = set(), [], []
     for path, src in sorted((packages or {}).items()):
         code, _ = lex(src)
+        package_code.append(code)
         for m in list(VERBOTEN.finditer(code)) + list(re.finditer(r"\blocalizedString\s*\(", code)):
             errors.append(f"{path}:{code.count(chr(10), 0, m.start()) + 1}: Paket lädt Texte ({m.group(0)!r}), "
-                          "das Widget-Bundle wäre gekürzt")
-    for path, src in sorted(files.items()):
-        code, lits = lex(src)
+                          "der gekürzte Katalog fehlte ihm")
+    lexed = {path: lex(src) for path, src in sorted(files.items())}
+    keyfuncs = key_functions(lexed, package_code)
+    for path, (code, lits) in lexed.items():
 
         def where(pos: int) -> str:
             return f"{path}:{code.count(chr(10), 0, pos) + 1}"
@@ -212,7 +283,7 @@ def scan(files: dict[str, str], known: set[str], packages: dict[str, str] | None
         needed |= {text for text, interp in lits if not interp and text in names}
         for m in VERBOTEN.finditer(code):
             if m.group(0).startswith("import"):
-                continue  # SwiftUI ist im Widget erlaubt; `Text("…")` deckt die Literal-Regel ab.
+                continue  # SwiftUI ist erlaubt; `Text("…")` deckt die Literal-Regel ab.
             errors.append(f"{where(m.start())}: {m.group(0)!r} wird nicht erkannt, bitte L(\"…\")/LP(\"…\") nutzen")
         raw = len(re.findall(r"\blocalizedString\s*\(", code))
         if raw != HELFER.get(path, 0):
@@ -222,19 +293,34 @@ def scan(files: dict[str, str], known: set[str], packages: dict[str, str] | None
             if re.search(r"\bfunc\s+$", code[:m.start()]):
                 continue  # Definition des Helfers
             fn = m.group(1)
-            # Erstes Argument: ein einzelnes Token bis «,» oder «)»; alles andere gilt als nicht erkennbar.
-            first = re.compile(r"\s*([^,()\s]*)\s*[,)]").match(code, m.end()) if m.group(2) else None
-            arg = first.group(1) if first else code[m.end():m.end() + 30].split("\n")[0]
+            pool = plurals if fn == "LP" else singles
+            # Erstes Argument bis «,» oder «)» auf oberster Ebene. Sicher sind nur: ein Literal, ein ternärer
+            # Ausdruck mit zwei Literalen, der Aufruf einer Schlüssel-Funktion (key_functions) und DURCHREICHEN.
+            arg = argument(code, m.end()) if m.group(2) else None
+            shown = (arg if arg is not None else code[m.end():m.end() + 30].split("\n")[0])[:60]
+            call = re.fullmatch(r"(\w+)\(.*\)", arg or "", re.S)
+            if call and not closes_at_end(arg, len(call.group(1))):
+                call = None  # Klammer schliesst vor dem Ende, z. B. «f(a) + g(b)»
             if m.group(2) is None:
                 errors.append(f"{where(m.start())}: {fn} ohne direktes Schlüssel-Argument (z. B. als Funktionswert)")
-            elif first is None:
-                errors.append(f"{where(m.start())}: {fn}({arg}…) – Schlüssel nicht als Literal erkennbar")
+            elif arg is None:
+                errors.append(f"{where(m.start())}: {fn}({shown}…) – Schlüssel nicht als Literal erkennbar")
             elif arg in DURCHREICHEN and fn == "L":
                 pass  # Aufrufer prüft die Schleife unten
-            elif (key := literal(arg)) is None:
-                errors.append(f"{where(m.start())}: {fn}({arg}) – Schlüssel nicht als Literal erkennbar")
-            elif key not in (plurals if fn == "LP" else singles):
-                errors.append(f"{where(m.start())}: {fn}(\"{key}\") – Schlüssel fehlt im Katalog")
+            elif (tern := _TERNARY.fullmatch(arg)) or literal(arg) is not None:
+                for token in tern.groups() if tern else (arg,):
+                    key = literal(token)
+                    if key is None:
+                        errors.append(f"{where(m.start())}: {fn}({shown}) – Schlüssel nicht als Literal erkennbar")
+                    elif key not in pool:
+                        errors.append(f"{where(m.start())}: {fn}(\"{key}\") – Schlüssel fehlt im Katalog")
+            elif call and fn == "L" and keyfuncs.get(call.group(1)):
+                values = keyfuncs[call.group(1)]
+                needed |= values
+                for key in sorted(values - singles):
+                    errors.append(f"{where(m.start())}: {call.group(1)} liefert \"{key}\" – Schlüssel fehlt im Katalog")
+            else:
+                errors.append(f"{where(m.start())}: {fn}({shown}) – Schlüssel nicht als Literal erkennbar")
         for name in DURCHREICHEN:
             for m in re.finditer(rf"(?<![\w.]){name}\s*:\s*(§\d+§|String\b|[^\s,)]*)", code):
                 key = literal(m.group(1))
@@ -295,8 +381,29 @@ def swift(folder: str) -> dict[str, str]:
     return {p.relative_to(ROOT).as_posix(): p.read_text() for p in sorted((ROOT / folder).rglob("*.swift"))}
 
 
-def widget_keys(target: str, known: set[str]) -> set[str]:
-    folders, packages = target_files(target, PBXPROJ.read_text())
+def hosted_tests(target: str, pbx: str) -> list[str]:
+    """Test-Ziele, die im Bundle von `target` laufen (TEST_HOST …/<target>.app/…): Ihr `L(…)` liest dessen Katalog."""
+    configs = set(re.findall(rf"(\w+) /\* \w+ \*/ = \{{\s*isa = XCBuildConfiguration;\s*buildSettings = \{{"
+                             rf"[^}}]*?TEST_HOST = \"[^\"]*/{re.escape(target)}\.app/", pbx))
+    lists = {m.group(1) for m in re.finditer(r"(\w+) /\* Build configuration list for PBXNativeTarget \"[^\"]+\" \*/"
+                                             r" = \{\s*isa = XCConfigurationList;\s*buildConfigurations = \((.*?)\);",
+                                             pbx, re.S) if configs & set(re.findall(r"(\w+) /\*", m.group(2)))}
+    hosts = len(re.findall(r"TEST_HOST = ", pbx))
+    if hosts != len(set(re.findall(r"(\w+) /\* \w+ \*/ = \{\s*isa = XCBuildConfiguration;\s*buildSettings = \{"
+                                    r"[^}]*?TEST_HOST = ", pbx))):
+        raise ScanError(["TEST_HOST nicht eindeutig lesbar"])
+    return sorted(m.group(1) for m in re.finditer(r"\w+ /\* (\w+) \*/ = \{\s*isa = PBXNativeTarget;\s*"
+                                                  r"buildConfigurationList = (\w+)", pbx) if m.group(2) in lists)
+
+
+def target_keys(target: str, known: set[str]) -> set[str]:
+    """Benötigte Schlüssel eines gekürzten Ziels: sein Code, eingebundene Pakete und Tests, die in ihm laufen."""
+    pbx = PBXPROJ.read_text()
+    folders, packages = target_files(target, pbx)
+    for test in hosted_tests(target, pbx):
+        test_folders, test_packages = target_files(test, pbx)
+        folders += [f for f in test_folders if f not in folders]
+        packages += [p for p in test_packages if p not in packages]
     files = {k: v for f in folders for k, v in swift("ios/" + f).items()}
     linked = {k: v for name in packages for k, v in swift(PACKAGES[name]).items()}
     try:
@@ -311,10 +418,17 @@ def main() -> int:
         for target, modules in TARGETS.items():
             path = ROOT / "ios" / target / "Localizable.xcstrings"
             keep = None
-            if target in WIDGETS:
-                known = set(json.loads(catalog(*modules))["strings"])
-                keep = widget_keys(target, known)
+            if target in KUERZEN:
+                full = json.loads(catalog(*modules))["strings"]
+                keep = target_keys(target, set(full))
             text = catalog(*modules, keep=keep)
+            if keep is not None:
+                # Jede Sprache des vollen Katalogs muss bleiben, sonst ändern sich Bundle-Sprachen und
+                # `preferredLocalizations` (Pluralregeln in LP) und die App fiele auf Englisch zurück.
+                langs = lambda strings: {l for v in strings.values() for l in v["localizations"]}
+                lost = langs(full) - langs(json.loads(text)["strings"])
+                if lost:
+                    raise ScanError([f"{target}: gekürzter Katalog verliert Sprachen {sorted(lost)}"])
             if "--check" in sys.argv:
                 if not path.exists() or path.read_text() != text:
                     stale.append(str(path.relative_to(ROOT)))
@@ -322,7 +436,7 @@ def main() -> int:
                 path.write_text(text)
     except ScanError as e:
         for msg in e.args[0]:
-            print("::error::Widget-Schlüssel: " + msg)
+            print("::error::Katalog-Schlüssel: " + msg)
         return 1
     if stale:
         print("::error::String-Kataloge veraltet, bitte gen-xcstrings.py ausführen: " + ", ".join(stale))

@@ -200,6 +200,7 @@
     <string name="companion_failed">Сат није пронађен. Провери да ли је повезан и да ли је Bluetooth укључен, па покушај поново.</string>
     <string name="check_exact_alarms">Тачни аларми дозвољени</string>
     <string name="check_exact_alarms_problem">Дозволи „Аларми и подсетници“ – без ове дозволе резервни аларм можда уопште неће звонити.</string>
+    <string name="notice_exact_alarms_missing">Аларм нетачан – тачни аларми нису дозвољени</string>
     <string name="check_dnd">„Не узнемиравај“ пропушта аларме</string>
     <string name="check_battery">Батерија телефона</string>
     <string name="check_battery_problem">Испод %1$d %% – напуни телефон да би резервни аларм могао да звони.</string>

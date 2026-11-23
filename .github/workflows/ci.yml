@@ -145,11 +145,12 @@ jobs:
         run: |
           python3 ../.github/scripts/coverage_check.py "Kotlin-Kern" 90 core/build/reports/jacoco/test/jacocoTestReport.xml
           python3 ../.github/scripts/coverage_check.py "Android shared" 70 $(find shared/build/reports/coverage -name "*.xml" | head -1)
-          # Handy und Uhr gesamt: nur zur Information. Wecken und Planen je Paket mit Mindestwert.
+          # Handy und Uhr gesamt: 5 Punkte unter der Messung vom 23.11.2026 (50.9 / 59.5 %), damit die Abdeckung nicht
+          # sinkt; Wecken und Planen je Paket mit eigenem Mindestwert.
           app_report=$(find app/build/reports/coverage -name "*.xml" | head -1)
           wear_report=$(find wear/build/reports/coverage -name "*.xml" | head -1)
-          python3 ../.github/scripts/coverage_check.py "Android Handy" 0 "$app_report"
-          python3 ../.github/scripts/coverage_check.py "Android Uhr" 0 "$wear_report"
+          python3 ../.github/scripts/coverage_check.py "Android Handy" 45 "$app_report"
+          python3 ../.github/scripts/coverage_check.py "Android Uhr" 54 "$wear_report"
           python3 ../.github/scripts/coverage_check.py "Handy Zweitwecker (ring)" 70 --package com/phasewake/app/ring "$app_report"
           python3 ../.github/scripts/coverage_check.py "Uhr Wecken (wake)" 70 --package com/phasewake/app/wear/wake "$wear_report"
           python3 ../.github/scripts/coverage_check.py "Uhr Planen (schedule)" 70 --package com/phasewake/app/wear/schedule "$wear_report"
@@ -425,12 +426,14 @@ jobs:
         run: |
           set -o pipefail
           # Je Datei eine Schwelle, 5 Punkte unter dem ersten gemessenen Stand (docs/ENTWICKLUNG.md, Abschnitt 4).
-          # Sitzung, Messen und Klingeln (SmartAlarm+Session, +Measuring, +Ringing) erreichen die Unit-Tests heute nicht
-          # (0–2 %); sie brauchen eine laufende Sitzung von watchOS und haben noch keine Schwelle (docs/OFFEN.md 11zb).
+          # Die Entscheidungen von Sitzung, Messen und Klingeln stehen in MeasuringRules, RingingRules, SessionRules+Phase
+          # und NightRules+Kept (getestet); in SmartAlarm+Session, +Measuring, +Ringing bleiben die Aufrufe von watchOS.
           xcrun xccov view --report --json build/watch.xcresult > build/watch-coverage.json
           python3 .github/scripts/xccov_check.py "Watch-Wecken" build/watch-coverage.json \
             ios/PhaseWakeWatch/Alarm/NightRules.swift=95 ios/PhaseWakeWatch/Alarm/SessionRules.swift=95 \
-            ios/PhaseWakeWatch/Alarm/SmartAlarm+Upcoming.swift=75 ios/PhaseWakeWatch/Alarm/SmartAlarm.swift=29
+            ios/PhaseWakeWatch/Alarm/SmartAlarm+Upcoming.swift=75 ios/PhaseWakeWatch/Alarm/SmartAlarm.swift=29 \
+            ios/PhaseWakeWatch/Alarm/MeasuringRules.swift=95 ios/PhaseWakeWatch/Alarm/RingingRules.swift=95 \
+            ios/PhaseWakeWatch/Alarm/SessionRules+Phase.swift=95 ios/PhaseWakeWatch/Alarm/NightRules+Kept.swift=95
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash

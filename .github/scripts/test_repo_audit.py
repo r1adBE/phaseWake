@@ -88,5 +88,27 @@ class RepoAuditTest(unittest.TestCase):
         self.assertIn("GESAMTNOTE", audit.text())
 
 
+class WithoutGitTest(unittest.TestCase):
+    """Ein entpacktes ZIP ohne .git: Dateien aus dem Ordner, .gitignore beachtet."""
+
+    def test_files_from_folder_respect_gitignore(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        root = Path(tmp.name)
+        files = {"README.md": "# x\n", "LICENSE": "MIT\n", ".gitignore": "build/\n*.jks\n!keep.jks\n",
+                 "app/build/out.txt": "x", "app/a.kt": "class A\n", "k.jks": "x", "keep.jks": "x"}
+        for name, text in files.items():
+            (root / name).parent.mkdir(parents=True, exist_ok=True)
+            (root / name).write_text(text, encoding="utf-8")
+        audit = repo_audit.Audit(str(root), run_scripts=False)
+        self.assertFalse(audit.has_git)
+        self.assertEqual([".gitignore", "LICENSE", "README.md", "app/a.kt", "keep.jks"], audit.files)
+        audit.run()
+        self.assertIn("README.md vorhanden", [t for s, t, _ in audit.results["Dokumentation"] if s == repo_audit.OK])
+        hints = [t for s, t, _ in audit.results["Datenschutz"] if s == repo_audit.HINT]
+        self.assertIn("Commit-Adressen und Zuschreibungen nicht prüfbar (kein Git)", hints)
+        self.assertIn("Dateiliste: Dateisystem", audit.markdown())
+
+
 if __name__ == "__main__":
     unittest.main()

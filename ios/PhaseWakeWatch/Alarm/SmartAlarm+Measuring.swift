@@ -14,14 +14,16 @@ extension SmartAlarm {
         let now = Date()
         // Die geplante Sitzung gehört zum nächsten Plan oder zum echten Wecker, dessen Sitzung ein vorübergehender
         // Plan bei geschlossener App nicht verdrängt hat (`keepsRealSession`).
-        let candidates = [model.plan, model.realPlan].compactMap { $0 }
-        let matching: WakePlan? = if let plan { candidates.contains(plan) ? plan : nil } else { model.plan }
+        let matching = MeasuringRules.matchingNight(own: plan, next: model.plan, real: model.realPlan)
         // Ein nachgeholter Wecker oder eine ausstehende Nacht (Zielzeit schon vorbei) gilt trotzdem: Er klingelt
         // sofort (`beginMeasuring`).
-        let missed = matching != nil && (matching == model.missedPlan || matching == model.pendingNight)
         guard let current = matching,
-              now >= Self.sessionStart(current).addingTimeInterval(-Self.startTolerance),
-              missed || now < current.target.addingTimeInterval(Self.fallbackDelay) else {
+              MeasuringRules.measures(
+                  current, catchUp: MeasuringRules.isCatchUp(current, missed: model.missedPlan,
+                                                              pending: model.pendingNight),
+                  now: now, sessionStart: Self.sessionStart(current), tolerance: Self.startTolerance,
+                  delay: Self.fallbackDelay
+              ) else {
             // Verwaist: gleich beenden, ohne zu vibrieren (im Hintergrund bis zum Aktivwerden gemerkt).
             DiagStore.shared.log(.error, "session without matching plan, ended")
             invalidateSession()
@@ -73,7 +75,7 @@ extension SmartAlarm {
         let calibrated = Calibration.calibrate(nights: NightHistory.motionsForCalibration(model.storage.nights()))
         detector = WakeDetector(config: LearnRecorder.shared.snapshot.applied(to: calibrated))
         epochs = []
-        unmeasured = max(0, Int(Date().timeIntervalSince(plan.windowStart)) / DetectorConfig.epochSeconds)
+        unmeasured = MeasuringRules.unmeasuredEpochs(windowStart: plan.windowStart, now: Date())
         firstRing = nil
         snoozes = 0
         asleepAt = nil
@@ -102,7 +104,8 @@ extension SmartAlarm {
         }
         Task { @MainActor in
             try? await Task.sleep(for: .seconds(WatchOnset.timeout))
-            guard self.onsetPending, self.onsetRun == run, self.phase == .measuring(plan) else { return }
+            guard MeasuringRules.onsetCounts(pending: self.onsetPending, run: run, latest: self.onsetRun,
+                                             measuring: self.phase == .measuring(plan)) else { return }
             DiagStore.shared.log(.error, "onset computation timed out")
             self.onsetDone(.failed, run: run, plan: plan)
         }
@@ -152,11 +155,8 @@ extension SmartAlarm {
     func measuringInterrupted(_ plan: WakePlan) {
         logMeasureEnd(" interrupted")
         guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
-            if let nightPlan, !epochs.isEmpty, Transient.kindOf(nightPlan.alarmId) == nil {
-                WatchModel.shared.lastNight.add(NightRecord(
-                    alarmId: nightPlan.alarmId, windowStart: nightPlan.windowStart, target: nightPlan.target,
-                    wokeAt: nightPlan.target, reason: .deadline, snoozes: 0, epochs: epochs
-                ))
+            if let night = MeasuringRules.interruptedNight(nightPlan, epochs: epochs) {
+                WatchModel.shared.lastNight.add(night)
             }
             DiagStore.shared.log(.scheduled, "measuring interrupted, fallback at target \(Format.logTime(plan.target))")
             phase = .waiting(plan)
@@ -173,7 +173,8 @@ extension SmartAlarm {
     func cancelMeasuring() {
         logMeasureEnd(" cancelled")
         stopSensors()
-        if let session, session.state == .running, WKApplication.shared().applicationState == .active {
+        if let session,
+           MeasuringRules.confirmsCancel(session.state, active: WKApplication.shared().applicationState == .active) {
             // Einmal: Abstand 0 beendet die Wiederholung (`SessionRules.hapticStep`).
             session.notifyUser(hapticType: .stop) { _ in 0 }
         }
@@ -234,31 +235,37 @@ extension SmartAlarm {
                     // Wach geht vor: gilt auch für einen gemerkten Moment, falls dann die Sperre gilt.
                     let awake = detector.awakeDuringBlock()
                     detector.rearm()
-                    if heldWake == nil || (awake && !heldAwake) {
+                    if let next = MeasuringRules.hold(reason, awake: awake, held: heldWake, heldAwake: heldAwake) {
                         if heldWake == nil {
                             DiagStore.shared.log(.phase, "\(reason.rawValue) held, onset pending")
                         }
-                        heldWake = reason
-                        heldAwake = awake
+                        heldWake = next.reason
+                        heldAwake = next.awake
                     }
                     continue
                 }
                 // Kurze Nacht (wie Android): Moment übergehen (nicht nachholen), weiter erkennen; in den letzten
                 // `ShortNight.lateMinutes` vor der Zielzeit weckt ein neuer Moment. Wach geht vor
                 // (`WakeDetector.onBlocked`): Ist die Person wach, weckt die Uhr trotzdem.
-                if blocksEarly() {
-                    guard let awake = detector.onBlocked() else {
-                        noteBlocked(reason)
-                        continue
-                    }
-                    DiagStore.shared.log(.phase, "\(awake.rawValue) during \(blockedWhy)")
-                    ring(awake)
-                    return
-                }
-                DiagStore.shared.log(.phase, reason.rawValue)
-                ring(reason)
-                return
+                let moment = MeasuringRules.early(reason, blocked: blocksEarly()) { detector.onBlocked() }
+                if act(on: moment, reason: reason) { return }
             }
+        }
+    }
+
+    /// Entscheid `moment` zum frühen Moment `reason` ausführen (``MeasuringRules/Moment``): wecken samt Zeile im
+    /// Protokoll oder übergehen (`noteBlocked`). - Returns: ob jetzt geweckt wird.
+    private func act(on moment: MeasuringRules.Moment, reason: WakeReason) -> Bool {
+        switch moment {
+        case .ring(let woke, let duringBlock):
+            DiagStore.shared.log(.phase, MeasuringRules.momentLine(woke, duringBlock: duringBlock, why: blockedWhy))
+            ring(woke)
+            return true
+        case .blocked:
+            noteBlocked(reason)
+            return false
+        case .ignore:
+            return false
         }
     }
 
@@ -280,41 +287,31 @@ extension SmartAlarm {
     }
 
     /// Grund der Sperre fürs Diagnose-Protokoll (wie Android).
-    var blockedWhy: String { asleepAt == nil ? "short night unknown" : "short night" }
+    var blockedWhy: String { MeasuringRules.blockedWhy(onsetKnown: asleepAt != nil) }
 
     /// Rechnung der Einschlafzeit fertig (oder abgelaufen, `WatchOnset.timeout`): Stand übernehmen und einen
     /// gemerkten frühen Moment jetzt entscheiden. Ein überholtes Ergebnis (`run`) oder eine andere Nacht gilt nicht.
     /// `floor`: Grundrauschen der nachgerechneten Messung; gilt ab jetzt als Vorwissen im Fenster.
     func onsetDone(_ result: WatchOnset.Result, run: Int, plan: WakePlan, floor: Double? = nil) {
-        guard onsetPending, onsetRun == run, phase == .measuring(plan) else { return }
+        guard MeasuringRules.onsetCounts(pending: onsetPending, run: run, latest: onsetRun,
+                                         measuring: phase == .measuring(plan)) else { return }
         onsetPending = false
         if let floor {
             detector.useOnsetFloor(floor)
             DiagStore.shared.log(.phase, "onset floor \(NoiseFloor.format(detector.config.onsetFloor))")
         }
-        switch result {
-        case .asleep(let at, let bed):
-            asleepAt = at
-            onsetBedAt = bed
-        case .notMeasured: break
-        case .failed: onsetMeasured = true
-        }
+        let onset = MeasuringRules.onset(
+            result, current: MeasuringRules.Onset(asleepAt: asleepAt, bedAt: onsetBedAt, measured: onsetMeasured)
+        )
+        asleepAt = onset.asleepAt
+        onsetBedAt = onset.bedAt
+        onsetMeasured = onset.measured
         guard let held = heldWake else { return }
         let awake = heldAwake
         heldWake = nil
         heldAwake = false
-        if exactNight { return }
-        if blocksEarly() {
-            guard awake else {
-                noteBlocked(held)
-                return
-            }
-            DiagStore.shared.log(.phase, "\(WakeReason.awake.rawValue) during \(blockedWhy)")
-            ring(.awake)
-            return
-        }
-        DiagStore.shared.log(.phase, held.rawValue)
-        ring(held)
+        let moment = MeasuringRules.heldMoment(held, awake: awake, exact: exactNight, blocked: blocksEarly())
+        _ = act(on: moment, reason: held)
     }
 
     /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M»)
@@ -323,22 +320,17 @@ extension SmartAlarm {
     /// (z. B. abgebrochen).
     func logMeasureEnd(_ note: String = "") {
         guard phase.isMeasuring else { return }
-        let withHeartRate = epochs.filter { $0.heartRate != nil }.count
         let summary = NoiseFloor.summary(config: detector.config, motions: epochs.map(\.motion))
-        DiagStore.shared.log(
-            .measureEnd, "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count), \(summary)\(note)"
-        )
+        DiagStore.shared.log(.measureEnd, MeasuringRules.measureEndLine(epochs, summary: summary, note: note))
     }
 
     /// Wecker «Genau» (`WakePlan.exact` bzw. `AlarmSpec.isExact`): misst, weckt aber erst zur Zielzeit.
-    var exactNight: Bool { nightPlan?.exact == true || spec?.isExact == true }
+    var exactNight: Bool { MeasuringRules.isExact(nightPlan, spec: spec) }
 
     /// Grund beim Wecken zur Zielzeit (Zeitgeber oder Ende der Sitzung): «Genau», kurze Nacht (ein früher Moment wurde
-    /// übergangen) oder, was die Erkennung meldet (wie `WakeRules.deadlineReason`, Kotlin).
+    /// übergangen) oder, was die Erkennung meldet (``MeasuringRules/targetReason(exact:earlyBlocked:detected:)``).
     func targetReason() -> WakeReason {
-        if exactNight { return .exact }
-        if earlyBlocked { return .shortNight }
-        return detector.finish()
+        MeasuringRules.targetReason(exact: exactNight, earlyBlocked: earlyBlocked) { detector.finish() }
     }
 
     func stopSensors() {

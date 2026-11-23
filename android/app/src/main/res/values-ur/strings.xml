@@ -195,6 +195,7 @@
     <string name="companion_failed">کوئی گھڑی نہیں ملی۔ دیکھو کہ وہ جڑی ہوئی ہے اور بلوٹوتھ آن ہے، پھر دوبارہ کوشش کرو۔</string>
     <string name="check_exact_alarms">درست وقت کے الارم کی اجازت ہے</string>
     <string name="check_exact_alarms_problem">“الارمز اور یاد دہانیاں” کی اجازت دو – اس اجازت کے بغیر بیک اپ الارم شاید بالکل نہ بجے۔</string>
+    <string name="notice_exact_alarms_missing">الارم درست وقت پر نہیں – درست وقت کے الارم کی اجازت نہیں</string>
     <string name="check_dnd">“ڈسٹرب نہ کریں” الارم کو بجنے دیتا ہے</string>
     <string name="check_battery">فون کی بیٹری</string>
     <string name="check_battery_problem">%1$d %% سے کم – فون چارج کرو تاکہ بیک اپ الارم بج سکے۔</string>

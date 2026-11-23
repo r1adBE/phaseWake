@@ -196,6 +196,7 @@
     <string name="companion_failed">Walang nakitang relo. Tingnan kung nakakonekta ito at naka-on ang Bluetooth, saka subukan ulit.</string>
     <string name="check_exact_alarms">Pinapayagan ang eksaktong alarm</string>
     <string name="check_exact_alarms_problem">Payagan ang “Mga alarm at paalala” – kung wala ito, baka hindi talaga tumunog ang backup na alarm.</string>
+    <string name="notice_exact_alarms_missing">Hindi eksakto ang alarm – hindi pinapayagan ang eksaktong alarm</string>
     <string name="check_dnd">Pinapalusot ng Huwag Istorbohin ang mga alarm</string>
     <string name="check_battery">Baterya ng telepono</string>
     <string name="check_battery_problem">Mababa sa %1$d %% – i-charge ang telepono mo para makatunog ang backup na alarm.</string>

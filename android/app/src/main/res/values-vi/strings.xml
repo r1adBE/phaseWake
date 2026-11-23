@@ -190,6 +190,7 @@
     <string name="companion_failed">Không tìm thấy đồng hồ. Hãy kiểm tra đồng hồ đã kết nối và Bluetooth đang bật, rồi thử lại.</string>
     <string name="check_exact_alarms">Đã cho phép báo thức chính xác</string>
     <string name="check_exact_alarms_problem">Hãy cho phép báo thức và lời nhắc – nếu không có quyền này, báo thức dự phòng có thể hoàn toàn không reo.</string>
+    <string name="notice_exact_alarms_missing">Báo thức không chính xác – chưa cho phép báo thức chính xác</string>
     <string name="check_dnd">Chế độ Không làm phiền vẫn cho báo thức kêu</string>
     <string name="check_battery">Pin điện thoại</string>
     <string name="check_battery_problem">Dưới %1$d %% – hãy sạc điện thoại để báo thức dự phòng có thể reo.</string>

@@ -195,6 +195,7 @@
     <string name="companion_failed">വാച്ച് കണ്ടെത്തിയില്ല. അത് കണക്റ്റ് ചെയ്‌തിട്ടുണ്ടോ, ബ്ലൂടൂത്ത് ഓണാണോ എന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="check_exact_alarms">കൃത്യമായ അലാറങ്ങൾ അനുവദിച്ചു</string>
     <string name="check_exact_alarms_problem">അലാറങ്ങളും &amp; റിമൈൻഡറുകളും അനുവദിക്കുക – ഈ അനുമതിയില്ലെങ്കിൽ ബാക്കപ്പ് അലാറം അടിക്കാതിരിക്കാം.</string>
+    <string name="notice_exact_alarms_missing">അലാറം കൃത്യമല്ല – കൃത്യമായ അലാറങ്ങൾ അനുവദിച്ചിട്ടില്ല</string>
     <string name="check_dnd">ശല്യപ്പെടുത്തരുത് അലാറങ്ങളെ കടത്തിവിടുന്നു</string>
     <string name="check_battery">ഫോൺ ബാറ്ററി</string>
     <string name="check_battery_problem">%1$d %%-ൽ താഴെ – ബാക്കപ്പ് അലാറം അടിക്കാൻ ഫോൺ ചാർജ് ചെയ്യുക.</string>

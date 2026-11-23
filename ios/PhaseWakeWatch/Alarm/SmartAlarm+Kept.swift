@@ -52,28 +52,24 @@ extension SmartAlarm {
         // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp beendet die Kette.
         removeInterrupted()
         let model = WatchModel.shared
-        var current: WakePlan?
-        switch phase {
-        case .waiting(let night), .scheduled(let night), .measuring(let night): current = night
-        case .idle, .ringing, .snoozed: current = nil
-        }
+        let current = NightRules.phoneStopCandidate(phase)
         guard let night = NightRules.phoneStoppedNight([current, model.pendingNight], alarmId: alarmId, target: target,
                                                        now: Date(), tolerance: Self.startTolerance) else { return }
         DiagStore.shared.log(.stop, "phone, watch not ringing")
         let ids = [Self.fallbackKey(for: night.alarmId)]
         removeFallback(ids)
         removeDeliveredFallback(ids)
-        if case .measuring(let running) = phase, running == night {
+        switch NightRules.phoneStopEnd(phase, night: night) {
+        case .finishMeasuring:
             // Wie ein Stopp beim Klingeln: Nacht mit ihren Epochen abschliessen (Weckzeit jetzt).
             logMeasureEnd(" stopped on phone")
             if firstRing == nil { firstRing = Date() }
             reason = .deadline
             finish(notifyPhone: false)
             return
-        }
-        if Transient.kindOf(night.alarmId) == nil {
+        case .markDone:
             markNightDone(night, model: model)
-        } else {
+        case .endTransient:
             model.endTransient(night.alarmId)
         }
         invalidateSession()

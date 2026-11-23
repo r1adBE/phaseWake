@@ -203,6 +203,7 @@
     <string name="companion_failed">Ura ni najdena. Preveri, ali je povezana in ali je Bluetooth vklopljen, nato poskusi znova.</string>
     <string name="check_exact_alarms">Natančne budilke dovoljene</string>
     <string name="check_exact_alarms_problem">Dovoli »Budilke in opomniki« – brez tega dovoljenja rezervna budilka morda sploh ne bo zazvonila.</string>
+    <string name="notice_exact_alarms_missing">Budilka ni natančna – natančne budilke niso dovoljene</string>
     <string name="check_dnd">»Ne moti« prepušča budilke</string>
     <string name="check_battery">Baterija telefona</string>
     <string name="check_battery_problem">Pod %1$d %% – napolni telefon, da lahko rezervna budilka zazvoni.</string>

@@ -202,6 +202,7 @@
     <string name="companion_failed">Nie znaleziono zegarka. Sprawdź, czy jest połączony i czy Bluetooth jest włączony, a potem spróbuj ponownie.</string>
     <string name="check_exact_alarms">Dokładne alarmy dozwolone</string>
     <string name="check_exact_alarms_problem">Zezwól na alarmy i przypomnienia – bez tego uprawnienia zapasowy budzik może w ogóle nie zadzwonić.</string>
+    <string name="notice_exact_alarms_missing">Alarm niedokładny – dokładne alarmy niedozwolone</string>
     <string name="check_dnd">Nie przeszkadzać przepuszcza budziki</string>
     <string name="check_battery">Bateria telefonu</string>
     <string name="check_battery_problem">Poniżej %1$d %% – naładuj telefon, aby zapasowy budzik mógł zadzwonić.</string>

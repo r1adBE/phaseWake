@@ -17,9 +17,9 @@ extension SmartAlarm {
                                 target: nightPlan.target, wokeAt: firstRing, reason: reason, snoozes: snoozes,
                                 epochs: epochs,
                                 bedAt: asleepAt == nil ? nil : onsetBedAt, asleepAt: asleepAt)
-        var state: [String: Any] = ["night": Codec.encodeNight(night)]
-        if case .snoozed(let until, _) = phase { state["snoozedUntil"] = until.timeIntervalSince1970 }
-        Self.writeState(state)
+        var snoozedUntil: Date?
+        if case .snoozed(let until, _) = phase { snoozedUntil = until }
+        Self.writeState(NightRules.ringState(night, snoozedUntil: snoozedUntil))
     }
 
     func clearSaved() {
@@ -48,9 +48,10 @@ extension SmartAlarm {
     }
 
     func restore() {
-        guard let state = Self.readState(),
-              let text = state["night"] as? String,
-              let night = try? Codec.decodeNight(text) else { return }
+        // Unlesbare Schlummer-Zeit gilt als fehlend (dann wie beim Klingeln, ``NightRules/ringNight(_:)``).
+        guard let saved = NightRules.ringNight(Self.readState()) else { return }
+        let night = saved.night
+        let snoozed = saved.snoozedUntil
         nightPlan = WakePlan(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target)
         firstRing = night.wokeAt
         reason = night.reason
@@ -58,8 +59,6 @@ extension SmartAlarm {
         epochs = night.epochs
         asleepAt = night.asleepAt
         onsetBedAt = night.bedAt
-        // Unlesbare Schlummer-Zeit gilt als fehlend (dann wie beim Klingeln).
-        let snoozed = (state["snoozedUntil"] as? Double).flatMap { $0.isFinite ? Date(timeIntervalSince1970: $0) : nil }
         if let date = snoozed {
             plan = WakePlan(alarmId: night.alarmId, windowStart: date, target: date)
             phase = .snoozed(until: date, snoozesLeft: snoozesLeft)

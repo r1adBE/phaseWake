@@ -1,0 +1,67 @@
+# Kurze Nacht, Momente bis Epoche 40 gesperrt (Audit 23.11.2026). Grundrauschen 0.04 (Wach-Schwelle 0.2), Bewegungen
+# 0.15 in Epoche 20 und 22 liegen darunter. Ab Epoche 27 sinkt das Grundrauschen auf 0.02 (Wach-Schwelle 0.1); die
+# starke Bewegung in Epoche 28 ist die einzige über der Schwelle ihrer Epoche: übergangen. Mit der Schwelle der letzten
+# Epoche zählten 20 und 22 nachträglich als stark und weckten in Epoche 28 mit AWAKE.
+@rearm-until 40
+@expect none
+motion,hr
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.040,55
+0.150,55
+0.020,55
+0.150,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.500,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55
+0.020,55

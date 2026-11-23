@@ -2,8 +2,8 @@
 # dann eine neue Armlage, Epoche 14-32 konstant 0.066-0.077 über der Leicht-Schwelle des Grundrauschens. Ausgelassen:
 # die Bewegung dazwischen, die AWAKE weckte. Der Puls steigt mit (56 -> 60-61): Basispuls
 # Median der ersten 6 Epochen 55.95 -> nötig 58.75 (früher Mittel der Aufwärmphase 54.7 -> Epoche 17).
-# Hält fest, wie die Regel ein Plateau heute bewertet: Epoche 18 weckt LIGHT_SLEEP. Ob ein Plateau ohne Auf und Ab
-# zählen soll, ist offen (OFFEN 11g); ändert sich die Regel, ändert sich diese Erwartung bewusst mit.
+# Epoche 18 weckt LIGHT_SLEEP: Der Sprung in die neue Armlage weicht noch vom Median davor ab und zählt («Auf und Ab»,
+# Variante B, 23.11.2026); das gleichbleibende Plateau danach zählt nicht mehr (OFFEN 11g, erledigt).
 @expect 18 LIGHT_SLEEP
 motion,hr
 0.016274,53.8

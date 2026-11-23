@@ -46,6 +46,7 @@ onset_floor_before_learned.night
 onset_floor_caps_window.night
 onset_floor_larger_prior.night
 plateau_arm_position.night
+plateau_in_window.night
 plausible_prior_caps.night
 prior_factor.night
 real_window_1.night
@@ -64,6 +65,8 @@ restless_start_learned_floor.night
 schedule.vectors
 sensor_gaps.night
 short_night_awake.night
+short_night_threshold_drop.night
+short_night_threshold_drop_awake.night
 short_night_turn_ignored.night
 strong_awake_same_epoch.night
 strong_motion_at_wake_threshold.night

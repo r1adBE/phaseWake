@@ -88,6 +88,43 @@ class ScanTest(unittest.TestCase):
         self.assertFails('Text(LocalizedStringKey(k))', "wird nicht erkannt")
         self.assertFails('Bundle.main.localizedString(forKey: k, value: nil, table: nil)', "direkte localizedString")
 
+    def test_ternary_with_two_literals(self):
+        self.assertEqual(scan('Text(L(model.since != nil ? "night_woke" : "widget_name", x))'),
+                         {"night_woke", "widget_name"})
+        self.assertEqual(scan('Label(L(r == .running ? "night_woke" : "widget_name"), systemImage: "x")'),
+                         {"night_woke", "widget_name"})
+        self.assertEqual(scan('LP(n > 1 ? "hint_title" : "hint_title", n)'), {"hint_title"})
+
+    def test_ternary_unsafe_fails(self):
+        self.assertFails('L(a ? "night_woke" : key)', "nicht als Literal")
+        self.assertFails('L(a ? "night_woke" : b ? "widget_name" : "home_no_alarm")', "nicht als Literal")
+        self.assertFails('L(a?.b == c ? "night_woke" : "widget_name")', "nicht als Literal")  # «?» in Bedingung
+        self.assertFails('L(a ? "night_\\(n)" : "widget_name")', "nicht als Literal")
+        self.assertFails('L(a ? "night_woke" : "gibt_es_nicht")', "fehlt im Katalog")
+        self.assertFails('L(a ? "night_woke" : "hint_title")', "fehlt im Katalog")  # Plural über L
+        self.assertFails('L((a ? "night_woke" : "widget_name") + x)', "nicht als Literal")
+
+    KEYFUNC = ('func reasonKey(_ r: Reason) -> String {\n    switch r {\n    case .a: "night_woke"\n'
+               '    case .b, .c: return "widget_name"\n    }\n}\n')
+
+    def test_key_function_with_switch(self):
+        self.assertEqual(scan(self.KEYFUNC + 'Text(L(reasonKey(night.reason)))'), {"night_woke", "widget_name"})
+
+    def test_key_function_unsafe_fails(self):
+        call = 'Text(L(reasonKey(r)))'
+        for body in (self.KEYFUNC.replace('"widget_name"', 'other(r)'),          # Zweig ohne Literal
+                     self.KEYFUNC.replace('"widget_name"', '"w_\\(r)"'),          # Interpolation
+                     self.KEYFUNC.replace('switch r {', 'let x = 1\n    switch r {'),  # weiterer Code
+                     self.KEYFUNC.replace('switch r {', 'switch f(r) {'),        # Ausdruck statt Wert
+                     self.KEYFUNC + 'func reasonKey(_ s: String) -> String { s }\n',  # Überladung
+                     self.KEYFUNC + 'let reasonKey = { (r: Reason) in key }\n',  # verdeckt durch Eigenschaft
+                     self.KEYFUNC.replace('-> String', '-> String?')):
+            self.assertFails(body + call, "nicht als Literal")
+        self.assertFails(self.KEYFUNC.replace('"widget_name"', '"gibt_es_nicht"') + call, "fehlt im Katalog")
+        self.assertFails(self.KEYFUNC + 'Text(L(reasonKey(r) + x))', "nicht als Literal")
+        self.assertFails(self.KEYFUNC + 'Text(L(reasonKey(a)(b)))', "nicht als Literal")
+        self.assertFails(self.KEYFUNC + call, "nicht als Literal", {"Core/A.swift": 'func reasonKey() -> String {""}'})
+
     def test_package_must_not_load_texts(self):
         self.assertEqual(scan('L("widget_name")', {"Core/A.swift": 'let k = "widget_name"'}), {"widget_name"})
         self.assertFails('L("widget_name")', "Paket lädt Texte", {"Core/A.swift": 'import SwiftUI'})
@@ -150,7 +187,25 @@ class TargetFilesTest(unittest.TestCase):
             folders, _ = gen.target_files(target, pbx)
             self.assertIn("Shared", folders)
             known = {k for m in gen.TARGETS[target] for k in gen.load(m)["en"]}
-            self.assertIn(key, gen.widget_keys(target, known))
+            self.assertIn(key, gen.target_keys(target, known))
+
+    def test_real_project_watch(self):
+        """Echte Watch-App: Erkennung läuft durch, inklusive der Tests, die im Watch-Bundle laufen."""
+        pbx = gen.PBXPROJ.read_text()
+        self.assertIn("PhaseWakeWatch", gen.KUERZEN)
+        self.assertEqual(gen.hosted_tests("PhaseWakeWatch", pbx), ["PhaseWakeWatchTests"])
+        self.assertEqual(gen.hosted_tests("PhaseWake", pbx), ["PhaseWakeTests"])
+        known = {k for m in gen.TARGETS["PhaseWakeWatch"] for k in gen.load(m)["en"]}
+        keys = gen.target_keys("PhaseWakeWatch", known)
+        # Ternär (WatchEditorView), Schlüssel-Funktion ringReasonKey (RingView), Literal im Test.
+        self.assertTrue({"editor_new", "editor_edit", "ring_reason_light", "ring_reason_short_night"} <= keys, keys)
+
+    def test_real_project_phone_stays_full(self):
+        """Die iPhone-App wählt Schlüssel zur Laufzeit; wird sie je gekürzt, muss die Erkennung das abfangen."""
+        self.assertNotIn("PhaseWake", gen.KUERZEN)
+        known = {k for m in gen.TARGETS["PhaseWake"] for k in gen.load(m)["en"]}
+        with self.assertRaises(gen.ScanError):
+            gen.target_keys("PhaseWake", known)
 
 
 if __name__ == "__main__":

@@ -270,20 +270,21 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
             return true
         }
         guard case .measuring(let running) = phase else { return false }
-        let runningTransient = Transient.kindOf(running.alarmId) != nil
-        if runningTransient { keepRealFallback() }
-        guard running != plan else { return true }
-        // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
-        if let plan, Transient.kindOf(plan.alarmId) != nil, !runningTransient {
-            scheduleFallback(at: plan.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+        if Transient.kindOf(running.alarmId) != nil { keepRealFallback() }
+        switch MeasuringRules.change(running: running, plan: plan, kept: { keptNight(running) != nil }) {
+        case .same:
             return true
-        }
-        if keptNight(running) != nil {
+        case .transientByNotification(let transient):
+            // Ein vorübergehender Plan bricht nie die Messung eines echten Weckers ab (er weckt per Mitteilung).
+            scheduleFallback(at: transient.target.addingTimeInterval(Self.fallbackDelay), id: Self.transientFallbackId)
+            return true
+        case .keptOverZone:
             holdFallback(running)
             return true
+        case .cancel:
+            cancelMeasuring()
+            return false
         }
-        cancelMeasuring()
-        return false
     }
 
     /// Wecker geändert, während die App nicht offen ist: Eine neue Sitzung lässt sich dann nicht
@@ -353,13 +354,13 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     /// Start der Sitzung: am Fensterbeginn, aber höchstens `sessionLead` vor der Zielzeit, weil die
     /// Sitzung nach 30 Minuten endet und das Wecken zur Zielzeit sonst auf ihr Ende fiele.
     static func sessionStart(_ plan: WakePlan) -> Date {
-        max(plan.windowStart, plan.target.addingTimeInterval(-sessionLead))
+        MeasuringRules.sessionStart(plan, lead: sessionLead)
     }
 
-    /// Klingeln oder Schlummern dauert schon über die Zeitgrenze hinaus.
+    /// Klingeln oder Schlummern dauert schon über die Zeitgrenze hinaus
+    /// (``RingingRules/ringExpired(target:now:limit:)``).
     var ringExpired: Bool {
-        guard let target = nightPlan?.target else { return true }
-        return Date() > target.addingTimeInterval(Self.ringLimit)
+        RingingRules.ringExpired(target: nightPlan?.target, now: Date(), limit: Self.ringLimit)
     }
 
     /// Meldet dem iPhone, für welche Zielzeit die Uhr scharf ist (Nacht-Check).

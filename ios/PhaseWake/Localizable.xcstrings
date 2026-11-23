@@ -197481,6 +197481,454 @@
         }
       }
     },
+    "notice_exact_alarms_missing": {
+      "localizations": {
+        "af": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekker onpresies – presiese wekkers nie toegelaat nie"
+          }
+        },
+        "am": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ማንቂያው ትክክል አይደለም – ትክክለኛ ማንቂያዎች አልተፈቀዱም"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنبه غير دقيق – المنبهات الدقيقة غير مسموحة"
+          }
+        },
+        "az": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siqnal dəqiq deyil – dəqiq siqnallara icazə yoxdur"
+          }
+        },
+        "bg": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будилникът е неточен – точните будилници не са разрешени"
+          }
+        },
+        "bn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "অ্যালার্ম সঠিক সময়ে না-ও বাজতে পারে – সঠিক সময়ের অ্যালার্মের অনুমতি নেই"
+          }
+        },
+        "bs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm netačan – tačni alarmi nisu dozvoljeni"
+          }
+        },
+        "ca": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma imprecisa – alarmes exactes no permeses"
+          }
+        },
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budík nepřesný – přesné budíky nejsou povoleny"
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm upræcis – præcise alarmer ikke tilladt"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wecker ungenau – Recht für exakte Wecker fehlt"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ανακριβές ξυπνητήρι – δεν επιτρέπονται ακριβή ξυπνητήρια"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm imprecise – exact alarms not allowed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma imprecisa – alarmas exactas no permitidas"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Äratus ebatäpne – täpsed äratused pole lubatud"
+          }
+        },
+        "eu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma ez da zehatza – alarma zehatzak ez daude baimenduta"
+          }
+        },
+        "fa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "زنگ دقیق نیست – زنگ‌های دقیق مجاز نیست"
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herätys epätarkka – tarkkoja herätyksiä ei sallittu"
+          }
+        },
+        "fil": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hindi eksakto ang alarm – hindi pinapayagan ang eksaktong alarm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme imprécise – alarmes exactes non autorisées"
+          }
+        },
+        "ga": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aláram míchruinn – níl aláraim chruinne ceadaithe"
+          }
+        },
+        "gl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarma imprecisa – alarmas exactas non permitidas"
+          }
+        },
+        "gu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "એલાર્મ ચોક્કસ નથી – ચોક્કસ એલાર્મને મંજૂરી નથી"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השעון המעורר לא מדויק – שעונים מעוררים מדויקים לא מאושרים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म सटीक नहीं – सटीक अलार्म की अनुमति नहीं है"
+          }
+        },
+        "hr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm netočan – točni alarmi nisu dopušteni"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pontatlan ébresztés – pontos ébresztések nincsenek engedélyezve"
+          }
+        },
+        "hy": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Զարթուցիչը ճշգրիտ չէ – ճշգրիտ զարթուցիչները թույլատրված չեն"
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm tidak tepat waktu – alarm tepat waktu tidak diizinkan"
+          }
+        },
+        "is": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vekjari ónákvæmur – nákvæmir vekjarar ekki leyfðir"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sveglia imprecisa – sveglie esatte non consentite"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アラームが不正確 – 正確なアラームが許可されていません"
+          }
+        },
+        "ka": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "მაღვიძარა არაზუსტია – ზუსტი მაღვიძარები დაშვებული არ არის"
+          }
+        },
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оятқыш дәл емес – дәл оятқыштарға рұқсат жоқ"
+          }
+        },
+        "km": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ម៉ោងរោទ៍មិនច្បាស់លាស់ – ម៉ោងរោទ៍ច្បាស់លាស់មិនបានអនុញ្ញាត"
+          }
+        },
+        "kn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ಅಲಾರಾಂ ನಿಖರವಾಗಿಲ್ಲ – ನಿಖರ ಅಲಾರಾಂಗಳಿಗೆ ಅನುಮತಿ ಇಲ್ಲ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "알람이 정확하지 않음 – 정확한 알람이 허용되지 않음"
+          }
+        },
+        "lo": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ໂມງປຸກບໍ່ແນ່ນອນ – ບໍ່ໄດ້ອະນຸຍາດໂມງປຸກແບບແນ່ນອນ"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žadintuvas netikslus – tikslūs žadintuvai neleidžiami"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modinātājs neprecīzs – precīzi modinātāji nav atļauti"
+          }
+        },
+        "mk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алармот е неточен – точните аларми не се дозволени"
+          }
+        },
+        "ml": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "അലാറം കൃത്യമല്ല – കൃത്യമായ അലാറങ്ങൾ അനുവദിച്ചിട്ടില്ല"
+          }
+        },
+        "mn": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сэрүүлэг нарийн биш – нарийн сэрүүлэг зөвшөөрөгдөөгүй"
+          }
+        },
+        "mr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म अचूक नाही – अचूक अलार्मना परवानगी नाही"
+          }
+        },
+        "ms": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Penggera tidak tepat – penggera tepat tidak dibenarkan"
+          }
+        },
+        "my": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "နှိုးစက် မတိကျပါ – တိကျသော နှိုးစက်များ ခွင့်မပြုထားပါ"
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmen er unøyaktig – nøyaktige alarmer ikke tillatt"
+          }
+        },
+        "ne": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अलार्म सटीक छैन – सटीक अलार्मलाई अनुमति छैन"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wekker onnauwkeurig – exacte wekkers niet toegestaan"
+          }
+        },
+        "pa": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ਅਲਾਰਮ ਸਟੀਕ ਨਹੀਂ – ਸਟੀਕ ਅਲਾਰਮਾਂ ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm niedokładny – dokładne alarmy niedozwolone"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme impreciso – alarmes exatos não permitidos"
+          }
+        },
+        "pt-PT": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarme impreciso – alarmes exatos não permitidos"
+          }
+        },
+        "ro": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmă imprecisă – alarmele exacte nu sunt permise"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник неточен – точные будильники не разрешены"
+          }
+        },
+        "si": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "එලාමය නිශ්චිත නැත – නිශ්චිත එලාමවලට ඉඩ නැත"
+          }
+        },
+        "sk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budík nepresný – presné budíky nie sú povolené"
+          }
+        },
+        "sl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budilka ni natančna – natančne budilke niso dovoljene"
+          }
+        },
+        "sq": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmi i pasaktë – alarmet e sakta nuk lejohen"
+          }
+        },
+        "sr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аларм нетачан – тачни аларми нису дозвољени"
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarmet är inte exakt – exakta alarm inte tillåtna"
+          }
+        },
+        "sw": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kengele si kamili – kengele kamili hazijaruhusiwa"
+          }
+        },
+        "ta": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "அலாரம் துல்லியமாக இல்லை – துல்லிய அலாரங்கள் அனுமதிக்கப்படவில்லை"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అలారం ఖచ్చితంగా లేదు – ఖచ్చితమైన అలారాలకు అనుమతి లేదు"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "การปลุกไม่แม่นยำ – ไม่ได้อนุญาตการปลุกที่แม่นยำ"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm tam zamanlı değil – tam zamanlı alarmlara izin verilmedi"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Будильник неточний – точні будильники не дозволено"
+          }
+        },
+        "ur": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الارم درست وقت پر نہیں – درست وقت کے الارم کی اجازت نہیں"
+          }
+        },
+        "uz": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Budilnik aniq emas – aniq budilniklarga ruxsat yoʻq"
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Báo thức không chính xác – chưa cho phép báo thức chính xác"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鬧鐘可能不準時 – 精確鬧鐘未允許"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "闹钟可能不准时 – 未允许精确闹钟"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鬧鐘可能不準時 – 未允許精確鬧鐘"
+          }
+        },
+        "zu": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I-alamu ayinembile – ama-alamu anembile awavunyelwe"
+          }
+        }
+      }
+    },
     "notification_good_night_text": {
       "localizations": {
         "af": {

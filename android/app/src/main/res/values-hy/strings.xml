@@ -186,6 +186,7 @@
     <string name="companion_failed">Ժամացույց չի գտնվել։ Ստուգիր, որ այն միացված է, և Bluetooth-ը միացված է, ապա նորից փորձիր։</string>
     <string name="check_exact_alarms">Ճշգրիտ զարթուցիչները թույլատրված են</string>
     <string name="check_exact_alarms_problem">Թույլատրիր «Զարթուցիչներ և հիշեցումներ» – առանց այս թույլտվության պահուստային զարթուցիչը կարող է ընդհանրապես չզանգել։</string>
+    <string name="notice_exact_alarms_missing">Զարթուցիչը ճշգրիտ չէ – ճշգրիտ զարթուցիչները թույլատրված չեն</string>
     <string name="check_dnd">«Չանհանգստացնել»-ը թողնում է զարթուցիչները</string>
     <string name="check_battery">Հեռախոսի մարտկոց</string>
     <string name="check_battery_problem">%1$d %%-ից ցածր – լիցքավորիր հեռախոսդ, որ պահուստային զարթուցիչը կարողանա զանգել։</string>

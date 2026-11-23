@@ -202,6 +202,7 @@
     <string name="companion_failed">Годинник не знайдено. Перевір, чи він під’єднаний і чи ввімкнено Bluetooth, і спробуй ще раз.</string>
     <string name="check_exact_alarms">Точні будильники дозволено</string>
     <string name="check_exact_alarms_problem">Дозволь будильники й нагадування – без цього дозволу резервний будильник може взагалі не задзвонити.</string>
+    <string name="notice_exact_alarms_missing">Будильник неточний – точні будильники не дозволено</string>
     <string name="check_dnd">Режим «Не турбувати» пропускає будильники</string>
     <string name="check_battery">Заряд телефона</string>
     <string name="check_battery_problem">Нижче %1$d %% – постав телефон на зарядку, щоб резервний будильник міг задзвонити.</string>

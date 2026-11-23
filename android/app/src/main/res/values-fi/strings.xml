@@ -194,6 +194,7 @@
     <string name="companion_failed">Kelloa ei löytynyt. Tarkista, että se on yhdistetty ja Bluetooth on päällä, ja yritä uudelleen.</string>
     <string name="check_exact_alarms">Tarkat herätykset sallittu</string>
     <string name="check_exact_alarms_problem">Salli herätykset ja muistutukset – ilman tätä lupaa varaherätys ei ehkä soi lainkaan.</string>
+    <string name="notice_exact_alarms_missing">Herätys epätarkka – tarkkoja herätyksiä ei sallittu</string>
     <string name="check_dnd">Älä häiritse päästää herätykset läpi</string>
     <string name="check_battery">Puhelimen akku</string>
     <string name="check_battery_problem">Alle %1$d %% – lataa puhelin, jotta varaherätys voi soida.</string>

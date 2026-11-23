@@ -135,13 +135,14 @@ class WakeDetectorTest {
 
     @Test
     fun zeroWarmupHasNoBaselineUntilTwoPulses() {
-        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel.
+        // Gelerntes Grundrauschen 0.001 (Leicht-Schwelle 0.0025): Ohne Grundrauschen wartete die Leicht-Regel. Die
+        // Werte steigen um mehr als 1 × Grundrauschen («Auf und Ab»).
         val detector = WakeDetector(DetectorConfig(warmupEpochs = 0, personalFloor = 0.001))
         detector.onEpoch(Epoch(0.003, 52.0))
         // Erst ein Puls davor: kein Basispuls, die Pulsbedingung ist nicht erfüllt.
-        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.003, 60.0)))
+        assertEquals(Decision.Wait, detector.onEpoch(Epoch(0.005, 60.0)))
         // Ab zwei Pulsen: Median 56 → 58.8; 60 reicht.
-        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.003, 60.0)))
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), detector.onEpoch(Epoch(0.007, 60.0)))
     }
 
     @Test
@@ -366,14 +367,14 @@ class WakeDetectorTest {
         // galt 0.002, und 0.03 war leichte Bewegung).
         val plain = WakeDetector()
         plain.feed(gap, gap, gap, Epoch(0.03, 57.0))
-        assertEquals(Decision.Wait, plain.onEpoch(Epoch(0.03, 57.0)))
-        // Gelernt 0.005 → Leicht-Schwelle 0.0125: 0.03 ist leichte Bewegung.
+        assertEquals(Decision.Wait, plain.onEpoch(Epoch(0.04, 57.0)))
+        // Gelernt 0.005 → Leicht-Schwelle 0.0125: 0.03 und 0.04 sind leichte Bewegung mit «Auf und Ab».
         val small = WakeDetector(DetectorConfig(personalFloor = 0.005))
         small.feed(gap, gap, gap, Epoch(0.03, 57.0))
-        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), small.onEpoch(Epoch(0.03, 57.0)))
-        // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 ist Rauschen.
+        assertEquals(Decision.Wake(WakeReason.LIGHT_SLEEP), small.onEpoch(Epoch(0.04, 57.0)))
+        // Gelernt 0.02 → Leicht-Schwelle 0.05: 0.03 und 0.04 sind Rauschen.
         val learned = WakeDetector(DetectorConfig(personalFloor = 0.02))
         learned.feed(gap, gap, gap, Epoch(0.03, 57.0))
-        assertEquals(Decision.Wait, learned.onEpoch(Epoch(0.03, 57.0)))
+        assertEquals(Decision.Wait, learned.onEpoch(Epoch(0.04, 57.0)))
     }
 }

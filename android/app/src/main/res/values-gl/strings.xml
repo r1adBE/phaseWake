@@ -196,6 +196,7 @@
     <string name="companion_failed">Non se atopou ningún reloxo. Comproba que estea conectado e que o Bluetooth estea activado, e téntao de novo.</string>
     <string name="check_exact_alarms">Alarmas exactas permitidas</string>
     <string name="check_exact_alarms_problem">Permite «Alarmas e recordatorios»: sen este permiso, pode que a alarma de reserva non soe.</string>
+    <string name="notice_exact_alarms_missing">Alarma imprecisa – alarmas exactas non permitidas</string>
     <string name="check_dnd">«Non molestar» deixa pasar as alarmas</string>
     <string name="check_battery">Batería do teléfono</string>
     <string name="check_battery_problem">Menos do %1$d %% – carga o teléfono para que a alarma de reserva poida soar.</string>

@@ -17,18 +17,14 @@ extension SmartAlarm {
 
     /// Der gemerkte Plan, oder `nil`, wenn keiner gemerkt ist.
     static var savedPlanZone: PlanZone? {
-        guard let saved = SettingsFile.watchSession.dictionary(forKey: sessionZoneKey) else { return nil }
-        return PlanZone(zone: saved["zone"] as? String,
-                        target: (saved["target"] as? Double).map(Date.init(timeIntervalSince1970:)),
-                        alarmId: saved["alarm"] as? String)
+        NightRules.planZone(SettingsFile.watchSession.dictionary(forKey: sessionZoneKey))
     }
 
     /// Merkt die aktuelle Zeitzone zu `plan` (beim Planen der Sitzung und beim Warten). Gehört der gemerkte Eintrag
     /// schon zur selben Nacht eines echten Weckers (gleicher Wecker, gleiche Zielzeit), bleibt er: Er nennt die Zone,
     /// in der die Nacht berechnet wurde, auch nach einer Reise (`keptNight`). Probewecker und Powernap: immer neu.
     func notePlanZone(_ plan: WakePlan) {
-        if Transient.kindOf(plan.alarmId) == nil, let saved = Self.savedPlanZone, saved.alarmId == plan.alarmId,
-           let target = saved.target, Self.sameTime(target, plan.target) { return }
+        if NightRules.keepsPlanZone(Self.savedPlanZone, plan: plan) { return }
         let entry: [String: Any] = ["zone": TimeZone.current.identifier, "target": plan.target.timeIntervalSince1970,
                                     "alarm": plan.alarmId]
         SettingsFile.watchSession.set(entry, forKey: Self.sessionZoneKey)
@@ -41,27 +37,18 @@ extension SmartAlarm {
     /// (wie bisher).
     func keptNight(_ night: WakePlan?, now: Date = Date()) -> WakePlan? {
         let model = WatchModel.shared
-        guard let saved = Self.savedPlanZone, let alarmId = saved.alarmId, let target = saved.target,
-              Transient.kindOf(alarmId) == nil,
-              night.map({ $0.alarmId == alarmId && Self.sameTime($0.target, target) }) ?? true,
-              WatchRules.zoneShifted(plannedZone: saved.zone, target: target, zone: .current),
-              let zone = saved.zone.flatMap(TimeZone.init(identifier:)),
-              let spec = model.alarms.first(where: { $0.id == alarmId }) else { return nil }
-        var calendar = Calendar.gregorian(in: zone)
+        guard let planned = NightRules.plannedNight(Self.savedPlanZone, night: night, current: .current),
+              let spec = model.alarms.first(where: { $0.id == planned.alarmId }) else { return nil }
+        var calendar = Calendar.gregorian(in: planned.zone)
         calendar.locale = .autoupdatingCurrent
-        return AlarmSchedule.begunNight(spec, plannedTarget: target, plannedCalendar: calendar, now: now,
+        return AlarmSchedule.begunNight(spec, plannedTarget: planned.target, plannedCalendar: calendar, now: now,
                                         grace: Self.ringLimit, holidays: model.storage.holidays.dates,
-                                        suppressedUntil: model.storage.doneUntil[alarmId])
+                                        suppressedUntil: model.storage.doneUntil[planned.alarmId])
     }
 
     /// Geplante oder wartende Nacht, die nach einer Reise statt `plan` bleibt (`keptNight`), sonst `nil`.
     func heldNight(for plan: WakePlan?) -> WakePlan? {
-        switch phase {
-        case .scheduled(let night), .waiting(let night):
-            return night != plan && keptNight(night) != nil ? night : nil
-        case .idle, .measuring, .ringing, .snoozed:
-            return nil
-        }
+        NightRules.heldNight(phase, plan: plan) { keptNight($0) != nil }
     }
 
     /// Rückfall einer über eine Reise behaltenen Nacht: zum festen Zeitpunkt (`LocalTrigger.fixed`), damit er nicht auf

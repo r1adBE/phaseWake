@@ -196,6 +196,7 @@
     <string name="companion_failed">Ekkert úr fannst. Athugaðu hvort það sé tengt og kveikt sé á Bluetooth og reyndu aftur.</string>
     <string name="check_exact_alarms">Nákvæmir vekjarar leyfðir</string>
     <string name="check_exact_alarms_problem">Leyfðu „Vekjarar og áminningar“ – án þessarar heimildar hringir varavekjarinn hugsanlega alls ekki.</string>
+    <string name="notice_exact_alarms_missing">Vekjari ónákvæmur – nákvæmir vekjarar ekki leyfðir</string>
     <string name="check_dnd">„Ónáðið ekki“ hleypir vekjurum í gegn</string>
     <string name="check_battery">Rafhlaða símans</string>
     <string name="check_battery_problem">Undir %1$d %% – hladdu símann svo varavekjarinn geti hringt.</string>

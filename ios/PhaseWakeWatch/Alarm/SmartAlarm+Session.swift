@@ -8,17 +8,21 @@ extension SmartAlarm {
     /// sonst beendet das System die Sitzung.
     func adopt(_ extendedSession: WKExtendedRuntimeSession) {
         extendedSession.delegate = self
-        // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
-        if isStale(extendedSession) { return }
-        if let session, session !== extendedSession {
+        let own = session.flatMap { $0 === extendedSession ? nil : $0 }
+        switch SessionRules.adoption(stale: isStale(extendedSession), own: own?.state) {
+        case .stale:
+            // Eine gemerkte, nicht mehr gültige Sitzung wird beim Start beendet (`extendedRuntimeSessionDidStart`).
+            return
+        case .keepOwn:
             // Die eigene, geplante oder laufende Sitzung nie verwerfen: Die ankommende ist dann eine
             // verwaiste aus der Zeit vor einem Neustart der App und endet bei ihrem Start, ohne zu vibrieren.
-            if SessionRules.keepsOwn(session.state) {
-                DiagStore.shared.log(.error, "other session started, own kept")
-                keepStale(extendedSession)
-                return
-            }
-            retire(session)
+            DiagStore.shared.log(.error, "other session started, own kept")
+            keepStale(extendedSession)
+            return
+        case .replaceOwn:
+            if let own { retire(own) }
+        case .take:
+            break
         }
         session = extendedSession
     }
@@ -84,8 +88,7 @@ extension SmartAlarm {
                                      tolerance: Self.startTolerance, delay: Self.fallbackDelay)
         } ?? false
         let own = session.flatMap { $0 === started ? nil : $0 }
-        let busy = phase.isMeasuring || phase.isRinging || phase.isSnoozed
-        guard SessionRules.usesOrphan(own: own?.state, busy: busy, serves: serves) else {
+        guard SessionRules.usesOrphan(own: own?.state, busy: SessionRules.busy(phase), serves: serves) else {
             return false
         }
         staleSessions.removeAll { $0 === started }
@@ -128,13 +131,13 @@ extension SmartAlarm {
             guard runtimeSession === self.session || self.session == nil else { return }
             self.session = runtimeSession
             DiagStore.shared.log(.window, "session started")
-            switch self.phase {
-            case .snoozed:
+            switch SessionRules.started(self.phase) {
+            case .ringAgain:
                 // Nach dem Schlummern startet die neue Sitzung direkt mit dem Wecken.
                 self.ring(self.reason)
-            case .measuring, .ringing:
-                break // läuft schon
-            case .idle, .waiting, .scheduled:
+            case .alreadyRunning:
+                break
+            case .startNight:
                 if self.replansAfterZoneChange(runtimeSession) { return }
                 self.startNight()
             }
@@ -153,9 +156,7 @@ extension SmartAlarm {
             return false
         }
         // Nach einem Neustart der App ist der Plan unbekannt (`idle`): dann die gemerkte Nacht.
-        var night: WakePlan?
-        if case .scheduled(let current) = phase { night = current }
-        if case .waiting(let current) = phase { night = current }
+        let night = SessionRules.plannedNight(phase)
         WatchModel.shared.refresh()
         if let kept = keptNight(night) {
             holdFallback(night ?? kept)
@@ -165,9 +166,16 @@ extension SmartAlarm {
         DiagStore.shared.log(.scheduled, "zone changed since session was planned, replan")
         SettingsFile.watchSession.removeObject(forKey: Self.sessionZoneKey)
         WatchModel.shared.reschedule()
-        if case .scheduled = phase, session === started { return false }
-        if session === started { invalidateSession() }
-        return true
+        let scheduled: Bool = if case .scheduled = phase { true } else { false }
+        switch SessionRules.replanned(scheduled: scheduled, sameSession: session === started) {
+        case .proceed:
+            return false
+        case .endSession:
+            invalidateSession()
+            return true
+        case .done:
+            return true
+        }
     }
 
     nonisolated func extendedRuntimeSessionWillExpire(_ extendedRuntimeSession: WKExtendedRuntimeSession) {
@@ -199,21 +207,21 @@ extension SmartAlarm {
             DiagStore.shared.log(
                 ending == .dismissed ? .stop : .error, "session invalidated \(SessionRules.reasonName(reason))\(code)"
             )
-            switch self.phase {
-            case .ringing where ending == .dismissed:
+            switch SessionRules.afterEnd(self.phase, ending: ending) {
+            case .dismiss:
                 // Weckhinweis des Systems gestoppt: wie Stopp auf der Uhr – iPhone hört auf, die Kette fällt weg.
                 self.dismiss()
                 return
-            case .scheduled(let plan):
+            case .wait(let plan):
                 // Vom System abgelehnt oder zurückgezogen: Der Rückfall weckt; beim nächsten Öffnen neu planen.
                 self.phase = .waiting(plan)
-            case .measuring(let plan):
+            case .measuringInterrupted(let plan):
                 self.measuringInterrupted(plan)
-            case .ringing, .snoozed:
+            case .finishInterrupted:
                 // Abgelaufen oder vom System beendet: weiterwecken und die Nacht abschliessen.
                 self.finishInterrupted()
                 return
-            case .idle, .waiting:
+            case .nothing:
                 break
             }
             self.publishArmed()

@@ -194,6 +194,7 @@
     <string name="companion_failed">Nem található óra. Ellenőrizd, hogy csatlakoztatva van-e és be van-e kapcsolva a Bluetooth, majd próbáld újra.</string>
     <string name="check_exact_alarms">Pontos ébresztések engedélyezve</string>
     <string name="check_exact_alarms_problem">Engedélyezd az ébresztéseket és emlékeztetőket – enélkül a tartalék ébresztés talán egyáltalán nem szólal meg.</string>
+    <string name="notice_exact_alarms_missing">Pontatlan ébresztés – pontos ébresztések nincsenek engedélyezve</string>
     <string name="check_dnd">A Ne zavarjanak átengedi az ébresztőket</string>
     <string name="check_battery">Telefon akkumulátora</string>
     <string name="check_battery_problem">%1$d %% alatt – töltsd fel a telefont, hogy a tartalék ébresztő meg tudjon szólalni.</string>

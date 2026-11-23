@@ -1,8 +1,9 @@
 # Echtes Weckfenster (30 Min), ohne Namen aufgezeichnet, Export «phasewake-nights.csv» Nacht 1 (Regel S5, 15.11.2026).
 # Kurze Nacht: Momente vor Epoche 39 übergangen (10 AWAKE, 18 und 34 LIGHT_SLEEP, 36 AWAKE).
-# Ergebnis mit S5 unverändert.
+# Ergebnis mit S5 unverändert. Seit «Auf und Ab» (Variante B, 23.11.2026) zählt das Plateau ~0.07 der Armlage nicht
+# mehr als Bewegung: Epoche 57 statt 45 LIGHT_SLEEP.
 @rearm-until 39
-@expect 45 LIGHT_SLEEP
+@expect 57 LIGHT_SLEEP
 motion,hr
 0.038649,56.2
 0.023419,57.3

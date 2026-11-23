@@ -190,6 +190,7 @@
     <string name="companion_failed">找不到手錶。請確認手錶已連線且藍牙已開啟，然後再試一次。</string>
     <string name="check_exact_alarms">已允許精確鬧鐘</string>
     <string name="check_exact_alarms_problem">請允許「鬧鐘與提醒」——沒有這項權限，備用鬧鐘可能根本不會響。</string>
+    <string name="notice_exact_alarms_missing">鬧鐘可能不準時 – 未允許精確鬧鐘</string>
     <string name="check_dnd">勿擾模式允許鬧鐘</string>
     <string name="check_battery">手機電量</string>
     <string name="check_battery_problem">低於 %1$d %% – 請為手機充電，以便備用鬧鐘能夠響鈴。</string>

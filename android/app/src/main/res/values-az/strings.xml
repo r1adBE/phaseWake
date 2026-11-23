@@ -186,6 +186,7 @@
     <string name="companion_failed">Saat tapılmadı. Qoşulduğunu və Bluetooth-un açıq olduğunu yoxla, sonra yenidən cəhd et.</string>
     <string name="check_exact_alarms">Dəqiq siqnallara icazə var</string>
     <string name="check_exact_alarms_problem">“Siqnallar və xatırlatmalar”a icazə ver – bu icazə olmadan ehtiyat siqnal heç çalmaya bilər.</string>
+    <string name="notice_exact_alarms_missing">Siqnal dəqiq deyil – dəqiq siqnallara icazə yoxdur</string>
     <string name="check_dnd">“Narahat etməyin” siqnalları buraxır</string>
     <string name="check_battery">Telefon batareyası</string>
     <string name="check_battery_problem">%1$d %%-dən aşağı – ehtiyat siqnal çala bilsin deyə telefonunu doldur.</string>

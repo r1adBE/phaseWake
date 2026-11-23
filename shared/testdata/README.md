@@ -20,7 +20,16 @@ Nacht (`DetectorConfig.withOnsetFloor`), zusätzlich zu einem gelernten aus `@fl
 «Wach geht vor» (kurze Nacht, PHASENERKENNUNG 8): `real_window_8` ist das echte Weckfenster vom 19.11.2026 (Export
 Nacht 10, drei getrennte starke Bewegungen, Epoche 38 `AWAKE` statt 40), `short_night_awake` drei getrennte starke
 Bewegungen in 10 Epochen, `short_night_turn_ignored` die Gegenprobe (Drehung über zwei Epochen und einzelne Bewegungen:
-übergangen). `real_window_1` und `rearm_new_hits` bleiben unverändert.
+übergangen). `short_night_threshold_drop` (Audit 23.11.2026): Die Wach-Schwelle sinkt im Fenster, frühere Bewegungen
+lagen unter der Schwelle ihrer Epoche und zählen nicht nachträglich (übergangen); `short_night_threshold_drop_awake` die
+Gegenprobe (über der Schwelle ihrer Epoche: Epoche 28 `AWAKE`). `real_window_1` und `rearm_new_hits` bleiben unverändert.
+
+«Auf und Ab» (Variante B, 23.11.2026, PHASENERKENNUNG 3, OFFEN 11g): S5 und die Leicht-Regel zählen eine Epoche nur,
+wenn sie um mindestens 1 × Grundrauschen vom Median der bis zu 10 vorherigen Bewegungen oder von der Vorepoche abweicht.
+`plateau_in_window`: Eine Armlage ~0.07, die schon vor dem Fenster begann, zählt nicht (vorher Epoche 7), die echte
+Bewegung in Epoche 30 weckt. Damit wecken anders: `real_window_1` Epoche 57 statt 45 (Plateau ~0.07 der Armlage);
+`onset_floor_before_learned` hat in Epoche 5 jetzt 0.04 statt 0.03 (zwei gleiche Werte zählten nicht mehr), Ergebnis
+unverändert. `plateau_arm_position` bleibt bei Epoche 18 (der Sprung auf das Plateau weicht ab).
 
 ## Vollständigkeit
 

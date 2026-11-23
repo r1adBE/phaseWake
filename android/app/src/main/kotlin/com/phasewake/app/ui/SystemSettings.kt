@@ -29,9 +29,7 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
             )
         }
         Check.EXACT_ALARMS -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            openSettings(
-                context, Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, "package:${context.packageName}".toUri()),
-            )
+            openSettings(context, exactAlarmSettings(context))
         }
         Check.DND, Check.DND_UNKNOWN -> DoNotDisturb.openSettings(context)
         Check.VOLUME -> openSettings(context, Intent(Settings.ACTION_SOUND_SETTINGS))
@@ -42,6 +40,11 @@ internal fun fixCheck(context: Context, item: Check, missingOn: List<String>) {
         Check.BATTERY -> Unit
     }
 }
+
+/** Systemseite «Wecker und Erinnerungen» der App (Android 12/12L; Nacht-Check und Mitteilung «Nächster Wecker»). */
+@androidx.annotation.RequiresApi(Build.VERSION_CODES.S)
+internal fun exactAlarmSettings(context: Context): Intent =
+    Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM, "package:${context.packageName}".toUri())
 
 /**
  * Ob das System nach dem Mitteilungsrecht noch fragt: ab Android 13, beim ersten Mal oder solange es eine Begründung
