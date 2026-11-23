@@ -72,7 +72,7 @@ class Audit:
 
     @staticmethod
     def is_test(f):
-        return bool(re.search(r"(/test/|/androidTest/|/testFixtures/|/screenshotTest/|Tests?/|Tests?\.swift$)", f))
+        return bool(re.search(r"(/test/|/androidTest/|/testFixtures/|/screenshotTest/|Tests?/|Tests?\.swift$|(^|/)test_[^/]*\.py$)", f))
 
     def src(self, ext, test=None):
         """Quelldateien einer Endung; test=True nur Tests, False ohne Tests."""
@@ -372,7 +372,7 @@ class Audit:
         for f in docs + ["README.md"]:
             for i, line in enumerate(self.read(f).splitlines(), 1):
                 n = len(line.split())
-                if n > 200:
+                if n > 200 and not line.lstrip().startswith("|"):   # Tabellenzeilen (z. B. ENTSCHEIDE) zählen nicht
                     long_lines.append((n, f"{f}:{i} ({n} Wörter)"))
         long_lines.sort(reverse=True)
         self.add(d, HINT if long_lines else OK,
@@ -553,8 +553,8 @@ class Audit:
                  "\n".join(f"{n} {f}" for n, f in over[:10]) or "Grösste: " + ", ".join(f"{os.path.basename(f)} {n}" for n, f in sizes[:3]))
         marks = []
         for f in self.src(".kt") + self.src(".swift") + [x for x in self.files if x.endswith((".py", ".sh"))]:
-            if f.endswith("no_build_numbers.py"):
-                continue   # sucht selbst nach diesen Marken
+            if f.endswith(("no_build_numbers.py", "repo_audit.py")):
+                continue   # suchen selbst nach diesen Marken
             for i, line in enumerate(self.read(f).splitlines(), 1):
                 if re.search(r"\b(TODO|FIXME|HACK|XXX)\b", line):
                     marks.append(f"{f}:{i}: {line.strip()[:90]}")
