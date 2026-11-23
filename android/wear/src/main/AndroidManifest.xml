@@ -85,6 +85,18 @@
             android:theme="@style/Theme.PhaseWake"
             android:turnScreenOn="true" />
 
+        <!-- Befinden nach dem Wecken (FeelingAsk): eigener Bildschirm, den der Weckbildschirm nach dem Stopp öffnet.
+             Über dem Sperrbildschirm wie dieser, aber ohne das Display einzuschalten. Nur nach dem Entsperren. -->
+        <activity
+            android:name=".ui.FeelingActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            tools:ignore="WearRecents"
+            android:launchMode="singleInstance"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.phasewake.app.feeling"
+            android:theme="@style/Theme.PhaseWake" />
+
         <service
             android:name=".wake.WakeService"
             android:directBootAware="true"

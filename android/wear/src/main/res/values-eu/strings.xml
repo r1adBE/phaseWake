@@ -110,4 +110,12 @@
     <string name="watch_learn_skip_sensors">Gaur gauak ez du ikasketa-faserako balio: Phase Wake-k ezin ditu erlojuaren sentsoreak erabili.</string>
     <string name="watch_learn_skip_late">Gaur gauak ez du ikasketa-faserako balio: Phase Wake beranduegi ireki da arratsaldean.</string>
     <string name="editor_alarm_gone">Alarma hau ezabatu egin da bitartean.</string>
+    <string name="feeling_question">Nola sentitzen zara?</string>
+    <string name="feeling_1">Lehertuta</string>
+    <string name="feeling_2">Nekatuta</string>
+    <string name="feeling_3">Ondo samar</string>
+    <string name="feeling_4">Ondo</string>
+    <string name="feeling_5">Freskatuta</string>
+    <string name="feeling_rate">Sentipena: %1$d/5: %2$s</string>
+    <string name="feeling_later">Geroago</string>
 </resources>

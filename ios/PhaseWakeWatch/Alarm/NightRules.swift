@@ -84,7 +84,7 @@ enum NightRules {
     enum Restored: Equatable {
         /// Schlummern läuft noch (die Schlummer-Sitzung startet noch): weiter wie gehabt.
         case resume
-        /// Sitzung weg: per Mitteilung weiterwecken (bis `SmartAlarm.ringLimit`) und die Nacht abschliessen.
+        /// Sitzung weg: per Mitteilung weiterwecken (bis `SmartAlarm.nightLimit`) und die Nacht abschliessen.
         case finishWaking
         /// Zu alt: die Nacht ohne Wecken abschliessen (Epochen speichern, erledigt, Einmal-Wecker aus), ohne Nachholen.
         case finishSilently

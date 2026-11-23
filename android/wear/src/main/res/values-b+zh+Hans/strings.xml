@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">今晚不计入学习阶段：Phase Wake 无法使用手表传感器。</string>
     <string name="watch_learn_skip_late">今晚不计入学习阶段：晚上打开 Phase Wake 太晚了。</string>
     <string name="editor_alarm_gone">这个闹钟已被删除。</string>
+    <string name="feeling_question">你感觉如何？</string>
+    <string name="feeling_1">精疲力竭</string>
+    <string name="feeling_2">疲倦</string>
+    <string name="feeling_3">还行</string>
+    <string name="feeling_4">不错</string>
+    <string name="feeling_5">精力充沛</string>
+    <string name="feeling_rate">感觉 %1$d/5：%2$s</string>
+    <string name="feeling_later">以后再说</string>
 </resources>

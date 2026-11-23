@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake nem tudja használni az óra érzékelőit.</string>
     <string name="watch_learn_skip_late">A mai éjszaka nem számít bele a tanulási szakaszba: a Phase Wake este túl későn nyílt meg.</string>
     <string name="editor_alarm_gone">Ezt az ébresztőt időközben törölték.</string>
+    <string name="feeling_question">Hogy érzed magad?</string>
+    <string name="feeling_1">Kimerült</string>
+    <string name="feeling_2">Fáradt</string>
+    <string name="feeling_3">Megvan</string>
+    <string name="feeling_4">Jó</string>
+    <string name="feeling_5">Kipihent</string>
+    <string name="feeling_rate">Érzés: %1$d/5 – %2$s</string>
+    <string name="feeling_later">Később</string>
 </resources>

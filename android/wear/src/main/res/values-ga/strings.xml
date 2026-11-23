@@ -122,4 +122,12 @@
     <string name="watch_learn_skip_sensors">Ní chomhairtear anocht don chéim foghlama: ní féidir le Phase Wake braiteoirí an uaireadóra a úsáid.</string>
     <string name="watch_learn_skip_late">Ní chomhairtear anocht don chéim foghlama: osclaíodh Phase Wake ródhéanach tráthnóna.</string>
     <string name="editor_alarm_gone">Scriosadh an t-aláram seo idir an dá linn.</string>
+    <string name="feeling_question">Conas atá tú?</string>
+    <string name="feeling_1">Traochta</string>
+    <string name="feeling_2">Tuirseach</string>
+    <string name="feeling_3">Ceart go leor</string>
+    <string name="feeling_4">Go maith</string>
+    <string name="feeling_5">Athnuaite</string>
+    <string name="feeling_rate">Mothú %1$d as 5: %2$s</string>
+    <string name="feeling_later">Ar ball</string>
 </resources>

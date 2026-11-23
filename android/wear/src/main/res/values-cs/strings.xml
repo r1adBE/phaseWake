@@ -117,4 +117,12 @@
     <string name="watch_learn_skip_sensors">Dnešní noc se do fáze učení nezapočítá: Phase Wake nemůže používat senzory hodinek.</string>
     <string name="watch_learn_skip_late">Dnešní noc se do fáze učení nezapočítá: Phase Wake byl večer otevřen příliš pozdě.</string>
     <string name="editor_alarm_gone">Tento budík byl mezitím smazán.</string>
+    <string name="feeling_question">Jak se cítíš?</string>
+    <string name="feeling_1">Vyčerpaně</string>
+    <string name="feeling_2">Unaveně</string>
+    <string name="feeling_3">Slušně</string>
+    <string name="feeling_4">Dobře</string>
+    <string name="feeling_5">Svěže</string>
+    <string name="feeling_rate">Pocit %1$d z 5: %2$s</string>
+    <string name="feeling_later">Později</string>
 </resources>

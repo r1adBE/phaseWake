@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: Phase Wake-ന് വാച്ചിന്റെ സെൻസറുകൾ ഉപയോഗിക്കാനാവില്ല.</string>
     <string name="watch_learn_skip_late">ഇന്ന് രാത്രി പഠന ഘട്ടത്തിൽ എണ്ണപ്പെടില്ല: വൈകുന്നേരം Phase Wake വളരെ വൈകി തുറന്നു.</string>
     <string name="editor_alarm_gone">ഈ അലാറം ഇതിനിടെ ഇല്ലാതാക്കി.</string>
+    <string name="feeling_question">എങ്ങനെയുണ്ട്?</string>
+    <string name="feeling_1">തളർന്നു</string>
+    <string name="feeling_2">ക്ഷീണം</string>
+    <string name="feeling_3">കുഴപ്പമില്ല</string>
+    <string name="feeling_4">നല്ലത്</string>
+    <string name="feeling_5">ഉന്മേഷം</string>
+    <string name="feeling_rate">അനുഭവം 5-ൽ %1$d: %2$s</string>
+    <string name="feeling_later">പിന്നീട്</string>
 </resources>

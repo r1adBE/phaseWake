@@ -44,9 +44,11 @@ extension SmartAlarm {
     /// wie bisher. Sonst hat der Zweitwecker des iPhones geweckt: Gehört der Stopp zur geplanten, wartenden, messenden
     /// oder ausstehenden Nacht (``NightRules/phoneStoppedNight``), ist sie erledigt wie auf Android – Rückfälle samt
     /// Kette weg (wartend und zugestellt), nicht nochmals planen; eine Messung endet mit ihren Epochen im Verlauf.
+    /// Klingeln, Schlummern und Messen melden dem iPhone danach «stop» wie die Galaxy Watch
+    /// (``RingingRules/notifiesPhone(_:)``).
     func stopFromPhone(alarmId: String?, target: Date?) {
         if phase.isRinging || phase.isSnoozed {
-            dismiss(notifyPhone: false)
+            dismiss(by: .phone)
             return
         }
         // Nach einer abgebrochenen Sitzung ist die Nacht schon abgeschlossen: Ein Stopp beendet die Kette.
@@ -62,10 +64,10 @@ extension SmartAlarm {
         switch NightRules.phoneStopEnd(phase, night: night) {
         case .finishMeasuring:
             // Wie ein Stopp beim Klingeln: Nacht mit ihren Epochen abschliessen (Weckzeit jetzt).
-            logMeasureEnd(" stopped on phone")
+            logMeasureEnd(", stopped on phone")
             if firstRing == nil { firstRing = Date() }
             reason = .deadline
-            finish(notifyPhone: false)
+            finish(notifyPhone: RingingRules.notifiesPhone(.phone))
             return
         case .markDone:
             markNightDone(night, model: model)
@@ -99,9 +101,10 @@ extension SmartAlarm {
         DiagStore.shared.log(.error, "old ring state, night finished without waking")
         // Das Ende der Nacht ist unbekannt (jetzt ist Stunden später): Akku ohne Wert statt eines falschen.
         WatchBattery.drop("old ring state")
-        finish(notifyPhone: false, catchUp: false)
+        finish(notifyPhone: RingingRules.notifiesPhone(.stale), catchUp: false)
     }
 
-    /// So lange nach der Zielzeit weckt ein gesicherter Klingel-Zustand beim Start noch (``NightRules/restored``).
-    static let ringStateMaxAge: TimeInterval = 2 * 3600
+    /// So lange nach der Zielzeit weckt ein gesicherter Klingel-Zustand beim Start noch (``NightRules/restored``):
+    /// die harte Grenze der Nacht (``SmartAlarm/nightLimit``, 2 h).
+    static let ringStateMaxAge: TimeInterval = NightLimit.afterTarget
 }

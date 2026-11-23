@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">คืนนี้ไม่นับในช่วงเรียนรู้: Phase Wake ใช้เซ็นเซอร์ของนาฬิกาไม่ได้</string>
     <string name="watch_learn_skip_late">คืนนี้ไม่นับในช่วงเรียนรู้: เปิด Phase Wake ช้าเกินไปในตอนเย็น</string>
     <string name="editor_alarm_gone">นาฬิกาปลุกนี้ถูกลบไปแล้ว</string>
+    <string name="feeling_question">คุณรู้สึกอย่างไร</string>
+    <string name="feeling_1">หมดแรง</string>
+    <string name="feeling_2">เหนื่อย</string>
+    <string name="feeling_3">พอใช้</string>
+    <string name="feeling_4">ดี</string>
+    <string name="feeling_5">สดชื่น</string>
+    <string name="feeling_rate">ความรู้สึก %1$d จาก 5: %2$s</string>
+    <string name="feeling_later">ไว้ทีหลัง</string>
 </resources>

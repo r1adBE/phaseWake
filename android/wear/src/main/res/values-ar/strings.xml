@@ -125,4 +125,12 @@
     <string name="watch_learn_skip_sensors">هذه الليلة لا تُحتسب لمرحلة التعلّم: لا يستطيع Phase Wake استخدام مستشعرات الساعة.</string>
     <string name="watch_learn_skip_late">هذه الليلة لا تُحتسب لمرحلة التعلّم: فُتح Phase Wake متأخرًا جدًا في المساء.</string>
     <string name="editor_alarm_gone">حُذف هذا المنبّه في هذه الأثناء.</string>
+    <string name="feeling_question">كيف حالك؟</string>
+    <string name="feeling_1">إنهاك</string>
+    <string name="feeling_2">تعب</string>
+    <string name="feeling_3">عادي</string>
+    <string name="feeling_4">جيد</string>
+    <string name="feeling_5">انتعاش</string>
+    <string name="feeling_rate">الشعور %1$d من ٥: %2$s</string>
+    <string name="feeling_later">لاحقًا</string>
 </resources>

@@ -110,4 +110,12 @@
     <string name="watch_learn_skip_sensors">Esta noite non conta para a fase de aprendizaxe: Phase Wake non pode usar os sensores do reloxo.</string>
     <string name="watch_learn_skip_late">Esta noite non conta para a fase de aprendizaxe: Phase Wake abriuse demasiado tarde pola noite.</string>
     <string name="editor_alarm_gone">Esta alarma eliminouse mentres tanto.</string>
+    <string name="feeling_question">Como te sentes?</string>
+    <string name="feeling_1">Esgotado</string>
+    <string name="feeling_2">Canso</string>
+    <string name="feeling_3">Normal</string>
+    <string name="feeling_4">Ben</string>
+    <string name="feeling_5">Descansado</string>
+    <string name="feeling_rate">Estado %1$d de 5: %2$s</string>
+    <string name="feeling_later">Máis tarde</string>
 </resources>

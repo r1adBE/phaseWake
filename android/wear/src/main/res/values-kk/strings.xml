@@ -104,4 +104,12 @@
     <string name="watch_learn_skip_sensors">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake сағат датчиктерін пайдалана алмайды.</string>
     <string name="watch_learn_skip_late">Бүгінгі түн үйрену кезеңіне есептелмейді: Phase Wake кешке тым кеш ашылды.</string>
     <string name="editor_alarm_gone">Бұл оятқыш осы уақытта жойылды.</string>
+    <string name="feeling_question">Көңіл-күйің қалай?</string>
+    <string name="feeling_1">Қатты шаршадым</string>
+    <string name="feeling_2">Шаршадым</string>
+    <string name="feeling_3">Жаман емес</string>
+    <string name="feeling_4">Жақсы</string>
+    <string name="feeling_5">Сергекпін</string>
+    <string name="feeling_rate">Көңіл-күй 5-тен %1$d: %2$s</string>
+    <string name="feeling_later">Кейін</string>
 </resources>

@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ Phase Wake មិនអាចប្រើឧបករណ៍ចាប់សញ្ញារបស់នាឡិកាបានទេ។</string>
     <string name="watch_learn_skip_late">យប់នេះមិនរាប់សម្រាប់ដំណាក់កាលរៀនទេ៖ Phase Wake ត្រូវបានបើកយឺតពេកនៅពេលល្ងាច។</string>
     <string name="editor_alarm_gone">ម៉ោងរោទ៍នេះត្រូវបានលុបរួចហើយ។</string>
+    <string name="feeling_question">អ្នកមានអារម្មណ៍យ៉ាងណា?</string>
+    <string name="feeling_1">ហត់នឿយខ្លាំង</string>
+    <string name="feeling_2">ងងុយ</string>
+    <string name="feeling_3">ធម្មតា</string>
+    <string name="feeling_4">ល្អ</string>
+    <string name="feeling_5">ស្រស់ស្រាយ</string>
+    <string name="feeling_rate">អារម្មណ៍ %1$d លើ 5៖ %2$s</string>
+    <string name="feeling_later">ពេលក្រោយ</string>
 </resources>

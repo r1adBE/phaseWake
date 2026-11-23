@@ -59,6 +59,31 @@ class NightRepositoryTest {
         assertEquals(listOf(2, 4), again.map { it.feeling })
     }
 
+    /**
+     * Befinden der Uhr nach dem Wecken (die Uhr schickt dieselbe Nacht mit ihrer Wahl noch einmal): gilt nur ohne
+     * gespeichertes; eine Eingabe am Handy bleibt, auch wenn die Wahl verspätet oder wiederholt ankommt.
+     */
+    @Test
+    fun watchFeelingNeverOverwritesThePhone() = runTest {
+        val repo = NightRepository(file, NightKeep.PHONE, Dispatchers.Unconfined) { Instant.ofEpochMilli(2_000_000) }
+        repo.add(night("a", 1_000))
+        repo.add(night("a", 1_000, feeling = 2))
+        assertEquals(2, repo.load().single().feeling, "ohne gespeichertes: Wahl der Uhr übernommen")
+        repo.setFeeling("a", Instant.ofEpochMilli(1_000), 5)
+        repo.add(night("a", 1_000, feeling = 2))
+        assertEquals(5, repo.load().single().feeling, "Eingabe am Handy bleibt")
+    }
+
+    /** Die Uhr speichert ihre Wahl und schickt die so geänderte Nacht; ohne diese Nacht: nichts. */
+    @Test
+    fun setFeelingReturnsTheUpdatedNight() = runTest {
+        val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)
+        repo.add(night("a", 1_000))
+        assertEquals(3, repo.setFeeling("a", Instant.ofEpochMilli(1_000), 3)?.feeling)
+        assertNull(repo.setFeeling("a", Instant.ofEpochMilli(2_000), 3))
+        assertEquals(listOf(3), repo.load().map { it.feeling })
+    }
+
     @Test
     fun replaceAllTrimsAndClear() = runTest {
         val repo = NightRepository(file, NightKeep.WATCH, Dispatchers.Unconfined)

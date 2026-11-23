@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- Phase Wake က နာရီ၏ အာရုံခံကိရိယာများကို အသုံးမပြုနိုင်ပါ။</string>
     <string name="watch_learn_skip_late">ဒီည သင်ယူမှုအဆင့်အတွက် မရေတွက်ပါ- ညနေတွင် Phase Wake ကို နောက်ကျလွန်းစွာ ဖွင့်ခဲ့သည်။</string>
     <string name="editor_alarm_gone">ဤနှိုးစက်ကို ယခုအတောအတွင်း ဖျက်ပြီးဖြစ်သည်။</string>
+    <string name="feeling_question">ဘယ်လိုခံစားရလဲ။</string>
+    <string name="feeling_1">အလွန်ပင်ပန်း</string>
+    <string name="feeling_2">ပင်ပန်း</string>
+    <string name="feeling_3">ရပါတယ်</string>
+    <string name="feeling_4">ကောင်း</string>
+    <string name="feeling_5">လန်းဆန်း</string>
+    <string name="feeling_rate">ခံစားမှု 5 တွင် %1$d- %2$s</string>
+    <string name="feeling_later">နောက်မှ</string>
 </resources>

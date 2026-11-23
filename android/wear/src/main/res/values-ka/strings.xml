@@ -104,4 +104,12 @@
     <string name="watch_learn_skip_sensors">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake ვერ იყენებს საათის სენსორებს.</string>
     <string name="watch_learn_skip_late">ეს ღამე სწავლის ფაზაში არ ჩაითვლება: Phase Wake საღამოს ძალიან გვიან გაიხსნა.</string>
     <string name="editor_alarm_gone">ეს მაღვიძარა ამასობაში წაიშალა.</string>
+    <string name="feeling_question">როგორ გრძნობ თავს?</string>
+    <string name="feeling_1">გამოფიტული</string>
+    <string name="feeling_2">დაღლილი</string>
+    <string name="feeling_3">ნორმალურად</string>
+    <string name="feeling_4">კარგად</string>
+    <string name="feeling_5">ხალისიანად</string>
+    <string name="feeling_rate">თვითგრძნობა %1$d/5: %2$s</string>
+    <string name="feeling_later">მოგვიანებით</string>
 </resources>

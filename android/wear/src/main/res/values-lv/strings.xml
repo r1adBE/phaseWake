@@ -114,4 +114,12 @@
     <string name="watch_learn_skip_sensors">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake nevar izmantot pulksteņa sensorus.</string>
     <string name="watch_learn_skip_late">Šī nakts netiek ieskaitīta mācīšanās posmā: Phase Wake vakarā atvērts par vēlu.</string>
     <string name="editor_alarm_gone">Šis modinātājs pa to laiku ir izdzēsts.</string>
+    <string name="feeling_question">Kā jūties?</string>
+    <string name="feeling_1">Bez spēka</string>
+    <string name="feeling_2">Miegaini</string>
+    <string name="feeling_3">Normāli</string>
+    <string name="feeling_4">Labi</string>
+    <string name="feeling_5">Moži</string>
+    <string name="feeling_rate">Pašsajūta %1$d no 5: %2$s</string>
+    <string name="feeling_later">Vēlāk</string>
 </resources>

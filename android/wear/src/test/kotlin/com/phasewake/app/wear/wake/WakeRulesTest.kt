@@ -1,5 +1,6 @@
 package com.phasewake.app.wear.wake
 
+import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
@@ -103,5 +104,43 @@ class WakeRulesTest {
         assertEquals(4, WakeRules.unmeasuredEpochs(start, start.plusSeconds(2 * 60 + 1)))
         // Vor dem Fensterbeginn (Uhr ungenau): keine.
         assertEquals(0, WakeRules.unmeasuredEpochs(start, start.minusSeconds(5)))
+    }
+
+    /**
+     * «stop» oder «schlummern» vom Handy gilt nur für dieselbe Nacht (Zielzeit auf 1 s); fehlende Angaben widersprechen
+     * nicht. Dieselben Fälle wie `testPhoneCommandBelongsToThisNightOnly` der Apple Watch.
+     */
+    @Test
+    fun phoneCommandBelongsToThisNightOnly() {
+        val own = target.plusSeconds(600).toEpochMilli()
+        fun same(id: String?, time: Long?) = WakeRules.isThisNight(id, time, "d", own)
+        assertTrue(same("d", own))
+        assertTrue(same("d", own + 900))
+        assertFalse(same("d", own + 1000))
+        assertFalse(same("x", own))
+        assertFalse(same("d", own + 86_400_000L))
+        assertTrue(same(null, null))
+        assertTrue(WakeRules.isThisNight("x", target.toEpochMilli(), null, null))
+        // Ältere Handy-Version ohne Zielzeit: nur die Kennung.
+        assertTrue(same("d", null))
+        assertFalse(same("x", null))
+    }
+
+    @Test
+    fun otherNightLineNamesTheCommand() {
+        assertEquals("phone stop for other night", WakeRules.otherNightLine(WakeService.ACTION_DISMISS))
+        assertEquals("phone snooze for other night", WakeRules.otherNightLine(WakeService.ACTION_PHONE_SNOOZE))
+        assertEquals("phone task for other night", WakeRules.otherNightLine(WakeService.ACTION_TASK_SHOWN))
+    }
+
+    /** Zeile zum Ende der Messung; dieselben Fälle wie `testMeasureEndLineCountsHeartRateEpochs` der Apple Watch. */
+    @Test
+    fun measureEndLineCountsHeartRateEpochs() {
+        val epochs = listOf(Epoch(0.1, 58.0), Epoch(0.2, null))
+        assertEquals(
+            "watch 2 epochs hr=1, floor 0.01, cancelled",
+            WakeRules.measureEndLine(epochs, "floor 0.01", ", cancelled"),
+        )
+        assertEquals("watch 0 epochs hr=0, s", WakeRules.measureEndLine(emptyList(), "s", ""))
     }
 }

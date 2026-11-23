@@ -152,8 +152,9 @@ extension SmartAlarm {
         )
     }
 
-    /// Wecker beenden, Nacht speichern, nächste Nacht planen.
-    func dismiss(notifyPhone: Bool = true) {
+    /// Wecker beenden, Nacht speichern, nächste Nacht planen. `end`: Stopp auf der Uhr oder am iPhone; beide melden dem
+    /// iPhone «stop» (``RingingRules/notifiesPhone(_:)``, wie die Galaxy Watch).
+    func dismiss(by end: RingingRules.NightEnd = .watch) {
         let alarmId = nightPlan?.alarmId ?? plan?.alarmId
         guard case .night(let clearsUpcoming) = RingingRules.dismissal(
             ringing: phase.isRinging, snoozed: phase.isSnoozed, alarmId: alarmId
@@ -163,7 +164,7 @@ extension SmartAlarm {
             removeInterrupted()
             return
         }
-        DiagStore.shared.log(.stop, notifyPhone ? "watch" : "phone")
+        DiagStore.shared.log(.stop, end == .phone ? "phone" : "watch")
         // Nur den Rückfall dieser Nacht: Beim Probewecker oder Powernap bleibt der des echten Weckers stehen. Mit der
         // ganzen Kette, wartend und schon zugestellt.
         let ids = [Self.fallbackKey(for: alarmId), Self.interruptedId]
@@ -173,7 +174,23 @@ extension SmartAlarm {
         if clearsUpcoming {
             UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: UpcomingFallbacks.allIds)
         }
-        finish(notifyPhone: notifyPhone)
+        // Vor dem Abschluss gelesen, der beides leert: für die Frage nach dem Befinden danach.
+        let ended = nightPlan
+        let recorded = RingingRules.finish(night: nightPlan, firstRing: firstRing).records
+        finish(notifyPhone: RingingRules.notifiesPhone(end))
+        askFeeling(after: ended, recorded: recorded, end: end)
+    }
+
+    /// Befinden nach dem Wecken (``FeelingAsk/asks(recorded:stoppedOnWatch:known:)``, wie die Galaxy Watch): nur nach
+    /// einer Nacht, die geklingelt hat und kein Probewecker oder Powernap war (`recorded`), die jetzt gespeichert ist
+    /// (vor dem ersten Entsperren nicht) und nach einem Stopp auf der Uhr (`end`). Erst nach dem vollständigen
+    /// Abschluss: Die Nacht ist dann gespeichert und ans iPhone geschickt, die Frage merkt nur ``WatchFeeling``.
+    private func askFeeling(after night: WakePlan?, recorded: Bool, end: RingingRules.NightEnd) {
+        guard let night,
+              let stored = WatchModel.shared.lastNight.stored(alarmId: night.alarmId, windowStart: night.windowStart),
+              FeelingAsk.asks(recorded: recorded, stoppedOnWatch: end == .watch, known: stored.feeling != nil)
+        else { return }
+        WatchFeeling.shared.ask(stored)
     }
 
     /// Kette nach abgebrochener Sitzung (`interruptedId`) beenden, wartend und zugestellt: Stopp vom iPhone oder Tipp
@@ -195,7 +212,7 @@ extension SmartAlarm {
                                                      delay: Self.fallbackDelay) {
             scheduleFallback(at: at, id: Self.interruptedId)
         }
-        finish(notifyPhone: false)
+        finish(notifyPhone: RingingRules.notifiesPhone(.interrupted))
     }
 
     /// Nacht speichern, einmaligen Wecker ausschalten, nächste Nacht planen. `catchUp`: Wecker, die während dieser

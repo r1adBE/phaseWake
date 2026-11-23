@@ -56,7 +56,9 @@ class PhoneListenerService : WearableListenerService() {
 
     /**
      * Nacht der Uhr speichern. Die Uhr hat geweckt und die Nacht beendet: Sicherungen und Wiederaufnahme dieser Nacht
-     * nicht mehr nötig (falls «ring» oder das letzte «stop» verloren ging). Dieselbe Nacht zweimal ändert nichts.
+     * nicht mehr nötig (falls «ring» oder das letzte «stop» verloren ging). Dieselbe Nacht zweimal ändert nichts; so
+     * kommt auch das Befinden der Uhr nach dem Wecken an (dieselbe Nacht mit ihrer Wahl, übernommen nur ohne eigenes,
+     * `FeelingAsk.merged`).
      */
     private suspend fun storeNight(night: NightRecord) {
         val app = phoneApp
@@ -64,7 +66,10 @@ class PhoneListenerService : WearableListenerService() {
         if (endedBeforeClear(night.wokeAt)) {
             app.diag.log(DiagKind.SYNC, "night before history clear dropped")
         } else {
-            app.nights.add(PhoneBattery.withPhone(app, night))
+            // Schon gespeichert (erneut geschickt, z. B. mit dem Befinden): Der Akku des Handys hängt schon an ihr oder
+            // kommt mit dem «stop»; nicht noch einmal beenden, sonst endete die Messung einer schon begonnenen Nacht.
+            val known = app.nights.load().any { it.alarmId == night.alarmId && it.windowStart == night.windowStart }
+            app.nights.add(if (known) night else PhoneBattery.withPhone(app, night))
         }
         app.backup.cancelSnoozeSafety(night.alarmId)
         app.backup.cancelSnoozeOf(night.alarmId, night.target.toEpochMilli())

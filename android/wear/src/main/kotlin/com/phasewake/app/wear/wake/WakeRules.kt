@@ -1,6 +1,7 @@
 package com.phasewake.app.wear.wake
 
 import com.phasewake.app.core.DetectorConfig
+import com.phasewake.app.core.Epoch
 import com.phasewake.app.core.Snooze
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
@@ -8,6 +9,7 @@ import com.phasewake.app.core.WakeReason
 import java.time.Duration
 import java.time.Instant
 import java.util.Locale
+import kotlin.math.abs
 
 // Entscheidungen des Weckdienstes ohne Android-Klassen (Fenster → Klingeln → Schlummern → Ende), in Unit-Tests prüfbar.
 
@@ -100,6 +102,39 @@ internal object WakeRules {
         (Duration.between(windowStart, now).seconds / DetectorConfig.EPOCH_SECONDS)
             .coerceIn(0L, Int.MAX_VALUE.toLong())
             .toInt()
+
+    /**
+     * Ob «stop» bzw. «schlummern» vom Handy (Wecker [alarmId], Zielzeit [target] in ms) zu der Nacht gehört, die hier
+     * läuft ([ownAlarmId], [ownTarget]): gleiche Kennung und Zielzeit auf 1 s genau. Fehlende Angaben (ältere
+     * Handy-Version, «schlummern» ohne Inhalt, keine Nacht) widersprechen nicht. Identisch zu
+     * `RingingRules.isThisNight` der Apple Watch.
+     */
+    fun isThisNight(alarmId: String?, target: Long?, ownAlarmId: String?, ownTarget: Long?): Boolean {
+        if (alarmId != null && ownAlarmId != null && alarmId != ownAlarmId) return false
+        if (target != null && ownTarget != null && abs(target - ownTarget) >= 1000L) return false
+        return true
+    }
+
+    /**
+     * Zeile fürs Diagnose-Protokoll, wenn ein Befehl des Handys ([action] des Weckdienstes) einer anderen Nacht gilt,
+     * z. B. «phone stop for other night» (wie die Apple Watch).
+     */
+    fun otherNightLine(action: String?): String {
+        val command = when (action) {
+            WakeService.ACTION_DISMISS -> "stop"
+            WakeService.ACTION_PHONE_SNOOZE -> "snooze"
+            else -> "task"
+        }
+        return "phone $command for other night"
+    }
+
+    /**
+     * Zeile zum Ende der Messung: Epochen gesamt, davon mit Puls (`hr=`), Kennzahlen der Schwellen [summary] und
+     * Zusatz [note] (z. B. «, cancelled»), etwa «watch 2 epochs hr=1, floor 0.01, cancelled». Identisch zu
+     * `MeasuringRules.measureEndLine` der Apple Watch.
+     */
+    fun measureEndLine(epochs: List<Epoch>, summary: String, note: String): String =
+        "watch ${epochs.size} epochs hr=${epochs.count { it.heartRate != null }}, $summary$note"
 
     private fun seconds(millis: Long): String = String.format(Locale.ROOT, "%.1fs", millis / 1000.0)
 }

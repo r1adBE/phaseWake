@@ -8,7 +8,9 @@ import android.os.PowerManager
 import android.util.Log
 import androidx.lifecycle.LifecycleService
 import com.phasewake.app.core.AlarmSpec
+import com.phasewake.app.core.DiagKind
 import com.phasewake.app.core.Epoch
+import com.phasewake.app.core.NightLimit
 import com.phasewake.app.core.SleepGoal
 import com.phasewake.app.core.WakeDetector
 import com.phasewake.app.core.WakePlan
@@ -188,11 +190,13 @@ class WakeService : LifecycleService() {
         if (isIdle()) stopSelf()
     }
 
-    /** Befehl vom Handy: Nennt er einen anderen Wecker als den laufenden, gilt er nicht dieser Nacht. */
+    /** Befehl vom Handy für eine andere Nacht ([WakeRules.isThisNight]): gilt nicht, Zeile ins Protokoll. */
     internal fun isForThisNight(intent: Intent): Boolean {
-        val remote = intent.getStringExtra(EXTRA_REMOTE_ALARM_ID) ?: return true
-        val current = night?.plan?.alarmId ?: return true
-        return remote == current
+        val plan = night?.plan ?: return true
+        val remote = intent.getStringExtra(EXTRA_REMOTE_ALARM_ID)
+        if (WakeRules.isThisNight(remote, remoteTarget(intent), plan.alarmId, plan.target.toEpochMilli())) return true
+        app.diag.log(DiagKind.SUPPRESSED, WakeRules.otherNightLine(intent.action))
+        return false
     }
 
     internal fun remoteTarget(intent: Intent): Long? =
@@ -279,10 +283,10 @@ class WakeService : LifecycleService() {
         val GOOD_NIGHT_MAX_AHEAD: Duration = WakeRules.GOOD_NIGHT_MAX_AHEAD
 
         /**
-         * Spätestens so lange nach der Zielzeit endet eine Nacht (4 × 10 Min Klingeln + 3 × 5 Min Schlummern passen gut
-         * hinein).
+         * Spätestens so lange nach der Zielzeit endet eine Nacht, gleich wie auf der Apple Watch ([NightLimit]; 4 × 10
+         * Min Klingeln + 3 × 5 Min Schlummern passen gut hinein).
          */
-        internal val NIGHT_HARD_LIMIT: Duration = Duration.ofHours(2)
+        internal val NIGHT_HARD_LIMIT: Duration = NightLimit.AFTER_TARGET
 
         /** Höchstens so lange klingelt es ohne Reaktion am Stück. */
         internal const val RING_TIMEOUT_MS = WakeRules.RING_TIMEOUT_MS
@@ -362,7 +366,7 @@ class WakeService : LifecycleService() {
         /**
          * Befehl an den Dienst; [plan] erlaubt einen Neustart, falls er inzwischen beendet wurde.
          * [remoteAlarmId]: Wecker, den das Handy meint (aus [RingMessage]); `null` gilt für jede Nacht.
-         * [remoteTarget]: Zielzeit, die das Handy meint (nur für die Weckaufgabe geprüft).
+         * [remoteTarget]: Zielzeit, die das Handy meint ([isForThisNight]; ohne Angabe gilt nur die Kennung).
          */
         fun command(
             context: Context,

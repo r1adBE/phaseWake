@@ -113,4 +113,12 @@
     <string name="watch_learn_skip_sensors">Noaptea aceasta nu contează pentru faza de învățare: Phase Wake nu poate folosi senzorii ceasului.</string>
     <string name="watch_learn_skip_late">Noaptea aceasta nu contează pentru faza de învățare: Phase Wake a fost deschis prea târziu seara.</string>
     <string name="editor_alarm_gone">Această alarmă a fost ștearsă între timp.</string>
+    <string name="feeling_question">Cum te simți?</string>
+    <string name="feeling_1">Epuizat</string>
+    <string name="feeling_2">Obosit</string>
+    <string name="feeling_3">Okay</string>
+    <string name="feeling_4">Bine</string>
+    <string name="feeling_5">Odihnit</string>
+    <string name="feeling_rate">Stare %1$d din 5: %2$s</string>
+    <string name="feeling_later">Mai târziu</string>
 </resources>

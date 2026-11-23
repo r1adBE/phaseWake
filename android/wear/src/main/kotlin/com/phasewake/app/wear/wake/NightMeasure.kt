@@ -294,15 +294,13 @@ internal fun WakeService.onEpochs(n: Night, epochs: List<Epoch>) {
 /**
  * Ende der Messung im Diagnose-Protokoll, einmal je Nacht (nur während [Phase.MEASURING], nicht vor dem ersten
  * Entsperren): Epochen, davon mit Puls (`hr=`), und Kennzahlen der Schwellen ([NoiseFloor.summary]: Grundrauschen,
- * wirksame Leicht- und Wach-Schwelle am Ende), ohne einzelne Messwerte. [note] ergänzt den Grund (z. B. abgebrochen).
+ * wirksame Leicht- und Wach-Schwelle am Ende), ohne einzelne Messwerte ([WakeRules.measureEndLine], gleich wie die
+ * Apple Watch). [note] ergänzt den Grund (z. B. «, cancelled»).
  */
 internal fun WakeService.logMeasureEnd(n: Night, note: String = "") {
     if (n.phase != Phase.MEASURING || n.locked) return
     val summary = NoiseFloor.summary(n.detector.config, n.epochs.map { it.motion })
-    app.diag.log(
-        DiagKind.MEASURE_END,
-        "watch ${n.epochs.size} epochs hr=${n.epochs.count { it.heartRate != null }}, $summary$note",
-    )
+    app.diag.log(DiagKind.MEASURE_END, WakeRules.measureEndLine(n.epochs, summary, note))
 }
 
 /**

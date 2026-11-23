@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">Vannacht telt niet mee voor de leerfase: Phase Wake kan de sensoren van het horloge niet gebruiken.</string>
     <string name="watch_learn_skip_late">Vannacht telt niet mee voor de leerfase: Phase Wake is ’s avonds te laat geopend.</string>
     <string name="editor_alarm_gone">Deze wekker is intussen verwijderd.</string>
+    <string name="feeling_question">Hoe voel je je?</string>
+    <string name="feeling_1">Uitgeput</string>
+    <string name="feeling_2">Moe</string>
+    <string name="feeling_3">Oké</string>
+    <string name="feeling_4">Goed</string>
+    <string name="feeling_5">Uitgerust</string>
+    <string name="feeling_rate">Gevoel %1$d van 5: %2$s</string>
+    <string name="feeling_later">Later</string>
 </resources>

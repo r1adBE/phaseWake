@@ -327,4 +327,23 @@ class RingRulesTest {
         assertEquals(Duration.ofMinutes(85), RingRules.nightLookback(half.copy(windowMinutes = 60)))
         assertEquals(Duration.ofMinutes(55), RingRules.nightLookback(half.copy(windowMinutes = AlarmSpec.EXACT_WINDOW)))
     }
+
+    /**
+     * Meldung an die Uhr für «stop», «schlummern» und die Weckaufgabe: Kennung, Zielzeit und Sendezeit, ohne
+     * Schlummer-Angaben. Die Uhr liest sie mit [RingMessage.decode] und prüft damit ihre Nacht; nach dem Schlummern am
+     * Handy fehlt die Zielzeit (widerspricht nicht).
+     */
+    @Test
+    fun watchMessageNamesTheNight() {
+        val sent = at("2026-11-04T07:00").toEpochMilli()
+        val target = at("2026-11-04T07:00").toEpochMilli()
+        val message = RingMessage.decode(RingRules.watchMessage("a", target, sent))
+        assertEquals(RingMessage("a", target, sent), message)
+        assertTrue(message.isCurrent())
+        assertTrue(message.sameNight("a", target))
+        assertFalse(message.sameNight("a", target + 86_400_000), "andere Nacht")
+        val noTarget = RingMessage.decode(RingRules.watchMessage("a", null, sent))
+        assertNull(noTarget.target)
+        assertTrue(noTarget.sameNight("a", target))
+    }
 }

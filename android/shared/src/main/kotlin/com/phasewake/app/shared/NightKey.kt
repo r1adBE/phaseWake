@@ -1,5 +1,6 @@
 package com.phasewake.app.shared
 
+import com.phasewake.app.core.FeelingAsk
 import com.phasewake.app.core.NightKeep
 import com.phasewake.app.core.NightRecord
 import java.time.Instant
@@ -12,9 +13,11 @@ internal fun NightRecord.isNight(alarmId: String, windowStart: Instant): Boolean
     this.alarmId == alarmId && this.windowStart == windowStart
 
 /**
- * Ersetzt dieselbe Nacht oder hängt sie an; ein schon angegebenes Befinden, ein schon gespeicherter Akkustand
- * (z. B. der des Handys) und die Einschlafzeit samt Beginn bleiben, wenn die neue keine hat (die Uhr schickt dieselbe
- * Nacht noch einmal, eine ältere Uhr-App ohne Einschlafzeit). Danach gekürzt nach [keep] (Handy oder Uhr).
+ * Ersetzt dieselbe Nacht oder hängt sie an; ein schon gespeicherter Akkustand (z. B. der des Handys) und die
+ * Einschlafzeit samt Beginn bleiben, wenn die neue keine hat (die Uhr schickt dieselbe Nacht noch einmal, eine ältere
+ * Uhr-App ohne Einschlafzeit). Ein schon angegebenes Befinden bleibt immer; das der neuen gilt nur ohne gespeichertes
+ * ([FeelingAsk.merged]: die Wahl auf der Uhr nach dem Wecken überschreibt keine Eingabe am Handy). Danach gekürzt nach
+ * [keep] (Handy oder Uhr).
  */
 internal fun mergeNight(
     current: List<NightRecord>,
@@ -25,7 +28,7 @@ internal fun mergeNight(
     val same: (NightRecord) -> Boolean = { it.isNight(night.alarmId, night.windowStart) }
     val old = current.firstOrNull(same)
     val merged = night.copy(
-        feeling = night.feeling ?: old?.feeling,
+        feeling = FeelingAsk.merged(stored = old?.feeling, incoming = night.feeling),
         watchBattery = night.watchBattery ?: old?.watchBattery,
         phoneBattery = night.phoneBattery ?: old?.phoneBattery,
         // Beginn und Einschlafzeit nur zusammen übernehmen (gehören zur selben Messung).

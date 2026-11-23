@@ -181,10 +181,11 @@ enum MeasuringRules {
         state == .running && active()
     }
 
-    /// Zeile zum Ende der Messung (`SmartAlarm.logMeasureEnd`): Epochen gesamt und davon mit Puls, Kennzahlen der
-    /// Schwellen `summary` und Zusatz `note`.
+    /// Zeile zum Ende der Messung (`SmartAlarm.logMeasureEnd`): Epochen gesamt, davon mit Puls (`hr=`), Kennzahlen der
+    /// Schwellen `summary` und Zusatz `note` (z. B. «, cancelled»), etwa «watch 2 epochs hr=1, floor 0.01, cancelled».
+    /// Identisch zu `WakeRules.measureEndLine` der Galaxy Watch.
     static func measureEndLine(_ epochs: [Epoch], summary: String, note: String) -> String {
         let withHeartRate = epochs.filter { $0.heartRate != nil }.count
-        return "\(epochs.count) epochs, hr epochs \(withHeartRate)/\(epochs.count), \(summary)\(note)"
+        return "watch \(epochs.count) epochs hr=\(withHeartRate), \(summary)\(note)"
     }
 }

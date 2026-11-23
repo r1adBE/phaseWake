@@ -32,6 +32,20 @@ final class RingingRulesWatchTests: XCTestCase {
         XCTAssertTrue(RingingRules.ringExpired(target: nil, now: now, limit: 3600))
     }
 
+    /// Harte Grenze der Nacht wie auf der Galaxy Watch (`NightLimit`, 2 h): Klingeln 1,5 h nach der Zielzeit ist nicht
+    /// hängengeblieben, nach 2 h schon. Der gesicherte Zustand gilt gleich lang; die Nachfrist einer nicht geweckten
+    /// Nacht bleibt 1 h.
+    @MainActor
+    func testHardLimitOfTheNightIsShared() {
+        XCTAssertEqual(SmartAlarm.nightLimit, NightLimit.afterTarget)
+        XCTAssertEqual(SmartAlarm.ringStateMaxAge, SmartAlarm.nightLimit)
+        XCTAssertEqual(SmartAlarm.ringLimit, 3600)
+        let target = now.addingTimeInterval(-5400)
+        XCTAssertFalse(RingingRules.ringExpired(target: target, now: now, limit: SmartAlarm.nightLimit))
+        XCTAssertTrue(RingingRules.ringExpired(target: target, now: now.addingTimeInterval(1801),
+                                               limit: SmartAlarm.nightLimit))
+    }
+
     /// «stop» oder «schlummern» vom iPhone gilt nur für dieselbe Nacht (Zielzeit auf 1 s); fehlende Angaben
     /// widersprechen nicht.
     func testPhoneCommandBelongsToThisNightOnly() {
@@ -72,6 +86,15 @@ final class RingingRulesWatchTests: XCTestCase {
         XCTAssertEqual(RingingRules.dismissal(ringing: true, snoozed: false, alarmId: Transient.napPrefix + "1"),
                        .night(clearsUpcoming: false))
         XCTAssertEqual(RingingRules.dismissal(ringing: false, snoozed: false, alarmId: "d"), .chainOnly)
+    }
+
+    /// «stop» ans iPhone wie auf der Galaxy Watch: nach einem Stopp auf der Uhr und am iPhone (Klingeln, Schlummern,
+    /// Messen); nicht nach einem Abbruch (das iPhone klingelt weiter) und nicht für einen alten Zustand.
+    func testStopIsReportedToThePhoneLikeOnGalaxy() {
+        XCTAssertTrue(RingingRules.notifiesPhone(.watch))
+        XCTAssertTrue(RingingRules.notifiesPhone(.phone))
+        XCTAssertFalse(RingingRules.notifiesPhone(.interrupted))
+        XCTAssertFalse(RingingRules.notifiesPhone(.stale))
     }
 
     /// Sitzung endet beim Klingeln oder Schlummern: sofort weiterwecken, beim Schlummern erst kurz nach dessen Ende,

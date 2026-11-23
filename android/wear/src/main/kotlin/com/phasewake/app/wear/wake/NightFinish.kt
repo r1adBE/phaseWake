@@ -4,6 +4,7 @@ import android.util.Log
 import com.phasewake.app.core.AlarmSchedule
 import com.phasewake.app.core.AlarmSpec
 import com.phasewake.app.core.DiagKind
+import com.phasewake.app.core.FeelingAsk
 import com.phasewake.app.core.NightRecord
 import com.phasewake.app.core.Transient
 import com.phasewake.app.core.WakePlan
@@ -30,14 +31,21 @@ import kotlinx.coroutines.withContext
 
 /**
  * Schliesst die Nacht ab. [done]: Die Nacht gilt auch ohne Klingeln als erledigt (am Handy während der Messung
- * beendet), damit sie nicht gleich wieder geplant wird.
+ * beendet, auch ein Probewecker oder Powernap ohne Eintrag), damit sie nicht gleich wieder geplant wird.
+ * [stoppedOnWatch]: auf der Uhr gestoppt; dann folgt nach echtem Wecken die Frage nach dem Befinden ([askFeeling]).
  */
-internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean = false) {
+internal fun WakeService.finishNight(
+    notifyPhone: Boolean = true,
+    done: Boolean = false,
+    stoppedOnWatch: Boolean = false,
+) {
     val n = night ?: return
-    tearDownNight(n)
-
     // Probewecker und Powernap: kein Eintrag im Verlauf, nichts «erledigt», kein Einmal-Wecker.
     val transient = Transient.kindOf(n.plan.alarmId) != null
+    // Die Frage steht, bevor der Weckbildschirm das Ende sieht: Er öffnet sie, statt sich nur zu schliessen.
+    askFeeling(n, transient, stoppedOnWatch)
+    tearDownNight(n)
+
     app.diag.log(DiagKind.STOP, if (n.firstRing == null) "watch ended without ring" else "watch")
     val record = nightRecord(n, transient)
     // Ohne Nacht im Verlauf (nicht geweckt, Probewecker, Powernap) gehört der Akku zu nichts; ein Probewecker hat
@@ -76,6 +84,18 @@ internal fun WakeService.finishNight(notifyPhone: Boolean = true, done: Boolean 
     }
 }
 
+/**
+ * Befinden nach dem Wecken ([FeelingAsk.asks]): nur nach einer Nacht, die geklingelt hat und in den Verlauf kommt (kein
+ * Probewecker oder Powernap, [transient]; nicht vor dem ersten Entsperren, dann gibt es keinen Verlauf), und nur nach
+ * einem Stopp auf der Uhr ([stoppedOnWatch]). Merkt nur die Frage ([FeelingPrompt]); der Stopp läuft unverändert.
+ */
+private fun WakeService.askFeeling(n: WakeService.Night, transient: Boolean, stoppedOnWatch: Boolean) {
+    val recorded = n.firstRing != null && !transient && DirectBoot.isUnlocked(this)
+    if (FeelingAsk.asks(recorded, stoppedOnWatch)) {
+        FeelingPrompt.ask(n.plan.alarmId, n.plan.windowStart, System.currentTimeMillis())
+    }
+}
+
 /** Beendet Messung, Klingeln und Vordergrund der Nacht [n] sofort (Sensoren, Alarme, Mitteilungen, Wakelock). */
 private fun WakeService.tearDownNight(n: WakeService.Night) {
     WatchSunrise.stop(this)
@@ -92,9 +112,9 @@ private fun WakeService.tearDownNight(n: WakeService.Night) {
 }
 
 /**
- * Eintrag der Nacht [n] für den Verlauf, nur wenn sie geweckt hat und kein Probewecker oder Powernap ([transient])
- * war. Akku je Nacht: Ende jetzt, die Punkte reisen mit der Nacht zum Handy; ebenso die Einschlafzeit samt Beginn, nur
- * zusammen.
+ * Eintrag der Nacht [n] für den Verlauf, nur wenn sie geweckt hat (oder am Handy während der Messung beendet wurde,
+ * [dismiss]) und kein Probewecker oder Powernap ([transient]) war. Akku je Nacht: Ende jetzt, die Punkte reisen mit
+ * der Nacht zum Handy; ebenso die Einschlafzeit samt Beginn, nur zusammen.
  */
 private fun WakeService.nightRecord(n: WakeService.Night, transient: Boolean): NightRecord? =
     n.firstRing?.takeIf { !transient }?.let { wokeAt ->
@@ -149,7 +169,11 @@ private suspend fun WakeService.saveFinishedNight(
     runStep("Neu planen") { app.scheduler.reschedule() }
     // Einreihen fürs Handy, solange der Dienst noch läuft: Es speichert nur lokal (schnell), gesendet
     // wird im Hintergrund. Endete der Prozess mit dem Dienst, ginge die Nacht sonst nie ans Handy.
-    if (record != null) runStep("Nacht einreihen") { app.sync.publishNight(record) }
+    if (record != null) runStep("Nacht einreihen") {
+        app.sync.publishNight(record)
+        // Erst jetzt darf eine Wahl des Befindens die Nacht ändern und neu einreihen (sonst ersetzte diese Fassung).
+        FeelingPrompt.nightQueued(record)
+    }
     disabled?.let { runStep("Einmal-Wecker einreihen") { app.sync.publishAlarms(it) } }
     // Ausnahme weg: Auch das Handy plant wieder ohne frühere Zielzeit (Meldung ohne frühere Zielzeit).
     cleared?.let {

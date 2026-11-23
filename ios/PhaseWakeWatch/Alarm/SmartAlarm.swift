@@ -24,7 +24,7 @@ import WatchKit
 /// - Lehnt das System die Sitzung ab oder bricht sie ab, weckt eine lokale Mitteilung kurz nach
 ///   der Zielzeit (Rückfall). Sie bleibt beim Klingeln stehen und wird erst beim Beenden entfernt.
 /// - Endet die Sitzung während des Klingelns oder Schlummerns (Ablauf, System), weckt sofort eine
-///   Mitteilung, und die Nacht wird trotzdem abgeschlossen; ebenso spätestens 1 h nach der Zielzeit. Endet sie beim
+///   Mitteilung, und die Nacht wird trotzdem abgeschlossen; ebenso spätestens 2 h nach der Zielzeit. Endet sie beim
 ///   Klingeln regulär (Stopp im Weckhinweis des Systems), gilt das als Stopp (`SessionRules.ending`).
 /// - Bricht die Sitzung beim Messen vor der Zielzeit ab, weckt der feste Rückfall kurz nach der Zielzeit
 ///   (`measuringInterrupted`); die Nächte danach haben eigene Rückfälle (`UpcomingFallbacks`).
@@ -53,9 +53,13 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
     static let fallbackDelay: TimeInterval = 60
     /// Höchstdauer der Sitzung (30 Min) minus Reserve: So liegt die Zielzeit samt Klingeln in der Sitzung.
     static let sessionLead: TimeInterval = 25 * 60
-    /// Spätestens so lange nach der Zielzeit gilt eine Nacht, die noch «klingelt» oder «schlummert», als
-    /// hängengeblieben.
+    /// Nachfrist einer Nacht, deren Zielzeit da ist, die aber nicht geweckt hat (ausstehend, `WatchModel.pendingNight`;
+    /// angetippter Rückfall, `fallbackArrived`; «Gute Nacht»; Reise): 1 h. Länger blockierte eine nicht geweckte Nacht
+    /// die Sitzung eines späteren Weckers. Nicht die harte Grenze einer laufenden Nacht (``nightLimit``).
     static let ringLimit: TimeInterval = 3600
+    /// Harte Grenze einer laufenden Nacht: Spätestens so lange nach der Zielzeit gilt eine Nacht, die noch «klingelt»
+    /// oder «schlummert», als hängengeblieben (gleich wie Galaxy Watch, `NightLimit` im Kern: 2 h).
+    static let nightLimit: TimeInterval = NightLimit.afterTarget
     /// Spielraum, um den das System eine Sitzung früher oder später starten darf.
     static let startTolerance: TimeInterval = 120
     /// Kennung des Rückfalls eines echten Weckers; Probewecker und Powernap nutzen nie diese (`fallbackKey`).
@@ -357,10 +361,10 @@ final class SmartAlarm: NSObject, WKExtendedRuntimeSessionDelegate {
         MeasuringRules.sessionStart(plan, lead: sessionLead)
     }
 
-    /// Klingeln oder Schlummern dauert schon über die Zeitgrenze hinaus
+    /// Klingeln oder Schlummern dauert schon über die harte Grenze ``nightLimit`` hinaus
     /// (``RingingRules/ringExpired(target:now:limit:)``).
     var ringExpired: Bool {
-        RingingRules.ringExpired(target: nightPlan?.target, now: Date(), limit: Self.ringLimit)
+        RingingRules.ringExpired(target: nightPlan?.target, now: Date(), limit: Self.nightLimit)
     }
 
     /// Meldet dem iPhone, für welche Zielzeit die Uhr scharf ist (Nacht-Check).

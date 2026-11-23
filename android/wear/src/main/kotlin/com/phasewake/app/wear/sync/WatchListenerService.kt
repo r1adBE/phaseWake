@@ -148,15 +148,23 @@ class WatchListenerService : WearableListenerService() {
             RecordControl.fromPhone(this, it, RecordSync.continuousOf(event.data))
             return
         }
-        // «snooze» trägt keinen Inhalt (gilt der laufenden Nacht); «stop» und die Meldungen zur Weckaufgabe tragen die
-        // Sendezeit. Ohne sie stammen sie von einer veralteten Handy-App: verwerfen, kein Rückfall.
+        // «stop» und die Meldungen zur Weckaufgabe tragen die Sendezeit; ohne sie stammen sie von einer veralteten
+        // Handy-App: verwerfen, kein Rückfall. «snooze» trägt seit 23.11.2026 dieselbe Meldung (Kennung, Zielzeit,
+        // Sendezeit); ein älteres Handy schickt es ohne Inhalt, das gilt weiter der laufenden Nacht.
         val message = RingMessage.decode(event.data)
         val alarmId = message.alarmId
         if (event.path in NEEDS_SEND_TIME && !message.isCurrent()) return
         when (event.path) {
             DataLayer.PATH_STOP -> stopFromPhone(alarmId, message.target)
-            // Hat die Uhr keine Schlummer-Runde mehr, antwortet der Dienst mit «klingeln».
-            DataLayer.PATH_SNOOZE -> WakeService.command(this, WakeService.ACTION_PHONE_SNOOZE, remoteAlarmId = alarmId)
+            // Hat die Uhr keine Schlummer-Runde mehr, antwortet der Dienst mit «klingeln». Mit Kennung und Zielzeit
+            // schlummert nur die genannte Nacht ([WakeService.isForThisNight]); ohne Inhalt (älteres Handy) die
+            // laufende.
+            DataLayer.PATH_SNOOZE -> WakeService.command(
+                this,
+                WakeService.ACTION_PHONE_SNOOZE,
+                remoteAlarmId = alarmId,
+                remoteTarget = message.target,
+            )
             // Weckaufgabe: Das Handy zeigt sie (wiederholt) oder hat sie ungelöst beendet. Nur an einen laufenden
             // Dienst.
             DataLayer.PATH_TASK_SHOWN -> WakeService.command(
@@ -237,7 +245,8 @@ class WatchListenerService : WearableListenerService() {
                 app.appScope.launch { app.diag.log(DiagKind.STOP, "from phone while measuring (other night, ignored)") }
             }
         } else {
-            WakeService.command(this, WakeService.ACTION_DISMISS, remoteAlarmId = alarmId)
+            // Klingelt oder schlummert die Uhr: nur für dieselbe Nacht (Kennung, Zielzeit; WakeService.isForThisNight).
+            WakeService.command(this, WakeService.ACTION_DISMISS, remoteAlarmId = alarmId, remoteTarget = target)
         }
     }
 

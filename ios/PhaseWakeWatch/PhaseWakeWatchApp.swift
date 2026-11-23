@@ -51,13 +51,16 @@ final class AppDelegate: NSObject, WKApplicationDelegate {
     }
 }
 
-/// Zeigt den Weckbildschirm, solange geweckt wird, sonst den Startbildschirm.
+/// Zeigt den Weckbildschirm, solange geweckt wird, danach eine offene Frage nach dem Befinden (``WatchFeeling``, nur
+/// nach einem Stopp auf der Uhr), sonst den Startbildschirm.
 struct RootView: View {
     @Environment(WatchModel.self) private var model
 
     var body: some View {
         if SmartAlarm.shared.phase.isRinging || SmartAlarm.shared.phase.isSnoozed {
             RingView()
+        } else if let ask = WatchFeeling.shared.current() {
+            WatchFeelingView(ask: ask)
         } else {
             HomeView()
         }

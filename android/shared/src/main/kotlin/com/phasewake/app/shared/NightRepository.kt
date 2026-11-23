@@ -40,7 +40,8 @@ class NightRepository(
 
     /**
      * Fügt eine Nacht hinzu; dieselbe Nacht (Wecker und Fensterbeginn, siehe [mergeNight]) wird ersetzt.
-     * Ein schon angegebenes Befinden bleibt erhalten, falls die Uhr dieselbe Nacht noch einmal schickt.
+     * Ein schon angegebenes Befinden bleibt erhalten, auch wenn die Uhr dieselbe Nacht noch einmal schickt, selbst mit
+     * ihrer Wahl nach dem Wecken ([com.phasewake.app.core.FeelingAsk.merged]).
      */
     suspend fun add(night: NightRecord) = mutex.withLock {
         val updated = mergeNight(loadLocked(), night, keep, now())
@@ -48,12 +49,17 @@ class NightRepository(
         state.value = updated
     }
 
-    /** Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn. */
-    suspend fun setFeeling(alarmId: String, windowStart: java.time.Instant, feeling: Int) = mutex.withLock {
-        val updated = loadLocked().map { if (it.isNight(alarmId, windowStart)) it.copy(feeling = feeling) else it }
-        write(updated)
-        state.value = updated
-    }
+    /**
+     * Speichert das Befinden (1–5) zur Nacht dieses Weckers mit diesem Fensterbeginn.
+     * @return die Nacht mit dem neuen Befinden (die Uhr schickt sie so ans Handy); `null`, wenn es sie nicht gibt.
+     */
+    suspend fun setFeeling(alarmId: String, windowStart: java.time.Instant, feeling: Int): NightRecord? =
+        mutex.withLock {
+            val updated = loadLocked().map { if (it.isNight(alarmId, windowStart)) it.copy(feeling = feeling) else it }
+            write(updated)
+            state.value = updated
+            updated.firstOrNull { it.isNight(alarmId, windowStart) }
+        }
 
     /**
      * Ersetzt den ganzen Verlauf (Wiederherstellen einer Sicherung), gekürzt nach [keep].

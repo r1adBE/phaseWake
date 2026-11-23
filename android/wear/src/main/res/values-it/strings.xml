@@ -113,4 +113,12 @@
     <string name="watch_learn_skip_sensors">Stanotte non conta per la fase di apprendimento: Phase Wake non può usare i sensori dell’orologio.</string>
     <string name="watch_learn_skip_late">Stanotte non conta per la fase di apprendimento: Phase Wake è stato aperto troppo tardi la sera.</string>
     <string name="editor_alarm_gone">Questa sveglia è stata eliminata nel frattempo.</string>
+    <string name="feeling_question">Come ti senti?</string>
+    <string name="feeling_1">Esausto</string>
+    <string name="feeling_2">Stanco</string>
+    <string name="feeling_3">Così così</string>
+    <string name="feeling_4">Bene</string>
+    <string name="feeling_5">Riposato</string>
+    <string name="feeling_rate">Sensazione %1$d su 5: %2$s</string>
+    <string name="feeling_later">Più tardi</string>
 </resources>

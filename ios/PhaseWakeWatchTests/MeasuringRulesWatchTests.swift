@@ -218,10 +218,11 @@ final class MeasuringRulesWatchTests: XCTestCase {
         XCTAssertFalse(asked)
     }
 
+    /// Gleiches Format und dieselben Fälle wie `measureEndLineCountsHeartRateEpochs` der Galaxy Watch.
     func testMeasureEndLineCountsHeartRateEpochs() {
         let epochs = [Epoch(motion: 0.1, heartRate: 58), Epoch(motion: 0.2, heartRate: nil)]
-        XCTAssertEqual(MeasuringRules.measureEndLine(epochs, summary: "floor 0.01", note: " cancelled"),
-                       "2 epochs, hr epochs 1/2, floor 0.01 cancelled")
-        XCTAssertEqual(MeasuringRules.measureEndLine([], summary: "s", note: ""), "0 epochs, hr epochs 0/0, s")
+        XCTAssertEqual(MeasuringRules.measureEndLine(epochs, summary: "floor 0.01", note: ", cancelled"),
+                       "watch 2 epochs hr=1, floor 0.01, cancelled")
+        XCTAssertEqual(MeasuringRules.measureEndLine([], summary: "s", note: ""), "watch 0 epochs hr=0, s")
     }
 }

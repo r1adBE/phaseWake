@@ -111,4 +111,13 @@
     <string name="watch_learn_skip_sensors">Tonight doesn’t count for the learning phase: Phase Wake can’t use the watch’s sensors.</string>
     <string name="watch_learn_skip_late" tools:ignore="UnusedResources">Tonight doesn’t count for the learning phase: Phase Wake was opened too late in the evening.</string>
     <string name="editor_alarm_gone">This alarm was deleted in the meantime.</string>
+    <!-- Befinden nach dem Wecken (FeelingActivity): Texte wie am Handy, «Später» wie learn_consent_later. -->
+    <string name="feeling_question">How do you feel?</string>
+    <string name="feeling_1">Exhausted</string>
+    <string name="feeling_2">Tired</string>
+    <string name="feeling_3">Okay</string>
+    <string name="feeling_4">Good</string>
+    <string name="feeling_5">Refreshed</string>
+    <string name="feeling_rate">Feeling %1$d of 5: %2$s</string>
+    <string name="feeling_later">Later</string>
 </resources>

@@ -11,6 +11,7 @@ import com.phasewake.app.core.WakeReason
 import com.phasewake.app.phoneApp
 import com.phasewake.app.ring.onsetShift
 import com.phasewake.app.shared.AlarmSnapshot
+import com.phasewake.app.shared.BatteryNight
 import com.phasewake.app.shared.DataLayer
 import com.phasewake.app.shared.NightRecording
 import com.phasewake.app.shared.OnsetShift
@@ -25,6 +26,7 @@ import androidx.datastore.preferences.core.longPreferencesKey
 import java.io.File
 import java.time.Duration
 import java.time.Instant
+import java.time.temporal.ChronoUnit
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.runBlocking
 import org.junit.After
@@ -37,6 +39,7 @@ import org.robolectric.annotation.Config
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -127,6 +130,26 @@ class PhoneListenerServiceTest {
         assertEquals(listOf(night), app.nights.load())
         // Die Uhr hat diese Nacht übernommen: Zweitwecker dieser Nacht ausgesetzt.
         awaitDiag { it == "phone backup paused" }
+    }
+
+    /**
+     * Befinden der Uhr nach dem Wecken: kommt als dieselbe Nacht mit ihrer Wahl und gilt wie eine Eingabe am Handy
+     * (gleiche Nacht, gleiches Feld), nur ohne eigenes; eine Eingabe am Handy bleibt. Die erneut geschickte Nacht
+     * beendet keine schon begonnene Akku-Messung des Handys (z. B. eines zweiten Weckers).
+     */
+    @Test
+    fun watchFeelingArrivesWithTheNightAndNeverOverwritesThePhone() = runBlocking {
+        // Auf Millisekunden wie der Codec, sonst findet setFeeling die übertragene Nacht nicht.
+        val now = Instant.now().truncatedTo(ChronoUnit.MILLIS)
+        val night = night("a", now.minus(Duration.ofMinutes(20)))
+        queued(DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(night))
+        BatteryNight.begin(context, BatteryNight.Reading(now, 80, false))
+        queued(DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(night.copy(feeling = 3)))
+        assertEquals(listOf(3), app.nights.load().map { it.feeling }, "ohne eigenes: Wahl der Uhr")
+        assertNotNull(BatteryNight.end(context, BatteryNight.Reading(now.plusSeconds(60), 79, false)), "Akku läuft")
+        app.nights.setFeeling("a", night.windowStart, 5)
+        queued(DataLayer.PATH_MSG_NIGHT, Codec.encodeNight(night.copy(feeling = 2)))
+        assertEquals(listOf(5), app.nights.load().map { it.feeling }, "Eingabe am Handy bleibt")
     }
 
     @Test

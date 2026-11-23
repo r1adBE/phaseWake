@@ -226,13 +226,22 @@ internal fun WakeService.snooze(notifyPhone: Boolean, fromPhone: Boolean = false
 
 /**
  * Beendet die Nacht; der Dienst endet, sobald [finishNight] gespeichert und neu geplant hat. [fromPhone]: am Handy
- * beendet (Kennung genannt). Misst die Uhr dann noch, gilt die Nacht trotzdem als erledigt: Sonst plante
- * das Neuplanen dieselbe Nacht gleich wieder, und die Messung begänne von vorn.
+ * beendet (Kennung genannt). Misst die Uhr dann noch, endet die Nacht wie ein Stopp beim Klingeln (wie die Apple
+ * Watch): Die gemessenen Epochen kommen in den Verlauf (Weckzeit jetzt, Grund Zielzeit), und die Nacht gilt als
+ * erledigt. Sonst plante das Neuplanen dieselbe Nacht gleich wieder, und die Messung begänne von vorn. Auf der Uhr
+ * gestoppt ([notifyPhone] ohne [fromPhone], nicht nach der Zeitgrenze oder dem Zeitlimit): danach die Frage nach dem
+ * Befinden ([FeelingPrompt]).
  */
 internal fun WakeService.dismiss(notifyPhone: Boolean, fromPhone: Boolean = false) {
     val n = night ?: return
     stopRinging()
-    finishNight(notifyPhone, done = fromPhone && n.phase == WakeService.Phase.MEASURING)
+    val measuring = fromPhone && n.phase == Phase.MEASURING
+    if (measuring) {
+        logMeasureEnd(n, ", stopped on phone")
+        if (n.firstRing == null) n.firstRing = Instant.now()
+        n.reason = WakeReason.DEADLINE
+    }
+    finishNight(notifyPhone, done = measuring, stoppedOnWatch = notifyPhone && !fromPhone)
 }
 
 /** Niemand reagiert: schlummern, solange es geht, sonst beenden (das Handy klingelt weiter). */

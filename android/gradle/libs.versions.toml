@@ -23,6 +23,13 @@ robolectric = "4.18"
 # Nur als Constraint: hebt transitive Versionen mit bekannten Schwachstellen an, bindet nichts zusätzlich ein.
 guava = "33.7.2-android"
 protobufJavalite = "4.31.1"
+# Nur als Constraints im Plugin-Klassenpfad (build.gradle.kts, buildscript): hebt Bibliotheken von AGP mit bekannten
+# Schwachstellen an (OSV, «Schwachstellen Build/Tests»), bindet nichts zusätzlich ein.
+buildGuava = "33.7.2-jre"
+bouncycastle = "1.85"
+jdom2 = "2.0.6.1"
+jose4j = "0.9.6"
+commonsLang3 = "3.18.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }

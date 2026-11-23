@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">今夜は学習期間にカウントされません：Phase Wake がウォッチのセンサーを使えません。</string>
     <string name="watch_learn_skip_late">今夜は学習期間にカウントされません：夜、Phase Wake を開くのが遅すぎました。</string>
     <string name="editor_alarm_gone">このアラームはすでに削除されています。</string>
+    <string name="feeling_question">気分はどうですか?</string>
+    <string name="feeling_1">ぐったり</string>
+    <string name="feeling_2">疲れ</string>
+    <string name="feeling_3">普通</string>
+    <string name="feeling_4">良好</string>
+    <string name="feeling_5">爽快</string>
+    <string name="feeling_rate">気分 5段階中%1$d: %2$s</string>
+    <string name="feeling_later">あとで</string>
 </resources>

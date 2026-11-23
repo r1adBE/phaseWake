@@ -117,4 +117,12 @@
     <string name="watch_learn_skip_sensors">Ta noc nie zostanie zaliczona do fazy nauki: Phase Wake nie może korzystać z czujników zegarka.</string>
     <string name="watch_learn_skip_late">Ta noc nie zostanie zaliczona do fazy nauki: Phase Wake otwarto wieczorem za późno.</string>
     <string name="editor_alarm_gone">Ten budzik został w międzyczasie usunięty.</string>
+    <string name="feeling_question">Jak się czujesz?</string>
+    <string name="feeling_1">Wyczerpanie</string>
+    <string name="feeling_2">Zmęczenie</string>
+    <string name="feeling_3">Okej</string>
+    <string name="feeling_4">Dobrze</string>
+    <string name="feeling_5">Rześko</string>
+    <string name="feeling_rate">Samopoczucie %1$d z 5: %2$s</string>
+    <string name="feeling_later">Później</string>
 </resources>

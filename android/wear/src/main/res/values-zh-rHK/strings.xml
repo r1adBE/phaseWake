@@ -106,4 +106,12 @@
     <string name="watch_learn_skip_sensors">今晚唔計入學習階段：Phase Wake 用唔到手錶感應器。</string>
     <string name="watch_learn_skip_late">今晚唔計入學習階段：夜晚太遲先開 Phase Wake。</string>
     <string name="editor_alarm_gone">這個鬧鐘已被刪除。</string>
+    <string name="feeling_question">你感覺如何？</string>
+    <string name="feeling_1">筋疲力盡</string>
+    <string name="feeling_2">疲倦</string>
+    <string name="feeling_3">還可以</string>
+    <string name="feeling_4">不錯</string>
+    <string name="feeling_5">精神飽滿</string>
+    <string name="feeling_rate">感覺 %1$d/5：%2$s</string>
+    <string name="feeling_later">遲啲先</string>
 </resources>

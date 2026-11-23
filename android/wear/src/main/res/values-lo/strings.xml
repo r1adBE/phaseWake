@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: Phase Wake ໃຊ້ເຊັນເຊີຂອງໂມງບໍ່ໄດ້.</string>
     <string name="watch_learn_skip_late">ຄືນນີ້ບໍ່ນັບສຳລັບໄລຍະຮຽນຮູ້: ເປີດ Phase Wake ຊ້າເກີນໄປໃນຕອນແລງ.</string>
     <string name="editor_alarm_gone">ໂມງປຸກນີ້ຖືກລຶບໄປແລ້ວ.</string>
+    <string name="feeling_question">ເຈົ້າຮູ້ສຶກແນວໃດ?</string>
+    <string name="feeling_1">ໝົດແຮງ</string>
+    <string name="feeling_2">ເມື່ອຍ</string>
+    <string name="feeling_3">ພໍໃຊ້ໄດ້</string>
+    <string name="feeling_4">ດີ</string>
+    <string name="feeling_5">ສົດຊື່ນ</string>
+    <string name="feeling_rate">ຄວາມຮູ້ສຶກ %1$d ຈາກ 5: %2$s</string>
+    <string name="feeling_later">ພາຍຫຼັງ</string>
 </resources>

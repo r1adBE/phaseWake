@@ -14,6 +14,7 @@ import com.phasewake.app.wear.ui.DiagScreen
 import com.phasewake.app.wear.ui.EditorActions
 import com.phasewake.app.wear.ui.EditorContent
 import com.phasewake.app.wear.ui.EditorState
+import com.phasewake.app.wear.ui.FeelingScreen
 import com.phasewake.app.wear.ui.HomeActions
 import com.phasewake.app.wear.ui.HomeContent
 import com.phasewake.app.wear.ui.HomeState
@@ -21,7 +22,10 @@ import com.phasewake.app.wear.ui.NapScreen
 import com.phasewake.app.wear.ui.WatchHomeExtras
 import java.time.Duration
 
-/** Bildschirmfotos der Uhr: Powernap, Diagnose und «Nächstes Mal überspringen». Beispieldaten, keine echten. */
+/**
+ * Bildschirmfotos der Uhr: Powernap, Diagnose, «Nächstes Mal überspringen» und das Befinden nach dem Wecken.
+ * Beispieldaten, keine echten.
+ */
 
 /** Startbildschirm mit dem Chip «Powernap» (zentriert unter dem Weckfenster). */
 @Composable
@@ -141,3 +145,31 @@ fun WatchEditorSkip() = Swiss {
 
 /** Index des Schalters «Überspringen» in der Liste des Editors. */
 private const val SKIP_ITEM = 14
+
+/** Befinden nach dem Wecken: Frage, 1 «Erschöpft» … 5 «Erholt», «Später» (oben angezeigt: Frage und erste Knöpfe). */
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Befinden",
+    device = WATCH,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
+fun WatchFeeling() = Swiss {
+    AppScaffold(timeText = { FixedTimeText() }) { FeelingScreen(onPick = {}, onLater = {}) }
+}
+
+/** Kleine runde Uhr (um 192 dp): Frage und Knöpfe ganz lesbar, nichts abgeschnitten. */
+@PreviewTest
+@Preview(
+    locale = "de-rCH",
+    name = "Uhr Befinden klein",
+    device = WATCH_SMALL,
+    showBackground = true,
+    backgroundColor = 0xFF000000,
+)
+@Composable
+fun WatchFeelingSmall() = Swiss {
+    AppScaffold(timeText = { FixedTimeText() }) { FeelingScreen(onPick = {}, onLater = {}) }
+}

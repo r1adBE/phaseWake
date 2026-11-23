@@ -114,4 +114,12 @@
     <string name="watch_learn_skip_sensors">Ова ноћ се не рачуна у фазу учења: Phase Wake не може да користи сензоре сата.</string>
     <string name="watch_learn_skip_late">Ова ноћ се не рачуна у фазу учења: Phase Wake је отворен прекасно увече.</string>
     <string name="editor_alarm_gone">Овај аларм је у међувремену избрисан.</string>
+    <string name="feeling_question">Како се осећаш?</string>
+    <string name="feeling_1">Исцрпљено</string>
+    <string name="feeling_2">Уморно</string>
+    <string name="feeling_3">Осредње</string>
+    <string name="feeling_4">Добро</string>
+    <string name="feeling_5">Одморно</string>
+    <string name="feeling_rate">Осећај %1$d од 5: %2$s</string>
+    <string name="feeling_later">Касније</string>
 </resources>

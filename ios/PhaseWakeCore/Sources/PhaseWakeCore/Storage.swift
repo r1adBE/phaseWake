@@ -290,9 +290,9 @@ public final class PhaseWakeStorage: @unchecked Sendable {
     }
 
     /// Fügt eine Nacht hinzu (gleicher Wecker und Fensterbeginn ersetzt) und kürzt nach ``keep``.
-    /// Ein schon angegebenes Befinden und ein gespeicherter Akkustand bleiben, falls die Uhr dieselbe Nacht noch einmal
-    /// schickt. Alte Dateien brauchen keine Umstellung: Jede Nacht trägt ihren Wecker schon. Verlauf nicht lesbar (vor
-    /// dem ersten Entsperren): nichts geschrieben. - Returns: ob die Nacht gespeichert ist.
+    /// Ein gespeicherter Akkustand bleibt, falls die Uhr dieselbe Nacht noch einmal schickt; ein angegebenes Befinden
+    /// bleibt immer (auch gegen die Wahl der Uhr nach dem Wecken, ``FeelingAsk/merged(stored:incoming:)``). Alte
+    /// Dateien brauchen keine Umstellung. Verlauf nicht lesbar (vor dem Entsperren): nichts. - Returns: ob gespeichert.
     @discardableResult
     public func add(_ night: NightRecord, now: Date = Date()) -> Bool {
         lock.lock(); defer { lock.unlock() }
@@ -300,13 +300,13 @@ public final class PhaseWakeStorage: @unchecked Sendable {
             Self.log("Verlauf nicht lesbar, Nacht nicht gespeichert")
             return false
         }
-        // Befinden, Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal
-        // schickt (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
+        // Akku (z. B. des iPhones) und Einschlafen bleiben, wenn die Uhr dieselbe Nacht ohne sie noch einmal schickt,
+        // Befinden immer (wie Android); Beginn und Einschlafzeit nur zusammen (gehören zur selben Messung).
         let old = current.first { Self.sameNight($0, night) }
         let merged = NightRecord(alarmId: night.alarmId, windowStart: night.windowStart, target: night.target,
                                  wokeAt: night.wokeAt,
                                  reason: night.reason, snoozes: night.snoozes, epochs: night.epochs,
-                                 feeling: night.feeling ?? old?.feeling,
+                                 feeling: FeelingAsk.merged(stored: old?.feeling, incoming: night.feeling),
                                  watchBattery: night.watchBattery ?? old?.watchBattery,
                                  phoneBattery: night.phoneBattery ?? old?.phoneBattery,
                                  bedAt: night.asleepAt != nil ? night.bedAt : old?.bedAt,

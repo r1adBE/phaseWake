@@ -110,4 +110,12 @@
     <string name="watch_learn_skip_sensors">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: hindi magamit ng Phase Wake ang mga sensor ng relo.</string>
     <string name="watch_learn_skip_late">Hindi mabibilang ang gabing ito sa yugto ng pagkatuto: masyadong gabi na nabuksan ang Phase Wake.</string>
     <string name="editor_alarm_gone">Na-delete na ang alarm na ito.</string>
+    <string name="feeling_question">Kumusta ang pakiramdam mo?</string>
+    <string name="feeling_1">Pagod na pagod</string>
+    <string name="feeling_2">Inaantok</string>
+    <string name="feeling_3">Okay lang</string>
+    <string name="feeling_4">Mabuti</string>
+    <string name="feeling_5">Presko</string>
+    <string name="feeling_rate">Pakiramdam %1$d sa 5: %2$s</string>
+    <string name="feeling_later">Mamaya</string>
 </resources>

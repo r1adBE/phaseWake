@@ -113,4 +113,12 @@
     <string name="watch_learn_skip_sensors">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake no pot fer servir els sensors del rellotge.</string>
     <string name="watch_learn_skip_late">Aquesta nit no compta per a la fase d’aprenentatge: Phase Wake s’ha obert massa tard al vespre.</string>
     <string name="editor_alarm_gone">Aquesta alarma s’ha suprimit mentrestant.</string>
+    <string name="feeling_question">Com et sents?</string>
+    <string name="feeling_1">Esgotament</string>
+    <string name="feeling_2">Cansament</string>
+    <string name="feeling_3">Normal</string>
+    <string name="feeling_4">Bé</string>
+    <string name="feeling_5">Amb energia</string>
+    <string name="feeling_rate">Estat %1$d de 5: %2$s</string>
+    <string name="feeling_later">Més tard</string>
 </resources>

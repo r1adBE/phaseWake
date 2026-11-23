@@ -118,4 +118,12 @@
     <string name="watch_learn_skip_sensors">Ši naktis neįskaitoma mokymosi etapui: Phase Wake negali naudoti laikrodžio jutiklių.</string>
     <string name="watch_learn_skip_late">Ši naktis neįskaitoma mokymosi etapui: Phase Wake vakare atidarytas per vėlai.</string>
     <string name="editor_alarm_gone">Šis žadintuvas tuo metu buvo ištrintas.</string>
+    <string name="feeling_question">Kaip jautiesi?</string>
+    <string name="feeling_1">Be jėgų</string>
+    <string name="feeling_2">Mieguistai</string>
+    <string name="feeling_3">Normaliai</string>
+    <string name="feeling_4">Gerai</string>
+    <string name="feeling_5">Žvaliai</string>
+    <string name="feeling_rate">Savijauta %1$d iš 5: %2$s</string>
+    <string name="feeling_later">Vėliau</string>
 </resources>

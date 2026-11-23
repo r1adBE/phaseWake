@@ -83,6 +83,29 @@ enum RingingRules {
         return .night(clearsUpcoming: Transient.kindOf(alarmId) == nil)
     }
 
+    /// Wie eine Nacht endet (für die Rückmeldung «stop» ans iPhone, ``notifiesPhone(_:)``).
+    enum NightEnd: Equatable {
+        /// Stopp auf der Uhr (Weckbildschirm oder Weckhinweis des Systems).
+        case watch
+        /// Stopp am iPhone, während die Uhr klingelt, schlummert oder misst.
+        case phone
+        /// Sitzung weg oder Zeitgrenze erreicht (`SmartAlarm.finishInterrupted`): Das iPhone soll weiterklingeln.
+        case interrupted
+        /// Alter Klingel-Zustand, ohne Wecken abgeschlossen (`SmartAlarm.finishSilently`).
+        case stale
+    }
+
+    /// Ob die Uhr dem iPhone «stop» meldet, wenn die Nacht so endet (`end`): nach jedem Stopp, auch nach einem am
+    /// iPhone (wie die Galaxy Watch; das iPhone setzt damit den Zweitwecker dieser Nacht aus, beendet die Nacht für
+    /// seinen Akku und vermerkt beim Probewecker «Stopp kam an»); nicht nach einem Abbruch (das iPhone klingelt als
+    /// Sicherung weiter) und nicht für einen alten Zustand.
+    static func notifiesPhone(_ end: NightEnd) -> Bool {
+        switch end {
+        case .watch, .phone: true
+        case .interrupted, .stale: false
+        }
+    }
+
     /// Wann weitergeweckt wird, wenn die Sitzung beim Klingeln oder Schlummern endet (`SmartAlarm.finishInterrupted`):
     /// nach der Zeitgrenze (`expired`) nicht mehr (`nil`); beim Schlummern bis `snoozedUntil` zu dessen Ende plus
     /// `delay`; sonst jetzt.

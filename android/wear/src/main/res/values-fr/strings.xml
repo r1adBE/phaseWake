@@ -113,4 +113,12 @@
     <string name="watch_learn_skip_sensors">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake ne peut pas utiliser les capteurs de la montre.</string>
     <string name="watch_learn_skip_late">Cette nuit ne compte pas pour la phase d’apprentissage : Phase Wake a été ouvert trop tard le soir.</string>
     <string name="editor_alarm_gone">Ce réveil a été supprimé entre-temps.</string>
+    <string name="feeling_question">Comment te sens-tu ?</string>
+    <string name="feeling_1">Épuisement</string>
+    <string name="feeling_2">Fatigue</string>
+    <string name="feeling_3">Moyen</string>
+    <string name="feeling_4">Bien</string>
+    <string name="feeling_5">Fraîcheur</string>
+    <string name="feeling_rate">Ressenti %1$d sur 5 : %2$s</string>
+    <string name="feeling_later">Plus tard</string>
 </resources>

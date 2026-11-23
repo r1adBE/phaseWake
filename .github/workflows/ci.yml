@@ -286,7 +286,8 @@ jobs:
     if: needs.vorab.outputs.done != 'true' && needs.vorab.outputs.apple != 'false'
     runs-on: macos-latest
     # Ein hängender Build bricht ab statt den Lauf bis zu 6 Std. zu blockieren.
-    timeout-minutes: 45
+    # 60 statt 45 Min: dazu kommen die Bildschirmfotos (bis 12 Min, Schritt mit eigenem Zeitlimit).
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Neuestes Xcode wählen (keine Beta)
@@ -434,6 +435,100 @@ jobs:
             ios/PhaseWakeWatch/Alarm/SmartAlarm+Upcoming.swift=75 ios/PhaseWakeWatch/Alarm/SmartAlarm.swift=29 \
             ios/PhaseWakeWatch/Alarm/MeasuringRules.swift=95 ios/PhaseWakeWatch/Alarm/RingingRules.swift=95 \
             ios/PhaseWakeWatch/Alarm/SessionRules+Phase.swift=95 ios/PhaseWakeWatch/Alarm/NightRules+Kept.swift=95
+      # Bildschirmfotos (Audit F8): ScreensPhoneTests und ScreensWatchTests hängen PNGs an die Ergebnisbündel. Die
+      # Testläufe oben liefern sie in der Systemsprache (Englisch); hier laufen nur diese Tests nochmals auf Deutsch
+      # (iPhone, Uhr) und Französisch (Uhr). Die App liest Texte aus Bundle.main, darum die Sprache des Testwirts
+      # (-testLanguage). Export der Anhänge mit «xcresulttool export attachments» (Xcode 16+). Fehler warnen nur.
+      - name: Bildschirmfotos Apple
+        if: always()
+        continue-on-error: true
+        shell: bash
+        timeout-minutes: 12
+        run: |
+          set +e +o pipefail
+          warn() { echo "::warning title=Bildschirmfotos Apple::$1"; }
+          if [ -z "$PHONE_SIM" ] || [ -z "$WATCH_SIM" ] || [ ! -d build/DerivedData/Build/Products ]; then
+            warn "Kein Build oder Simulator: keine Bilder"
+            exit 0
+          fi
+          # Schema, Simulator, Testklasse, Sprache, Region, Ergebnisbündel; ein zweiter Versuch, dann nur Warnung.
+          shots() {
+            local i
+            for i in 1 2; do
+              rm -rf "$6"
+              xcodebuild -project ios/PhaseWake.xcodeproj -scheme "$1" -destination "id=$2" \
+                -derivedDataPath build/DerivedData -resultBundlePath "$6" -only-testing:"$3" \
+                -testLanguage "$4" -testRegion "$5" -test-timeouts-enabled YES \
+                -default-test-execution-time-allowance 60 -maximum-test-execution-time-allowance 120 \
+                CODE_SIGNING_ALLOWED=NO test-without-building > build/shots-test.log 2>&1 && return 0
+              cat build/shots-test.log >> build.log
+              warn "$3 ($4): Lauf $i gescheitert"
+            done
+          }
+          cat > "$RUNNER_TEMP/shots.py" <<'PY'
+          import json, pathlib, re, shutil, sys
+          src, dest = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
+          dest.mkdir(parents=True, exist_ok=True)
+          def entries(node):
+              if isinstance(node, dict):
+                  if "exportedFileName" in node:
+                      yield node
+                  for value in node.values():
+                      yield from entries(value)
+              elif isinstance(node, list):
+                  for value in node:
+                      yield from entries(value)
+          count = 0
+          for entry in entries(json.loads((src / "manifest.json").read_text())):
+              exported = entry["exportedFileName"]
+              if pathlib.Path(exported).suffix.lower() != ".png":
+                  continue
+              # Name des Anhangs; Xcode hängt «_<n>_<UUID>» an.
+              name = pathlib.Path(entry.get("suggestedHumanReadableName") or exported).stem
+              name = re.sub(r"_\d+_[0-9A-Fa-f-]{36}$", "", name)
+              if not name.startswith(("iphone-", "watch-")):
+                  name = "unbenannt-" + pathlib.Path(exported).stem
+              shutil.copy(src / exported, dest / (name + ".png"))
+              count += 1
+          print(count)
+          PY
+          # Ergebnisbündel, Zielordner.
+          export_shots() {
+            local out="$RUNNER_TEMP/anhaenge" n
+            [ -d "$1" ] || { warn "$1 fehlt"; return; }
+            rm -rf "$out"
+            mkdir -p "$out"
+            if ! xcrun xcresulttool export attachments --path "$1" --output-path "$out" > /dev/null 2>> build.log; then
+              warn "Anhänge aus $1 nicht exportiert (xcresulttool ohne «export attachments»?)"
+              return
+            fi
+            n=$(python3 "$RUNNER_TEMP/shots.py" "$out" "$2") || { warn "Anhänge aus $1 nicht lesbar"; return; }
+            echo "$n Bilder aus $1"
+          }
+          shots PhaseWake "$PHONE_SIM" PhaseWakeTests/ScreensPhoneTests de CH build/shots-phone-de.xcresult
+          shots PhaseWakeWatch "$WATCH_SIM" PhaseWakeWatchTests/ScreensWatchTests de CH build/shots-watch-de.xcresult
+          shots PhaseWakeWatch "$WATCH_SIM" PhaseWakeWatchTests/ScreensWatchTests fr FR build/shots-watch-fr.xcresult
+          for r in build/phone.xcresult build/shots-phone-de.xcresult; do
+            export_shots "$r" build/bildschirme/iphone
+          done
+          for r in build/watch.xcresult build/shots-watch-de.xcresult build/shots-watch-fr.xcresult; do
+            export_shots "$r" build/bildschirme/watch
+          done
+          n=$(find build/bildschirme -name '*.png' 2> /dev/null | wc -l | tr -d ' ')
+          if [ "${n:-0}" -gt 0 ]; then
+            echo "::notice title=Bildschirmfotos Apple::$n Bilder im Artefakt apple-bildschirme"
+          else
+            warn "Keine Bilder exportiert"
+          fi
+          exit 0
+      - name: Bildschirmfotos Apple ablegen
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: apple-bildschirme
+          path: build/bildschirme/
+          if-no-files-found: warn
       - name: Warnungen (Übersicht)
         if: always()
         shell: bash

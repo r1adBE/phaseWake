@@ -44,9 +44,14 @@ class NightKeyTest {
         assertEquals(2, merged.single { it.alarmId == "b" }.feeling)
     }
 
+    /**
+     * Gespeichertes Befinden hat Vorrang (`FeelingAsk.merged`, Entscheid 23.11.2026): Die Wahl der Uhr nach dem Wecken
+     * kommt mit der Nacht und überschreibt keine Eingabe am Handy; ohne gespeichertes gilt sie.
+     */
     @Test
-    fun newFeelingWins() {
-        assertEquals(5, merge(listOf(night("a", feeling = 4)), night("a", feeling = 5)).single().feeling)
+    fun storedFeelingWins() {
+        assertEquals(4, merge(listOf(night("a", feeling = 4)), night("a", feeling = 5)).single().feeling)
+        assertEquals(5, merge(listOf(night("a")), night("a", feeling = 5)).single().feeling)
     }
 
     @Test

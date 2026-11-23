@@ -11,6 +11,16 @@ public enum Snooze {
     public static func nextRing(_ now: Date) -> Date { now.addingTimeInterval(TimeInterval(minutes * 60)) }
 }
 
+/// Harte Grenze einer laufenden Nacht (Messen, Klingeln, Schlummern), gleich auf Apple Watch und Galaxy Watch (wie
+/// `NightLimit` in Kotlin): Spätestens `afterTarget` nach der Zielzeit endet sie, auch wenn sie noch klingelt oder
+/// schlummert (Sicherheitsnetz gegen eine hängende Nacht; reguläres Klingeln und Schlummern ist lange vorher vorbei).
+public enum NightLimit {
+    /// Abstand nach der Zielzeit in Minuten.
+    public static let minutes = 120
+    /// `minutes` in Sekunden.
+    public static let afterTarget = TimeInterval(minutes * 60)
+}
+
 /// Einschlaf-Erkennung (Regel, Abschnitt 6).
 public enum SleepOnset {
     /// 30 Epochen = 15 Minuten Ruhe.

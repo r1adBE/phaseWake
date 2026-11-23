@@ -104,4 +104,12 @@
     <string name="watch_learn_skip_sensors">Bu gecə öyrənmə mərhələsi üçün sayılmır: Phase Wake saatın sensorlarından istifadə edə bilmir.</string>
     <string name="watch_learn_skip_late">Bu gecə öyrənmə mərhələsi üçün sayılmır: Phase Wake axşam çox gec açıldı.</string>
     <string name="editor_alarm_gone">Bu siqnal artıq silinib.</string>
+    <string name="feeling_question">Özünü necə hiss edirsən?</string>
+    <string name="feeling_1">Əldən düşmüşəm</string>
+    <string name="feeling_2">Yorğunam</string>
+    <string name="feeling_3">Normal</string>
+    <string name="feeling_4">Yaxşı</string>
+    <string name="feeling_5">Gümrah</string>
+    <string name="feeling_rate">Əhval 5-dən %1$d: %2$s</string>
+    <string name="feeling_later">Sonra</string>
 </resources>

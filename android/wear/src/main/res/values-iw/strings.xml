@@ -113,4 +113,12 @@
     <string name="watch_learn_skip_sensors">הלילה לא נספר לשלב הלמידה: Phase Wake לא יכול להשתמש בחיישנים של השעון.</string>
     <string name="watch_learn_skip_late">הלילה לא נספר לשלב הלמידה: Phase Wake נפתח מאוחר מדי בערב.</string>
     <string name="editor_alarm_gone">המעורר הזה נמחק בינתיים.</string>
+    <string name="feeling_question">איך אתם מרגישים?</string>
+    <string name="feeling_1">תשישות</string>
+    <string name="feeling_2">עייפות</string>
+    <string name="feeling_3">בסדר</string>
+    <string name="feeling_4">טוב</string>
+    <string name="feeling_5">רעננות</string>
+    <string name="feeling_rate">תחושה %1$d מתוך 5: %2$s</string>
+    <string name="feeling_later">אחר כך</string>
 </resources>

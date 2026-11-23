@@ -153,7 +153,7 @@ extension SmartAlarm {
     /// bisher gemessenen Epochen bleiben als Nacht auf der Uhr (Wecken zur Zielzeit, bis die Nacht regulär endet und
     /// sie ersetzt; nicht ans iPhone, das sonst seinen Zweitwecker aussetzte). Ab der Zielzeit sofort per Mitteilung.
     func measuringInterrupted(_ plan: WakePlan) {
-        logMeasureEnd(" interrupted")
+        logMeasureEnd(", interrupted")
         guard let at = SessionRules.interruptedWake(now: Date(), target: plan.target) else {
             if let night = MeasuringRules.interruptedNight(nightPlan, epochs: epochs) {
                 WatchModel.shared.lastNight.add(night)
@@ -171,7 +171,7 @@ extension SmartAlarm {
     /// anbieten, künftige abzuschalten; die Person ist da wach). Im Hintergrund nicht: `notifyUser` zeigte dann den
     /// Weckhinweis des Systems mitten in der Nacht (bleibt offen, am Gerät zu prüfen, `docs/ENTSCHEIDE.md`).
     func cancelMeasuring() {
-        logMeasureEnd(" cancelled")
+        logMeasureEnd(", cancelled")
         stopSensors()
         if let session,
            MeasuringRules.confirmsCancel(session.state, active: WKApplication.shared().applicationState == .active) {
@@ -314,10 +314,10 @@ extension SmartAlarm {
         _ = act(on: moment, reason: held)
     }
 
-    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («hr epochs N/M»)
-    /// sowie die Kennzahlen der Schwellen (``NoiseFloor/summary(config:motions:)``: Grundrauschen, wirksame Leicht- und
-    /// Wach-Schwelle am Ende), ohne einzelne Messwerte. Nur während der Messung (`measuring`); `note` ergänzt den Grund
-    /// (z. B. abgebrochen).
+    /// Zusammenfassung am Ende einer Messung, einmal je Nacht: Epochen gesamt und davon mit Puls («watch N epochs
+    /// hr=M», wie die Galaxy Watch) sowie die Kennzahlen der Schwellen (``NoiseFloor/summary(config:motions:)``:
+    /// Grundrauschen, wirksame Leicht- und Wach-Schwelle am Ende), ohne einzelne Messwerte. Nur während der Messung
+    /// (`measuring`); `note` ergänzt den Grund (z. B. «, cancelled»).
     func logMeasureEnd(_ note: String = "") {
         guard phase.isMeasuring else { return }
         let summary = NoiseFloor.summary(config: detector.config, motions: epochs.map(\.motion))

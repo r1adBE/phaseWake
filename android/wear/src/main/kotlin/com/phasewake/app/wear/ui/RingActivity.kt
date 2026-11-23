@@ -2,6 +2,7 @@ package com.phasewake.app.wear.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -73,6 +74,7 @@ import com.phasewake.app.wear.ui.components.sunriseSky
 import com.phasewake.app.wear.ui.theme.Brand
 import com.phasewake.app.wear.ui.theme.PhaseWakeTheme
 import com.phasewake.app.wear.ui.theme.wakeSky
+import com.phasewake.app.wear.wake.FeelingPrompt
 import com.phasewake.app.wear.wake.RingState
 import com.phasewake.app.wear.wake.RingUi
 import com.phasewake.app.wear.wake.StartRefused
@@ -114,6 +116,8 @@ class RingActivity : ComponentActivity() {
                 RingUi.Idle -> {
                     // Beim Nachholen kurz auf den Dienst warten, sonst schlösse sich der Bildschirm sofort.
                     if (rescue && !rang) delay(RESCUE_WAIT_MS)
+                    // Auf der Uhr gestoppt: Der Stopp ist fertig, danach die Frage nach dem Befinden.
+                    openFeeling()
                     finish()
                 }
                 is RingUi.Ringing -> {
@@ -166,6 +170,20 @@ class RingActivity : ComponentActivity() {
         )
     }
 
+    /**
+     * Offene Frage nach dem Befinden ([FeelingPrompt], nur nach einem Stopp auf der Uhr): als eigenen Bildschirm
+     * öffnen, solange dieser hier noch im Vordergrund ist (aus dem Hintergrund liesse Android keinen Start zu).
+     */
+    private fun openFeeling() {
+        if (FeelingPrompt.current(System.currentTimeMillis()) == null) return
+        try {
+            startActivity(Intent(this, FeelingActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        } catch (e: RuntimeException) {
+            // Nur die Frage fällt weg; die Startseite des Handys fragt wie bisher.
+            Log.w(TAG, "Befinden-Bildschirm nicht geöffnet", e)
+        }
+    }
+
     // singleInstance: Ein weiterer Start (Vollbild, Alarm, Erinnerung) kommt hier an, ohne zweiten Bildschirm;
     // Ton und Vibration steuert der Dienst, sie beginnen dabei nicht neu.
     override fun onNewIntent(intent: Intent) {
@@ -186,6 +204,8 @@ class RingActivity : ComponentActivity() {
     }
 
     companion object {
+        private const val TAG = "RingActivity"
+
         /** Weg, auf dem der Bildschirm geöffnet wurde (nur für die Diagnose). */
         const val EXTRA_VIA = "via"
         const val VIA_FULL_SCREEN = "fullscreen"

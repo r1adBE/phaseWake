@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">आज की रात सीखने के चरण में नहीं गिनी जाएगी: Phase Wake घड़ी के सेंसर इस्तेमाल नहीं कर सकता।</string>
     <string name="watch_learn_skip_late">आज की रात सीखने के चरण में नहीं गिनी जाएगी: शाम को Phase Wake बहुत देर से खोला गया।</string>
     <string name="editor_alarm_gone">यह अलार्म इस बीच हटा दिया गया है।</string>
+    <string name="feeling_question">आप कैसा महसूस कर रहे हैं?</string>
+    <string name="feeling_1">थकान से चूर</string>
+    <string name="feeling_2">थका हुआ</string>
+    <string name="feeling_3">ठीक-ठाक</string>
+    <string name="feeling_4">अच्छा</string>
+    <string name="feeling_5">तरोताज़ा</string>
+    <string name="feeling_rate">एहसास 5 में से %1$d: %2$s</string>
+    <string name="feeling_later">बाद में</string>
 </resources>

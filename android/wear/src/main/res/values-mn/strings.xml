@@ -110,4 +110,12 @@
     <string name="watch_learn_skip_sensors">Өнөө шөнө суралцах үед тоологдохгүй: Phase Wake цагны мэдрэгчийг ашиглаж чадахгүй байна.</string>
     <string name="watch_learn_skip_late">Өнөө шөнө суралцах үед тоологдохгүй: Phase Wake-ийг орой хэт оройтож нээсэн.</string>
     <string name="editor_alarm_gone">Энэ сэрүүлэг энэ хооронд устгагдсан.</string>
+    <string name="feeling_question">Чи ямар байна?</string>
+    <string name="feeling_1">Туйлдсан</string>
+    <string name="feeling_2">Ядарсан</string>
+    <string name="feeling_3">Гайгүй</string>
+    <string name="feeling_4">Сайн</string>
+    <string name="feeling_5">Сэргэг</string>
+    <string name="feeling_rate">Мэдрэмж 5-аас %1$d: %2$s</string>
+    <string name="feeling_later">Дараа</string>
 </resources>

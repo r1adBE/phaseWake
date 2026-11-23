@@ -27,12 +27,24 @@ import kotlin.test.assertTrue
  * Mitteilung «Nächster Wecker» ohne Recht für exakte Wecker (Android 12/12L): Warnung als Titel, Weckfenster als Text
  * und «Erlauben» zur Systemseite. Mit Recht (ab Android 13 immer, USE_EXACT_ALARM) die gewohnte Mitteilung.
  *
- * Auf SDK 33: Für SDK 31 liegt kein Robolectric-Abbild bereit (gradle/robolectric.gradle.kts). Die Entscheidung hängt
- * nur an [android.app.AlarmManager.canScheduleExactAlarms], das der Schatten hier wie auf Android 12 entzieht.
+ * Auf SDK 31 (Android 12, Abbild in gradle/robolectric.gradle.kts): Der Schatten entzieht oder gibt das Recht über
+ * [android.app.AlarmManager.canScheduleExactAlarms] wie in den Einstellungen.
  */
 @RunWith(RobolectricTestRunner::class)
-@Config(sdk = [33], application = QuietApp::class)
+@Config(sdk = [31], application = NextAlarmNoticeExactTest.Android12App::class)
 class NextAlarmNoticeExactTest {
+    /**
+     * Unter Android 13 verlangt androidx.core für nicht exportierte Empfänger (Akku in der Nacht, beim Start der App)
+     * das eigene Recht `DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION`. Auf dem Gerät gibt es das zusammengeführte Manifest
+     * (Signatur), Robolectric gewährt es nicht von selbst: hier vor dem Start der App wie auf dem Gerät.
+     */
+    class Android12App : QuietApp() {
+        override fun onCreate() {
+            shadowOf(this).grantPermissions("$packageName.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION")
+            super.onCreate()
+        }
+    }
+
     private val context: Context get() = RuntimeEnvironment.getApplication()
     private val zone = ZoneOffset.UTC
     private val now = Instant.parse("2026-11-14T22:30:00Z")

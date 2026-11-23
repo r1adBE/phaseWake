@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">Đêm nay không được tính cho giai đoạn học: Phase Wake không dùng được cảm biến của đồng hồ.</string>
     <string name="watch_learn_skip_late">Đêm nay không được tính cho giai đoạn học: Phase Wake được mở quá muộn vào buổi tối.</string>
     <string name="editor_alarm_gone">Báo thức này đã bị xóa trong lúc đó.</string>
+    <string name="feeling_question">Bạn cảm thấy thế nào?</string>
+    <string name="feeling_1">Kiệt sức</string>
+    <string name="feeling_2">Mệt</string>
+    <string name="feeling_3">Ổn</string>
+    <string name="feeling_4">Tốt</string>
+    <string name="feeling_5">Sảng khoái</string>
+    <string name="feeling_rate">Cảm giác %1$d trên 5: %2$s</string>
+    <string name="feeling_later">Để sau</string>
 </resources>

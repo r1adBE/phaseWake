@@ -164,13 +164,15 @@ class PhoneRingService : Service() {
             // Die Uhr führt die Nacht: sie schlummert und meldet sich in 5 Minuten wieder.
             val alarmId = lastAlarmId
             val safetyAt = Snooze.nextRing(now()).plusMillis(RingMessage.SNOOZE_SAFETY_MS)
+            // Wie beim Stopp mit Kennung, Zielzeit und Sendezeit: Die Uhr schlummert nur, wenn es ihre Nacht ist.
+            val message = RingRules.watchMessage(alarmId, lastTarget, System.currentTimeMillis())
             // Statt der Wiederaufnahme gilt nun die Sicherung nach dem Schlummer-Ende.
             phoneApp.backup.cancelSnooze()
             phoneApp.appScope.launch {
                 // Zuerst die eigene Sicherung: Erreicht die Bitte die Uhr nicht oder klingelt sie danach
                 // nicht wieder, klingelt das Handy kurz nach dem Schlummer-Ende selbst.
                 phoneApp.backup.snoozeSafety(alarmId, safetyAt, done)
-                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE)
+                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_SNOOZE, message)
             }
             // Die Aufgabe ist hier weg; geht die Schlummer-Bitte verloren, erlaubt die Uhr so trotzdem gleich Halten.
             taskGone(ringing)
@@ -242,9 +244,9 @@ class PhoneRingService : Service() {
         // Auch beim Zweitwecker des Handys (oder dessen Schlummern): Die Uhr merkt die Nacht als erledigt
         // und holt sie nicht nach, falls sie gerade eine andere Nacht führt (zwei Wecker am selben Morgen).
         if (notifyWatch && before != State.Idle && (wasFromWatch || lastAlarmId != null)) {
-            val message = RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis())
+            val message = RingRules.watchMessage(lastAlarmId, lastTarget, System.currentTimeMillis())
             phoneApp.appScope.launch {
-                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message.encode())
+                phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_STOP, message)
             }
         }
         stopSelf()
@@ -259,8 +261,7 @@ class PhoneRingService : Service() {
      */
     private fun taskShown() {
         if (!watchTask(state.value)) return
-        val message =
-            RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        val message = RingRules.watchMessage(lastAlarmId, lastTarget, System.currentTimeMillis())
         phoneApp.appScope.launch {
             phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_SHOWN, message)
         }
@@ -271,8 +272,7 @@ class PhoneRingService : Service() {
      */
     private fun taskGone(before: State) {
         if (!watchTask(before)) return
-        val message =
-            RingMessage(alarmId = lastAlarmId, target = lastTarget, sentAt = System.currentTimeMillis()).encode()
+        val message = RingRules.watchMessage(lastAlarmId, lastTarget, System.currentTimeMillis())
         phoneApp.appScope.launch {
             phoneApp.sync.message(DataLayer.CAPABILITY_WATCH, DataLayer.PATH_TASK_GONE, message)
         }

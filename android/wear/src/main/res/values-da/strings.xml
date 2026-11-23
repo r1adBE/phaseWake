@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">I nat tæller ikke med i læringsfasen: Phase Wake kan ikke bruge urets sensorer.</string>
     <string name="watch_learn_skip_late">I nat tæller ikke med i læringsfasen: Phase Wake blev åbnet for sent om aftenen.</string>
     <string name="editor_alarm_gone">Denne alarm er blevet slettet i mellemtiden.</string>
+    <string name="feeling_question">Hvordan har du det?</string>
+    <string name="feeling_1">Udmattet</string>
+    <string name="feeling_2">Træt</string>
+    <string name="feeling_3">Okay</string>
+    <string name="feeling_4">God</string>
+    <string name="feeling_5">Frisk</string>
+    <string name="feeling_rate">Følelse %1$d af 5: %2$s</string>
+    <string name="feeling_later">Senere</string>
 </resources>

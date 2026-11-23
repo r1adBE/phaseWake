@@ -151,6 +151,16 @@ internal object RingRules {
         active && !message.isStale(nowMs) && message.sameNight(currentId, currentTarget)
 
     /**
+     * Meldung des Handys an die Uhr zur Nacht, die hier klingelt (Wecker [alarmId], Zielzeit [target], gesendet um
+     * [nowMs] in ms): dieselbe für «stop», «schlummern» und die Meldungen zur Weckaufgabe ([RingMessage]). Mit Kennung
+     * und Zielzeit prüft die Uhr, ob die Meldung ihre Nacht meint (`WakeService.isForThisNight`); fehlende Angaben
+     * (Zielzeit nach dem Schlummern am Handy) widersprechen nicht. Uhren, die «schlummern» noch ohne Inhalt kannten,
+     * lesen dasselbe Format.
+     */
+    fun watchMessage(alarmId: String?, target: Long?, nowMs: Long): ByteArray =
+        RingMessage(alarmId = alarmId, target = target, sentAt = nowMs).encode()
+
+    /**
      * Ohne Meldung der Uhr so lange: keine Uhr mehr gekoppelt oder getragen. Eine Uhr in Gebrauch meldet
      * ihren Status mindestens stündlich, sobald sie neu plant.
      */

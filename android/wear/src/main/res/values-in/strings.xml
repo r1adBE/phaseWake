@@ -105,4 +105,12 @@
     <string name="watch_learn_skip_sensors">Malam ini tidak terhitung untuk fase belajar: Phase Wake tidak bisa memakai sensor jam.</string>
     <string name="watch_learn_skip_late">Malam ini tidak terhitung untuk fase belajar: Phase Wake dibuka terlalu larut malam.</string>
     <string name="editor_alarm_gone">Alarm ini sudah dihapus.</string>
+    <string name="feeling_question">Bagaimana perasaanmu?</string>
+    <string name="feeling_1">Lelah sekali</string>
+    <string name="feeling_2">Lelah</string>
+    <string name="feeling_3">Biasa saja</string>
+    <string name="feeling_4">Baik</string>
+    <string name="feeling_5">Segar</string>
+    <string name="feeling_rate">Perasaan %1$d dari 5: %2$s</string>
+    <string name="feeling_later">Nanti</string>
 </resources>

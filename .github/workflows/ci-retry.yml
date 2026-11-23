@@ -1,8 +1,9 @@
 name: CI wiederholen
 
 # Startet einen CI-Lauf neu, wenn ein Apple-Job keinen macOS-Runner bekam («not acquired by Runner», Engpass bei
-# GitHub). Wiederholt werden nur die gescheiterten Jobs (Android bleibt grün stehen), höchstens bis zum 3. Versuch.
-# Ein echter Fehler wird nie wiederholt: Scheitert ausser solchen Apple-Jobs noch ein anderer Job, bleibt der Lauf rot.
+# GitHub) oder der Android-Job ein Artefakt nicht herunterladen konnte («Could not get resource 'https://…'», Maven
+# Central bzw. Google nicht erreichbar). Wiederholt werden nur die gescheiterten Jobs, höchstens bis zum 3. Versuch.
+# Ein echter Fehler wird nie wiederholt: Scheitert ausser solchen Jobs noch ein anderer, bleibt der Lauf rot.
 # Kein Checkout, kein Code aus dem Repo: nur Abfragen und der Neustart über die API.
 on:
   workflow_run:
@@ -59,12 +60,16 @@ jobs:
             notes=$(gh api "repos/$REPO/check-runs/$check/annotations?per_page=100" --jq '.[].message')
             if [[ "$name" == Apple-* ]] && grep -qF "not acquired by Runner" <<< "$notes"; then
               runner="$runner; $name"
+            elif [[ "$name" == Android* ]] && grep -qE "Could not (get resource|download) '?https?://" <<< "$notes"; then
+              # Download eines Artefakts gescheitert (Maven Central bzw. Google nicht erreichbar, z. B. 23.11.2026):
+              # kein Fehler im Code. Ein fehlendes Artefakt meldet Gradle anders («Could not find»), das zählt nicht.
+              runner="$runner; $name (Download)"
             else
               other="$other; $name"
             fi
           done <<< "$failed"
           if [ -z "$runner" ]; then
-            echo "::notice title=CI wiederholen::Kein Apple-Job ohne Runner: kein Neustart"
+            echo "::notice title=CI wiederholen::Kein Apple-Job ohne Runner und kein Download-Fehler: kein Neustart"
             exit 0
           fi
           if [ -n "$other" ]; then
@@ -72,4 +77,4 @@ jobs:
             exit 0
           fi
           gh api -X POST "repos/$REPO/actions/runs/$RUN_ID/rerun-failed-jobs" > /dev/null
-          echo "::notice title=CI wiederholen::Ohne Runner abgebrochen (${runner#; }): Versuch $((ATTEMPT + 1)) gestartet"
+          echo "::notice title=CI wiederholen::Ohne Runner oder Download abgebrochen (${runner#; }): Versuch $((ATTEMPT + 1)) gestartet"

@@ -112,6 +112,12 @@ final class AlarmScheduleTests: XCTestCase {
         XCTAssertNil(SleepOnset.find([Double?](repeating: 0.002, count: 60)))
     }
 
+    /// Harte Grenze der Nacht: 2 Std. nach der Zielzeit, gleich wie `NightLimit` in Kotlin.
+    func testNightLimitIsTwoHoursAfterTarget() {
+        XCTAssertEqual(NightLimit.minutes, 120)
+        XCTAssertEqual(NightLimit.afterTarget, 7200)
+    }
+
     /// Zucker im Schlaf (eine Epoche, Nachbarn ruhig) brechen die Strecke nicht, höchstens zwei (wie Kotlin).
     func testSingleTwitchesDoNotBreakTheStretch() {
         func night(_ moved: Int...) -> [Double?] { (0..<45).map { moved.contains($0) ? 0.2 : 0.001 } }

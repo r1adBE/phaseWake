@@ -92,6 +92,24 @@ final class StorageTests: XCTestCase {
         XCTAssertEqual(s.nights().first { $0.alarmId == "b" }?.feeling, 4)
     }
 
+    /// Befinden der Uhr nach dem Wecken (dieselbe Nacht mit ihrer Wahl noch einmal): gilt nur ohne gespeichertes; eine
+    /// Eingabe am iPhone bleibt (wie Android `NightRepositoryTest.watchFeelingNeverOverwritesThePhone`).
+    func testWatchFeelingNeverOverwritesThePhone() {
+        let s = storage()
+        let start = Date(timeIntervalSince1970: 1_793_165_400)
+        func night(_ feeling: Int?) -> NightRecord {
+            NightRecord(alarmId: "a", windowStart: start, target: start.addingTimeInterval(1800),
+                        wokeAt: start.addingTimeInterval(900), reason: .lightSleep, snoozes: 0, epochs: [],
+                        feeling: feeling)
+        }
+        s.add(night(nil), now: start)
+        s.add(night(2), now: start)
+        XCTAssertEqual(s.nights().first?.feeling, 2)
+        s.setFeeling(5, alarmId: "a", windowStart: start)
+        s.add(night(2), now: start)
+        XCTAssertEqual(s.nights().map(\.feeling), [5])
+    }
+
     /// Die Uhr schickt dieselbe Nacht noch einmal: der Akku des iPhones bleibt (wie Android
     /// `NightKeyTest.storedBatteryIsKept`).
     func testStoredBatteryIsKept() {

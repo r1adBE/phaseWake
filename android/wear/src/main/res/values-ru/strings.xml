@@ -117,4 +117,12 @@
     <string name="watch_learn_skip_sensors">Эта ночь не засчитывается для этапа обучения: Phase Wake не может использовать датчики часов.</string>
     <string name="watch_learn_skip_late">Эта ночь не засчитывается для этапа обучения: Phase Wake открыт вечером слишком поздно.</string>
     <string name="editor_alarm_gone">Этот будильник тем временем удалён.</string>
+    <string name="feeling_question">Как ты себя чувствуешь?</string>
+    <string name="feeling_1">Разбито</string>
+    <string name="feeling_2">Устало</string>
+    <string name="feeling_3">Нормально</string>
+    <string name="feeling_4">Хорошо</string>
+    <string name="feeling_5">Бодро</string>
+    <string name="feeling_rate">Самочувствие %1$d из 5: %2$s</string>
+    <string name="feeling_later">Позже</string>
 </resources>

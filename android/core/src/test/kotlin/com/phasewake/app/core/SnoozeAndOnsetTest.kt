@@ -12,6 +12,13 @@ class SnoozeAndOnsetTest {
         assertEquals(Instant.parse("2026-10-28T06:05:00Z"), Snooze.nextRing(Instant.parse("2026-10-28T06:00:00Z")))
     }
 
+    /** Harte Grenze der Nacht: 2 Std. nach der Zielzeit, gleich wie `NightLimit` in Swift. */
+    @Test
+    fun nightLimitIsTwoHoursAfterTarget() {
+        assertEquals(120, NightLimit.MINUTES)
+        assertEquals(java.time.Duration.ofHours(2), NightLimit.AFTER_TARGET)
+    }
+
     @Test
     fun onsetIsStartOfFirstStillRun() {
         val restless = List(10) { 0.05 }

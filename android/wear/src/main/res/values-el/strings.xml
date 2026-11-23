@@ -109,4 +109,12 @@
     <string name="watch_learn_skip_sensors">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake δεν μπορεί να χρησιμοποιήσει τους αισθητήρες του ρολογιού.</string>
     <string name="watch_learn_skip_late">Απόψε δεν μετράει για τη φάση εκμάθησης: το Phase Wake άνοιξε πολύ αργά το βράδυ.</string>
     <string name="editor_alarm_gone">Αυτό το ξυπνητήρι διαγράφηκε στο μεταξύ.</string>
+    <string name="feeling_question">Πώς νιώθεις;</string>
+    <string name="feeling_1">Εξουθενωμένος</string>
+    <string name="feeling_2">Κουρασμένος</string>
+    <string name="feeling_3">Μέτρια</string>
+    <string name="feeling_4">Καλά</string>
+    <string name="feeling_5">Ξεκούραστος</string>
+    <string name="feeling_rate">Αίσθηση %1$d από 5: %2$s</string>
+    <string name="feeling_later">Αργότερα</string>
 </resources>

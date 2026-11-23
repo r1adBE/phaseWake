@@ -110,4 +110,12 @@
     <string name="watch_learn_skip_sensors">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake getur ekki notað skynjara úrsins.</string>
     <string name="watch_learn_skip_late">Nóttin í nótt telst ekki með í námsfasanum: Phase Wake var opnað of seint um kvöldið.</string>
     <string name="editor_alarm_gone">Þessum vekjara hefur verið eytt á meðan.</string>
+    <string name="feeling_question">Hvernig líður þér?</string>
+    <string name="feeling_1">Úrvinda</string>
+    <string name="feeling_2">Þreytt(ur)</string>
+    <string name="feeling_3">Allt í lagi</string>
+    <string name="feeling_4">Vel</string>
+    <string name="feeling_5">Endurnærð(ur)</string>
+    <string name="feeling_rate">Líðan %1$d af 5: %2$s</string>
+    <string name="feeling_later">Seinna</string>
 </resources>

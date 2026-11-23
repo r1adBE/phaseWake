@@ -104,4 +104,12 @@
     <string name="watch_learn_skip_sensors">Այս գիշերը չի հաշվվում ուսուցման փուլի համար՝ Phase Wake-ը չի կարող օգտագործել ժամացույցի սենսորները։</string>
     <string name="watch_learn_skip_late">Այս գիշերը չի հաշվվում ուսուցման փուլի համար՝ Phase Wake-ը երեկոյան շատ ուշ է բացվել։</string>
     <string name="editor_alarm_gone">Այս զարթուցիչն այդ ընթացքում ջնջվել է։</string>
+    <string name="feeling_question">Ինչպե՞ս ես քեզ զգում</string>
+    <string name="feeling_1">Ուժասպառ</string>
+    <string name="feeling_2">Հոգնած</string>
+    <string name="feeling_3">Նորմալ</string>
+    <string name="feeling_4">Լավ</string>
+    <string name="feeling_5">Թարմ</string>
+    <string name="feeling_rate">Ինքնազգացում %1$d/5՝ %2$s</string>
+    <string name="feeling_later">Ավելի ուշ</string>
 </resources>
