@@ -135,6 +135,6 @@ Geprüft und so belassen: Apple-Sitzung misst die ersten 5 Min. eines 30-Min.-Fe
 ## Aufräumen
 
 15. **GitHub-Einstellungen (r1AD, im Browser):** Erledigt (geprüft 11.11.2026): Wiki und Projects aus, Topics gesetzt, Regel für `main` aktiv (Löschen und Force-Push verboten, grüne Prüfungen «Android (Kern, Handy, Uhr)», «Apple-Kern (Swift)», «Apple-Apps (iPhone, Watch)» verlangt). Aus der Sitzung sind Einstellungen nicht erlaubt.
-15b. **Dependabot-Warnungen (r1AD, im Browser):** Settings → Code security → «Dependabot alerts» einschalten (Audit 23.11.2026: aus). Ergänzt die OSV-Prüfung der CI um Actions und pip; aus der Sitzung nicht erlaubt.
+15b. **Dependabot-Warnungen (r1AD, im Browser):** Erledigt 23.11.2026: «Dependabot alerts» an (Audit 23.11.2026: war aus). Ergänzt die OSV-Prüfung der CI um Actions und pip. Die Warnungen sieht nur r1AD (Reiter «Security»); aus der Sitzung nicht lesbar. «Dependabot security updates» (automatische PRs) bleiben aus, die wöchentlichen Update-PRs genügen.
 15a. **Verlangte Prüfung gitleaks (r1AD, im Browser):** Erledigt: «Geheimnisse (gitleaks)» ist seit 12.11.2026 verlangte Prüfung der Regel für `main`; ein Fund hält einen Merge auf.
 16. **Prüfsummen der Gradle-Abhängigkeiten:** Dependabot trägt bei Gradle-Updates keine neuen Prüfsummen in `android/gradle/verification-metadata.xml` ein; solche Pull Requests scheitern in der CI, bis die Datei neu erzeugt ist (ENTWICKLUNG.md 3).
