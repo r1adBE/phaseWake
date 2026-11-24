@@ -1,8 +1,8 @@
 # Paket «holidays» für den Workflow «Feiertage», fest gewählte Version samt Prüfsummen.
 # Aktualisieren: Version und sha256 von pypi.org (Wheel und Quellpaket) hier nachführen, dann den Workflow starten.
-holidays==0.108 \
-    --hash=sha256:5a08fdccd0b8737093d483ba0d0d9696560396d99d3fa6ef9264fd2ac48749c7 \
-    --hash=sha256:b6daaa1f630512427fb0889700efaf9fa2eb4209f777ef4ce9ee216a4f0d0691
+holidays==0.109 \
+    --hash=sha256:7d39c910167116d41fa6aae18d5e72b4541700cdd37743d799c83db3419201b0 \
+    --hash=sha256:b1ebc71e8fdb62c7cbf043f781f19e2ea1c69c02ecff5c13dcfda4ebd1d3bb69
 python-dateutil==4.0.0 \
     --hash=sha256:a5e246f79eb80475e691bf93862cead98decd8a498cf53ba0516fcdc0f50dc1c \
     --hash=sha256:d7295ff14fdc0f92f662100bfb6c551d160ca090f2939f1ec5b9794265c03f06
